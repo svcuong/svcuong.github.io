@@ -1,0 +1,1595 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Cuong Sai">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="So sánh các thao tác biến đổi dữ liệu với thư viện `dplyr` trong R và `pandas` trong Python">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/data-manipulation/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128408660-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-128408660-5', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_32x32_fill_lanczos_center_2.PNG">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG">
+
+  <link rel="canonical" href="/post/data-manipulation/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cuong Sai">
+  <meta property="og:url" content="/post/data-manipulation/">
+  <meta property="og:title" content="So sánh dplyr và pandas cho data manipulation | Cuong Sai">
+  <meta property="og:description" content="So sánh các thao tác biến đổi dữ liệu với thư viện `dplyr` trong R và `pandas` trong Python"><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
+  <meta property="twitter:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-08-19T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-08-19T06:55:30&#43;04:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/data-manipulation/"
+  },
+  "headline": "So sánh dplyr và pandas cho data manipulation",
+  
+  "datePublished": "2020-08-19T00:00:00Z",
+  "dateModified": "2020-08-19T06:55:30+04:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Cuong Sai"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cuong Sai",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
+    }
+  },
+  "description": "So sánh các thao tác biến đổi dữ liệu với thư viện `dplyr` trong R và `pandas` trong Python"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script async type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+  <title>So sánh dplyr và pandas cho data manipulation | Cuong Sai</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Cuong Sai</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Cuong Sai</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/courses/"><span>Tutorials</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>So sánh dplyr và pandas cho data manipulation</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Aug 19, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    17 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a>, <a href="/category/python/">Python</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<p><img src="dplyr-vs-pandas.png" /></p>
+<p>Package <code>dplyr</code> là một trong những thành phần rất quan trọng trong hệ sinh thái <code>tidyverse</code> của <a href="http://hadley.nz/">Hadley Wickham</a> - tác giả của các thư viện nổi tiếng trên R như ggplot2, readr, tidyr,…<code>dplyr</code> cung cấp các công cụ biến đổi giúp cho việc thao tác với dữ liệu trên R dễ dàng và thuận tiện hơn bao giờ hết. Kết hợp với toán tử <code>%&gt;%</code>, nhiều người cho rằng dplyr đã tạo ra <code>concept</code> mới cho R.</p>
+<p>Để thực hiện các công việc liên quan đến data manipulation chúng ta có thể sử dụng các hàm thuộc gói <code>base</code> trong R, tuy nhiêu cú phát của nhiều hàm <code>base</code> là không nhất quán và khó nhớ, đặc biệt là cho một nhóm công việc đặc biệt tốn thời gian như là data manipulation. Gói hay còn thường được gọi là hệ sinh thái <code>tidyverse</code> ra đời nhằm đáp ứng các nhu cầu ngày càng tăng của việc biến đổi và làm sạch dữ liệu (data cleaning), nó bao gồm tập hợp của những gói mạnh nhất chuyên cho công việc làm sạch và biến đổi dữ liệu. Ưu điểm của việc sử dụng <code>tidyverse</code> phải kể đến các lí do sau:</p>
+<ul>
+<li>Dễ hiểu và có cú pháp nhất quán.</li>
+<li>Hợp nhất và hỗ trợ <code>ggplot2</code> - một gói chuyên cho data visualization.</li>
+<li>Có thể phân tích, quản lí cơ sở dữ liệu ngoài (external databases) mà không cần biết sâu các chi tiết và kiến thức của các ngôn ngữ truy vấn cơ sở dữ liệu (database query languages) khác như <code>SQL</code>.</li>
+</ul>
+<p>Nạp gói <code>tidyverse</code> vào phiên làm việc trên R để thực hiện công việc data manipulation:</p>
+<pre class="r"><code># R
+library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages -------------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v ggplot2 3.2.1     v purrr   0.3.3
+## v tibble  2.1.3     v dplyr   0.8.3
+## v tidyr   1.0.0     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.4.0</code></pre>
+<pre><code>## -- Conflicts ----------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<p><code>Tidyverse</code> là một hộp công cụ lớn chứa nhiều package nhỏ (trong đó có <code>dplyr</code>) bên trong và các mảnh nhỏ này kết nối với nhau một cách tiện ích để vận hành một quy trình phân tích dữ liệu hoàn chỉnh. Hiện nay <code>tidyverse</code> chứa 27 packages bao gồm:</p>
+<pre class="r"><code># R
+tidyverse_packages()</code></pre>
+<pre><code>##  [1] &quot;broom&quot;      &quot;cli&quot;        &quot;crayon&quot;     &quot;dbplyr&quot;     &quot;dplyr&quot;     
+##  [6] &quot;forcats&quot;    &quot;ggplot2&quot;    &quot;haven&quot;      &quot;hms&quot;        &quot;httr&quot;      
+## [11] &quot;jsonlite&quot;   &quot;lubridate&quot;  &quot;magrittr&quot;   &quot;modelr&quot;     &quot;pillar&quot;    
+## [16] &quot;purrr&quot;      &quot;readr&quot;      &quot;readxl&quot;     &quot;reprex&quot;     &quot;rlang&quot;     
+## [21] &quot;rstudioapi&quot; &quot;rvest&quot;      &quot;stringr&quot;    &quot;tibble&quot;     &quot;tidyr&quot;     
+## [26] &quot;xml2&quot;       &quot;tidyverse&quot;</code></pre>
+<p>Trong post này chúng ta hãy cùng so sánh các thao tác data manipulation thường dùng trong data science bằng cách sử dụng R (với <code>dplyr</code>) và sử dụng Python (với <code>pandas</code>):</p>
+<ul>
+<li><code>filter:</code> Lọc dữ liệu với các điều kiện của biến (thuộc tính)</li>
+<li><code>select:</code> Chọn thuộc tính hay là tập hợp các thuộc tính</li>
+<li><code>arrange:</code> Sắp xếp dữ liệu theo thứ t</li>
+<li><code>mutate</code> : Tạo thuộc tính mới cho data frameự</li>
+<li><code>summarise:</code> Thống kê mô tả theo phân nhóm</li>
+</ul>
+<p>Nạp thư viện <code>reticulate</code>:</p>
+<pre class="r"><code># R
+library(reticulate)</code></pre>
+<p><code>reticulate</code> cho phép chúng ta sử dụng kết hợp R và Python trong môi trường R. Cụ thể về cách sử dụng thư viện này để kết hợp R và Python tôi đã giới thiệu ở post trước, các bạn có thể đọc ở <a href="https://svcuong.github.io/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/">đây</a></p>
+<p>Nạp thư viện <code>pandas</code> trong môi trường R:</p>
+<pre class="python"><code># Python
+import pandas as pd</code></pre>
+<p><strong>Chú ý</strong>: Những R code chunks tôi sẽ comment <code>R</code> và Python là <code>Python</code>.</p>
+<p>Cũng giống như <code>dplyr</code> trong R, về cơ bản <code>Pandas</code> là một thư viện mã nguồn mở, được cộng đồng đánh giá là high-performance, nó hỗ trợ đắc lực trong thao tác với dữ liệu và giúp cho việc xử lý dữ liệu, tính toán sẽ dễ dàng hơn rất nhiều cách truyền thống trong Python.</p>
+<p>Load dữ liệu để demo:</p>
+<pre class="r"><code># R
+# Nạp R built-in dataset mtcars
+data(mtcars)
+# Chuyển dữ dữ liệu về dạng tibble(hay còn gọi là data_frame) - đây là 1 
+# kiểu cấu trúc dữ liệu mới trong R nhằm đáp ứng nhu cầu về tốc độ tính toán
+# khi xử lí dữ liệu có kích thước lớn
+data_r &lt;- as_tibble(mtcars)
+data_r</code></pre>
+<pre><code>## # A tibble: 32 x 11
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+## # ... with 22 more rows</code></pre>
+<hr />
+<p><strong>So sánh <code>dplyr</code> và <code>pandas</code></strong></p>
+<p><strong>1. Filter dữ liệu theo điều kiện của thuộc tính</strong></p>
+<pre class="r"><code># R
+filter(data_r, cyl &gt;=6 &amp; am == 1)</code></pre>
+<pre><code>## # A tibble: 5 x 11
+##     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  21       6   160   110  3.9   2.62  16.5     0     1     4     4
+## 2  21       6   160   110  3.9   2.88  17.0     0     1     4     4
+## 3  15.8     8   351   264  4.22  3.17  14.5     0     1     5     4
+## 4  19.7     6   145   175  3.62  2.77  15.5     0     1     5     6
+## 5  15       8   301   335  3.54  3.57  14.6     0     1     5     8</code></pre>
+<pre class="python"><code># Python
+# chuyển dữ liệu từ R cho Python:
+data_py = r.data_r
+data_py[(data_py[&#39;cyl&#39;] &gt;=6) &amp; (data_py[&#39;am&#39;] == 1)]</code></pre>
+<pre><code>##      mpg  cyl   disp     hp  drat     wt   qsec   vs   am  gear  carb
+## 0   21.0  6.0  160.0  110.0  3.90  2.620  16.46  0.0  1.0   4.0   4.0
+## 1   21.0  6.0  160.0  110.0  3.90  2.875  17.02  0.0  1.0   4.0   4.0
+## 28  15.8  8.0  351.0  264.0  4.22  3.170  14.50  0.0  1.0   5.0   4.0
+## 29  19.7  6.0  145.0  175.0  3.62  2.770  15.50  0.0  1.0   5.0   6.0
+## 30  15.0  8.0  301.0  335.0  3.54  3.570  14.60  0.0  1.0   5.0   8.0</code></pre>
+<pre class="r"><code># R
+data_r %&gt;% filter(am != 0)</code></pre>
+<pre><code>## # A tibble: 13 x 11
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6 160     110  3.9   2.62  16.5     0     1     4     4
+##  2  21       6 160     110  3.9   2.88  17.0     0     1     4     4
+##  3  22.8     4 108      93  3.85  2.32  18.6     1     1     4     1
+##  4  32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
+##  5  30.4     4  75.7    52  4.93  1.62  18.5     1     1     4     2
+##  6  33.9     4  71.1    65  4.22  1.84  19.9     1     1     4     1
+##  7  27.3     4  79      66  4.08  1.94  18.9     1     1     4     1
+##  8  26       4 120.     91  4.43  2.14  16.7     0     1     5     2
+##  9  30.4     4  95.1   113  3.77  1.51  16.9     1     1     5     2
+## 10  15.8     8 351     264  4.22  3.17  14.5     0     1     5     4
+## 11  19.7     6 145     175  3.62  2.77  15.5     0     1     5     6
+## 12  15       8 301     335  3.54  3.57  14.6     0     1     5     8
+## 13  21.4     4 121     109  4.11  2.78  18.6     1     1     4     2</code></pre>
+<pre class="python"><code># Python
+data_py[data_py[&#39;am&#39;] != 0]</code></pre>
+<pre><code>##      mpg  cyl   disp     hp  drat     wt   qsec   vs   am  gear  carb
+## 0   21.0  6.0  160.0  110.0  3.90  2.620  16.46  0.0  1.0   4.0   4.0
+## 1   21.0  6.0  160.0  110.0  3.90  2.875  17.02  0.0  1.0   4.0   4.0
+## 2   22.8  4.0  108.0   93.0  3.85  2.320  18.61  1.0  1.0   4.0   1.0
+## 17  32.4  4.0   78.7   66.0  4.08  2.200  19.47  1.0  1.0   4.0   1.0
+## 18  30.4  4.0   75.7   52.0  4.93  1.615  18.52  1.0  1.0   4.0   2.0
+## 19  33.9  4.0   71.1   65.0  4.22  1.835  19.90  1.0  1.0   4.0   1.0
+## 25  27.3  4.0   79.0   66.0  4.08  1.935  18.90  1.0  1.0   4.0   1.0
+## 26  26.0  4.0  120.3   91.0  4.43  2.140  16.70  0.0  1.0   5.0   2.0
+## 27  30.4  4.0   95.1  113.0  3.77  1.513  16.90  1.0  1.0   5.0   2.0
+## 28  15.8  8.0  351.0  264.0  4.22  3.170  14.50  0.0  1.0   5.0   4.0
+## 29  19.7  6.0  145.0  175.0  3.62  2.770  15.50  0.0  1.0   5.0   6.0
+## 30  15.0  8.0  301.0  335.0  3.54  3.570  14.60  0.0  1.0   5.0   8.0
+## 31  21.4  4.0  121.0  109.0  4.11  2.780  18.60  1.0  1.0   4.0   2.0</code></pre>
+<pre class="r"><code># R
+data_r %&gt;% group_by(cyl) %&gt;% filter(sum(hp) &gt; 2000)</code></pre>
+<pre><code>## # A tibble: 14 x 11
+## # Groups:   cyl [1]
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  2  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  3  16.4     8  276.   180  3.07  4.07  17.4     0     0     3     3
+##  4  17.3     8  276.   180  3.07  3.73  17.6     0     0     3     3
+##  5  15.2     8  276.   180  3.07  3.78  18       0     0     3     3
+##  6  10.4     8  472    205  2.93  5.25  18.0     0     0     3     4
+##  7  10.4     8  460    215  3     5.42  17.8     0     0     3     4
+##  8  14.7     8  440    230  3.23  5.34  17.4     0     0     3     4
+##  9  15.5     8  318    150  2.76  3.52  16.9     0     0     3     2
+## 10  15.2     8  304    150  3.15  3.44  17.3     0     0     3     2
+## 11  13.3     8  350    245  3.73  3.84  15.4     0     0     3     4
+## 12  19.2     8  400    175  3.08  3.84  17.0     0     0     3     2
+## 13  15.8     8  351    264  4.22  3.17  14.5     0     1     5     4
+## 14  15       8  301    335  3.54  3.57  14.6     0     1     5     8</code></pre>
+<pre class="python"><code># Python
+data_py.groupby(&#39;cyl&#39;).filter(lambda x: sum(x[&#39;hp&#39;]) &gt; 2000)</code></pre>
+<pre><code>##      mpg  cyl   disp     hp  drat     wt   qsec   vs   am  gear  carb
+## 4   18.7  8.0  360.0  175.0  3.15  3.440  17.02  0.0  0.0   3.0   2.0
+## 6   14.3  8.0  360.0  245.0  3.21  3.570  15.84  0.0  0.0   3.0   4.0
+## 11  16.4  8.0  275.8  180.0  3.07  4.070  17.40  0.0  0.0   3.0   3.0
+## 12  17.3  8.0  275.8  180.0  3.07  3.730  17.60  0.0  0.0   3.0   3.0
+## 13  15.2  8.0  275.8  180.0  3.07  3.780  18.00  0.0  0.0   3.0   3.0
+## 14  10.4  8.0  472.0  205.0  2.93  5.250  17.98  0.0  0.0   3.0   4.0
+## 15  10.4  8.0  460.0  215.0  3.00  5.424  17.82  0.0  0.0   3.0   4.0
+## 16  14.7  8.0  440.0  230.0  3.23  5.345  17.42  0.0  0.0   3.0   4.0
+## 21  15.5  8.0  318.0  150.0  2.76  3.520  16.87  0.0  0.0   3.0   2.0
+## 22  15.2  8.0  304.0  150.0  3.15  3.435  17.30  0.0  0.0   3.0   2.0
+## 23  13.3  8.0  350.0  245.0  3.73  3.840  15.41  0.0  0.0   3.0   4.0
+## 24  19.2  8.0  400.0  175.0  3.08  3.845  17.05  0.0  0.0   3.0   2.0
+## 28  15.8  8.0  351.0  264.0  4.22  3.170  14.50  0.0  1.0   5.0   4.0
+## 30  15.0  8.0  301.0  335.0  3.54  3.570  14.60  0.0  1.0   5.0   8.0</code></pre>
+<p><strong>2. Select thuộc tính</strong></p>
+<pre class="r"><code># R
+head(select(data_r, cyl, hp, wt), 5)</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##     cyl    hp    wt
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     6   110  2.62
+## 2     6   110  2.88
+## 3     4    93  2.32
+## 4     6   110  3.22
+## 5     8   175  3.44</code></pre>
+<pre class="python"><code># Python
+data_py[[&#39;cyl&#39;, &#39;hp&#39;, &#39;wt&#39;]].head(5)</code></pre>
+<pre><code>##    cyl     hp     wt
+## 0  6.0  110.0  2.620
+## 1  6.0  110.0  2.875
+## 2  4.0   93.0  2.320
+## 3  6.0  110.0  3.215
+## 4  8.0  175.0  3.440</code></pre>
+<pre class="r"><code># R
+head(select(data_r, -mpg), 5)</code></pre>
+<pre><code>## # A tibble: 5 x 10
+##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     6   160   110  3.9   2.62  16.5     0     1     4     4
+## 2     6   160   110  3.9   2.88  17.0     0     1     4     4
+## 3     4   108    93  3.85  2.32  18.6     1     1     4     1
+## 4     6   258   110  3.08  3.22  19.4     1     0     3     1
+## 5     8   360   175  3.15  3.44  17.0     0     0     3     2</code></pre>
+<pre class="python"><code># Python
+data_py.drop(&#39;mpg&#39;, 1).head(5)</code></pre>
+<pre><code>##    cyl   disp     hp  drat     wt   qsec   vs   am  gear  carb
+## 0  6.0  160.0  110.0  3.90  2.620  16.46  0.0  1.0   4.0   4.0
+## 1  6.0  160.0  110.0  3.90  2.875  17.02  0.0  1.0   4.0   4.0
+## 2  4.0  108.0   93.0  3.85  2.320  18.61  1.0  1.0   4.0   1.0
+## 3  6.0  258.0  110.0  3.08  3.215  19.44  1.0  0.0   3.0   1.0
+## 4  8.0  360.0  175.0  3.15  3.440  17.02  0.0  0.0   3.0   2.0</code></pre>
+<p><strong>3.Sắp Xếp dữ liệu theo thứ tự</strong></p>
+<pre class="r"><code># R
+# Sắp xếp dữ liệu theo giá trị tăng dần của cột cyl
+arrange(data_r, cyl)</code></pre>
+<pre><code>## # A tibble: 32 x 11
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  22.8     4 108      93  3.85  2.32  18.6     1     1     4     1
+##  2  24.4     4 147.     62  3.69  3.19  20       1     0     4     2
+##  3  22.8     4 141.     95  3.92  3.15  22.9     1     0     4     2
+##  4  32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
+##  5  30.4     4  75.7    52  4.93  1.62  18.5     1     1     4     2
+##  6  33.9     4  71.1    65  4.22  1.84  19.9     1     1     4     1
+##  7  21.5     4 120.     97  3.7   2.46  20.0     1     0     3     1
+##  8  27.3     4  79      66  4.08  1.94  18.9     1     1     4     1
+##  9  26       4 120.     91  4.43  2.14  16.7     0     1     5     2
+## 10  30.4     4  95.1   113  3.77  1.51  16.9     1     1     5     2
+## # ... with 22 more rows</code></pre>
+<pre class="python"><code># Python
+data_py.sort_values(&#39;cyl&#39;).head(10)</code></pre>
+<pre><code>##      mpg  cyl   disp     hp  drat     wt   qsec   vs   am  gear  carb
+## 31  21.4  4.0  121.0  109.0  4.11  2.780  18.60  1.0  1.0   4.0   2.0
+## 2   22.8  4.0  108.0   93.0  3.85  2.320  18.61  1.0  1.0   4.0   1.0
+## 27  30.4  4.0   95.1  113.0  3.77  1.513  16.90  1.0  1.0   5.0   2.0
+## 26  26.0  4.0  120.3   91.0  4.43  2.140  16.70  0.0  1.0   5.0   2.0
+## 25  27.3  4.0   79.0   66.0  4.08  1.935  18.90  1.0  1.0   4.0   1.0
+## 20  21.5  4.0  120.1   97.0  3.70  2.465  20.01  1.0  0.0   3.0   1.0
+## 7   24.4  4.0  146.7   62.0  3.69  3.190  20.00  1.0  0.0   4.0   2.0
+## 8   22.8  4.0  140.8   95.0  3.92  3.150  22.90  1.0  0.0   4.0   2.0
+## 19  33.9  4.0   71.1   65.0  4.22  1.835  19.90  1.0  1.0   4.0   1.0
+## 18  30.4  4.0   75.7   52.0  4.93  1.615  18.52  1.0  1.0   4.0   2.0</code></pre>
+<pre class="r"><code># R
+# Sắp xếp dữ liệu theo giá trị giảm dần của cột cyl
+arrange(data_r, desc(cyl))</code></pre>
+<pre><code>## # A tibble: 32 x 11
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  2  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  3  16.4     8  276.   180  3.07  4.07  17.4     0     0     3     3
+##  4  17.3     8  276.   180  3.07  3.73  17.6     0     0     3     3
+##  5  15.2     8  276.   180  3.07  3.78  18       0     0     3     3
+##  6  10.4     8  472    205  2.93  5.25  18.0     0     0     3     4
+##  7  10.4     8  460    215  3     5.42  17.8     0     0     3     4
+##  8  14.7     8  440    230  3.23  5.34  17.4     0     0     3     4
+##  9  15.5     8  318    150  2.76  3.52  16.9     0     0     3     2
+## 10  15.2     8  304    150  3.15  3.44  17.3     0     0     3     2
+## # ... with 22 more rows</code></pre>
+<pre class="python"><code># Python
+data_py.sort_values(&#39;cyl&#39;, ascending=False).head(10)</code></pre>
+<pre><code>##      mpg  cyl   disp     hp  drat     wt   qsec   vs   am  gear  carb
+## 16  14.7  8.0  440.0  230.0  3.23  5.345  17.42  0.0  0.0   3.0   4.0
+## 30  15.0  8.0  301.0  335.0  3.54  3.570  14.60  0.0  1.0   5.0   8.0
+## 4   18.7  8.0  360.0  175.0  3.15  3.440  17.02  0.0  0.0   3.0   2.0
+## 28  15.8  8.0  351.0  264.0  4.22  3.170  14.50  0.0  1.0   5.0   4.0
+## 6   14.3  8.0  360.0  245.0  3.21  3.570  15.84  0.0  0.0   3.0   4.0
+## 24  19.2  8.0  400.0  175.0  3.08  3.845  17.05  0.0  0.0   3.0   2.0
+## 23  13.3  8.0  350.0  245.0  3.73  3.840  15.41  0.0  0.0   3.0   4.0
+## 22  15.2  8.0  304.0  150.0  3.15  3.435  17.30  0.0  0.0   3.0   2.0
+## 21  15.5  8.0  318.0  150.0  2.76  3.520  16.87  0.0  0.0   3.0   2.0
+## 11  16.4  8.0  275.8  180.0  3.07  4.070  17.40  0.0  0.0   3.0   3.0</code></pre>
+<p><strong>4. Tạo thuộc tính mới</strong></p>
+<pre class="r"><code># R
+# Tạo và thêm biến mới có tên cyl2
+mutate(data_r, cyl2 = mean(cyl))</code></pre>
+<pre><code>## # A tibble: 32 x 12
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb  cyl2
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4  6.19
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4  6.19
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1  6.19
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1  6.19
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2  6.19
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1  6.19
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4  6.19
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2  6.19
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2  6.19
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4  6.19
+## # ... with 22 more rows</code></pre>
+<pre class="python"><code># Python
+import numpy as np
+data_py.assign(cyl2 = lambda x: np.mean(x.cyl)).head(10)</code></pre>
+<pre><code>##     mpg  cyl   disp     hp  drat     wt   qsec   vs   am  gear  carb    cyl2
+## 0  21.0  6.0  160.0  110.0  3.90  2.620  16.46  0.0  1.0   4.0   4.0  6.1875
+## 1  21.0  6.0  160.0  110.0  3.90  2.875  17.02  0.0  1.0   4.0   4.0  6.1875
+## 2  22.8  4.0  108.0   93.0  3.85  2.320  18.61  1.0  1.0   4.0   1.0  6.1875
+## 3  21.4  6.0  258.0  110.0  3.08  3.215  19.44  1.0  0.0   3.0   1.0  6.1875
+## 4  18.7  8.0  360.0  175.0  3.15  3.440  17.02  0.0  0.0   3.0   2.0  6.1875
+## 5  18.1  6.0  225.0  105.0  2.76  3.460  20.22  1.0  0.0   3.0   1.0  6.1875
+## 6  14.3  8.0  360.0  245.0  3.21  3.570  15.84  0.0  0.0   3.0   4.0  6.1875
+## 7  24.4  4.0  146.7   62.0  3.69  3.190  20.00  1.0  0.0   4.0   2.0  6.1875
+## 8  22.8  4.0  140.8   95.0  3.92  3.150  22.90  1.0  0.0   4.0   2.0  6.1875
+## 9  19.2  6.0  167.6  123.0  3.92  3.440  18.30  1.0  0.0   4.0   4.0  6.1875</code></pre>
+<p><strong>5. Thống kê mô tả theo phân nhóm</strong></p>
+<pre class="r"><code># R
+data_r %&gt;% 
+  group_by(cyl, am) %&gt;% 
+  summarise(mean_cyl = mean(cyl),
+            sum_cyl = sum(cyl),
+            count_cyl = n())</code></pre>
+<pre><code>## # A tibble: 6 x 5
+## # Groups:   cyl [3]
+##     cyl    am mean_cyl sum_cyl count_cyl
+##   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;     &lt;int&gt;
+## 1     4     0        4      12         3
+## 2     4     1        4      32         8
+## 3     6     0        6      24         4
+## 4     6     1        6      18         3
+## 5     8     0        8      96        12
+## 6     8     1        8      16         2</code></pre>
+<pre class="python"><code># Python
+data_py.groupby([&#39;cyl&#39;, &#39;am&#39;])[&#39;cyl&#39;].agg([&#39;mean&#39;, &#39;sum&#39;, &#39;count&#39;])</code></pre>
+<pre><code>##          mean   sum  count
+## cyl am                    
+## 4.0 0.0   4.0  12.0      3
+##     1.0   4.0  32.0      8
+## 6.0 0.0   6.0  24.0      4
+##     1.0   6.0  18.0      3
+## 8.0 0.0   8.0  96.0     12
+##     1.0   8.0  16.0      2</code></pre>
+<p><strong>6. Tóm tắt</strong></p>
+<p>Dưới đây là tóm tắt so sánh một số thao tác với dữ liệu hay dùng nhất trong Python và R</p>
+<p><strong>Querying, Filtering, Sampling</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>R</th>
+<th>Python</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dim(df)</td>
+<td>df.shape</td>
+</tr>
+<tr class="even">
+<td>head(df)</td>
+<td>df.head()</td>
+</tr>
+<tr class="odd">
+<td>slice(df, 1:10)</td>
+<td>df.iloc[:9]</td>
+</tr>
+<tr class="even">
+<td>filter(df, col1 == 1, col2 ==1)</td>
+<td>df.query(‘col1 == 1 &amp; col2 == 1’)</td>
+</tr>
+<tr class="odd">
+<td>df[df<span class="math inline">\(col1 == 1 &amp; df\)</span>col2 == 1]</td>
+<td>df[(df.col1 == 1) &amp; (df.col2 == 1)]</td>
+</tr>
+<tr class="even">
+<td>select(df, col1, col2)</td>
+<td>df[[‘col1’, ‘col2’]]</td>
+</tr>
+<tr class="odd">
+<td>select(df, col1:col3)</td>
+<td>df.loc[:, ‘col1’:‘col3’]</td>
+</tr>
+<tr class="even">
+<td>select(df, -(col1:col3))</td>
+<td>df.drop(cols_to_drop, axis=1)</td>
+</tr>
+<tr class="odd">
+<td>distinct(select(df, col1))</td>
+<td>df[[‘col1’]].drop_duplicates()</td>
+</tr>
+<tr class="even">
+<td>distinct(select(df, col1, col2))</td>
+<td>df[[‘col1’, ‘col2’]].drop_duplicates()</td>
+</tr>
+<tr class="odd">
+<td>sample_n(df, 10)</td>
+<td>df.sample(n=10)</td>
+</tr>
+<tr class="even">
+<td>sample_frac(df, 0.01)</td>
+<td>df.sample(frac=0.01)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sorting</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>R</th>
+<th>Python</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>arrange(df, col1, col2)</td>
+<td>df.sort_values([‘col1’, ‘col2’])</td>
+</tr>
+<tr class="even">
+<td>arrange(df, desc(col1))</td>
+<td>df.sort_values(‘col1’, ascending=False)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Grouping and Summarizing</strong></p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>R</th>
+<th>Python</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>summary(df)</td>
+<td>df.describe()</td>
+</tr>
+<tr class="even">
+<td>gdf &lt;- group_by(df, col1)</td>
+<td>gdf = df.groupby(‘col1’)</td>
+</tr>
+<tr class="odd">
+<td>summarise(gdf, avg=mean(col1, na.rm=TRUE))</td>
+<td>df.groupby(‘col1’).agg({‘col1’: ‘mean’})</td>
+</tr>
+<tr class="even">
+<td>summarise(gdf, total=sum(col1))</td>
+<td>df.groupby(‘col1’).sum()</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/data-wrangling/">Data Wrangling</a>
+  
+  <a class="badge badge-light" href="/tag/data-manipulation/">Data Manipulation</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/data-manipulation/&amp;text=So%20s%c3%a1nh%20dplyr%20v%c3%a0%20pandas%20cho%20data%20manipulation" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/data-manipulation/&amp;t=So%20s%c3%a1nh%20dplyr%20v%c3%a0%20pandas%20cho%20data%20manipulation" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=So%20s%c3%a1nh%20dplyr%20v%c3%a0%20pandas%20cho%20data%20manipulation&amp;body=/post/data-manipulation/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/data-manipulation/&amp;title=So%20s%c3%a1nh%20dplyr%20v%c3%a0%20pandas%20cho%20data%20manipulation" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=So%20s%c3%a1nh%20dplyr%20v%c3%a0%20pandas%20cho%20data%20manipulation%20/post/data-manipulation/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/data-manipulation/&amp;title=So%20s%c3%a1nh%20dplyr%20v%c3%a0%20pandas%20cho%20data%20manipulation" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/cuong-sai/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="Cuong Sai">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Cuong Sai</a></h5>
+        <h6 class="card-subtitle">PhD student</h6>
+        <p class="card-text">My research interests include Industrial AI (Intelligent predictive maintenance), Machine and Deep learning, Time series forecasting, Intelligent machinery fault diagnosis, Prognostics and health management, Error metrics / forecast evaluation.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://web.facebook.com/CSdatascience" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?hl=en&amp;user=qhiD3RUAAAAJ" target="_blank" rel="noopener">
+        <i class="fab fa-google-sholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/forvis" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/remove-outliers/">Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python</a></li>
+      
+      <li><a href="/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/">Sử dụng kết hợp R và Python trong data science</a></li>
+      
+      <li><a href="/post/2015-07-23-r-rmarkdown/">Hello R Markdown</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic Website Builder</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

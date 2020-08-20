@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cuong Sai</title>
+    <link>/author/cuong-sai/</link>
+      <atom:link href="/author/cuong-sai/index.xml" rel="self" type="application/rss+xml" />
+    <description>Cuong Sai</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 08 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
+      <title>Cuong Sai</title>
+      <link>/author/cuong-sai/</link>
+    </image>
+    
+    <item>
+      <title>А classification approach based on a combination of deep neural networks for predicting failures of complex multi-object systems</title>
+      <link>/publication/journal-article6/</link>
+      <pubDate>Mon, 08 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/journal-article6/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>STATISTICAL AND MACHINE LEARNING HIGH-FREQUENCY TIME SERIES FORECASTING METHODS IN AUTOMATIC MODE</title>
+      <link>/publication/journal-article2/</link>
+      <pubDate>Sun, 08 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/journal-article2/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Failure prediction of complex multiple-component systems based on a combination of neural networks&#39;:&#39; Ways to improve the accuracy of forecasting</title>
+      <link>/publication/journal-article7/</link>
+      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/journal-article7/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Architecture of predictive maintenance system of complex multi-object systems in Industry 4.0 concept</title>
+      <link>/publication/journal-article1/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/journal-article1/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PdM&#39;:&#39; A predictive maintenance modeling tool implemented as R-package and web-application</title>
+      <link>/publication/conference-paper3/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/conference-paper3/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>DEEP NEURAL NETWORKS FOR PREDICTIVE MAINTENANCE</title>
+      <link>/publication/journal-article4/</link>
+      <pubDate>Fri, 08 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/journal-article4/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Data-Driven Framework for Predictive Maintenance in Industry 4.0 Concept</title>
+      <link>/publication/conference-paper2/</link>
+      <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/conference-paper2/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Data Formats and Visual Tools for Forecast Evaluation</title>
+      <link>/publication/preprint/</link>
+      <pubDate>Tue, 19 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/preprint/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Data-driven method for remaining useful life prediction of complex multiple-component systems</title>
+      <link>/publication/journal-article3/</link>
+      <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/journal-article3/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Data Schemas for Forecasting (with Examples in R)</title>
+      <link>/publication/conference-paper1/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      <guid>/publication/conference-paper1/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Generating Proactive Decisions Using a Method Based on LSTM and Classification</title>
+      <link>/publication/conference-paper5/</link>
+      <pubDate>Mon, 10 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>/publication/conference-paper5/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>On-the-Fly Multiple Sources Data Analysis in AR-Based Decision Support Systems</title>
+      <link>/publication/conference-paper4/</link>
+      <pubDate>Fri, 24 Aug 2018 00:00:00 +0000</pubDate>
+      <guid>/publication/conference-paper4/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Grammar for queries for heterogeneous data storage in proactive systems</title>
+      <link>/publication/journal-article5/</link>
+      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>/publication/journal-article5/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Распределенная система слияния и преобработки разнородных данных с разных источников</title>
+      <link>/publication/paten3/</link>
+      <pubDate>Wed, 20 Sep 2017 00:00:00 +0000</pubDate>
+      <guid>/publication/paten3/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mở đầu về khoa học dữ liệu. Các khái niệm cơ bản</title>
+      <link>/post/2020-08-17-khai-niem-co-ban/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      <guid>/post/2020-08-17-khai-niem-co-ban/</guid>
+      <description>&lt;p&gt;Khoa học dữ liệu (&lt;code&gt;data science&lt;/code&gt;, DS) là một trong những ngành đang có nhu cầu tuyển dụng cao ở thời điểm hiện tại cũng như trong tương lai xa. Nhà khoa học dữ liệu (data scientist) được 
+&lt;a href=&#34;https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Harvard Business Review&lt;/a&gt; đánh giá là “công việc hấp dẫn nhất thế kỷ 21”.&lt;/p&gt;
+&lt;p&gt;Vậy DS là gì? Trong thực tế một định nghĩa chính xác về DS không tồn tại, đây là một khái niệm liên ngành và rất rộng. DS là một lĩnh vực về các quá trình và các hệ thống trích rút tri thức hoặc hiểu biết dữ liệu ở các dạng khác nhau với biên độ rộng của các ngành như: Toán học, khoa học thống kê, khoa học thông tin, khoa học máy tính và lĩnh vực chuyên môn cụ thể. Bao gồm xử lý tín hiệu, lý thuyết xác suất thống kê, học máy, khai phá dữ liệu, cơ sở dữ liệu, kỹ thuật thông tin, nhận dạng mẫu, trực quan dữ liệu, các phân tích dự đoán, lý thuyết quyết định, kho dữ liệu, nén dữ liệu, lập trình máy tính, trí tuệ nhân tạo và siêu máy tính. Có thể nói &amp;ldquo;Một nhà khoa học dữ liệu là người giỏi hơn về thống kê so với những kỹ sư phát triển phần mềm và giỏi hơn về lập trình so với những nhà thống kê học.&amp;rdquo;  Về bản chất có thể hiểu khoa học dữ liệu là ngành giúp chúng ta tạo ra giá trị từ dữ liệu với hai nhiệm vụ chính:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Thu thập  và xử lý dữ liệu để tìm ra những insights có giá trị.&lt;/li&gt;
+&lt;li&gt;Giải thích, trình bày những insights đó cho các bên có liên quan để chuyển hóa isights thành hành động.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Xuât phát từ tên gọi DS ta có hai thành phần cấu thành là &lt;em&gt;data&lt;/em&gt; và &lt;em&gt;science&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Data:&lt;/strong&gt; Là thành phần thứ nhất của cụm từ data science, thiếu nó thì tất cả các quá trình tiếp theo đều không thể thực hiện. Sau khi đã có đầy đủ dữ liệu cần thiết, trước khi sử dụng, công việc đầu tiên bạn cần làm là làm sạch và biến đổi dữ liệu - bước quan trọng nhất trong phân tích dữ liệu, nó chiếm đến 80% tổng số thời gian thực hiện phân tích.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Science:&lt;/strong&gt; Chúng ta đã có dữ liệu vậy bây giờ làm gì với chúng? Đó là phân tích, trích rút các quy luật có ích và làm sao có để có thể sử dụng chúng một cách hiệu quả. Ở đây các lĩnh vực sẽ giúp chúng ta như là thống kê, máy học, học sâu, tối ưu. Máy học giúp chúng ta tìm ra các quy luật trong dữ liệu để có thể dự báo thông tin cần thiết với đối tượng mói sau đó.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;DS và trí tuệ nhân tạo (&lt;code&gt;Artificial Intelligence&lt;/code&gt;, AI) thường bị đánh tráo khái niệm. Để phân biệt chính xác hai khái niệm về công nghệ này, hãy cùng tham khảo bài viết nhé!&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Phân biệt các khái niệm DS, AI, machine learning và deep learning&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Thực ra các lĩnh vực này đều có sự liên quan, chồng chéo đan xen với nhau. &lt;code&gt;AI&lt;/code&gt; là một trong các công cụ cho DS. &lt;code&gt;DS&lt;/code&gt; sử dụng &lt;code&gt;AI&lt;/code&gt; trong các hoạt động của mình, tuy nhiên chắc chắn nó không bao hàm AI. Hay nói cách khác trong DS có sự đóng góp bởi một số khía cạnh của AI nhưng lại không phản ánh tất cả về &lt;code&gt;AI&lt;/code&gt;. Hình dưới đây mô tả mối quan hệ của các khái niệm này:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-17-khai-niem-co-ban_files/1_-XKVI5SAEpffNR7BusdvNQ.png&#34; alt=&#34;&#34;&gt;
+
+&lt;a href=&#34;https://medium.com/ai-in-plain-english/data-science-vs-artificial-intelligence-vs-machine-learning-vs-deep-learning-50d3718d51e5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;source: Gmggroup.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;AI&lt;/code&gt; là một ngành khoa học được sinh ra với mục đích làm cho máy tính có được trí thông minh. &lt;code&gt;Machine learning&lt;/code&gt; là một phương tiện được kỳ vọng sẽ giúp con người đạt được mục tiêu đích đó. Cụ thể, &lt;code&gt;AI&lt;/code&gt; - là mục tiêu đặt ra, còn &lt;code&gt;machine learning&lt;/code&gt; - là phương tiện, công cụ để đạt được mục tiêu đó. Còn &lt;code&gt;deep learning&lt;/code&gt; là một kỹ thuật bổ sung cho &lt;code&gt;machine learning&lt;/code&gt;. Đây là một thuật toán dự trên ý tưởng từ bộ não của con người.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Ngôn ngữ lập trình cho khoa học dữ liệu&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Chọn ngôn ngữ nào để bắt đầu sự nghiệp Khoa học dữ liệu sẽ có nhiều thử thách đối với bạn. Có một số ngôn ngữ phục vụ cho ngành này phải kể đến những ngôn ngữ lập trình sau:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: là một trong những platforms mạnh cho học máy, thống kê và phân tích dữ liệu được phát triển và sử dụng bởi các nhà khoa học thống kê và phân tích dữ liệu hàng đầu trên thế giới. Nếu bạn muốn đi sâu vào phân tích dữ liệu và thống kê, thì R là ngôn ngữ dành cho bạn.Ngôn ngữ này đã có sự tăng trưởng vượt bậc khi phân tích dữ liệu và khoa học dữ liệu trở nên phổ biến hơn trong những năm gần đây. Hàng năm, số lượng người dùng R tăng hơn 40% và ngày càng có nhiều cơ quan và tổ chức sử dụng R trong hoạt động phân tích thường nhật Tuy nhiên trong thời rian gần đây độ phổ biến của nó đã giảm đi một chút.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python:&lt;/strong&gt; là một ngôn ngữ lập trình đa mục đích, khá mạnh và bao gồm các công cụ có thể ứng dụng vào các môi trường yêu cầu hình tượng hoá mà có thể xuất hiện trên các trang web hoặc trên điện thoại.  Python cung cấp hỗ trợ cho một số lượng lớn các thư viện học sâu như Pandas, Matplotlib, Tensorflow, Keras, scikit-learn, v.v. Để bắt đầu với ngành Data Science. Python là một trong những ngôn ngữ lập trình lý tưởng và nó cũng dễ đọc hơn R.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Java:&lt;/strong&gt; Ngôn ngữ lập trình Java gần đây được xếp hạng một trong những ngôn ngữ được yêu thích và đa năng nhất để viết, dựa vào bản khảo sát từ WP Engine. Nó cũng là một ngôn ngữ lập trình đa mục đích, được thiết kế riêng để càng ít phụ thuộc vào việc thực thi càng tốt. Nó có thể được sử dụng để xây dựng mọi thứ, đặc biệt là các nền tảng có thể mở rộng, nền tảng đa luồng (multithread) và có nền tảng người dùng mạnh mẽ. ác framework như Apache Spark, Hadoop và Hive ngày càng phổ biến trong môi trường thương mại, làm cho Java trở thành một trong những ngôn ngữ được các nhà khoa học dữ liệu yêu cầu. Kiến thức về Java sẽ tạo điều kiện cho bạn điều chỉnh và duy trì các nền tảng dữ liệu lớn như Hadoop được viết bằng cùng một ngôn ngữ.&lt;/p&gt;
+&lt;p&gt;Ngoài ra còn một số ngôn ngữ khác như là Julia, Scala, &amp;hellip;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Tham khảo:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;sub&gt;
+&lt;a href=&#34;https://medium.com/ai-in-plain-english/data-science-vs-artificial-intelligence-vs-machine-learning-vs-deep-learning-50d3718d51e5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;The differences between Data Science, Artificial Intelligence, Machine Learning, and Deep Learning&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Программа расчета асимптотических оценок показателей эффективностей системы эксплуатационного котроля объекта авиационной техники</title>
+      <link>/publication/paten2/</link>
+      <pubDate>Tue, 19 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>/publication/paten2/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Программа расчета статистических оценок показателей эффективностей системы эксплуатационного котроля объекта авиационной техники</title>
+      <link>/publication/paten1/</link>
+      <pubDate>Tue, 21 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>/publication/paten1/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

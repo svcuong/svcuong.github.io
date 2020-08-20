@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Science | Cuong Sai</title>
+    <link>/tag/data-science/</link>
+      <atom:link href="/tag/data-science/index.xml" rel="self" type="application/rss+xml" />
+    <description>Data Science</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 20 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
+      <title>Data Science</title>
+      <link>/tag/data-science/</link>
+    </image>
+    
+    <item>
+      <title>Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python</title>
+      <link>/post/remove-outliers/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/remove-outliers/</guid>
+      <description>&lt;p&gt;
+&lt;a href=&#34;https://leadupcollective.org/2017/06/02/statistics-high-performers-studying-the-outliers/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nguồn ảnh&lt;/a&gt;
+&lt;img src=&#34;/post/2020-08-19-remove-outliers.vn_files/outliers1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Outliers (dữ liệu ngoại lai hay là nhiễu) là một trong những thuật ngữ được sử dụng rất rộng rãi trong thế giới data science. Trong quá trình xây dựng các mô hình dự đoán, việc xác định và loại bỏ outliers trong dữ liệu là một bước vô cùng quan trọng. Nó giúp tăng cao độ chính xác cho các mô hình dự đoán.&lt;/p&gt;
+&lt;p&gt;Khi phân tích, chúng ta thường dùng các tham số như là &lt;code&gt;mean&lt;/code&gt;, &lt;code&gt;median&lt;/code&gt; và &lt;code&gt;mode&lt;/code&gt; để biết xu hướng tập trung của dữ liệu. Tuy nhiên, một câu hỏi quan trọng cần phải trả lời khi xem xét chất lượng của một mẫu dữ liệu trong  phân tích  đó là &lt;em&gt;&amp;ldquo;làm sao để đo được độ biến động (hay độ phân tán) của mẫu dữ liệu đó&amp;rdquo;?&lt;/em&gt;.  Vì chúng ta có thể có 2 mẫu dữ liệu với cùng giá trị &lt;code&gt;mean&lt;/code&gt; nhưng độ biến động của chúng lại hoàn toàn khác nhau. Trong thống kê những đại lượng phổ biến nhất để đo lường tiêu chí này là khoảng phần tư (interquartile range, &lt;code&gt;IQR&lt;/code&gt;) (hay còn được gọi là khoảng cách giữa các tứ phân vị), phương sai (&lt;code&gt;variance&lt;/code&gt;) và độ lệch chuẩn (standard deviation, &lt;code&gt;STD&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Ở post này tôi sẽ giới thiệu với các bạn cách sử dụng 2 phương pháp thống kê trong R và Python để xác định và loại bỏ outliers trong dữ liệu đó là:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;STD&lt;/code&gt; có thể sử dụng để xác định outliers trong dữ liệu có dạng/gần như dạng phân phối chuẩn (hay còn gọi là phân phối &lt;code&gt;Gauss&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IQR&lt;/code&gt; có thể sử dụng để xác định và loại bỏ outliers không phụ thuộc vào dạng phân phối của dữ liệu.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Và ở cuối post tôi sẽ hướng dẫn các bạn viết hàm tự động xác định và loại bỏ outliers từ dữ liệu sử dụng hai phương pháp trên.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;1. Tạo dữ liệu  để thực hành&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Để thực hành tôi sử dụng hàm mô phỏng phân phối chuẩn &lt;code&gt;rnorm()&lt;/code&gt; trong R để tạo ra dãy số ngẫu nhiên gồm &lt;code&gt;5000&lt;/code&gt; số với các tham số giá trị trung bình là &lt;code&gt;20&lt;/code&gt; và độ lệnh chuẩn là &lt;code&gt;2&lt;/code&gt; như sau:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+data = rnorm(5000, mean = 20, sd = 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Với Python thì ta thực hiện như sau:&lt;/p&gt;
+&lt;p&gt;Trước hết cần nạp thư viện &lt;code&gt;reticulate&lt;/code&gt; để sử dụng Python trong R:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+library(reticulate)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cụ thể về cách sử dụng thư viện &lt;code&gt;reticulate&lt;/code&gt; để kết hợp R và Python tôi đã giới thiệu ở post trước, các bạn có thể đọc ở 
+&lt;a href=&#34;https://svcuong.github.io/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;đây&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Tạo dữ liệu trong python:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+# Tạo dữ liệu tương tự như trong R
+from numpy.random import randn
+data = 2* randn(5000) + 20
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Trong dữ liệu được tạo ra từ phân phối chuẩn sẽ có một số giá trị nằm cách xa giá trị trung bình &lt;code&gt;mean&lt;/code&gt; mà chúng ta có thể xác định là &lt;code&gt;outliers&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Biểu diễn dữ liệu bằng histogam sử dụng hàm &lt;code&gt;hist()&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+hist(data, breaks= 60, main=&amp;quot;Histogram With breaks=60&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-19-remove-outliers.vn_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Nhân tiện đây tôi cũng xin giới thiệu một số hàm hỗ trợ cho các tính toán thống kê trong R như: &lt;code&gt;summary()&lt;/code&gt;, &lt;code&gt;sample()&lt;/code&gt;, &lt;code&gt;dnorm()&lt;/code&gt;, &lt;code&gt;pnorm()&lt;/code&gt;, &lt;code&gt;qnorm()&lt;/code&gt;, &lt;code&gt;dunif()&lt;/code&gt;, &lt;code&gt;punif()&lt;/code&gt;, &lt;code&gt;qunif()&lt;/code&gt;, &lt;code&gt;runif()&lt;/code&gt;, &lt;code&gt;mean()&lt;/code&gt;, &lt;code&gt;sd()&lt;/code&gt;, &lt;code&gt;cov()&lt;/code&gt;, &lt;code&gt;cor()&lt;/code&gt;,&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Hàm &lt;code&gt;summay()&lt;/code&gt; cho phép thực hiện thống kê mô tả (&lt;code&gt;descriptive statistics&lt;/code&gt;) để cung cấp cho chúng ta một số thông tin thống kê cơ bản về một biến số:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+summary(data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   12.67   18.68   20.04   20.03   21.40   26.91
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ví dụ sử dụng hàm &lt;code&gt;sample()&lt;/code&gt; để tạo mẫu ngẫu nhiên có lặp lại 10 số nguyên từ 0 đến 9:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+sample(0:9, replace = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] 0 7 6 9 5 6 0 0 9 7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ví dụ sử dụng hàm tính mật độ phân phối chuẩn &lt;code&gt;dnorm()&lt;/code&gt; để ước tính xác xuất của học sinh có điểm là &lt;code&gt;16.5&lt;/code&gt;  biết rằng điểm của học sinh tuân theo phân phối chuẩn với giá trị trung bình là &lt;code&gt;15&lt;/code&gt;, độ lệnh chuẩn là &lt;code&gt;2.5&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+dnorm(16.5, mean = 15, sd = 2.5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.1332898
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tiếp theo ví dụ trên để ước tính xác suất học sinh có điểm tối thiểu là
+&lt;code&gt;16.5&lt;/code&gt;, ta có thể sử dụng hàm tính xác suất chuẩn tích lũy &lt;code&gt;pnorm()&lt;/code&gt; như sau:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+1 - pnorm(16.5, mean = 15, sd = 2.5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.2742531
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Chức năng của các hàm R còn lại  cũng như các hàm tương tự trong Python các bạn có thể tự tìm hiểu thêm.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. Phương pháp STD&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Nếu như biết được rằng dữ liệu có dạng phân phối &lt;code&gt;Gauss&lt;/code&gt; thì chúng ta có thể sử dụng STD trong vài trò là thước đo giới hạn độ phân tán của dữ liệu để xác định outliers.&lt;/p&gt;
+&lt;p&gt;Trong phân phối &lt;code&gt;Gauss&lt;/code&gt; dựa vào giá trị trung bình &lt;code&gt;mean&lt;/code&gt; và &lt;code&gt;STD&lt;/code&gt; cho phép chúng ta kiểm tra được độ phân tán (hay là phần trăm bao phủ) của dữ liệu đó như thế nào. Ví dụ:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Độ bao phủ với &lt;code&gt;1 STD&lt;/code&gt; từ mean là &lt;code&gt;68%&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Độ bao phủ với &lt;code&gt;2 STD&lt;/code&gt; từ mean là &lt;code&gt;95%&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Độ bao phủ với &lt;code&gt;3 STD&lt;/code&gt; từ mean là &lt;code&gt;99.7%&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-19-remove-outliers.vn_files/std.jpg&#34; alt=&#34;&#34;&gt;
+
+&lt;a href=&#34;https://www.students4bestevidence.net/blog/2018/09/26/a-beginners-guide-to-standard-deviation-and-standard-error/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nguồn ảnh&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Vậy nên với dữ liệu dạng &lt;code&gt;Gauss&lt;/code&gt; có độ phân tán bình thường thì với &lt;code&gt;3STD&lt;/code&gt;, chúng ta sẽ bao phủ được khoảng &amp;gt; &lt;code&gt;99%&lt;/code&gt; của dữ liệu. Từ đó những điểm dữ liệu nằm ngoài &lt;code&gt;3STD&lt;/code&gt; sẽ được coi là outliers.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Các bước xác định outliers bằng phương pháp &lt;code&gt;STD&lt;/code&gt; như sau:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bước 1: Tính &lt;code&gt;mean&lt;/code&gt; và &lt;code&gt;std&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# tính mean và std
+# R
+mean_data &amp;lt;- mean(data)
+std_data &amp;lt;- sd(data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+from numpy import mean
+from numpy import std
+mean_data, std_data = mean(data), std(data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 2: Tính giá trị biên &lt;code&gt;Upper/Lower&lt;/code&gt; để xác định &lt;code&gt;outliers&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# thiết lập giới hạn để xác định outliers
+# R
+limit_std = 3*std_data
+lower_std = mean_data - limit_std
+upper_std = mean_data + limit_std
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+limit_std = 3*std_data
+lower_std, upper_std = mean_data - limit_std, mean_data + limit_std
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 3: Xác định và loại bỏ &lt;code&gt;outliers&lt;/code&gt; dựa trên giá trị biên&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# xác định outliers
+# R
+ouliers_index_std &amp;lt;- which(data &amp;gt; upper_std | data &amp;lt; lower_std)
+print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_std)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 17&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+ouliers_index_std = [x for x in data if x &amp;lt; lower_std or x &amp;gt; upper_std]
+print(&#39;Number of outliers: %d&#39; % len(ouliers_index_std))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 15
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
+# R
+data_new_std &amp;lt;- data[-ouliers_index_std]
+print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_std)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4983&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+data_new_std = [x for x in data if x &amp;gt;= lower_std and x &amp;lt;= upper_std]
+print(&#39;Number of Non-outliers:: %d&#39; % len(data_new_std))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4985
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;2. Phương pháp &lt;code&gt;IQR&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Tứ phân vị là đại lượng mô tả sự phân bố và sự phân tán của tập dữ liệu. Tứ phân vị có &lt;code&gt;3&lt;/code&gt; giá trị, đó là tứ phân vị thứ nhất &lt;code&gt;Q1&lt;/code&gt; (25th), thứ hai &lt;code&gt;Q2&lt;/code&gt; (50th) hay &lt;code&gt;median&lt;/code&gt;, và thứ ba &lt;code&gt;Q3&lt;/code&gt; (75th). Ba giá trị này chia một tập hợp dữ liệu (đã sắp xếp dữ liệu theo trật từ từ bé đến lớn) thành &lt;code&gt;4&lt;/code&gt; phần có số lượng quan sát đều nhau. Tứ phân vị được xác định như sau:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sắp xếp các số theo thứ tự tăng dần&lt;/li&gt;
+&lt;li&gt;Cắt dãy số thành &lt;code&gt;4&lt;/code&gt; phàn bằng nhau&lt;/li&gt;
+&lt;li&gt;Tứ phân vị là các giá trị tại vị trí cắt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-19-remove-outliers.vn_files/IQR.png&#34; alt=&#34;&#34;&gt;
+
+&lt;a href=&#34;https://medium.com/@dhwajraj/learning-python-regression-analysis-part-7-handling-outliers-in-data-d36ee9e2130b&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nguồn ảnh&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;IQR&lt;/code&gt; là sự khác biệt giữa tứ phân vị thứ nhất &lt;code&gt;Q1&lt;/code&gt; và tứ phân vị thứ ba &lt;code&gt;Q3&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$$IQR = Q_3 - Q_1$$&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Giá trị &lt;code&gt;IQR&lt;/code&gt; có thể sử dụng để xác định &lt;code&gt;outliers&lt;/code&gt; bằng cách thiết lập các giá trị biên &lt;code&gt;Upper/Lower&lt;/code&gt; giống với phương pháp &lt;code&gt;STD&lt;/code&gt; như sau:  Nếu chúng ta trừ đi &lt;code&gt;kxIQR&lt;/code&gt; từ tứ phân vị đầu tiên &lt;code&gt;Q1&lt;/code&gt;, bất kỳ giá trị dữ liệu nào nhỏ hơn con số này được coi là giá trị outliers. Tương tự như vậy, nếu chúng ta thêm &lt;code&gt;kxIQR&lt;/code&gt; đến tứ phân vị thứ ba &lt;code&gt;Q3&lt;/code&gt;, bất kỳ giá trị dữ liệu nào lớn hơn con số này được coi là outliers. Giá trị &lt;code&gt;k&lt;/code&gt;  thường được chọn là &lt;code&gt;1.5&lt;/code&gt;. Trong trường hợp xác định các &lt;code&gt;extreme outliers&lt;/code&gt; có thể dùng giá trị &lt;code&gt;k = 3&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Các bước xác định &lt;code&gt;outliers&lt;/code&gt; bằng phương pháp &lt;code&gt;IQR&lt;/code&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bước 1: Tính &lt;code&gt;IQR&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Tính IQR
+# R
+q25 &amp;lt;- quantile(data, 0.25)
+q75 &amp;lt;- quantile(data, 0.75)
+iqr &amp;lt;- q75 - q25
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+import numpy as np
+q25, q75 = np.percentile(data, 25), np.percentile(data, 75)
+iqr = q75 - q25
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 2: Tính giá trị biên &lt;code&gt;Upper/Lower&lt;/code&gt; để xác định &lt;code&gt;outliers&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# thiết lập giới hạn để xác định outliers
+# R
+limit_iqr = 1.5*iqr
+lower_iqr = q25 - limit_iqr
+upper_iqr = q75 + limit_iqr
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+limit_iqr = 1.5*iqr
+lower_iqr, upper_iqr = q25 - limit_iqr, q75 + limit_iqr
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 3: Xác định và loại bỏ &lt;code&gt;outliers&lt;/code&gt; dựa trên giá trị biên&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# xác định outliers
+# R
+ouliers_index_iqr &amp;lt;- which(data &amp;gt; upper_iqr | data &amp;lt; lower_iqr)
+print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_iqr)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 38&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+ouliers_index_iqr = [x for x in data if x &amp;lt; lower_iqr or x &amp;gt; upper_iqr]
+print(&#39;Number of outliers: %d&#39; % len(ouliers_index_iqr))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 35
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
+# R
+data_new_iqr &amp;lt;- data[-ouliers_index_iqr]
+print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_iqr)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4962&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+data_new_iqr = [x for x in data if x &amp;gt;= lower_iqr and x &amp;lt;= upper_iqr]
+print(&#39;Non-outlier observations: %d&#39; % len(data_new_iqr))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4965
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;3. Xây dựng hàm tự động xác định và loại bỏ &lt;code&gt;outliers&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Chúng ta có thể tạo một hàm trên R dựa vào các bước ở trên để tự động xác định và xóa outliers như sau:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+# Tạo hàm tự động xác định và loại bỏ outliers bằng phương pháp STD
+find_outliers_std &amp;lt;- function(data) {
+  # tính giá trị biên Upper/Lower
+  mean_data &amp;lt;- mean(data)
+  std_data &amp;lt;- sd(data)
+  limit = 3*std_data
+  lower = mean_data - limit
+  upper = mean_data + limit
+  # xác định outliers
+  ouliers_index &amp;lt;- which(data &amp;gt; upper | data &amp;lt; lower)
+  # Thông báo thông tin về các outliers đã xóa
+  if (length(ouliers_index) &amp;gt; 0 ) {
+    message(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index)))
+    message(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_iqr)))
+  # return the data with the outliers removed
+  return(data[-ouliers_index])
+  } else {
+    message(&amp;quot;Not outliers&amp;quot;)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tương tự ta có thể tạo hàm xác định &lt;code&gt;outliers&lt;/code&gt; bằng phương pháp &lt;code&gt;IQR&lt;/code&gt; như sau:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Python
+# Tạo hàm tự động xác định và loại bỏ outliers bằng phương pháp IQR
+find_outliers_iqr &amp;lt;- function(data) {
+  # Tính IQR
+  q25 &amp;lt;- quantile(data)[2]
+  q75 &amp;lt;- quantile(data)[4]
+  iqr = q75 - q25 
+  # Tính giá trị biên Upper/Lower để xác định outliers
+  upper = q75 + iqr * 1.5
+  lower = q25 - iqr * 1.5
+  # xác định outliers
+  ouliers_index &amp;lt;- which(data &amp;gt; upper | data &amp;lt; lower)
+  # Thông báo thông tin về các outliers đã xóa
+  if (length(ouliers_index) &amp;gt; 0 ) {
+    message(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index)))
+    message(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_iqr)))
+  # return the data with the outliers removed
+  # return the data with the outliers removed
+  return(data[-ouliers_index])
+  } else {
+    message(&amp;quot;Not outliers&amp;quot;)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra kết quả thực hiện của hai hàm này:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_std &amp;lt;- find_outliers_std(data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 17
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4962
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_iqr &amp;lt;- find_outliers_iqr(data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 38
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4962
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Đối với Python thì các bạn có thể tạo hàm tương tự sử dụng các bước trên&lt;/p&gt;
+&lt;hr&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The PdM Project</title>
+      <link>/project/pdm-project/</link>
+      <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>/project/pdm-project/</guid>
+      <description>&lt;p&gt;Sử dụng &lt;code&gt;R Shiny&lt;/code&gt; để phát triển ứng dụng &lt;code&gt;web&lt;/code&gt; tương tác (interactive web app), cho phép  &lt;code&gt;tracking&lt;/code&gt;   và   &lt;code&gt;visualization&lt;/code&gt;  luồng dữ liệu đa cảm biến, phát hiện bất thường, dự đoán hỏng hóc và tuổi thọ của máy móc trong thời gian thực.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/3Ir7xnPMX8o?autoplay=1&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>The Forvision Project</title>
+      <link>/project/forvision-project/</link>
+      <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
+      <guid>/project/forvision-project/</guid>
+      <description>&lt;p&gt;The project’s aim is to develop effective means for forecast evaluation and visualization. Based on our experience of implementing data science solutions for forecasting, we outline a typical forecast evaluation setup. Especially, we focus on handling rolling-origin forecasts made across many series over multiple horizons when many alternative methods are used.&lt;/p&gt;
+&lt;p&gt;We developed a general framework containing of the following components:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Forecast data formats - simple yet flexible enough data structures designed to store data needed for rolling-origin forecast evaluation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Exploratory analysis tools needed to make sure that data is of acceptable quality.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Performance measurement tools - techniques and graphs for accuracy and comparison.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Generally, the workflow we propose involves the following steps: 1) data preparation, 2) exploratory analysis, 3) performance measurement using appropriate metrics. The project&amp;rsquo;s website describes this process in more detail 
+&lt;a href=&#34;https://forvis.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sử dụng kết hợp R và Python trong data science</title>
+      <link>/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/</link>
+      <pubDate>Wed, 18 Apr 2018 00:00:00 +0000</pubDate>
+      <guid>/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/</guid>
+      <description>
+
+
+&lt;p&gt;Một câu hỏi thường hay đặt ra bởi nhiều nhà khoa học dữ liệu, đặc biệt là những người mới trong lĩnh vực này đó là: Python hay R tốt hơn cho khoa học dữ liệu? Thực ra còn nhiều ngôn ngữ khác cho khoa học dữ liệu như là: Java, C, Scala, Matlab, Julia,…nhưng Python và R đang dẫn đầu trong phần lớn thế giới khoa học dữ liệu.&lt;/p&gt;
+&lt;p&gt;R vốn được thiết kế bởi các nhà thống kê và đã trở thành lựa chọn hàng đầu cho những ai bước vào lĩnh vực khoa học dữ liệu. Một trong những thế mạnh chính của R là số lượng khổng lồ các packages chuyên dụng và cộng đồng support vô cùng lớn. Tuy nhiên, độ phổ biến của nó gần đây đã giảm đi một chút.&lt;/p&gt;
+&lt;p&gt;Trong khi đó, Python là ngôn ngữ đa mục đích có thể sử dụng trong nhiều lĩnh vực khác nhau từ lập trình ứng dụng web đến viết game. Có thể thấy là hiện nay Python đang thách thức ngôi vị lâu đầu của R như là một ngôn ngữ chung cho các nhà khoa học dữ liệu.&lt;/p&gt;
+&lt;p&gt;Tuy nhiên các doanh nghiệp sẽ không ưu tiên ngôn ngữ nào khi xem xét các kỹ năng của một nhà khoa học dữ liệu, vì vậy các bạn phải biết cách linh hoạt trong việc sử dụng các ngôn ngữ này làm công cụ cho khoa học dữ liệu làm sao hiệu quả nhất.&lt;/p&gt;
+&lt;p&gt;Cả R và Python đều có sử dụng để giải quyết các bài toán tương tự nhau trong khoa học dữ liệu. Cả hai đều có những packages hoặc libraries để giải quyết những vấn đề trong phân tích dữ liệu như tiền xủ lý, ứng dụng machine learning cho dữ liệu. Cả hai đều là lựa chọn tốt cho nghiên cứu khả lặp - một kỹ năng đòi hỏi trong rất nhiều lĩnh vực khác nhau. Tuy nhiên hai ngôn ngữ này lại có những tính năng tuyệt vời và điểm mạnh riêng vì vậy chúng ta nên kết hợp chúng để tận dụng những lợi thế của nhau, chỗ nào tiện và mạnh cái gì thì dùng cái đó. Hình dưới đây mô tả tóm tắt những điểm nổi trội của hai ngôn ngữ này:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-s-d-ng-k-t-h-p-r-và-python-trong-data-science.vn_files/r-python.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Ở post này tôi sẽ giới thiệu với các bạn cách kết hợp hai ngôn ngữ này trong môi trường R bằng cách sử dụng package &lt;a href=&#34;https://rstudio.github.io/reticulate/&#34;&gt;reticulate&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Trước hết để tiến hành làm việc với Python và R chúng ta cần cài đặt chúng:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Python:&lt;/strong&gt; Nếu bạn muốn đơn giản hóa việc tạo môi trường khi thực hiện các dự án bằng Python, đặc biệt liên quan đến các lĩnh vực khoa học dữ liệu, AI, Data, … Anaconda sẽ là lựa chọn bạn nên cân nhắc. Bạn có thể tải và cài Anaconda tại &lt;a href=&#34;https://www.anaconda.com/products/individual#macos&#34;&gt;đây&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;R:&lt;/strong&gt; Để làm việc với R các bạn cần tải R và Rstudio. Tải và cài phiên bản R mới nhất tại &lt;a href=&#34;https://cran.r-project.org/bin/windows/base/&#34;&gt;đây&lt;/a&gt;. Tải và cài đặt RStudion tại &lt;a href=&#34;https://rstudio.com/products/rstudio/download/&#34;&gt;đây&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Để kết hợp R và Python trong môi trường R chúng ta cần cài R package &lt;code&gt;reticulate&lt;/code&gt; bằng câu lệnh sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;reticulate&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tuy nhiên cách cài đặt như các bạn vừa thực hiện ở trên là không khuyến khích. Nguyên nhân là một
+số gói của R để sử dụng được còn phụ thuộc vào một hoặc một số gói khác. Do vậy an toàn nhất là cài
+đặt với lựa chọn &lt;code&gt;dependencies = TRUE&lt;/code&gt; với hàm ý rằng chúng ta sẽ cài đặt luôn tất cả các gói phụ
+thuộc:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;reticulate&amp;quot;, dependencies = TRU)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Package &lt;code&gt;reticulate&lt;/code&gt; gồm các công cụ hỗ trợ tương tác giữa R và Python. Cụ thể package này giải quyết được những việc sau:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gọi Python từ R bằng những phương pháp khác nhau: từ R Markdown, từ mã nguồn Python, import các Python modules, và sử dụng tương tác trực tiếp trên R session.&lt;/li&gt;
+&lt;li&gt;Chuyển đổi các đối tượng R và Python với nhau (ví dụ giữa các data frames R và Pandas, giữa các R matrices và NumPy arrays)&lt;/li&gt;
+&lt;li&gt;Liên kết linh hoạt giữa các phiên bản Python khác nhau bao gồm cả virtual environments và Conda environments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Kêt hợp R và Python&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Để có thể dùng Python trong môi trường R chúng ta cần nạp thư thư viện &lt;code&gt;reticulate&lt;/code&gt; theo câu lệnh sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(reticulate)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Để kiểm tra môi trường Python có trong máy, các bạn dùng câu lệnh sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda_list()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##           name
+## 1    Anaconda3
+## 2           TF
+## 3      rstudio
+## 4 r-reticulate
+## 5     r-tf-gpu
+##                                                                          python
+## 1                                       C:\\Users\\svcuo\\Anaconda3\\python.exe
+## 2                             C:\\Users\\svcuo\\Anaconda3\\envs\\TF\\python.exe
+## 3                        C:\\Users\\svcuo\\Anaconda3\\envs\\rstudio\\python.exe
+## 4 C:\\Users\\svcuo\\AppData\\Local\\r-miniconda\\envs\\r-reticulate\\python.exe
+## 5     C:\\Users\\svcuo\\AppData\\Local\\r-miniconda\\envs\\r-tf-gpu\\python.exe&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dùng hàm &lt;code&gt;use_python()&lt;/code&gt; cho phép bạn chỉ định rõ phiên bản Python cần thiết:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;use_python(&amp;quot;C:/Users/svcuo/Anaconda3/python.exe&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sử dụng hàm &lt;code&gt;use_virtualenv()&lt;/code&gt; và &lt;code&gt;use_condaenv()&lt;/code&gt; cho phép bạn chỉ định phiên bản Python của bạn làm việc trong môi trường virtual hay là Conda:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;use_virtualenv(&amp;quot;myenv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ta có thể cài đặt bất kỳ python library nào trong R bằng cách dùng hàm &lt;code&gt;py_install()&lt;/code&gt; như sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;py_install(&amp;quot;pandas&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Các cách sử dụng kết hợp Python và R trong môi trường R&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Import các python modules&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sử dụng hàm &lt;code&gt;import()&lt;/code&gt; cho phép bạn có thể gọi mọi python library và sử dụng trong R:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;os &amp;lt;- import(&amp;quot;os&amp;quot;)
+os$listdir(&amp;quot;.&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt; [1] &amp;quot;.RData&amp;quot;       &amp;quot;.Rhistory&amp;quot;    &amp;quot;.Rproj.user&amp;quot;  &amp;quot;assets&amp;quot;       &amp;quot;config&amp;quot;      
+ [6] &amp;quot;config.toml&amp;quot;  &amp;quot;content&amp;quot;      &amp;quot;index.Rmd&amp;quot;    &amp;quot;myblog.Rproj&amp;quot; &amp;quot;public&amp;quot;      
+[11] &amp;quot;resources&amp;quot;    &amp;quot;static&amp;quot;       &amp;quot;themes&amp;quot;     &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;2. Sourcing Python scripts&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bạn có thể nạp bất kỳ một Python scripts nào vào R sử dụng hàm &lt;code&gt;source_python()&lt;/code&gt;. Ví dụ bạn có một Python script tên là &lt;code&gt;flights.py&lt;/code&gt; có dạng:&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import pandas as pd
+
+def read_flights(file):
+  flights = pd.read_csv(file)
+  flights = flights[flights[&amp;#39;dest&amp;#39;] == &amp;quot;ORD&amp;quot;]
+  flights = flights[[&amp;#39;carrier&amp;#39;, &amp;#39;dep_delay&amp;#39;, &amp;#39;arr_delay&amp;#39;]]
+  flights = flights.dropna()
+  return flights&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Và các bạn có thể nạp và thực thi nó trên R như sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;source_python(&amp;quot;RPython/flights.py&amp;quot;)
+flights &amp;lt;- read_flights(&amp;quot;flights.csv&amp;quot;)
+
+library(ggplot2)
+ggplot(flights, aes(carrier, arr_delay)) + geom_point() + geom_jitter()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;3. Python REPL&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Hàm &lt;code&gt;repl_python()&lt;/code&gt; cho phép các bạn có thể làm việc trực tiếp với Python trên R session. Các đối tượng được tạo ra từ Python REPL có thể được truy cập từ R bằng cách sử dụng &lt;em&gt;py$object&lt;/em&gt;. Ví dụ:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-s-d-ng-k-t-h-p-r-và-python-trong-data-science.vn_files/python-repl.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Dùng lệnh &lt;code&gt;exit&lt;/code&gt; để thoát python REPL&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Chú ý:&lt;/strong&gt; Trong Python code có thể sử dụng mọi đối tượng được tạo ra từ R bằng các sử dụng đối tượng &lt;code&gt;r.object&lt;/code&gt; (ví dụ &lt;code&gt;r.flights&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. Sử dụng python trong R markdown&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Package &lt;code&gt;reticulate&lt;/code&gt; hỗ trợ Python engine cho R Markdown với những thuộc tính sau:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chạy Python code chunks tích hợp trong R session( cho phép trao đổi các đối tượng với nhau)&lt;/li&gt;
+&lt;li&gt;Hiển thị Python output, bao gồm cả output từ matplotlib&lt;/li&gt;
+&lt;li&gt;Truy cập tới các đối tượng được tạo ra từ Python chunks và ngược lại từ R chunks (sử dụng &lt;code&gt;py$object&lt;/code&gt; và &lt;code&gt;r.object&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Chúng ta hãy cùng xem ví dụ kết hợp R và Python đơn giản sau:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Nạp dữ liệu vào Python:&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+import pandas as pd
+dataset_url = &amp;#39;https://raw.githubusercontent.com/forvis/MLdata/master/pima-indians-diabetes.data.csv&amp;#39;
+
+names = [&amp;#39;preg&amp;#39;, &amp;#39;plas&amp;#39;, &amp;#39;pres&amp;#39;, &amp;#39;skin&amp;#39;, &amp;#39;test&amp;#39;, &amp;#39;mass&amp;#39;, &amp;#39;pedi&amp;#39;, &amp;#39;age&amp;#39;, &amp;#39;class&amp;#39;]
+data = pd.read_csv(dataset_url, names = names)
+print(data.head())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    preg  plas  pres  skin  test  mass   pedi  age  class
+## 0     6   148    72    35     0  33.6  0.627   50      1
+## 1     1    85    66    29     0  26.6  0.351   31      0
+## 2     8   183    64     0     0  23.3  0.672   32      1
+## 3     1    89    66    23    94  28.1  0.167   21      0
+## 4     0   137    40    35   168  43.1  2.288   33      1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sau đó chuyển dữ liệu và thao tác với dữ liệu bằng R:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R
+table(py$data$preg)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  17 
+## 111 135 103  75  68  57  50  45  38  28  24  11   9  10   2   1   1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Thực hiện data visualization trong R vơi base function &lt;code&gt;boxplot()&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R
+x &amp;lt;- py$data[,1:8]
+y &amp;lt;- py$data[,9]
+
+# Boxplot for first 4 attribute
+names = c(&amp;#39;preg&amp;#39;, &amp;#39;plas&amp;#39;, &amp;#39;pres&amp;#39;, &amp;#39;skin&amp;#39;)
+par(mfrow=c(1,4))
+for(i in 1:4) {
+boxplot(x[,i], main=names[i])
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-s-d-ng-k-t-h-p-r-và-python-trong-data-science.vn_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Thực hiện data visualization trong R với &lt;code&gt;ggplot2&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R
+library(ggplot2)
+py$data$class &amp;lt;- factor(py$data$class)
+ggplot(data = py$data,aes(x = preg)) +
+  geom_histogram(binwidth = 0.5,aes(fill = class),position = &amp;quot;dodge&amp;quot;) +
+  ggtitle(&amp;quot;Pregnancies Data Distribution&amp;quot;) + ylab(&amp;quot;class Counts&amp;quot;) +
+  theme_gray() +
+  theme_update(plot.title = element_text(hjust = 0.5))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-s-d-ng-k-t-h-p-r-và-python-trong-data-science.vn_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Tham khảo:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;sub&gt;&lt;a href=&#34;https://rstudio.github.io/reticulate/&#34;&gt;R Interface to Python&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

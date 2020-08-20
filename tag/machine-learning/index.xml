@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning | Cuong Sai</title>
+    <link>/tag/machine-learning/</link>
+      <atom:link href="/tag/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Machine Learning</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 20 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
+      <title>Machine Learning</title>
+      <link>/tag/machine-learning/</link>
+    </image>
+    
+    <item>
+      <title>Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python</title>
+      <link>/post/remove-outliers/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/remove-outliers/</guid>
+      <description>&lt;p&gt;
+&lt;a href=&#34;https://leadupcollective.org/2017/06/02/statistics-high-performers-studying-the-outliers/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nguồn ảnh&lt;/a&gt;
+&lt;img src=&#34;/post/2020-08-19-remove-outliers.vn_files/outliers1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Outliers (dữ liệu ngoại lai hay là nhiễu) là một trong những thuật ngữ được sử dụng rất rộng rãi trong thế giới data science. Trong quá trình xây dựng các mô hình dự đoán, việc xác định và loại bỏ outliers trong dữ liệu là một bước vô cùng quan trọng. Nó giúp tăng cao độ chính xác cho các mô hình dự đoán.&lt;/p&gt;
+&lt;p&gt;Khi phân tích, chúng ta thường dùng các tham số như là &lt;code&gt;mean&lt;/code&gt;, &lt;code&gt;median&lt;/code&gt; và &lt;code&gt;mode&lt;/code&gt; để biết xu hướng tập trung của dữ liệu. Tuy nhiên, một câu hỏi quan trọng cần phải trả lời khi xem xét chất lượng của một mẫu dữ liệu trong  phân tích  đó là &lt;em&gt;&amp;ldquo;làm sao để đo được độ biến động (hay độ phân tán) của mẫu dữ liệu đó&amp;rdquo;?&lt;/em&gt;.  Vì chúng ta có thể có 2 mẫu dữ liệu với cùng giá trị &lt;code&gt;mean&lt;/code&gt; nhưng độ biến động của chúng lại hoàn toàn khác nhau. Trong thống kê những đại lượng phổ biến nhất để đo lường tiêu chí này là khoảng phần tư (interquartile range, &lt;code&gt;IQR&lt;/code&gt;) (hay còn được gọi là khoảng cách giữa các tứ phân vị), phương sai (&lt;code&gt;variance&lt;/code&gt;) và độ lệch chuẩn (standard deviation, &lt;code&gt;STD&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Ở post này tôi sẽ giới thiệu với các bạn cách sử dụng 2 phương pháp thống kê trong R và Python để xác định và loại bỏ outliers trong dữ liệu đó là:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;STD&lt;/code&gt; có thể sử dụng để xác định outliers trong dữ liệu có dạng/gần như dạng phân phối chuẩn (hay còn gọi là phân phối &lt;code&gt;Gauss&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IQR&lt;/code&gt; có thể sử dụng để xác định và loại bỏ outliers không phụ thuộc vào dạng phân phối của dữ liệu.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Và ở cuối post tôi sẽ hướng dẫn các bạn viết hàm tự động xác định và loại bỏ outliers từ dữ liệu sử dụng hai phương pháp trên.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;1. Tạo dữ liệu  để thực hành&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Để thực hành tôi sử dụng hàm mô phỏng phân phối chuẩn &lt;code&gt;rnorm()&lt;/code&gt; trong R để tạo ra dãy số ngẫu nhiên gồm &lt;code&gt;5000&lt;/code&gt; số với các tham số giá trị trung bình là &lt;code&gt;20&lt;/code&gt; và độ lệnh chuẩn là &lt;code&gt;2&lt;/code&gt; như sau:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+data = rnorm(5000, mean = 20, sd = 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Với Python thì ta thực hiện như sau:&lt;/p&gt;
+&lt;p&gt;Trước hết cần nạp thư viện &lt;code&gt;reticulate&lt;/code&gt; để sử dụng Python trong R:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+library(reticulate)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cụ thể về cách sử dụng thư viện &lt;code&gt;reticulate&lt;/code&gt; để kết hợp R và Python tôi đã giới thiệu ở post trước, các bạn có thể đọc ở 
+&lt;a href=&#34;https://svcuong.github.io/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;đây&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Tạo dữ liệu trong python:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+# Tạo dữ liệu tương tự như trong R
+from numpy.random import randn
+data = 2* randn(5000) + 20
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Trong dữ liệu được tạo ra từ phân phối chuẩn sẽ có một số giá trị nằm cách xa giá trị trung bình &lt;code&gt;mean&lt;/code&gt; mà chúng ta có thể xác định là &lt;code&gt;outliers&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Biểu diễn dữ liệu bằng histogam sử dụng hàm &lt;code&gt;hist()&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+hist(data, breaks= 60, main=&amp;quot;Histogram With breaks=60&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-19-remove-outliers.vn_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Nhân tiện đây tôi cũng xin giới thiệu một số hàm hỗ trợ cho các tính toán thống kê trong R như: &lt;code&gt;summary()&lt;/code&gt;, &lt;code&gt;sample()&lt;/code&gt;, &lt;code&gt;dnorm()&lt;/code&gt;, &lt;code&gt;pnorm()&lt;/code&gt;, &lt;code&gt;qnorm()&lt;/code&gt;, &lt;code&gt;dunif()&lt;/code&gt;, &lt;code&gt;punif()&lt;/code&gt;, &lt;code&gt;qunif()&lt;/code&gt;, &lt;code&gt;runif()&lt;/code&gt;, &lt;code&gt;mean()&lt;/code&gt;, &lt;code&gt;sd()&lt;/code&gt;, &lt;code&gt;cov()&lt;/code&gt;, &lt;code&gt;cor()&lt;/code&gt;,&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Hàm &lt;code&gt;summay()&lt;/code&gt; cho phép thực hiện thống kê mô tả (&lt;code&gt;descriptive statistics&lt;/code&gt;) để cung cấp cho chúng ta một số thông tin thống kê cơ bản về một biến số:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+summary(data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   12.67   18.68   20.04   20.03   21.40   26.91
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ví dụ sử dụng hàm &lt;code&gt;sample()&lt;/code&gt; để tạo mẫu ngẫu nhiên có lặp lại 10 số nguyên từ 0 đến 9:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+sample(0:9, replace = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] 0 7 6 9 5 6 0 0 9 7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ví dụ sử dụng hàm tính mật độ phân phối chuẩn &lt;code&gt;dnorm()&lt;/code&gt; để ước tính xác xuất của học sinh có điểm là &lt;code&gt;16.5&lt;/code&gt;  biết rằng điểm của học sinh tuân theo phân phối chuẩn với giá trị trung bình là &lt;code&gt;15&lt;/code&gt;, độ lệnh chuẩn là &lt;code&gt;2.5&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+dnorm(16.5, mean = 15, sd = 2.5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.1332898
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tiếp theo ví dụ trên để ước tính xác suất học sinh có điểm tối thiểu là
+&lt;code&gt;16.5&lt;/code&gt;, ta có thể sử dụng hàm tính xác suất chuẩn tích lũy &lt;code&gt;pnorm()&lt;/code&gt; như sau:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+1 - pnorm(16.5, mean = 15, sd = 2.5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.2742531
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Chức năng của các hàm R còn lại  cũng như các hàm tương tự trong Python các bạn có thể tự tìm hiểu thêm.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. Phương pháp STD&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Nếu như biết được rằng dữ liệu có dạng phân phối &lt;code&gt;Gauss&lt;/code&gt; thì chúng ta có thể sử dụng STD trong vài trò là thước đo giới hạn độ phân tán của dữ liệu để xác định outliers.&lt;/p&gt;
+&lt;p&gt;Trong phân phối &lt;code&gt;Gauss&lt;/code&gt; dựa vào giá trị trung bình &lt;code&gt;mean&lt;/code&gt; và &lt;code&gt;STD&lt;/code&gt; cho phép chúng ta kiểm tra được độ phân tán (hay là phần trăm bao phủ) của dữ liệu đó như thế nào. Ví dụ:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Độ bao phủ với &lt;code&gt;1 STD&lt;/code&gt; từ mean là &lt;code&gt;68%&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Độ bao phủ với &lt;code&gt;2 STD&lt;/code&gt; từ mean là &lt;code&gt;95%&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Độ bao phủ với &lt;code&gt;3 STD&lt;/code&gt; từ mean là &lt;code&gt;99.7%&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-19-remove-outliers.vn_files/std.jpg&#34; alt=&#34;&#34;&gt;
+
+&lt;a href=&#34;https://www.students4bestevidence.net/blog/2018/09/26/a-beginners-guide-to-standard-deviation-and-standard-error/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nguồn ảnh&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Vậy nên với dữ liệu dạng &lt;code&gt;Gauss&lt;/code&gt; có độ phân tán bình thường thì với &lt;code&gt;3STD&lt;/code&gt;, chúng ta sẽ bao phủ được khoảng &amp;gt; &lt;code&gt;99%&lt;/code&gt; của dữ liệu. Từ đó những điểm dữ liệu nằm ngoài &lt;code&gt;3STD&lt;/code&gt; sẽ được coi là outliers.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Các bước xác định outliers bằng phương pháp &lt;code&gt;STD&lt;/code&gt; như sau:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bước 1: Tính &lt;code&gt;mean&lt;/code&gt; và &lt;code&gt;std&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# tính mean và std
+# R
+mean_data &amp;lt;- mean(data)
+std_data &amp;lt;- sd(data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+from numpy import mean
+from numpy import std
+mean_data, std_data = mean(data), std(data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 2: Tính giá trị biên &lt;code&gt;Upper/Lower&lt;/code&gt; để xác định &lt;code&gt;outliers&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# thiết lập giới hạn để xác định outliers
+# R
+limit_std = 3*std_data
+lower_std = mean_data - limit_std
+upper_std = mean_data + limit_std
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+limit_std = 3*std_data
+lower_std, upper_std = mean_data - limit_std, mean_data + limit_std
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 3: Xác định và loại bỏ &lt;code&gt;outliers&lt;/code&gt; dựa trên giá trị biên&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# xác định outliers
+# R
+ouliers_index_std &amp;lt;- which(data &amp;gt; upper_std | data &amp;lt; lower_std)
+print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_std)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 17&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+ouliers_index_std = [x for x in data if x &amp;lt; lower_std or x &amp;gt; upper_std]
+print(&#39;Number of outliers: %d&#39; % len(ouliers_index_std))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 15
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
+# R
+data_new_std &amp;lt;- data[-ouliers_index_std]
+print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_std)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4983&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+data_new_std = [x for x in data if x &amp;gt;= lower_std and x &amp;lt;= upper_std]
+print(&#39;Number of Non-outliers:: %d&#39; % len(data_new_std))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4985
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;2. Phương pháp &lt;code&gt;IQR&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Tứ phân vị là đại lượng mô tả sự phân bố và sự phân tán của tập dữ liệu. Tứ phân vị có &lt;code&gt;3&lt;/code&gt; giá trị, đó là tứ phân vị thứ nhất &lt;code&gt;Q1&lt;/code&gt; (25th), thứ hai &lt;code&gt;Q2&lt;/code&gt; (50th) hay &lt;code&gt;median&lt;/code&gt;, và thứ ba &lt;code&gt;Q3&lt;/code&gt; (75th). Ba giá trị này chia một tập hợp dữ liệu (đã sắp xếp dữ liệu theo trật từ từ bé đến lớn) thành &lt;code&gt;4&lt;/code&gt; phần có số lượng quan sát đều nhau. Tứ phân vị được xác định như sau:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sắp xếp các số theo thứ tự tăng dần&lt;/li&gt;
+&lt;li&gt;Cắt dãy số thành &lt;code&gt;4&lt;/code&gt; phàn bằng nhau&lt;/li&gt;
+&lt;li&gt;Tứ phân vị là các giá trị tại vị trí cắt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-19-remove-outliers.vn_files/IQR.png&#34; alt=&#34;&#34;&gt;
+
+&lt;a href=&#34;https://medium.com/@dhwajraj/learning-python-regression-analysis-part-7-handling-outliers-in-data-d36ee9e2130b&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nguồn ảnh&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;IQR&lt;/code&gt; là sự khác biệt giữa tứ phân vị thứ nhất &lt;code&gt;Q1&lt;/code&gt; và tứ phân vị thứ ba &lt;code&gt;Q3&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$$IQR = Q_3 - Q_1$$&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Giá trị &lt;code&gt;IQR&lt;/code&gt; có thể sử dụng để xác định &lt;code&gt;outliers&lt;/code&gt; bằng cách thiết lập các giá trị biên &lt;code&gt;Upper/Lower&lt;/code&gt; giống với phương pháp &lt;code&gt;STD&lt;/code&gt; như sau:  Nếu chúng ta trừ đi &lt;code&gt;kxIQR&lt;/code&gt; từ tứ phân vị đầu tiên &lt;code&gt;Q1&lt;/code&gt;, bất kỳ giá trị dữ liệu nào nhỏ hơn con số này được coi là giá trị outliers. Tương tự như vậy, nếu chúng ta thêm &lt;code&gt;kxIQR&lt;/code&gt; đến tứ phân vị thứ ba &lt;code&gt;Q3&lt;/code&gt;, bất kỳ giá trị dữ liệu nào lớn hơn con số này được coi là outliers. Giá trị &lt;code&gt;k&lt;/code&gt;  thường được chọn là &lt;code&gt;1.5&lt;/code&gt;. Trong trường hợp xác định các &lt;code&gt;extreme outliers&lt;/code&gt; có thể dùng giá trị &lt;code&gt;k = 3&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Các bước xác định &lt;code&gt;outliers&lt;/code&gt; bằng phương pháp &lt;code&gt;IQR&lt;/code&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bước 1: Tính &lt;code&gt;IQR&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Tính IQR
+# R
+q25 &amp;lt;- quantile(data, 0.25)
+q75 &amp;lt;- quantile(data, 0.75)
+iqr &amp;lt;- q75 - q25
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+import numpy as np
+q25, q75 = np.percentile(data, 25), np.percentile(data, 75)
+iqr = q75 - q25
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 2: Tính giá trị biên &lt;code&gt;Upper/Lower&lt;/code&gt; để xác định &lt;code&gt;outliers&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# thiết lập giới hạn để xác định outliers
+# R
+limit_iqr = 1.5*iqr
+lower_iqr = q25 - limit_iqr
+upper_iqr = q75 + limit_iqr
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+limit_iqr = 1.5*iqr
+lower_iqr, upper_iqr = q25 - limit_iqr, q75 + limit_iqr
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 3: Xác định và loại bỏ &lt;code&gt;outliers&lt;/code&gt; dựa trên giá trị biên&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# xác định outliers
+# R
+ouliers_index_iqr &amp;lt;- which(data &amp;gt; upper_iqr | data &amp;lt; lower_iqr)
+print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_iqr)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 38&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+ouliers_index_iqr = [x for x in data if x &amp;lt; lower_iqr or x &amp;gt; upper_iqr]
+print(&#39;Number of outliers: %d&#39; % len(ouliers_index_iqr))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 35
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
+# R
+data_new_iqr &amp;lt;- data[-ouliers_index_iqr]
+print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_iqr)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4962&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
+data_new_iqr = [x for x in data if x &amp;gt;= lower_iqr and x &amp;lt;= upper_iqr]
+print(&#39;Non-outlier observations: %d&#39; % len(data_new_iqr))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4965
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;3. Xây dựng hàm tự động xác định và loại bỏ &lt;code&gt;outliers&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Chúng ta có thể tạo một hàm trên R dựa vào các bước ở trên để tự động xác định và xóa outliers như sau:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
+# Tạo hàm tự động xác định và loại bỏ outliers bằng phương pháp STD
+find_outliers_std &amp;lt;- function(data) {
+  # tính giá trị biên Upper/Lower
+  mean_data &amp;lt;- mean(data)
+  std_data &amp;lt;- sd(data)
+  limit = 3*std_data
+  lower = mean_data - limit
+  upper = mean_data + limit
+  # xác định outliers
+  ouliers_index &amp;lt;- which(data &amp;gt; upper | data &amp;lt; lower)
+  # Thông báo thông tin về các outliers đã xóa
+  if (length(ouliers_index) &amp;gt; 0 ) {
+    message(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index)))
+    message(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_iqr)))
+  # return the data with the outliers removed
+  return(data[-ouliers_index])
+  } else {
+    message(&amp;quot;Not outliers&amp;quot;)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tương tự ta có thể tạo hàm xác định &lt;code&gt;outliers&lt;/code&gt; bằng phương pháp &lt;code&gt;IQR&lt;/code&gt; như sau:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Python
+# Tạo hàm tự động xác định và loại bỏ outliers bằng phương pháp IQR
+find_outliers_iqr &amp;lt;- function(data) {
+  # Tính IQR
+  q25 &amp;lt;- quantile(data)[2]
+  q75 &amp;lt;- quantile(data)[4]
+  iqr = q75 - q25 
+  # Tính giá trị biên Upper/Lower để xác định outliers
+  upper = q75 + iqr * 1.5
+  lower = q25 - iqr * 1.5
+  # xác định outliers
+  ouliers_index &amp;lt;- which(data &amp;gt; upper | data &amp;lt; lower)
+  # Thông báo thông tin về các outliers đã xóa
+  if (length(ouliers_index) &amp;gt; 0 ) {
+    message(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index)))
+    message(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_iqr)))
+  # return the data with the outliers removed
+  # return the data with the outliers removed
+  return(data[-ouliers_index])
+  } else {
+    message(&amp;quot;Not outliers&amp;quot;)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra kết quả thực hiện của hai hàm này:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_std &amp;lt;- find_outliers_std(data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 17
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4962
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_iqr &amp;lt;- find_outliers_iqr(data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 38
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4962
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Đối với Python thì các bạn có thể tạo hàm tương tự sử dụng các bước trên&lt;/p&gt;
+&lt;hr&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The PdM Project</title>
+      <link>/project/pdm-project/</link>
+      <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>/project/pdm-project/</guid>
+      <description>&lt;p&gt;Sử dụng &lt;code&gt;R Shiny&lt;/code&gt; để phát triển ứng dụng &lt;code&gt;web&lt;/code&gt; tương tác (interactive web app), cho phép  &lt;code&gt;tracking&lt;/code&gt;   và   &lt;code&gt;visualization&lt;/code&gt;  luồng dữ liệu đa cảm biến, phát hiện bất thường, dự đoán hỏng hóc và tuổi thọ của máy móc trong thời gian thực.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/3Ir7xnPMX8o?autoplay=1&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
+    
+  </channel>
+</rss>
