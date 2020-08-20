@@ -273,16 +273,6 @@
   </url>
   
   <url>
-    <loc>/tag/forecast-evaluation/</loc>
-    <lastmod>2018-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/forvision-project/</loc>
-    <lastmod>2018-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tag/r-markdown/</loc>
     <lastmod>2018-04-18T08:40:38+04:00</lastmod>
   </url>
@@ -290,6 +280,16 @@
   <url>
     <loc>/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/</loc>
     <lastmod>2018-04-18T08:40:38+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/forecast-evaluation/</loc>
+    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/forvision-project/</loc>
+    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
