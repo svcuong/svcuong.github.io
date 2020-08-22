@@ -30,7 +30,8 @@
   
     
   
-  <meta name="description" content="Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameter) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu.">
+  <meta name="description" content="==&gt; Bài viết chưa hoàn thành, hiện đang cập nhật
+Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameter) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/crypto/">
@@ -286,7 +287,8 @@
   <meta property="og:site_name" content="Data Science">
   <meta property="og:url" content="/post/crypto/">
   <meta property="og:title" content="Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging và Stacking (Sử dụng R code) | Data Science">
-  <meta property="og:description" content="Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameter) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu."><meta property="og:image" content="/post/crypto/featured.png">
+  <meta property="og:description" content="==&gt; Bài viết chưa hoàn thành, hiện đang cập nhật
+Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameter) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu."><meta property="og:image" content="/post/crypto/featured.png">
   <meta property="twitter:image" content="/post/crypto/featured.png"><meta property="og:locale" content="en-us">
   
     
@@ -340,7 +342,7 @@
       "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
     }
   },
-  "description": "Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameter) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu."
+  "description": "==\u0026gt; Bài viết chưa hoàn thành, hiện đang cập nhật\nTrong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameter) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu."
 }
 </script>
 
@@ -771,6 +773,7 @@
       
 
 
+<p><code>==&gt; Bài viết chưa hoàn thành, hiện đang cập nhật</code></p>
 <p>Trong <code>machine learning</code> tồn tại định lý “không có bữa trưa miễn phí” (<code>No free lunch theorem</code>), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán <code>machiner learning</code> thường dựa trên một tập các tham số (<code>hyperparameter</code>) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu. Vì vậy để tìm được những thuật toán phù hợp cho tập <code>dataset</code> của mình có thể các bạn sẽ cần nhiều thời gian để test các thuật toán khác nhau nhằm mục đích tìm ra danh sách một số thuật toán cho kết quả chính xác. Rồi từ đó hiệu chỉnh (<code>tuning</code>) các tham số của các thuật toán này để thu được độ chính xác cao nhất.</p>
 <p>Một cách khác có thể sử dụng để tăng độ chính xác trên tập <code>dataset</code> của bạn là kết hợp (<code>combine</code>) một số mô hình với nhau. Phương pháp này gọi là <code>esemble learning</code>. Ý tưởng của việc <code>combine</code> các mô hình khác nhau xuất phát từ một suy nghĩ hợp lý là: các mô hình khác nhau có khả năng khác nhau, có thể thực hiện tốt nhất các loại công việc khác nhau (<code>subtasks</code>), khi kết hợp các mô hình này với nhau một cách hợp lý thì sẽ tạo thành một mô hình kết hợp (<code>combined model</code>) mạnh có khả năng cải thiện hiệu suât tổng thể và (<code>overall performance</code>) so với việc chỉ dùng các mô hình một cách đơn lẻ.</p>
 <p>Các phương pháp <code>Ensemble Learning</code> được chia thành 3 loại sau đây:</p>
@@ -1032,13 +1035,13 @@ summary(boosting_results)</code></pre>
 ## 
 ## Accuracy 
 ##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&#39;s
-## c5.0 0.8333333 0.9142857 0.9428571 0.9384018 0.9714286    1    0
-## gbm  0.8333333 0.8952381 0.9420168 0.9357267 0.9712185    1    0
+## c5.0 0.8571429 0.9142857 0.9428571 0.9345378 0.9444444    1    0
+## gbm  0.8888889 0.9142857 0.9411765 0.9362387 0.9444444    1    0
 ## 
 ## Kappa 
 ##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&#39;s
-## c5.0 0.5985130 0.8079694 0.8745394 0.8612516 0.9353050    1    0
-## gbm  0.6262976 0.7625708 0.8716785 0.8556961 0.9350695    1    0</code></pre>
+## c5.0 0.6715328 0.8142060 0.8736462 0.8545695 0.8791046    1    0
+## gbm  0.7419355 0.8134991 0.8661417 0.8573574 0.8771949    1    0</code></pre>
 <pre class="r"><code>dotplot(boosting_results)</code></pre>
 <p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Chúng ta có thể thấy thuật toán C5.0 cho kết quả chính xác hơn với độ chính xác là <code>94.28%</code></p>

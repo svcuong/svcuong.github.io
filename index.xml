@@ -42,6 +42,7 @@
       <description>
 
 
+&lt;p&gt;&lt;code&gt;==&amp;gt; Bài viết chưa hoàn thành, hiện đang cập nhật&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Trong &lt;code&gt;machine learning&lt;/code&gt; tồn tại định lý “không có bữa trưa miễn phí” (&lt;code&gt;No free lunch theorem&lt;/code&gt;), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán &lt;code&gt;machiner learning&lt;/code&gt; thường dựa trên một tập các tham số (&lt;code&gt;hyperparameter&lt;/code&gt;) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu. Vì vậy để tìm được những thuật toán phù hợp cho tập &lt;code&gt;dataset&lt;/code&gt; của mình có thể các bạn sẽ cần nhiều thời gian để test các thuật toán khác nhau nhằm mục đích tìm ra danh sách một số thuật toán cho kết quả chính xác. Rồi từ đó hiệu chỉnh (&lt;code&gt;tuning&lt;/code&gt;) các tham số của các thuật toán này để thu được độ chính xác cao nhất.&lt;/p&gt;
 &lt;p&gt;Một cách khác có thể sử dụng để tăng độ chính xác trên tập &lt;code&gt;dataset&lt;/code&gt; của bạn là kết hợp (&lt;code&gt;combine&lt;/code&gt;) một số mô hình với nhau. Phương pháp này gọi là &lt;code&gt;esemble learning&lt;/code&gt;. Ý tưởng của việc &lt;code&gt;combine&lt;/code&gt; các mô hình khác nhau xuất phát từ một suy nghĩ hợp lý là: các mô hình khác nhau có khả năng khác nhau, có thể thực hiện tốt nhất các loại công việc khác nhau (&lt;code&gt;subtasks&lt;/code&gt;), khi kết hợp các mô hình này với nhau một cách hợp lý thì sẽ tạo thành một mô hình kết hợp (&lt;code&gt;combined model&lt;/code&gt;) mạnh có khả năng cải thiện hiệu suât tổng thể và (&lt;code&gt;overall performance&lt;/code&gt;) so với việc chỉ dùng các mô hình một cách đơn lẻ.&lt;/p&gt;
 &lt;p&gt;Các phương pháp &lt;code&gt;Ensemble Learning&lt;/code&gt; được chia thành 3 loại sau đây:&lt;/p&gt;
@@ -303,13 +304,13 @@ summary(boosting_results)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Accuracy 
 ##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&amp;#39;s
-## c5.0 0.8333333 0.9142857 0.9428571 0.9384018 0.9714286    1    0
-## gbm  0.8333333 0.8952381 0.9420168 0.9357267 0.9712185    1    0
+## c5.0 0.8571429 0.9142857 0.9428571 0.9345378 0.9444444    1    0
+## gbm  0.8888889 0.9142857 0.9411765 0.9362387 0.9444444    1    0
 ## 
 ## Kappa 
 ##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&amp;#39;s
-## c5.0 0.5985130 0.8079694 0.8745394 0.8612516 0.9353050    1    0
-## gbm  0.6262976 0.7625708 0.8716785 0.8556961 0.9350695    1    0&lt;/code&gt;&lt;/pre&gt;
+## c5.0 0.6715328 0.8142060 0.8736462 0.8545695 0.8791046    1    0
+## gbm  0.7419355 0.8134991 0.8661417 0.8573574 0.8771949    1    0&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dotplot(boosting_results)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Chúng ta có thể thấy thuật toán C5.0 cho kết quả chính xác hơn với độ chính xác là &lt;code&gt;94.28%&lt;/code&gt;&lt;/p&gt;
