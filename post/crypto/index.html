@@ -866,7 +866,7 @@ results_data &lt;- do.call(rbind, results_data)</code></pre>
         Name = as.character(coinname),
         Symbol = as.character(coinsymbol),
         Slug = as.character(coinslug))
-df &lt;- dplyr::full_join(coinnames, results_data, by = &quot;Slug&quot;)</code></pre>
+df &lt;- full_join(coinnames, results_data, by = &quot;Slug&quot;)</code></pre>
 <p>Để kiểm tra bảng dữ liệu mới thu được, ta hiển thị <code>10</code> hàng dữ liệu đầu tiên trong bảng:</p>
 <pre class="r"><code>head(df, 10)</code></pre>
 <pre><code>##        Name Symbol     Slug         Date  Open.   High    Low Close..

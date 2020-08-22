@@ -144,7 +144,7 @@ results_data &amp;lt;- do.call(rbind, results_data)&lt;/code&gt;&lt;/pre&gt;
         Name = as.character(coinname),
         Symbol = as.character(coinsymbol),
         Slug = as.character(coinslug))
-df &amp;lt;- dplyr::full_join(coinnames, results_data, by = &amp;quot;Slug&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+df &amp;lt;- full_join(coinnames, results_data, by = &amp;quot;Slug&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Để kiểm tra bảng dữ liệu mới thu được, ta hiển thị &lt;code&gt;10&lt;/code&gt; hàng dữ liệu đầu tiên trong bảng:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(df, 10)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##        Name Symbol     Slug         Date  Open.   High    Low Close..
