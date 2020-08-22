@@ -290,9 +290,9 @@
   <meta property="twitter:image" content="/post/crypto/featured.png"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-08-21T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2020-08-22T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-08-21T18:45:46&#43;04:00">
+    <meta property="article:modified_time" content="2020-08-22T18:45:46&#43;04:00">
   
 
   
@@ -324,8 +324,8 @@
     "/post/crypto/featured.png"
   ],
   
-  "datePublished": "2020-08-21T00:00:00Z",
-  "dateModified": "2020-08-21T18:45:46+04:00",
+  "datePublished": "2020-08-22T00:00:00Z",
+  "dateModified": "2020-08-22T18:45:46+04:00",
   
   "author": {
     "@type": "Person",
@@ -680,7 +680,7 @@
           Last updated on
       
     
-    Aug 21, 2020
+    Aug 22, 2020
   </span>
   
 
@@ -743,7 +743,7 @@
 
 
 <p><strong>Web scraping</strong> là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau. Tuy nhiên, việc lấy các thông tin này một cách thủ công thì cần rất nhiều thời gian. Lúc này web scraping chính là cách giúp chúng ta trích xuất dữ liệu từ các trang web một cách tự động. Kỹ thuật này chủ yếu tập trung vào việc chuyển đổi dữ liệu phi cấu trúc (HTML) trên web thành dữ liệu có cấu trúc (cơ sở dữ liệu, bảng tính,…)</p>
-<p><strong>CoinMarketCap</strong> là một trang web chuyên cung cấp dữ liệu về các loại tiền điện tử đang được lưu hành trên thế giới. Nếu bạn là người đã hoặc đang tìm hiểu, đầu tư vào các đồng <code>coins</code> thì không thể nào bỏ qua trang web cung cấp thông tin về tiền điện tử lớn nhất thế giới này. Với <code>CoinMarketCap</code> bạn có thể xem rất nhiều lọai thông tin ví dụ như: biến động giá cả các đồng <code>coin</code>, trữ lượng, khối lượng giao dịch theo từng khoảng thời gian, tỷ giá, xem trang web chính thức hoặc các hoạt động trên mạng xã hội của các đồng coin.</p>
+<p><strong>CoinMarketCap</strong> là một trang web chuyên cung cấp dữ liệu về các loại tiền điện tử đang được lưu hành trên thế giới. Nếu bạn là người đã hoặc đang tìm hiểu, đầu tư vào các đồng <code>coins</code> thì không thể nào bỏ qua trang web cung cấp thông tin về tiền điện tử lớn nhất thế giới này. Với <code>CoinMarketCap</code> bạn có thể xem rất nhiều lọai thông tin ví dụ như: biến động giá cả các đồng <code>coin</code>, trữ lượng, khối lượng giao dịch theo từng khoảng thời gian, tỷ giá, xem trang web chính thức hoặc các hoạt động trên mạng xã hội của các đồng <code>coins</code>.</p>
 <p>Trong bài này tôi sẽ giới thiệu với các bạn cách sử dụng gói <code>rvest</code> trong <code>R</code> để <code>scrape</code> dữ liệu lịch sử thị trường các loại tiền điện tử từ <code>CoinMarketCap</code>. Sau đó dùng gói <code>ggplot2</code> để trực quan hóa dữ liệu nhằm mục đích so sánh biến động giá cả của các đồng coins với nhau trong khoảng thời gian nhất định.</p>
 <p><strong>Gói rvest</strong> cũng giống như thư viện <code>BeautifulSoup</code> trên <code>Python</code>, là một thư viện <code>R</code> để trích xuất dữ liệu từ các tập tin <code>HTML</code>.</p>
 <p><strong>Lưu ý khi scape một trang web:</strong></p>
@@ -755,21 +755,22 @@
 <pre class="r"><code>library(jsonlite) # Thư viện cho phép đọc json files
 library(rvest) # thư viện để scape web</code></pre>
 <pre><code>## Loading required package: xml2</code></pre>
-<pre class="r"><code>library(tidyverse) # Hệ sinh thái các gói hỗ trợ biến đổi (dplyr) và trực quan hóa dữ liệu (ggplot2)</code></pre>
-<pre><code>## -- Attaching packages ---------------------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre class="r"><code>library(tidyverse) # Hệ sinh thái các gói hỗ trợ biến đổi </code></pre>
+<pre><code>## -- Attaching packages --------------------------------------------- tidyverse 1.3.0 --</code></pre>
 <pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
 ## v tibble  3.0.3     v dplyr   1.0.2
 ## v tidyr   1.1.1     v stringr 1.4.0
 ## v readr   1.3.1     v forcats 0.5.0</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------------------- tidyverse_conflicts() --
+<pre><code>## -- Conflicts ------------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter()         masks stats::filter()
 ## x purrr::flatten()        masks jsonlite::flatten()
 ## x readr::guess_encoding() masks rvest::guess_encoding()
 ## x dplyr::lag()            masks stats::lag()
 ## x purrr::pluck()          masks rvest::pluck()</code></pre>
-<p>Nếu chưa cài các tư viện trên thì các bạn dùng lệnh <code>install.packages(...)</code> để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:</p>
+<pre class="r"><code># (dplyr) và trực quan hóa dữ liệu (ggplot2)</code></pre>
+<p>Nếu chưa cài các thư viện trên thì các bạn dùng lệnh <code>install.packages(.)</code> để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:</p>
 <pre class="r"><code>install.packages(&quot;rvest&quot;)</code></pre>
-<p>Đầu tiên chúng ta đọc <code>json</code> file từ trang <code>CoinMarketCap</code> để biết thông tin về các loại coins:</p>
+<p>Đầu tiên chúng ta đọc <code>json</code> file từ trang <code>CoinMarketCap</code> để biết thông tin về các loại <code>coins</code>:</p>
 <pre class="r"><code>json &lt;- &quot;https://s2.coinmarketcap.com/generated/search/quick_search.json&quot;
 coins &lt;- read_json(json, simplifyVector = TRUE)</code></pre>
 <p>Hiển thị bảng thông tin 10 đồng <code>coins</code> đầu tiên theo <code>rank</code>:</p>
@@ -799,8 +800,8 @@ coins &lt;- read_json(json, simplifyVector = TRUE)</code></pre>
 <p>Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên <code>CoinMarketCap</code>:</p>
 <pre class="r"><code>dim(coins)[1]</code></pre>
 <pre><code>## [1] 4810</code></pre>
-<p>Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng coins đầu tiên có rank từ 2 đến 11:</p>
-<pre class="r"><code># Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:10]
+<p>Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng <code>coins</code> đầu tiên có rank từ 2 đến 11:</p>
+<pre class="r"><code># Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:11]
 coinslug &lt;- coins$slug[2:11]
 coinname &lt;- coins$name[2:11]
 coinsymbol &lt;- coins$symbol[2:11]</code></pre>

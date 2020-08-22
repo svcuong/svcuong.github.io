@@ -5,7 +5,7 @@
     <link>/tag/data-science/</link>
       <atom:link href="/tag/data-science/index.xml" rel="self" type="application/rss+xml" />
     <description>Data Science</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 21 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 22 Aug 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
       <title>Data Science</title>
@@ -15,13 +15,13 @@
     <item>
       <title>Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap</title>
       <link>/post/crypto/</link>
-      <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 22 Aug 2020 00:00:00 +0000</pubDate>
       <guid>/post/crypto/</guid>
       <description>
 
 
 &lt;p&gt;&lt;strong&gt;Web scraping&lt;/strong&gt; là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau. Tuy nhiên, việc lấy các thông tin này một cách thủ công thì cần rất nhiều thời gian. Lúc này web scraping chính là cách giúp chúng ta trích xuất dữ liệu từ các trang web một cách tự động. Kỹ thuật này chủ yếu tập trung vào việc chuyển đổi dữ liệu phi cấu trúc (HTML) trên web thành dữ liệu có cấu trúc (cơ sở dữ liệu, bảng tính,…)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;CoinMarketCap&lt;/strong&gt; là một trang web chuyên cung cấp dữ liệu về các loại tiền điện tử đang được lưu hành trên thế giới. Nếu bạn là người đã hoặc đang tìm hiểu, đầu tư vào các đồng &lt;code&gt;coins&lt;/code&gt; thì không thể nào bỏ qua trang web cung cấp thông tin về tiền điện tử lớn nhất thế giới này. Với &lt;code&gt;CoinMarketCap&lt;/code&gt; bạn có thể xem rất nhiều lọai thông tin ví dụ như: biến động giá cả các đồng &lt;code&gt;coin&lt;/code&gt;, trữ lượng, khối lượng giao dịch theo từng khoảng thời gian, tỷ giá, xem trang web chính thức hoặc các hoạt động trên mạng xã hội của các đồng coin.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CoinMarketCap&lt;/strong&gt; là một trang web chuyên cung cấp dữ liệu về các loại tiền điện tử đang được lưu hành trên thế giới. Nếu bạn là người đã hoặc đang tìm hiểu, đầu tư vào các đồng &lt;code&gt;coins&lt;/code&gt; thì không thể nào bỏ qua trang web cung cấp thông tin về tiền điện tử lớn nhất thế giới này. Với &lt;code&gt;CoinMarketCap&lt;/code&gt; bạn có thể xem rất nhiều lọai thông tin ví dụ như: biến động giá cả các đồng &lt;code&gt;coin&lt;/code&gt;, trữ lượng, khối lượng giao dịch theo từng khoảng thời gian, tỷ giá, xem trang web chính thức hoặc các hoạt động trên mạng xã hội của các đồng &lt;code&gt;coins&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Trong bài này tôi sẽ giới thiệu với các bạn cách sử dụng gói &lt;code&gt;rvest&lt;/code&gt; trong &lt;code&gt;R&lt;/code&gt; để &lt;code&gt;scrape&lt;/code&gt; dữ liệu lịch sử thị trường các loại tiền điện tử từ &lt;code&gt;CoinMarketCap&lt;/code&gt;. Sau đó dùng gói &lt;code&gt;ggplot2&lt;/code&gt; để trực quan hóa dữ liệu nhằm mục đích so sánh biến động giá cả của các đồng coins với nhau trong khoảng thời gian nhất định.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Gói rvest&lt;/strong&gt; cũng giống như thư viện &lt;code&gt;BeautifulSoup&lt;/code&gt; trên &lt;code&gt;Python&lt;/code&gt;, là một thư viện &lt;code&gt;R&lt;/code&gt; để trích xuất dữ liệu từ các tập tin &lt;code&gt;HTML&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Lưu ý khi scape một trang web:&lt;/strong&gt;&lt;/p&gt;
@@ -33,21 +33,22 @@
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(jsonlite) # Thư viện cho phép đọc json files
 library(rvest) # thư viện để scape web&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: xml2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse) # Hệ sinh thái các gói hỗ trợ biến đổi (dplyr) và trực quan hóa dữ liệu (ggplot2)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Attaching packages ---------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse) # Hệ sinh thái các gói hỗ trợ biến đổi &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
 ## v tibble  3.0.3     v dplyr   1.0.2
 ## v tidyr   1.1.1     v stringr 1.4.0
 ## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------------------- tidyverse_conflicts() --
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter()         masks stats::filter()
 ## x purrr::flatten()        masks jsonlite::flatten()
 ## x readr::guess_encoding() masks rvest::guess_encoding()
 ## x dplyr::lag()            masks stats::lag()
 ## x purrr::pluck()          masks rvest::pluck()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Nếu chưa cài các tư viện trên thì các bạn dùng lệnh &lt;code&gt;install.packages(...)&lt;/code&gt; để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# (dplyr) và trực quan hóa dữ liệu (ggplot2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nếu chưa cài các thư viện trên thì các bạn dùng lệnh &lt;code&gt;install.packages(.)&lt;/code&gt; để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;rvest&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Đầu tiên chúng ta đọc &lt;code&gt;json&lt;/code&gt; file từ trang &lt;code&gt;CoinMarketCap&lt;/code&gt; để biết thông tin về các loại coins:&lt;/p&gt;
+&lt;p&gt;Đầu tiên chúng ta đọc &lt;code&gt;json&lt;/code&gt; file từ trang &lt;code&gt;CoinMarketCap&lt;/code&gt; để biết thông tin về các loại &lt;code&gt;coins&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;json &amp;lt;- &amp;quot;https://s2.coinmarketcap.com/generated/search/quick_search.json&amp;quot;
 coins &amp;lt;- read_json(json, simplifyVector = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Hiển thị bảng thông tin 10 đồng &lt;code&gt;coins&lt;/code&gt; đầu tiên theo &lt;code&gt;rank&lt;/code&gt;:&lt;/p&gt;
@@ -77,8 +78,8 @@ coins &amp;lt;- read_json(json, simplifyVector = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên &lt;code&gt;CoinMarketCap&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(coins)[1]&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 4810&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng coins đầu tiên có rank từ 2 đến 11:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:10]
+&lt;p&gt;Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng &lt;code&gt;coins&lt;/code&gt; đầu tiên có rank từ 2 đến 11:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:11]
 coinslug &amp;lt;- coins$slug[2:11]
 coinname &amp;lt;- coins$name[2:11]
 coinsymbol &amp;lt;- coins$symbol[2:11]&lt;/code&gt;&lt;/pre&gt;
