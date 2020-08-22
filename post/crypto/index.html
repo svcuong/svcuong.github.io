@@ -755,19 +755,18 @@
 <pre class="r"><code>library(jsonlite) # Thư viện cho phép đọc json files
 library(rvest) # thư viện để scape web</code></pre>
 <pre><code>## Loading required package: xml2</code></pre>
-<pre class="r"><code>library(tidyverse) # Hệ sinh thái các gói hỗ trợ biến đổi </code></pre>
-<pre><code>## -- Attaching packages --------------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre class="r"><code>library(tidyverse) # Hệ sinh thái các gói hỗ trợ biến đổi (dplyr) và trực quan hóa dữ liệu (ggplot2)</code></pre>
+<pre><code>## -- Attaching packages ----------------------------------------------------- tidyverse 1.3.0 --</code></pre>
 <pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
 ## v tibble  3.0.3     v dplyr   1.0.2
 ## v tidyr   1.1.1     v stringr 1.4.0
 ## v readr   1.3.1     v forcats 0.5.0</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------------ tidyverse_conflicts() --
+<pre><code>## -- Conflicts -------------------------------------------------------- tidyverse_conflicts() --
 ## x dplyr::filter()         masks stats::filter()
 ## x purrr::flatten()        masks jsonlite::flatten()
 ## x readr::guess_encoding() masks rvest::guess_encoding()
 ## x dplyr::lag()            masks stats::lag()
 ## x purrr::pluck()          masks rvest::pluck()</code></pre>
-<pre class="r"><code># (dplyr) và trực quan hóa dữ liệu (ggplot2)</code></pre>
 <p>Nếu chưa cài các thư viện trên thì các bạn dùng lệnh <code>install.packages(.)</code> để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:</p>
 <pre class="r"><code>install.packages(&quot;rvest&quot;)</code></pre>
 <p>Đầu tiên chúng ta đọc <code>json</code> file từ trang <code>CoinMarketCap</code> để biết thông tin về các loại <code>coins</code>:</p>
@@ -799,7 +798,7 @@ coins &lt;- read_json(json, simplifyVector = TRUE)</code></pre>
 ## 10                 Cardano, cardano, ADA 2010</code></pre>
 <p>Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên <code>CoinMarketCap</code>:</p>
 <pre class="r"><code>dim(coins)[1]</code></pre>
-<pre><code>## [1] 4810</code></pre>
+<pre><code>## [1] 4811</code></pre>
 <p>Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng <code>coins</code> đầu tiên có rank từ 2 đến 11:</p>
 <pre class="r"><code># Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:11]
 coinslug &lt;- coins$slug[2:11]
