@@ -283,9 +283,9 @@
   
   <meta property="twitter:card" content="summary_large_image">
   
-  <meta property="og:site_name" content="Cuong Sai">
+  <meta property="og:site_name" content="Data Science">
   <meta property="og:url" content="/post/crypto/">
-  <meta property="og:title" content="Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging và Stacking (Sử dụng R code) | Cuong Sai">
+  <meta property="og:title" content="Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging và Stacking (Sử dụng R code) | Data Science">
   <meta property="og:description" content="Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameter) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu."><meta property="og:image" content="/post/crypto/featured.png">
   <meta property="twitter:image" content="/post/crypto/featured.png"><meta property="og:locale" content="en-us">
   
@@ -334,7 +334,7 @@
   
   "publisher": {
     "@type": "Organization",
-    "name": "Cuong Sai",
+    "name": "Data Science",
     "logo": {
       "@type": "ImageObject",
       "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
@@ -369,7 +369,7 @@
       src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
 
-  <title>Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging và Stacking (Sử dụng R code) | Cuong Sai</title>
+  <title>Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging và Stacking (Sử dụng R code) | Data Science</title>
 
 </head>
 
@@ -426,7 +426,7 @@
 
     
     <div class="d-none d-lg-inline-flex">
-      <a class="navbar-brand" href="/">Cuong Sai</a>
+      <a class="navbar-brand" href="/">Data Science</a>
     </div>
     
 
@@ -439,7 +439,7 @@
 
     
     <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-      <a class="navbar-brand" href="/">Cuong Sai</a>
+      <a class="navbar-brand" href="/">Data Science</a>
     </div>
     
 
@@ -802,6 +802,13 @@ hàm <code>rải rác</code> đòi hỏi ta cần nhiều thời gian để 
 library(caretEnsemble) </code></pre>
 <p>Nếu chưa cài các thư viện trên thì các bạn dùng lệnh <code>install.packages(.)</code> để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:</p>
 <pre class="r"><code>install.packages(&quot;caret&quot;)</code></pre>
+<p>Kiểm tra số lượng các machine learning algorithms availbe to train in caret:</p>
+<pre class="r"><code>carets &lt;- getModelInfo()
+carets.names &lt;- names(carets)
+length(carets.names)</code></pre>
+<pre><code>## [1] 238</code></pre>
+<p>Nếu chưa cài các thư viện trên thì các bạn dùng lệnh <code>install.packages(.)</code> để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:</p>
+<pre class="r"><code>install.packages(&quot;caret&quot;)</code></pre>
 <p><strong>Dữ liệu để thực hành</strong></p>
 <p>Để thực hành với các phương pháp <code>ensemble learning</code> tôi lựa chọn bài toán phân loại nhị phân (bi classification) với tập dữ liệu <code>ionoshene</code>. Trong bài toán này chúng ta cần dự đoán xem cao tâǹ trả vể từ năng lượng của các hạt trong khí quyển có cấu trúc hay là không. Để tìm hiểu thêm về bài toán này các bạn có thể đọc ở <a href="http://archive.ics.uci.edu/ml/index.php">đây</a>.</p>
 <p>Load dữ liệu từ gói <code>mlbench</code></p>
@@ -965,13 +972,13 @@ dataset &lt;- Ionosphere</code></pre>
 for(i in 1:12) { 
   hist(dataset[,i], main=names(dataset)[i], breaks = 30)
 }</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p><code>Boxplot</code> cho 12 thuộc tính đầu tiên</p>
 <pre class="r"><code>par(mfrow=c(3,4))
 for(i in 1:12) {
   boxplot(dataset[,i], main=names(dataset)[i])
 }</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p><strong>Tiền xử lý dữ liệu</strong></p>
 <p>Xác định và Loại bỏ các thuộc tính tương quan với nhau cao (&gt;0.75)</p>
 <pre class="r"><code># find attributes that are highly corrected
@@ -1025,15 +1032,15 @@ summary(boosting_results)</code></pre>
 ## 
 ## Accuracy 
 ##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&#39;s
-## c5.0 0.8823529 0.9142857 0.9428571 0.9419343 0.9714286    1    0
-## gbm  0.8529412 0.9142857 0.9428571 0.9363259 0.9714286    1    0
+## c5.0 0.8333333 0.9142857 0.9428571 0.9384018 0.9714286    1    0
+## gbm  0.8333333 0.8952381 0.9420168 0.9357267 0.9712185    1    0
 ## 
 ## Kappa 
-##           Min.   1st Qu.    Median      Mean  3rd Qu. Max. NA&#39;s
-## c5.0 0.7244094 0.8107691 0.8745394 0.8701078 0.937833    1    0
-## gbm  0.6586345 0.8079694 0.8743105 0.8580184 0.935305    1    0</code></pre>
+##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&#39;s
+## c5.0 0.5985130 0.8079694 0.8745394 0.8612516 0.9353050    1    0
+## gbm  0.6262976 0.7625708 0.8716785 0.8556961 0.9350695    1    0</code></pre>
 <pre class="r"><code>dotplot(boosting_results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Chúng ta có thể thấy thuật toán C5.0 cho kết quả chính xác hơn với độ chính xác là <code>94.28%</code></p>
 <p><strong>2. Thuật toán Bagging</strong></p>
 <p>Chúng ta sẽ xem xét hai trong số các thuật toán phổ biến nhất của bagging là:</p>
@@ -1074,7 +1081,7 @@ summary(bagging_results)</code></pre>
 ## treebag 0.5648313 0.7552448 0.8208228 0.8265147 0.9216460 0.9407895    0
 ## rf      0.6504854 0.7801430 0.8722003 0.8412055 0.9350695 1.0000000    0</code></pre>
 <pre class="r"><code>dotplot(bagging_results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p><strong>3. Thuật toán Stacking</strong></p>
 <p>Các bạn có thể kết hợp những mô hình khác nhau trên R sử dụng <strong>caretEnsemble</strong> package.</p>
 <p>Với danh sách các caret models, hàm <code>caretStack()</code> có thể sự dụng để chỉ định mô hình bậc cao hơn, từ đó sẽ học cách tìm sự kết hợp tốt nhất những sub-models với nhau.</p>
@@ -1118,7 +1125,7 @@ summary(results)</code></pre>
 ## knn       0.3368421 0.5258215 0.6653724 0.6214965 0.6830986 0.9387755    0
 ## svmRadial 0.6586345 0.8665874 0.8788237 0.8870910 0.9385399 1.0000000    0</code></pre>
 <pre class="r"><code>dotplot(results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p><strong>Lưu ý:</strong> Khi chúng ta muốn kết hợp các mô hình với nhau sử dụng phương pháp stacking, nên kiểm chứng rằng kết quả dự báo từ các mô hình này tương quan với nhau thấp. Nếu kết quả dự báo của các sub-models tương quan cao với nhau (&gt; 0.75) thì có nghĩa là chúng sẽ cho kết quả dự bạo tương tự như nhau, điều này sẽ làm giảm hiệu quả khi ta kết hợp các mô hình này với nhau.</p>
 <pre class="r"><code># correlation between results
 modelCor(results)</code></pre>
@@ -1129,7 +1136,7 @@ modelCor(results)</code></pre>
 ## knn       0.5112169 0.7040301 0.3472425 1.0000000 0.4067582
 ## svmRadial 0.6008459 0.3739250 0.7387988 0.4067582 1.0000000</code></pre>
 <pre class="r"><code>splom(results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-24-1.png" width="960" /></p>
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-26-1.png" width="960" /></p>
 <p>Nhìn vào kết quả ta có thể thấy các su-models cho kết quả dự báo tương quan với nhau thấp theo từng cặp. Cặp tương quan với nhau nhất là Logistic Regression (GML) và kNN - 0.517, cũng vẫn nhỏ hơn mức quy địn là cao (&gt;0.75)</p>
 <p><strong>Nào chúng ta hãy thử kết hợp sử dụng gml:</strong></p>
 <pre class="r"><code># stack using glm

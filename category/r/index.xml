@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R | Cuong Sai</title>
+    <title>R | Data Science</title>
     <link>/category/r/</link>
       <atom:link href="/category/r/index.xml" rel="self" type="application/rss+xml" />
     <description>R</description>
@@ -49,6 +49,13 @@ hàm &lt;code&gt;rải rác&lt;/code&gt; đòi hỏi ta cần nhiều thời 
 &lt;p&gt;Nạp các thư viện cần dùng vào phiên làm việc của &lt;code&gt;R&lt;/code&gt; để thực hành:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(caret)
 library(caretEnsemble) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nếu chưa cài các thư viện trên thì các bạn dùng lệnh &lt;code&gt;install.packages(.)&lt;/code&gt; để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;caret&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra số lượng các machine learning algorithms availbe to train in caret:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;carets &amp;lt;- getModelInfo()
+carets.names &amp;lt;- names(carets)
+length(carets.names)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 238&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Nếu chưa cài các thư viện trên thì các bạn dùng lệnh &lt;code&gt;install.packages(.)&lt;/code&gt; để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;caret&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Dữ liệu để thực hành&lt;/strong&gt;&lt;/p&gt;
@@ -214,13 +221,13 @@ dataset &amp;lt;- Ionosphere&lt;/code&gt;&lt;/pre&gt;
 for(i in 1:12) { 
   hist(dataset[,i], main=names(dataset)[i], breaks = 30)
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Boxplot&lt;/code&gt; cho 12 thuộc tính đầu tiên&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mfrow=c(3,4))
 for(i in 1:12) {
   boxplot(dataset[,i], main=names(dataset)[i])
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Tiền xử lý dữ liệu&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Xác định và Loại bỏ các thuộc tính tương quan với nhau cao (&amp;gt;0.75)&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# find attributes that are highly corrected
@@ -274,15 +281,15 @@ summary(boosting_results)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Accuracy 
 ##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&amp;#39;s
-## c5.0 0.8823529 0.9142857 0.9428571 0.9419343 0.9714286    1    0
-## gbm  0.8529412 0.9142857 0.9428571 0.9363259 0.9714286    1    0
+## c5.0 0.8333333 0.9142857 0.9428571 0.9384018 0.9714286    1    0
+## gbm  0.8333333 0.8952381 0.9420168 0.9357267 0.9712185    1    0
 ## 
 ## Kappa 
-##           Min.   1st Qu.    Median      Mean  3rd Qu. Max. NA&amp;#39;s
-## c5.0 0.7244094 0.8107691 0.8745394 0.8701078 0.937833    1    0
-## gbm  0.6586345 0.8079694 0.8743105 0.8580184 0.935305    1    0&lt;/code&gt;&lt;/pre&gt;
+##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&amp;#39;s
+## c5.0 0.5985130 0.8079694 0.8745394 0.8612516 0.9353050    1    0
+## gbm  0.6262976 0.7625708 0.8716785 0.8556961 0.9350695    1    0&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dotplot(boosting_results)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Chúng ta có thể thấy thuật toán C5.0 cho kết quả chính xác hơn với độ chính xác là &lt;code&gt;94.28%&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. Thuật toán Bagging&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Chúng ta sẽ xem xét hai trong số các thuật toán phổ biến nhất của bagging là:&lt;/p&gt;
@@ -323,7 +330,7 @@ summary(bagging_results)&lt;/code&gt;&lt;/pre&gt;
 ## treebag 0.5648313 0.7552448 0.8208228 0.8265147 0.9216460 0.9407895    0
 ## rf      0.6504854 0.7801430 0.8722003 0.8412055 0.9350695 1.0000000    0&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dotplot(bagging_results)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;3. Thuật toán Stacking&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Các bạn có thể kết hợp những mô hình khác nhau trên R sử dụng &lt;strong&gt;caretEnsemble&lt;/strong&gt; package.&lt;/p&gt;
 &lt;p&gt;Với danh sách các caret models, hàm &lt;code&gt;caretStack()&lt;/code&gt; có thể sự dụng để chỉ định mô hình bậc cao hơn, từ đó sẽ học cách tìm sự kết hợp tốt nhất những sub-models với nhau.&lt;/p&gt;
@@ -367,7 +374,7 @@ summary(results)&lt;/code&gt;&lt;/pre&gt;
 ## knn       0.3368421 0.5258215 0.6653724 0.6214965 0.6830986 0.9387755    0
 ## svmRadial 0.6586345 0.8665874 0.8788237 0.8870910 0.9385399 1.0000000    0&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dotplot(results)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-25-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Lưu ý:&lt;/strong&gt; Khi chúng ta muốn kết hợp các mô hình với nhau sử dụng phương pháp stacking, nên kiểm chứng rằng kết quả dự báo từ các mô hình này tương quan với nhau thấp. Nếu kết quả dự báo của các sub-models tương quan cao với nhau (&amp;gt; 0.75) thì có nghĩa là chúng sẽ cho kết quả dự bạo tương tự như nhau, điều này sẽ làm giảm hiệu quả khi ta kết hợp các mô hình này với nhau.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# correlation between results
 modelCor(results)&lt;/code&gt;&lt;/pre&gt;
@@ -378,7 +385,7 @@ modelCor(results)&lt;/code&gt;&lt;/pre&gt;
 ## knn       0.5112169 0.7040301 0.3472425 1.0000000 0.4067582
 ## svmRadial 0.6008459 0.3739250 0.7387988 0.4067582 1.0000000&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;splom(results)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-24-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Nhìn vào kết quả ta có thể thấy các su-models cho kết quả dự báo tương quan với nhau thấp theo từng cặp. Cặp tương quan với nhau nhất là Logistic Regression (GML) và kNN - 0.517, cũng vẫn nhỏ hơn mức quy địn là cao (&amp;gt;0.75)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Nào chúng ta hãy thử kết hợp sử dụng gml:&lt;/strong&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# stack using glm
