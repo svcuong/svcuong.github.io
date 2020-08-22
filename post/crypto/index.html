@@ -1,0 +1,1417 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Cuong Sai">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Web scraping là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/crypto/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128408660-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-128408660-5', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_32x32_fill_lanczos_center_2.PNG">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG">
+
+  <link rel="canonical" href="/post/crypto/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cuong Sai">
+  <meta property="og:url" content="/post/crypto/">
+  <meta property="og:title" content="Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap | Cuong Sai">
+  <meta property="og:description" content="Web scraping là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau."><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
+  <meta property="twitter:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-08-21T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-08-21T18:45:46&#43;04:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/crypto/"
+  },
+  "headline": "Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap",
+  
+  "datePublished": "2020-08-21T00:00:00Z",
+  "dateModified": "2020-08-21T18:45:46+04:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Cuong Sai"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cuong Sai",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
+    }
+  },
+  "description": "Web scraping là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script async type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+  <title>Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap | Cuong Sai</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Cuong Sai</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Cuong Sai</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/courses/"><span>Tutorials</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Aug 21, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    9 min read
+  </span>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/crypto/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<p><strong>Web scraping</strong> là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau. Tuy nhiên, việc lấy các thông tin này một cách thủ công thì cần rất nhiều thời gian. Lúc này web scraping chính là cách giúp chúng ta trích xuất dữ liệu từ các trang web một cách tự động. Kỹ thuật này chủ yếu tập trung vào việc chuyển đổi dữ liệu phi cấu trúc (HTML) trên web thành dữ liệu có cấu trúc (cơ sở dữ liệu, bảng tính,…)</p>
+<p><strong>CoinMarketCap</strong> là một trang web chuyên cung cấp dữ liệu về các loại tiền điện tử đang được lưu hành trên thế giới. Nếu bạn là người đã hoặc đang tìm hiểu, đầu tư vào các đồng <code>coins</code> thì không thể nào bỏ qua trang web cung cấp thông tin về tiền điện tử lớn nhất thế giới này. Với <code>CoinMarketCap</code> bạn có thể xem rất nhiều lọai thông tin ví dụ như: biến động giá cả các đồng <code>coin</code>, trữ lượng, khối lượng giao dịch theo từng khoảng thời gian, tỷ giá, xem trang web chính thức hoặc các hoạt động trên mạng xã hội của các đồng coin.</p>
+<p>Trong bài này tôi sẽ giới thiệu với các bạn cách sử dụng gói <code>rvest</code> trong <code>R</code> để <code>scrape</code> dữ liệu lịch sử thị trường các loại tiền điện tử từ <code>CoinMarketCap</code>. Sau đó dùng gói <code>ggplot2</code> để trực quan hóa dữ liệu nhằm mục đích so sánh biến động giá cả của các đồng coins với nhau trong khoảng thời gian nhất định.</p>
+<p><strong>Gói rvest</strong> cũng giống như thư viện <code>BeautifulSoup</code> trên <code>Python</code>, là một thư viện <code>R</code> để trích xuất dữ liệu từ các tập tin <code>HTML</code>.</p>
+<p><strong>Lưu ý khi scape một trang web:</strong></p>
+<ul>
+<li>Không nên tạo quá nhiều <code>request</code> đến trang web trong 1 thời điểm, vì nó có thể gây ra sập trang web (có thể bị liệt vào tấn công từ chối dịch vụ <code>DDoS</code>)</li>
+<li>Trang web có thể sẽ thường xuyên thay đổi giao diện, bố cục (<code>HTML</code>) nên bạn cần thường xuyên cập nhật <code>code</code> của mình</li>
+</ul>
+<p>Nạp các thư viện cần dùng vào phiên làm việc của <code>R</code> để thực hành:</p>
+<pre class="r"><code>library(jsonlite) # Thư viện cho phép đọc json files
+library(rvest) # thư viện để scape web</code></pre>
+<pre><code>## Loading required package: xml2</code></pre>
+<pre class="r"><code>library(tidyverse) # Hệ sinh thái các gói hỗ trợ biến đổi (dplyr) và trực quan hóa dữ liệu (ggplot2)</code></pre>
+<pre><code>## -- Attaching packages --------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.1     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0</code></pre>
+<pre><code>## -- Conflicts ------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter()         masks stats::filter()
+## x purrr::flatten()        masks jsonlite::flatten()
+## x readr::guess_encoding() masks rvest::guess_encoding()
+## x dplyr::lag()            masks stats::lag()
+## x purrr::pluck()          masks rvest::pluck()</code></pre>
+<p>Nếu chưa cài các tư viện trên thì các bạn dùng lệnh <code>install.packages(...)</code> để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:</p>
+<pre class="r"><code>install.packages(&quot;rvest&quot;)</code></pre>
+<p>Đầu tiên chúng ta đọc <code>json</code> file từ trang <code>CoinMarketCap</code> để biết thông tin về các loại coins:</p>
+<pre class="r"><code>json &lt;- &quot;https://s2.coinmarketcap.com/generated/search/quick_search.json&quot;
+coins &lt;- read_json(json, simplifyVector = TRUE)</code></pre>
+<p>Hiển thị bảng thông tin 10 đồng <code>coins</code> đầu tiên theo <code>rank</code>:</p>
+<pre class="r"><code>head(coins,10)</code></pre>
+<pre><code>##               name symbol rank            slug
+## 1          Bitcoin    BTC    1         bitcoin
+## 2         Ethereum    ETH    2        ethereum
+## 3              XRP    XRP    3             xrp
+## 4           Tether   USDT    4          tether
+## 5     Bitcoin Cash    BCH    5    bitcoin-cash
+## 6        Chainlink   LINK    6       chainlink
+## 7         Litecoin    LTC    7        litecoin
+## 8       Bitcoin SV    BSV    8      bitcoin-sv
+## 9  Crypto.com Coin    CRO    9 crypto-com-coin
+## 10         Cardano    ADA   10         cardano
+##                                   tokens   id
+## 1                  Bitcoin, bitcoin, BTC    1
+## 2                Ethereum, ethereum, ETH 1027
+## 3                          XRP, xrp, XRP   52
+## 4                   Tether, tether, USDT  825
+## 5        Bitcoin Cash, bitcoin-cash, BCH 1831
+## 6             Chainlink, chainlink, LINK 1975
+## 7                Litecoin, litecoin, LTC    2
+## 8            Bitcoin SV, bitcoin-sv, BSV 3602
+## 9  Crypto.com Coin, crypto-com-coin, CRO 3635
+## 10                 Cardano, cardano, ADA 2010</code></pre>
+<p>Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên <code>CoinMarketCap</code>:</p>
+<pre class="r"><code>dim(coins)[1]</code></pre>
+<pre><code>## [1] 4808</code></pre>
+<p>Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng coins đầu tiên có rank từ 2 đến 11:</p>
+<pre class="r"><code># Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:10]
+coinslug &lt;- coins$slug[2:11]
+coinname &lt;- coins$name[2:11]
+coinsymbol &lt;- coins$symbol[2:11]</code></pre>
+<p><strong>Tạo hàm để get dữ liệu coins.</strong> Khi ta vào mục <code>historical data</code> (như hình bên dưới) để xem thông tin của từng loại <code>coin</code> trên trang <code>CoinMarketCap</code>, ta thấy trong đường <code>link</code> có <code>3</code> thông tin quan trọng đó là:</p>
+<ul>
+<li><code>slug</code>: Slug của loại coin đó (như đường link trong hình dưới là <code>bitcoin</code>)</li>
+<li><code>start</code>: Ngày bắt đầu của khoảng thời gian ta muốn xem thông tin</li>
+<li><code>end</code>: ngày kết thúc của khoảng thời gian ta muốn xem thông tin</li>
+</ul>
+<div class="figure">
+<img src="/post/2020-08-21-crypto.vn_files/bitcoin.PNG" alt="Screenshot từ trang CoinMarketCap" />
+<p class="caption"><code>Screenshot</code> từ trang <a href="https://coinmarketcap.com/currencies/bitcoin/historical-data/?start=20200722&amp;end=20200822">CoinMarketCap</a></p>
+</div>
+<p>Vì vậy ta sẽ viết hàm để <code>get</code> dữ liệu dựa vào <code>3</code> thông tin trên như sau:</p>
+<pre class="r"><code># Tạo hàm get dữ liệu coin
+get_data_coin &lt;- function(coin, start_date, end_date){
+  # coin: slug của coin
+  # start_date: Ngày bắt đầu lấy dữ liệu
+  # end_date: Ngày kết thúc lấy dữ liệu
+  # Tạo đường link từ 3 thông tin đầu vào
+  historyurl &lt;- paste0(&quot;https://coinmarketcap.com/currencies/&quot;,
+                      coin,
+                      &quot;/historical-data/?start=&quot;,
+                      start_date,
+                      &quot;&amp;end=&quot;,
+                      end_date)
+  # Đọc dữ liệu từ web
+  url &lt;-read_html(historyurl)
+  data &lt;- data.frame(html_table(url)[[3]])
+  data$Slug &lt;- coin
+  return(data)
+}</code></pre>
+<p>Ví dụ sử dụng hàm <code>get_data_coin()</code> vừa tạo để lấy dữ liệu lịch sử của <code>10</code> loại coins trên từ ngày <code>21/08/2019</code> dến ngày <code>21/08/2020</code>:</p>
+<pre class="r"><code># Nhập ngày bắt đầu và và kết thúc trong khoảng thời gian muốn xem theo định đạng &quot;Năm-Tháng-Ngày&quot;
+start_date = 20190821
+end_date = 20200821
+# Tạo list trống để lưu dữ liệu coins
+results_data &lt;- list()
+
+# Lưu dữ liệu từng loại coin trong danh sách 10 coins ở trên vào list trống
+for (i in (1:length(coinslug))){
+  results_data[[i]] &lt;- get_data_coin(coin = coinslug[i], start_date = start_date, end_date = end_date)
+}
+# Gộp data.frame của từng loại coin trong list vào thành 1 bảng
+results_data &lt;- do.call(rbind, results_data)</code></pre>
+<p>Để kiểm tra dữ liệu thu được, ta hiển thị <code>10</code> hàng dữ liệu đầu tiên trong bẳng bằng lệnh <code>head()</code>:</p>
+<pre class="r"><code>head(results_data, 10)</code></pre>
+<pre><code>##            Date  Open.   High    Low Close..         Volume     Market.Cap
+## 1  Aug 21, 2020 416.15 418.64 387.44  389.13 11,781,796,374 43,690,315,907
+## 2  Aug 20, 2020 406.76 418.73 404.03  416.44 10,043,032,427 46,751,356,941
+## 3  Aug 19, 2020 423.74 427.02 396.68  406.46 13,137,391,167 45,625,864,918
+## 4  Aug 18, 2020 429.67 432.58 419.67  423.67 11,978,984,079 47,551,407,033
+## 5  Aug 17, 2020 433.97 442.73 422.65  429.53 13,227,089,410 48,203,426,751
+## 6  Aug 16, 2020 433.35 436.27 415.09  433.79 12,168,816,874 48,675,162,267
+## 7  Aug 15, 2020 437.56 441.75 429.87  433.35 12,416,067,894 48,620,820,125
+## 8  Aug 14, 2020 428.68 444.58 423.35  437.40 15,064,589,987 49,068,474,083
+## 9  Aug 13, 2020 390.84 432.90 379.71  428.74 18,480,303,526 48,091,569,052
+## 10 Aug 12, 2020 380.06 391.31 367.92  391.02 12,408,772,745 43,855,501,072
+##        Slug
+## 1  ethereum
+## 2  ethereum
+## 3  ethereum
+## 4  ethereum
+## 5  ethereum
+## 6  ethereum
+## 7  ethereum
+## 8  ethereum
+## 9  ethereum
+## 10 ethereum</code></pre>
+<p>Thêm thông tin gồm <code>name</code> và <code>symbol</code> của từng <code>coin</code> vào bảng dữ liệu:</p>
+<pre class="r"><code>coinnames &lt;- data.frame(
+        Name = as.character(coinname),
+        Symbol = as.character(coinsymbol),
+        Slug = as.character(coinslug))
+df &lt;- dplyr::full_join(coinnames, results_data, by = &quot;Slug&quot;)</code></pre>
+<p>Để kiểm tra bảng dữ liệu mới thu được, ta hiển thị <code>10</code> hàng dữ liệu đầu tiên trong bảng:</p>
+<pre class="r"><code>head(df, 10)</code></pre>
+<pre><code>##        Name Symbol     Slug         Date  Open.   High    Low Close..
+## 1  Ethereum    ETH ethereum Aug 21, 2020 416.15 418.64 387.44  389.13
+## 2  Ethereum    ETH ethereum Aug 20, 2020 406.76 418.73 404.03  416.44
+## 3  Ethereum    ETH ethereum Aug 19, 2020 423.74 427.02 396.68  406.46
+## 4  Ethereum    ETH ethereum Aug 18, 2020 429.67 432.58 419.67  423.67
+## 5  Ethereum    ETH ethereum Aug 17, 2020 433.97 442.73 422.65  429.53
+## 6  Ethereum    ETH ethereum Aug 16, 2020 433.35 436.27 415.09  433.79
+## 7  Ethereum    ETH ethereum Aug 15, 2020 437.56 441.75 429.87  433.35
+## 8  Ethereum    ETH ethereum Aug 14, 2020 428.68 444.58 423.35  437.40
+## 9  Ethereum    ETH ethereum Aug 13, 2020 390.84 432.90 379.71  428.74
+## 10 Ethereum    ETH ethereum Aug 12, 2020 380.06 391.31 367.92  391.02
+##            Volume     Market.Cap
+## 1  11,781,796,374 43,690,315,907
+## 2  10,043,032,427 46,751,356,941
+## 3  13,137,391,167 45,625,864,918
+## 4  11,978,984,079 47,551,407,033
+## 5  13,227,089,410 48,203,426,751
+## 6  12,168,816,874 48,675,162,267
+## 7  12,416,067,894 48,620,820,125
+## 8  15,064,589,987 49,068,474,083
+## 9  18,480,303,526 48,091,569,052
+## 10 12,408,772,745 43,855,501,072</code></pre>
+<p>Ta thấy cột <code>Date</code> ở dạng <code>character</code> nên cần chuyển về dạng <code>date</code> như sau:</p>
+<pre class="r"><code>df$Date &lt;- lubridate::mdy(unlist(df$Date))
+head(df, 10)</code></pre>
+<pre><code>##        Name Symbol     Slug       Date  Open.   High    Low Close..
+## 1  Ethereum    ETH ethereum 2020-08-21 416.15 418.64 387.44  389.13
+## 2  Ethereum    ETH ethereum 2020-08-20 406.76 418.73 404.03  416.44
+## 3  Ethereum    ETH ethereum 2020-08-19 423.74 427.02 396.68  406.46
+## 4  Ethereum    ETH ethereum 2020-08-18 429.67 432.58 419.67  423.67
+## 5  Ethereum    ETH ethereum 2020-08-17 433.97 442.73 422.65  429.53
+## 6  Ethereum    ETH ethereum 2020-08-16 433.35 436.27 415.09  433.79
+## 7  Ethereum    ETH ethereum 2020-08-15 437.56 441.75 429.87  433.35
+## 8  Ethereum    ETH ethereum 2020-08-14 428.68 444.58 423.35  437.40
+## 9  Ethereum    ETH ethereum 2020-08-13 390.84 432.90 379.71  428.74
+## 10 Ethereum    ETH ethereum 2020-08-12 380.06 391.31 367.92  391.02
+##            Volume     Market.Cap
+## 1  11,781,796,374 43,690,315,907
+## 2  10,043,032,427 46,751,356,941
+## 3  13,137,391,167 45,625,864,918
+## 4  11,978,984,079 47,551,407,033
+## 5  13,227,089,410 48,203,426,751
+## 6  12,168,816,874 48,675,162,267
+## 7  12,416,067,894 48,620,820,125
+## 8  15,064,589,987 49,068,474,083
+## 9  18,480,303,526 48,091,569,052
+## 10 12,408,772,745 43,855,501,072</code></pre>
+<p>Dùng thư viện <code>ggplot2</code> để trực quan hóa và so sánh biến động giá cả của các loại <code>coins</code> trong khoảng thời gian từ ngày <code>21/08/2019</code> dến ngày <code>21/08/2020</code>:</p>
+<pre class="r"><code># Chỉ so sánh thông tìn các cột Open, High, Low, Close
+df &lt;- df[,1:8]
+# Chuyển bẳng dữ liệu từ dạng bảng rộng về dài
+library(tidyr)
+df$Name&lt;- factor(df$Name)
+df_tall &lt;- df%&gt;% gather(key = s, value = value, -Name, -Symbol, -Slug, -Date)
+df_tall$s &lt;- factor(df_tall$s, levels=unique(as.character(df_tall$s)))
+
+# Vẽ biểu đồ so sánh thông tin
+library(ggplot2)
+library(viridis)</code></pre>
+<pre><code>## Loading required package: viridisLite</code></pre>
+<pre class="r"><code>ggplot(df_tall, aes(x = Date, y = value, color = Name)) +
+geom_line(size = 0.75) +
+xlab(&quot;Time&quot;)+
+facet_wrap(~s, ncol = 2, scales = &quot;free_y&quot;)+
+theme_bw()</code></pre>
+<p><img src="/post/2020-08-21-crypto.vn_files/figure-html/unnamed-chunk-13-1.png" width="1152" />
+Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các mô hình dự báo để đự đoán giá các loại <code>coins</code></p>
+<p><strong>Chú thích:</strong></p>
+<ul>
+<li><code>Open</code>: Giá mở cửa</li>
+<li><code>Close</code>: Giá đóng cửa</li>
+<li><code>High</code>: Mức giá cao nhất</li>
+<li><code>Low</code>: Mức giá thấp nhất</li>
+</ul>
+<p><code>4</code> bộ phận này cấu thành nên một <code>nến</code> giao dịch đại diện cho sự lên xuống của giá trị một loại tài sản trong một khoảng thời gian cố định. Điểm <code>“open”</code> của nến đại diện cho mức giá của loại tài sản khi bắt đầu khoảng thời gian giao dịch, trong khi <code>“close”</code> là mức giá khi kết thúc thời gian giao dịch. Còn <code>“high”</code> và <code>“low”</code> lần lượt là các mức giá cao nhất và thấp nhất đạt được trong phiên giao dịch.</p>
+<div class="figure">
+<img src="/post/2020-08-21-crypto.vn_files/Candlestick-Anatomy.jpg" alt="Các bộ phận của một nến giao dịch, với nến tăng (màu xanh) và nếu giảm (màu đỏ)" />
+<p class="caption">Các bộ phận của một nến giao dịch, với nến <code>tăng</code> (màu xanh) và nếu <code>giảm</code> (màu đỏ)</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/data-science/">Data Science</a>
+  
+  <a class="badge badge-light" href="/tag/data-visualization/">Data Visualization</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/crypto/&amp;text=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/crypto/&amp;t=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap&amp;body=/post/crypto/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/crypto/&amp;title=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap%20/post/crypto/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/crypto/&amp;title=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/cuong-sai/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="Cuong Sai">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Cuong Sai</a></h5>
+        <h6 class="card-subtitle">PhD student</h6>
+        <p class="card-text">My research interests include Industrial AI (Intelligent predictive maintenance), Machine and Deep learning, Time series forecasting, Intelligent machinery fault diagnosis, Prognostics and health management, Error metrics / forecast evaluation.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://web.facebook.com/CSdatascience" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?hl=en&amp;user=qhiD3RUAAAAJ" target="_blank" rel="noopener">
+        <i class="fab fa-google-sholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/svcuong" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "cuongsai" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/">Sử dụng kết hợp R và Python trong data science</a></li>
+      
+      <li><a href="/post/remove-outliers/">Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python</a></li>
+      
+      <li><a href="/project/pdm-project/">The PdM Project</a></li>
+      
+      <li><a href="/project/forvision-project/">The Forvision Project</a></li>
+      
+      <li><a href="/post/data-manipulation/">So sánh dplyr và pandas cho data manipulation</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+ 
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://cuongsai.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic Website Builder</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

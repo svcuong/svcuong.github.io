@@ -5,12 +5,238 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 20 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 21 Aug 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
       <title>Posts</title>
       <link>/post/</link>
     </image>
+    
+    <item>
+      <title>Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap</title>
+      <link>/post/crypto/</link>
+      <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/crypto/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;strong&gt;Web scraping&lt;/strong&gt; là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau. Tuy nhiên, việc lấy các thông tin này một cách thủ công thì cần rất nhiều thời gian. Lúc này web scraping chính là cách giúp chúng ta trích xuất dữ liệu từ các trang web một cách tự động. Kỹ thuật này chủ yếu tập trung vào việc chuyển đổi dữ liệu phi cấu trúc (HTML) trên web thành dữ liệu có cấu trúc (cơ sở dữ liệu, bảng tính,…)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CoinMarketCap&lt;/strong&gt; là một trang web chuyên cung cấp dữ liệu về các loại tiền điện tử đang được lưu hành trên thế giới. Nếu bạn là người đã hoặc đang tìm hiểu, đầu tư vào các đồng &lt;code&gt;coins&lt;/code&gt; thì không thể nào bỏ qua trang web cung cấp thông tin về tiền điện tử lớn nhất thế giới này. Với &lt;code&gt;CoinMarketCap&lt;/code&gt; bạn có thể xem rất nhiều lọai thông tin ví dụ như: biến động giá cả các đồng &lt;code&gt;coin&lt;/code&gt;, trữ lượng, khối lượng giao dịch theo từng khoảng thời gian, tỷ giá, xem trang web chính thức hoặc các hoạt động trên mạng xã hội của các đồng coin.&lt;/p&gt;
+&lt;p&gt;Trong bài này tôi sẽ giới thiệu với các bạn cách sử dụng gói &lt;code&gt;rvest&lt;/code&gt; trong &lt;code&gt;R&lt;/code&gt; để &lt;code&gt;scrape&lt;/code&gt; dữ liệu lịch sử thị trường các loại tiền điện tử từ &lt;code&gt;CoinMarketCap&lt;/code&gt;. Sau đó dùng gói &lt;code&gt;ggplot2&lt;/code&gt; để trực quan hóa dữ liệu nhằm mục đích so sánh biến động giá cả của các đồng coins với nhau trong khoảng thời gian nhất định.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gói rvest&lt;/strong&gt; cũng giống như thư viện &lt;code&gt;BeautifulSoup&lt;/code&gt; trên &lt;code&gt;Python&lt;/code&gt;, là một thư viện &lt;code&gt;R&lt;/code&gt; để trích xuất dữ liệu từ các tập tin &lt;code&gt;HTML&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lưu ý khi scape một trang web:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Không nên tạo quá nhiều &lt;code&gt;request&lt;/code&gt; đến trang web trong 1 thời điểm, vì nó có thể gây ra sập trang web (có thể bị liệt vào tấn công từ chối dịch vụ &lt;code&gt;DDoS&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Trang web có thể sẽ thường xuyên thay đổi giao diện, bố cục (&lt;code&gt;HTML&lt;/code&gt;) nên bạn cần thường xuyên cập nhật &lt;code&gt;code&lt;/code&gt; của mình&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Nạp các thư viện cần dùng vào phiên làm việc của &lt;code&gt;R&lt;/code&gt; để thực hành:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(jsonlite) # Thư viện cho phép đọc json files
+library(rvest) # thư viện để scape web&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: xml2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse) # Hệ sinh thái các gói hỗ trợ biến đổi (dplyr) và trực quan hóa dữ liệu (ggplot2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.1     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter()         masks stats::filter()
+## x purrr::flatten()        masks jsonlite::flatten()
+## x readr::guess_encoding() masks rvest::guess_encoding()
+## x dplyr::lag()            masks stats::lag()
+## x purrr::pluck()          masks rvest::pluck()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nếu chưa cài các tư viện trên thì các bạn dùng lệnh &lt;code&gt;install.packages(...)&lt;/code&gt; để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;rvest&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Đầu tiên chúng ta đọc &lt;code&gt;json&lt;/code&gt; file từ trang &lt;code&gt;CoinMarketCap&lt;/code&gt; để biết thông tin về các loại coins:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;json &amp;lt;- &amp;quot;https://s2.coinmarketcap.com/generated/search/quick_search.json&amp;quot;
+coins &amp;lt;- read_json(json, simplifyVector = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hiển thị bảng thông tin 10 đồng &lt;code&gt;coins&lt;/code&gt; đầu tiên theo &lt;code&gt;rank&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(coins,10)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##               name symbol rank            slug
+## 1          Bitcoin    BTC    1         bitcoin
+## 2         Ethereum    ETH    2        ethereum
+## 3              XRP    XRP    3             xrp
+## 4           Tether   USDT    4          tether
+## 5     Bitcoin Cash    BCH    5    bitcoin-cash
+## 6        Chainlink   LINK    6       chainlink
+## 7         Litecoin    LTC    7        litecoin
+## 8       Bitcoin SV    BSV    8      bitcoin-sv
+## 9  Crypto.com Coin    CRO    9 crypto-com-coin
+## 10         Cardano    ADA   10         cardano
+##                                   tokens   id
+## 1                  Bitcoin, bitcoin, BTC    1
+## 2                Ethereum, ethereum, ETH 1027
+## 3                          XRP, xrp, XRP   52
+## 4                   Tether, tether, USDT  825
+## 5        Bitcoin Cash, bitcoin-cash, BCH 1831
+## 6             Chainlink, chainlink, LINK 1975
+## 7                Litecoin, litecoin, LTC    2
+## 8            Bitcoin SV, bitcoin-sv, BSV 3602
+## 9  Crypto.com Coin, crypto-com-coin, CRO 3635
+## 10                 Cardano, cardano, ADA 2010&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên &lt;code&gt;CoinMarketCap&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(coins)[1]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 4808&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng coins đầu tiên có rank từ 2 đến 11:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:10]
+coinslug &amp;lt;- coins$slug[2:11]
+coinname &amp;lt;- coins$name[2:11]
+coinsymbol &amp;lt;- coins$symbol[2:11]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Tạo hàm để get dữ liệu coins.&lt;/strong&gt; Khi ta vào mục &lt;code&gt;historical data&lt;/code&gt; (như hình bên dưới) để xem thông tin của từng loại &lt;code&gt;coin&lt;/code&gt; trên trang &lt;code&gt;CoinMarketCap&lt;/code&gt;, ta thấy trong đường &lt;code&gt;link&lt;/code&gt; có &lt;code&gt;3&lt;/code&gt; thông tin quan trọng đó là:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;slug&lt;/code&gt;: Slug của loại coin đó (như đường link trong hình dưới là &lt;code&gt;bitcoin&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;start&lt;/code&gt;: Ngày bắt đầu của khoảng thời gian ta muốn xem thông tin&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;end&lt;/code&gt;: ngày kết thúc của khoảng thời gian ta muốn xem thông tin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/post/2020-08-21-crypto.vn_files/bitcoin.PNG&#34; alt=&#34;Screenshot từ trang CoinMarketCap&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;&lt;code&gt;Screenshot&lt;/code&gt; từ trang &lt;a href=&#34;https://coinmarketcap.com/currencies/bitcoin/historical-data/?start=20200722&amp;amp;end=20200822&#34;&gt;CoinMarketCap&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Vì vậy ta sẽ viết hàm để &lt;code&gt;get&lt;/code&gt; dữ liệu dựa vào &lt;code&gt;3&lt;/code&gt; thông tin trên như sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Tạo hàm get dữ liệu coin
+get_data_coin &amp;lt;- function(coin, start_date, end_date){
+  # coin: slug của coin
+  # start_date: Ngày bắt đầu lấy dữ liệu
+  # end_date: Ngày kết thúc lấy dữ liệu
+  # Tạo đường link từ 3 thông tin đầu vào
+  historyurl &amp;lt;- paste0(&amp;quot;https://coinmarketcap.com/currencies/&amp;quot;,
+                      coin,
+                      &amp;quot;/historical-data/?start=&amp;quot;,
+                      start_date,
+                      &amp;quot;&amp;amp;end=&amp;quot;,
+                      end_date)
+  # Đọc dữ liệu từ web
+  url &amp;lt;-read_html(historyurl)
+  data &amp;lt;- data.frame(html_table(url)[[3]])
+  data$Slug &amp;lt;- coin
+  return(data)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ví dụ sử dụng hàm &lt;code&gt;get_data_coin()&lt;/code&gt; vừa tạo để lấy dữ liệu lịch sử của &lt;code&gt;10&lt;/code&gt; loại coins trên từ ngày &lt;code&gt;21/08/2019&lt;/code&gt; dến ngày &lt;code&gt;21/08/2020&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Nhập ngày bắt đầu và và kết thúc trong khoảng thời gian muốn xem theo định đạng &amp;quot;Năm-Tháng-Ngày&amp;quot;
+start_date = 20190821
+end_date = 20200821
+# Tạo list trống để lưu dữ liệu coins
+results_data &amp;lt;- list()
+
+# Lưu dữ liệu từng loại coin trong danh sách 10 coins ở trên vào list trống
+for (i in (1:length(coinslug))){
+  results_data[[i]] &amp;lt;- get_data_coin(coin = coinslug[i], start_date = start_date, end_date = end_date)
+}
+# Gộp data.frame của từng loại coin trong list vào thành 1 bảng
+results_data &amp;lt;- do.call(rbind, results_data)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Để kiểm tra dữ liệu thu được, ta hiển thị &lt;code&gt;10&lt;/code&gt; hàng dữ liệu đầu tiên trong bẳng bằng lệnh &lt;code&gt;head()&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(results_data, 10)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##            Date  Open.   High    Low Close..         Volume     Market.Cap
+## 1  Aug 21, 2020 416.15 418.64 387.44  389.13 11,781,796,374 43,690,315,907
+## 2  Aug 20, 2020 406.76 418.73 404.03  416.44 10,043,032,427 46,751,356,941
+## 3  Aug 19, 2020 423.74 427.02 396.68  406.46 13,137,391,167 45,625,864,918
+## 4  Aug 18, 2020 429.67 432.58 419.67  423.67 11,978,984,079 47,551,407,033
+## 5  Aug 17, 2020 433.97 442.73 422.65  429.53 13,227,089,410 48,203,426,751
+## 6  Aug 16, 2020 433.35 436.27 415.09  433.79 12,168,816,874 48,675,162,267
+## 7  Aug 15, 2020 437.56 441.75 429.87  433.35 12,416,067,894 48,620,820,125
+## 8  Aug 14, 2020 428.68 444.58 423.35  437.40 15,064,589,987 49,068,474,083
+## 9  Aug 13, 2020 390.84 432.90 379.71  428.74 18,480,303,526 48,091,569,052
+## 10 Aug 12, 2020 380.06 391.31 367.92  391.02 12,408,772,745 43,855,501,072
+##        Slug
+## 1  ethereum
+## 2  ethereum
+## 3  ethereum
+## 4  ethereum
+## 5  ethereum
+## 6  ethereum
+## 7  ethereum
+## 8  ethereum
+## 9  ethereum
+## 10 ethereum&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Thêm thông tin gồm &lt;code&gt;name&lt;/code&gt; và &lt;code&gt;symbol&lt;/code&gt; của từng &lt;code&gt;coin&lt;/code&gt; vào bảng dữ liệu:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;coinnames &amp;lt;- data.frame(
+        Name = as.character(coinname),
+        Symbol = as.character(coinsymbol),
+        Slug = as.character(coinslug))
+df &amp;lt;- dplyr::full_join(coinnames, results_data, by = &amp;quot;Slug&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Để kiểm tra bảng dữ liệu mới thu được, ta hiển thị &lt;code&gt;10&lt;/code&gt; hàng dữ liệu đầu tiên trong bảng:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(df, 10)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        Name Symbol     Slug         Date  Open.   High    Low Close..
+## 1  Ethereum    ETH ethereum Aug 21, 2020 416.15 418.64 387.44  389.13
+## 2  Ethereum    ETH ethereum Aug 20, 2020 406.76 418.73 404.03  416.44
+## 3  Ethereum    ETH ethereum Aug 19, 2020 423.74 427.02 396.68  406.46
+## 4  Ethereum    ETH ethereum Aug 18, 2020 429.67 432.58 419.67  423.67
+## 5  Ethereum    ETH ethereum Aug 17, 2020 433.97 442.73 422.65  429.53
+## 6  Ethereum    ETH ethereum Aug 16, 2020 433.35 436.27 415.09  433.79
+## 7  Ethereum    ETH ethereum Aug 15, 2020 437.56 441.75 429.87  433.35
+## 8  Ethereum    ETH ethereum Aug 14, 2020 428.68 444.58 423.35  437.40
+## 9  Ethereum    ETH ethereum Aug 13, 2020 390.84 432.90 379.71  428.74
+## 10 Ethereum    ETH ethereum Aug 12, 2020 380.06 391.31 367.92  391.02
+##            Volume     Market.Cap
+## 1  11,781,796,374 43,690,315,907
+## 2  10,043,032,427 46,751,356,941
+## 3  13,137,391,167 45,625,864,918
+## 4  11,978,984,079 47,551,407,033
+## 5  13,227,089,410 48,203,426,751
+## 6  12,168,816,874 48,675,162,267
+## 7  12,416,067,894 48,620,820,125
+## 8  15,064,589,987 49,068,474,083
+## 9  18,480,303,526 48,091,569,052
+## 10 12,408,772,745 43,855,501,072&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ta thấy cột &lt;code&gt;Date&lt;/code&gt; ở dạng &lt;code&gt;character&lt;/code&gt; nên cần chuyển về dạng &lt;code&gt;date&lt;/code&gt; như sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df$Date &amp;lt;- lubridate::mdy(unlist(df$Date))
+head(df, 10)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        Name Symbol     Slug       Date  Open.   High    Low Close..
+## 1  Ethereum    ETH ethereum 2020-08-21 416.15 418.64 387.44  389.13
+## 2  Ethereum    ETH ethereum 2020-08-20 406.76 418.73 404.03  416.44
+## 3  Ethereum    ETH ethereum 2020-08-19 423.74 427.02 396.68  406.46
+## 4  Ethereum    ETH ethereum 2020-08-18 429.67 432.58 419.67  423.67
+## 5  Ethereum    ETH ethereum 2020-08-17 433.97 442.73 422.65  429.53
+## 6  Ethereum    ETH ethereum 2020-08-16 433.35 436.27 415.09  433.79
+## 7  Ethereum    ETH ethereum 2020-08-15 437.56 441.75 429.87  433.35
+## 8  Ethereum    ETH ethereum 2020-08-14 428.68 444.58 423.35  437.40
+## 9  Ethereum    ETH ethereum 2020-08-13 390.84 432.90 379.71  428.74
+## 10 Ethereum    ETH ethereum 2020-08-12 380.06 391.31 367.92  391.02
+##            Volume     Market.Cap
+## 1  11,781,796,374 43,690,315,907
+## 2  10,043,032,427 46,751,356,941
+## 3  13,137,391,167 45,625,864,918
+## 4  11,978,984,079 47,551,407,033
+## 5  13,227,089,410 48,203,426,751
+## 6  12,168,816,874 48,675,162,267
+## 7  12,416,067,894 48,620,820,125
+## 8  15,064,589,987 49,068,474,083
+## 9  18,480,303,526 48,091,569,052
+## 10 12,408,772,745 43,855,501,072&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dùng thư viện &lt;code&gt;ggplot2&lt;/code&gt; để trực quan hóa và so sánh biến động giá cả của các loại &lt;code&gt;coins&lt;/code&gt; trong khoảng thời gian từ ngày &lt;code&gt;21/08/2019&lt;/code&gt; dến ngày &lt;code&gt;21/08/2020&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Chỉ so sánh thông tìn các cột Open, High, Low, Close
+df &amp;lt;- df[,1:8]
+# Chuyển bẳng dữ liệu từ dạng bảng rộng về dài
+library(tidyr)
+df$Name&amp;lt;- factor(df$Name)
+df_tall &amp;lt;- df%&amp;gt;% gather(key = s, value = value, -Name, -Symbol, -Slug, -Date)
+df_tall$s &amp;lt;- factor(df_tall$s, levels=unique(as.character(df_tall$s)))
+
+# Vẽ biểu đồ so sánh thông tin
+library(ggplot2)
+library(viridis)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: viridisLite&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(df_tall, aes(x = Date, y = value, color = Name)) +
+geom_line(size = 0.75) +
+xlab(&amp;quot;Time&amp;quot;)+
+facet_wrap(~s, ncol = 2, scales = &amp;quot;free_y&amp;quot;)+
+theme_bw()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-21-crypto.vn_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;1152&#34; /&gt;
+Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các mô hình dự báo để đự đoán giá các loại &lt;code&gt;coins&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Chú thích:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Open&lt;/code&gt;: Giá mở cửa&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Close&lt;/code&gt;: Giá đóng cửa&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;High&lt;/code&gt;: Mức giá cao nhất&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Low&lt;/code&gt;: Mức giá thấp nhất&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;4&lt;/code&gt; bộ phận này cấu thành nên một &lt;code&gt;nến&lt;/code&gt; giao dịch đại diện cho sự lên xuống của giá trị một loại tài sản trong một khoảng thời gian cố định. Điểm &lt;code&gt;“open”&lt;/code&gt; của nến đại diện cho mức giá của loại tài sản khi bắt đầu khoảng thời gian giao dịch, trong khi &lt;code&gt;“close”&lt;/code&gt; là mức giá khi kết thúc thời gian giao dịch. Còn &lt;code&gt;“high”&lt;/code&gt; và &lt;code&gt;“low”&lt;/code&gt; lần lượt là các mức giá cao nhất và thấp nhất đạt được trong phiên giao dịch.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/post/2020-08-21-crypto.vn_files/Candlestick-Anatomy.jpg&#34; alt=&#34;Các bộ phận của một nến giao dịch, với nến tăng (màu xanh) và nếu giảm (màu đỏ)&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Các bộ phận của một nến giao dịch, với nến &lt;code&gt;tăng&lt;/code&gt; (màu xanh) và nếu &lt;code&gt;giảm&lt;/code&gt; (màu đỏ)&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python</title>
@@ -59,13 +285,13 @@ hist(data, breaks= 60, main=&amp;quot;Histogram With breaks=60&amp;quot;)
 summary(data)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   12.48   18.67   20.01   20.01   21.35   26.95
+##   13.36   18.75   20.09   20.06   21.43   27.94
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ví dụ sử dụng hàm &lt;code&gt;sample()&lt;/code&gt; để tạo mẫu ngẫu nhiên có lặp lại 10 số nguyên từ 0 đến 9:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
 sample(0:9, replace = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] 0 7 1 7 6 3 5 3 7 1
+&lt;pre&gt;&lt;code&gt;##  [1] 2 5 4 8 9 4 6 5 1 2
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ví dụ sử dụng hàm tính mật độ phân phối chuẩn &lt;code&gt;dnorm()&lt;/code&gt; để ước tính xác xuất của học sinh có điểm là &lt;code&gt;16.5&lt;/code&gt;  biết rằng điểm của học sinh tuân theo phân phối chuẩn với giá trị trung bình là &lt;code&gt;15&lt;/code&gt;, độ lệnh chuẩn là &lt;code&gt;2.5&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
@@ -122,26 +348,26 @@ lower_std, upper_std = mean_data - limit_std, mean_data + limit_std
 ouliers_index_std &amp;lt;- which(data &amp;gt; upper_std | data &amp;lt; lower_std)
 print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_std)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 8&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 18&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 ouliers_index_std = [x for x in data if x &amp;lt; lower_std or x &amp;gt; upper_std]
 print(&#39;Number of outliers: %d&#39; % len(ouliers_index_std))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 15
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 14
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
 # R
 data_new_std &amp;lt;- data[-ouliers_index_std]
 print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_std)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4992&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4982&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 data_new_std = [x for x in data if x &amp;gt;= lower_std and x &amp;lt;= upper_std]
 print(&#39;Number of Non-outliers:: %d&#39; % len(data_new_std))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4985
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4986
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;2. Phương pháp &lt;code&gt;IQR&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Tứ phân vị là đại lượng mô tả sự phân bố và sự phân tán của tập dữ liệu. Tứ phân vị có &lt;code&gt;3&lt;/code&gt; giá trị, đó là tứ phân vị thứ nhất &lt;code&gt;Q1&lt;/code&gt; (25th), thứ hai &lt;code&gt;Q2&lt;/code&gt; (50th) hay &lt;code&gt;median&lt;/code&gt;, và thứ ba &lt;code&gt;Q3&lt;/code&gt; (75th). Ba giá trị này chia một tập hợp dữ liệu (đã sắp xếp dữ liệu theo trật từ từ bé đến lớn) thành &lt;code&gt;4&lt;/code&gt; phần có số lượng quan sát đều nhau. Tứ phân vị được xác định như sau:&lt;/p&gt;
@@ -186,26 +412,26 @@ lower_iqr, upper_iqr = q25 - limit_iqr, q75 + limit_iqr
 ouliers_index_iqr &amp;lt;- which(data &amp;gt; upper_iqr | data &amp;lt; lower_iqr)
 print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_iqr)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 28&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 36&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 ouliers_index_iqr = [x for x in data if x &amp;lt; lower_iqr or x &amp;gt; upper_iqr]
 print(&#39;Number of outliers: %d&#39; % len(ouliers_index_iqr))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 35
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 42
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
 # R
 data_new_iqr &amp;lt;- data[-ouliers_index_iqr]
 print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_iqr)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4972&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4964&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 data_new_iqr = [x for x in data if x &amp;gt;= lower_iqr and x &amp;lt;= upper_iqr]
 print(&#39;Non-outlier observations: %d&#39; % len(data_new_iqr))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4965
+&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4958
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;3. Xây dựng hàm tự động xác định và loại bỏ &lt;code&gt;outliers&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Chúng ta có thể tạo một hàm trên R dựa vào các bước ở trên để tự động xác định và xóa outliers như sau:&lt;/p&gt;
@@ -259,15 +485,15 @@ find_outliers_iqr &amp;lt;- function(data) {
 &lt;p&gt;Kiểm tra kết quả thực hiện của hai hàm này:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_std &amp;lt;- find_outliers_std(data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 8
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 18
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4972
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4964
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_iqr &amp;lt;- find_outliers_iqr(data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 28
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 36
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4972
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4964
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Đối với Python thì các bạn có thể tạo hàm tương tự sử dụng các bước trên&lt;/p&gt;
 &lt;hr&gt;
