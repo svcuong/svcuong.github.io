@@ -56,12 +56,12 @@
 library(rvest) # thư viện để scape web&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: xml2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse) # Hệ sinh thái các gói hỗ trợ biến đổi (dplyr) và trực quan hóa dữ liệu (ggplot2)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages ---------------------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
 ## v tibble  3.0.3     v dplyr   1.0.2
 ## v tidyr   1.1.1     v stringr 1.4.0
 ## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------ tidyverse_conflicts() --
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------------------- tidyverse_conflicts() --
 ## x dplyr::filter()         masks stats::filter()
 ## x purrr::flatten()        masks jsonlite::flatten()
 ## x readr::guess_encoding() masks rvest::guess_encoding()
@@ -98,7 +98,7 @@ coins &amp;lt;- read_json(json, simplifyVector = TRUE)&lt;/code&gt;&lt;/pre&gt;
 ## 10                 Cardano, cardano, ADA 2010&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên &lt;code&gt;CoinMarketCap&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(coins)[1]&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 4808&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 4810&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng coins đầu tiên có rank từ 2 đến 11:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:10]
 coinslug &amp;lt;- coins$slug[2:11]
@@ -243,7 +243,7 @@ geom_line(size = 0.75) +
 xlab(&amp;quot;Time&amp;quot;)+
 facet_wrap(~s, ncol = 2, scales = &amp;quot;free_y&amp;quot;)+
 theme_bw()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-21-crypto.vn_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;1152&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/crypto/index_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;1152&#34; /&gt;
 Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các mô hình dự báo để đự đoán giá các loại &lt;code&gt;coins&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Chú thích:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;

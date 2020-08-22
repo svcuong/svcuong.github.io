@@ -33,7 +33,7 @@
   <meta name="description" content="Web scraping là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/post/crypto/">
+  <link rel="alternate" hreflang="en-us" href="/post/crypto/crypto/">
 
   
 
@@ -269,7 +269,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_32x32_fill_lanczos_center_2.PNG">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG">
 
-  <link rel="canonical" href="/post/crypto/">
+  <link rel="canonical" href="/post/crypto/crypto/">
 
   
   
@@ -279,15 +279,16 @@
   
   
     
+    
   
   
-  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Cuong Sai">
-  <meta property="og:url" content="/post/crypto/">
+  <meta property="og:url" content="/post/crypto/crypto/">
   <meta property="og:title" content="Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap | Cuong Sai">
-  <meta property="og:description" content="Web scraping là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau."><meta property="og:image" content="/post/crypto/featured.png">
-  <meta property="twitter:image" content="/post/crypto/featured.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content="Web scraping là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau."><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
+  <meta property="twitter:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-08-21T00:00:00&#43;00:00">
@@ -316,13 +317,9 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "/post/crypto/"
+    "@id": "/post/crypto/crypto/"
   },
   "headline": "Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap",
-  
-  "image": [
-    "/post/crypto/featured.png"
-  ],
   
   "datePublished": "2020-08-21T00:00:00Z",
   "dateModified": "2020-08-21T18:45:46+04:00",
@@ -645,26 +642,18 @@
 
 
 
-
-
-
-
-
-
-
+  
 
   
   
-    
   
-
-
 <div class="article-container pt-3">
   <h1>Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap</h1>
 
   
 
   
+    
 
 
 <div class="article-metadata">
@@ -697,7 +686,7 @@
   
   
   <span class="middot-divider"></span>
-  <a href="/post/crypto/#disqus_thread"></a>
+  <a href="/post/crypto/crypto/#disqus_thread"></a>
   
 
   
@@ -709,29 +698,22 @@
 
 </div>
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 300px;">
-  <div style="position: relative">
-    <img src="/post/crypto/featured_hu9915b604758781f1aa80d5fca9ea443b_24507_720x0_resize_lanczos_2.png" alt="" class="featured-image">
     
-  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 </div>
 
 
@@ -798,7 +780,7 @@ coins &lt;- read_json(json, simplifyVector = TRUE)</code></pre>
 ## 10                 Cardano, cardano, ADA 2010</code></pre>
 <p>Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên <code>CoinMarketCap</code>:</p>
 <pre class="r"><code>dim(coins)[1]</code></pre>
-<pre><code>## [1] 4810</code></pre>
+<pre><code>## [1] 4809</code></pre>
 <p>Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng coins đầu tiên có rank từ 2 đến 11:</p>
 <pre class="r"><code># Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:10]
 coinslug &lt;- coins$slug[2:11]
@@ -943,7 +925,7 @@ geom_line(size = 0.75) +
 xlab(&quot;Time&quot;)+
 facet_wrap(~s, ncol = 2, scales = &quot;free_y&quot;)+
 theme_bw()</code></pre>
-<p><img src="/post/crypto/index_files/figure-html/unnamed-chunk-13-1.png" width="1152" />
+<p><img src="/post/crypto/2020-08-21-crypto.vn_files/figure-html/unnamed-chunk-13-1.png" width="1152" />
 Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các mô hình dự báo để đự đoán giá các loại <code>coins</code></p>
 <p><strong>Chú thích:</strong></p>
 <ul>
@@ -988,7 +970,7 @@ Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các 
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/crypto/&amp;text=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/crypto/crypto/&amp;text=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1001,7 +983,7 @@ Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các 
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/crypto/&amp;t=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/crypto/crypto/&amp;t=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1014,7 +996,7 @@ Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các 
       
       
       <li>
-        <a href="mailto:?subject=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap&amp;body=/post/crypto/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap&amp;body=/post/crypto/crypto/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1027,7 +1009,7 @@ Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các 
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/crypto/&amp;title=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/crypto/crypto/&amp;title=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1040,7 +1022,7 @@ Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các 
       
       
       <li>
-        <a href="whatsapp://send?text=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap%20/post/crypto/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap%20/post/crypto/crypto/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1053,7 +1035,7 @@ Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các 
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/crypto/&amp;title=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/crypto/crypto/&amp;title=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
