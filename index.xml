@@ -36,9 +36,9 @@
     
     <item>
       <title>Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code)</title>
-      <link>/post/crypto/</link>
+      <link>/post/ensemble-learning/</link>
       <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/crypto/</guid>
+      <guid>/post/ensemble-learning/</guid>
       <description>
 
 
@@ -444,7 +444,9 @@ print(stack.rf)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 2.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Độ chính xác cũng cải thiện hơn so với chỉ dùng svm model.&lt;/p&gt;
+&lt;p&gt;Độ chính xác cũng cải thiện hơn so với chỉ dùng &lt;code&gt;svm model&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tham khảo:&lt;/strong&gt;
+&lt;a href=&#34;https://machinelearningmastery.com/machine-learning-ensembles-with-r/&#34;&gt;How to Build an Ensemble Of Machine Learning Algorithms in R&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

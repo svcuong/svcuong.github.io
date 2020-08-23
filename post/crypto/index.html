@@ -30,7 +30,7 @@
   
     
   
-  <meta name="description" content="Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt cho mọi ứng dụng và mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameters) hoặc một giả thiết nhất định nào đó về phân bố dữ liệu.">
+  <meta name="description" content="Web scraping là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/crypto/">
@@ -285,14 +285,14 @@
   
   <meta property="og:site_name" content="Data Science">
   <meta property="og:url" content="/post/crypto/">
-  <meta property="og:title" content="Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code) | Data Science">
-  <meta property="og:description" content="Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt cho mọi ứng dụng và mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameters) hoặc một giả thiết nhất định nào đó về phân bố dữ liệu."><meta property="og:image" content="/post/crypto/featured.png">
+  <meta property="og:title" content="Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap | Data Science">
+  <meta property="og:description" content="Web scraping là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau."><meta property="og:image" content="/post/crypto/featured.png">
   <meta property="twitter:image" content="/post/crypto/featured.png"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-08-23T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2020-08-22T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-08-23T18:45:46&#43;04:00">
+    <meta property="article:modified_time" content="2020-08-22T18:45:46&#43;04:00">
   
 
   
@@ -318,14 +318,14 @@
     "@type": "WebPage",
     "@id": "/post/crypto/"
   },
-  "headline": "Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code)",
+  "headline": "Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap",
   
   "image": [
     "/post/crypto/featured.png"
   ],
   
-  "datePublished": "2020-08-23T00:00:00Z",
-  "dateModified": "2020-08-23T18:45:46+04:00",
+  "datePublished": "2020-08-22T00:00:00Z",
+  "dateModified": "2020-08-22T18:45:46+04:00",
   
   "author": {
     "@type": "Person",
@@ -340,7 +340,7 @@
       "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
     }
   },
-  "description": "Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt cho mọi ứng dụng và mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameters) hoặc một giả thiết nhất định nào đó về phân bố dữ liệu."
+  "description": "Web scraping là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau."
 }
 </script>
 
@@ -369,7 +369,7 @@
       src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
 
-  <title>Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code) | Data Science</title>
+  <title>Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap | Data Science</title>
 
 </head>
 
@@ -689,7 +689,7 @@
 
 
 <div class="article-container pt-3">
-  <h1>Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code)</h1>
+  <h1>Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap</h1>
 
   
 
@@ -709,7 +709,7 @@
           Last updated on
       
     
-    Aug 23, 2020
+    Aug 22, 2020
   </span>
   
 
@@ -718,7 +718,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    18 min read
+    9 min read
   </span>
   
 
@@ -756,9 +756,9 @@
 </div>
 
 
-<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 720px;">
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 300px;">
   <div style="position: relative">
-    <img src="/post/crypto/featured_hu439753291bb70f461c14551713424de1_22606_720x0_resize_lanczos_2.png" alt="" class="featured-image">
+    <img src="/post/crypto/featured_hu9915b604758781f1aa80d5fca9ea443b_24507_720x0_resize_lanczos_2.png" alt="" class="featured-image">
     
   </div>
 </div>
@@ -771,409 +771,210 @@
       
 
 
-<p>Trong <code>machine learning</code> tồn tại định lý <em>“không có bữa trưa miễn phí”</em> (<code>No free lunch theorem</code>), tức là không tồn tại một thuật toán mà luôn tốt cho mọi ứng dụng và mọi tập dữ liệu, vì các thuật toán <code>machiner learning</code> thường dựa trên một tập các tham số (<code>hyperparameters</code>) hoặc một giả thiết nhất định nào đó về phân bố dữ liệu. Vì vậy để tìm được những thuật toán phù hợp cho tập <code>dataset</code> của mình có thể các bạn sẽ cần nhiều thời gian để <code>test</code> các thuật toán khác nhau. Rồi từ đó thực hiện hiệu chỉnh các tham số (`tuning hyperparameters’) của thuật toán để thu được độ chính xác cao nhất.</p>
-<p>Một cách khác có thể sử dụng để tăng độ chính xác trên tập <code>dataset</code> của bạn là kết hợp (<code>combine</code>) một số mô hình với nhau. Phương pháp này gọi là <code>esemble learning</code>. Ý tưởng của việc <code>combine</code> các mô hình khác nhau xuất phát từ một suy nghĩ hợp lý là: các mô hình khác nhau có khả năng khác nhau, có thể thực hiện tốt nhất các loại công việc khác nhau (<code>subtasks</code>), khi kết hợp các mô hình này với nhau một cách hợp lý thì sẽ tạo thành một mô hình kết hợp (<code>combined model</code>) mạnh có khả năng cải thiện hiệu suât tổng thể (<code>overall performance</code>) so với việc chỉ dùng các mô hình một cách đơn lẻ.</p>
-<p>Các phương pháp <code>Ensemble Learning</code> được chia thành 3 loại sau đây:</p>
+<p><strong>Web scraping</strong> là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,…để phục vụ cho nhiều mục đích khác nhau. Tuy nhiên, việc lấy các thông tin này một cách thủ công thì cần rất nhiều thời gian. Lúc này web scraping chính là cách giúp chúng ta trích xuất dữ liệu từ các trang web một cách tự động. Kỹ thuật này chủ yếu tập trung vào việc chuyển đổi dữ liệu phi cấu trúc (HTML) trên web thành dữ liệu có cấu trúc (cơ sở dữ liệu, bảng tính,…)</p>
+<p><strong>CoinMarketCap</strong> là một trang web chuyên cung cấp dữ liệu về các loại tiền điện tử đang được lưu hành trên thế giới. Nếu bạn là người đã hoặc đang tìm hiểu, đầu tư vào các đồng <code>coins</code> thì không thể nào bỏ qua trang web cung cấp thông tin về tiền điện tử lớn nhất thế giới này. Với <code>CoinMarketCap</code> bạn có thể xem rất nhiều lọai thông tin ví dụ như: biến động giá cả các đồng <code>coin</code>, trữ lượng, khối lượng giao dịch theo từng khoảng thời gian, tỷ giá, xem trang web chính thức hoặc các hoạt động trên mạng xã hội của các đồng <code>coins</code>.</p>
+<p>Trong bài này tôi sẽ giới thiệu với các bạn cách sử dụng gói <code>rvest</code> trong <code>R</code> để <code>scrape</code> dữ liệu lịch sử thị trường các loại tiền điện tử từ <code>CoinMarketCap</code>. Sau đó dùng gói <code>ggplot2</code> để trực quan hóa dữ liệu nhằm mục đích so sánh biến động giá cả của các đồng coins với nhau trong khoảng thời gian nhất định.</p>
+<p><strong>Gói rvest</strong> cũng giống như thư viện <code>BeautifulSoup</code> trên <code>Python</code>, là một thư viện <code>R</code> để trích xuất dữ liệu từ các tập tin <code>HTML</code>.</p>
+<p><strong>Lưu ý khi scape một trang web:</strong></p>
 <ul>
-<li><code>Bagging</code> (đóng bao)</li>
-<li><code>Boosting</code> (tăng cường)</li>
-<li><code>Stacking</code> (Xếp chồng)</li>
+<li>Không nên tạo quá nhiều <code>request</code> đến trang web trong 1 thời điểm, vì nó có thể gây ra sập trang web (có thể bị liệt vào tấn công từ chối dịch vụ <code>DDoS</code>)</li>
+<li>Trang web có thể sẽ thường xuyên thay đổi giao diện, bố cục (<code>HTML</code>) nên bạn cần thường xuyên cập nhật <code>code</code> của mình</li>
 </ul>
-<p>Trong post này, trước hết tôi sẽ giới thiệu 3 kỹ thuật <code>ensemble learning</code> kể trên, sau đó là cách sử dụng thư viện <code>caret</code> và <code>caretEnsemble</code> trong <code>R</code> để triển khai chúng và áp dụng vào bài toán cụ thể.</p>
-<p>Để cài đặt 2 thư viện này ta dùng lệnh <code>install.packages(.)</code> với tham số đầu vào là tên thư viện muốn cài:</p>
-<pre class="r"><code>install.packages(&quot;caret&quot;)
-intall.packages(&quot;caretEnsemble&quot;)</code></pre>
-<p><strong>Đôi nét về thư viện caret</strong>: Ngôn ngữ <code>R</code> khác biệt bởi số lượng rất lớn các <code>packages</code> chuyên dụng khác nhau cho phép xây dựng các mô hình dự đoán. Tuy nhiên đây cũng chính là khuyết điểm, khi có quá nhiều các gói triển khai <code>machine learning algorithms</code> dưới dạng các
-hàm <code>rải rác</code> đòi hỏi ta cần nhiều thời gian để tìm kiếm và nắm vững những đặc trưng về cú pháp cũng như cách sử dụng của từng hàm. Để giải quyết vấn đề này <a href="https://www.linkedin.com/in/max-kuhn-864a9110">Max Kuhn</a> đã xây dựng một giao diện phổ quát cho phép truy cập và sử dụng các <code>machine learning algorithms</code> từ cái gói khác nhau được triển khai trên ngôn ngữ <code>R</code>. Kết quả chính là package <a href="https://cran.r-project.org/web/packages/caret/caret.pdf">caret</a> (viết tắt từ Classification and Regression Training), được công bố đầu tiên vào năm 2008 tại tạp chí phần mềm thống kê <a href="https://www.jstatsoft.org/article/view/v028i05">Journal of Statistical Software</a>. Gói <code>caret</code> giúp chúng ta tiết kiệm được rất nhiều thời gian trong quá trình phân tích và xây dựng các <code>models</code>. Dưới đây là một số
-đặc trưng cơ bản của gói <code>caret</code>:</p>
-<ul>
-<li><p>Sử dụng cú pháp lệnh chung (phổ quát) không phụ thuộc vào cú pháp của các hàm gốc (các hàm triển khai các machine learningalgorithms)</p></li>
-<li><p>Tự động tìm kiếm những giá trị tối ưu cho các <code>hyperparameters</code> của mô hình (<code>tuning parameters</code>)</p></li>
-<li><p>Có khả năng tổ chức tính toán song song để tăng đáng kể tốc độ quá trình huấn luyện mô hình</p></li>
-<li><p>Sử dụng <code>Caret</code> cho phép giải quyết hầu hết các nhiệm vụ trong <code>machine learning</code> từ tiền xủ lý cho đến đánh giá mô hình</p></li>
-</ul>
-<p><strong>1. Phân biệt 3 kỹ thuật boosting, baggig và statcking</strong></p>
-<p><strong>Bagging</strong> xây dựng một lượng lớn các <code>models</code> (thường là <code>cùng loại</code>) trên những <code>subsamples</code> khác nhau từ tập <code>training dataset</code> một cách song song nhằm đưa ra dự đoán tốt hơn.</p>
-<p><strong>Boosting</strong> xây dựng một lượng lớn các <code>models</code> (thường là <code>cùng loại</code>). Tuy nhiên quá trình huấn luyện trong phương pháp này diễn ra tuần tự theo chuỗi (sequence). Trong chuỗi này mỗi <code>model</code> sau sẽ học cách sửa những <code>errors</code> của <code>model</code> trước (hay nói cách khác là dữ liệu mà <code>model</code> trước dự đoán sai).</p>
-<div class="figure">
-<img src="/img/boosting-bagging.png" alt="Nguồn ảnh" />
-<p class="caption"><a href="https://www.datacamp.com/community/tutorials/adaboost-classifier-python">Nguồn ảnh</a></p>
-</div>
-<p><strong>Stacking</strong> xây dựng một số <code>models</code> (thường là <code>khác loại</code>) và một mô hình <code>supervisor model</code>, mô hình này sẽ học cách kết hợp kết quả dự báo của một số mô hình một cách tốt nhất.</p>
-<div class="figure">
-<img src="/img/stacking.png" alt="Nguồn ảnh" />
-<p class="caption"><a href="https://www.geeksforgeeks.org/stacking-in-machine-learning/">Nguồn ảnh</a></p>
-</div>
-<p><strong>2. Thực hành</strong></p>
 <p>Nạp các thư viện cần dùng vào phiên làm việc của <code>R</code> để thực hành:</p>
-<pre class="r"><code>library(caret)
-library(caretEnsemble) </code></pre>
-<p>Kiểm tra số lượng các machine learning algorithms trong R được hỗ trợ bởi <code>caret</code>:</p>
-<pre class="r"><code>carets &lt;- getModelInfo()
-carets.names &lt;- names(carets)
-length(carets.names)</code></pre>
-<pre><code>## [1] 238</code></pre>
-<p><strong>2.1 Dữ liệu để thực hành</strong></p>
-<p>Để thực hành tôi lựa chọn bài toán phân loại nhị phân (<code>binary classification</code>) với tập dữ liệu <code>ionoshene</code>. Trong bài toán này chúng ta cần dự đoán xem cao tần trả vể từ năng lượng của các hạt trong khí quyển có cấu trúc hay là không. Để tìm hiểu thêm về bài toán này các bạn có thể đọc ở <a href="http://archive.ics.uci.edu/ml/index.php">đây</a>.</p>
-<p>Load dữ liệu từ gói <code>mlbench</code>:</p>
-<pre class="r"><code># Load the dataset
-library(mlbench)
-data(Ionosphere)
-dataset &lt;- Ionosphere</code></pre>
-<p><strong>2.1.1 Thống kê mô tả (descriptive statistics)</strong></p>
-<p>Kiểm tra kích thước tập dữ liệu:</p>
-<pre class="r"><code>dim(dataset)</code></pre>
-<pre><code>## [1] 351  35</code></pre>
-<p>Kiểm tra cấu trúc của tập dữ liệu:</p>
-<pre class="r"><code>str(dataset)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    351 obs. of  35 variables:
-##  $ V1   : Factor w/ 2 levels &quot;0&quot;,&quot;1&quot;: 2 2 2 2 2 2 2 1 2 2 ...
-##  $ V2   : Factor w/ 1 level &quot;0&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ V3   : num  0.995 1 1 1 1 ...
-##  $ V4   : num  -0.0589 -0.1883 -0.0336 -0.4516 -0.024 ...
-##  $ V5   : num  0.852 0.93 1 1 0.941 ...
-##  $ V6   : num  0.02306 -0.36156 0.00485 1 0.06531 ...
-##  $ V7   : num  0.834 -0.109 1 0.712 0.921 ...
-##  $ V8   : num  -0.377 -0.936 -0.121 -1 -0.233 ...
-##  $ V9   : num  1 1 0.89 0 0.772 ...
-##  $ V10  : num  0.0376 -0.0455 0.012 0 -0.164 ...
-##  $ V11  : num  0.852 0.509 0.731 0 0.528 ...
-##  $ V12  : num  -0.1776 -0.6774 0.0535 0 -0.2028 ...
-##  $ V13  : num  0.598 0.344 0.854 0 0.564 ...
-##  $ V14  : num  -0.44945 -0.69707 0.00827 0 -0.00712 ...
-##  $ V15  : num  0.605 -0.517 0.546 -1 0.344 ...
-##  $ V16  : num  -0.38223 -0.97515 0.00299 0.14516 -0.27457 ...
-##  $ V17  : num  0.844 0.055 0.838 0.541 0.529 ...
-##  $ V18  : num  -0.385 -0.622 -0.136 -0.393 -0.218 ...
-##  $ V19  : num  0.582 0.331 0.755 -1 0.451 ...
-##  $ V20  : num  -0.3219 -1 -0.0854 -0.5447 -0.1781 ...
-##  $ V21  : num  0.5697 -0.1315 0.7089 -0.6997 0.0598 ...
-##  $ V22  : num  -0.297 -0.453 -0.275 1 -0.356 ...
-##  $ V23  : num  0.3695 -0.1806 0.4339 0 0.0231 ...
-##  $ V24  : num  -0.474 -0.357 -0.121 0 -0.529 ...
-##  $ V25  : num  0.5681 -0.2033 0.5753 1 0.0329 ...
-##  $ V26  : num  -0.512 -0.266 -0.402 0.907 -0.652 ...
-##  $ V27  : num  0.411 -0.205 0.59 0.516 0.133 ...
-##  $ V28  : num  -0.462 -0.184 -0.221 1 -0.532 ...
-##  $ V29  : num  0.2127 -0.1904 0.431 1 0.0243 ...
-##  $ V30  : num  -0.341 -0.116 -0.174 -0.201 -0.622 ...
-##  $ V31  : num  0.4227 -0.1663 0.6044 0.2568 -0.0571 ...
-##  $ V32  : num  -0.5449 -0.0629 -0.2418 1 -0.5957 ...
-##  $ V33  : num  0.1864 -0.1374 0.5605 -0.3238 -0.0461 ...
-##  $ V34  : num  -0.453 -0.0245 -0.3824 1 -0.657 ...
-##  $ Class: Factor w/ 2 levels &quot;bad&quot;,&quot;good&quot;: 2 1 2 1 2 1 2 1 2 1 ...</code></pre>
-<p>Hiển thị <code>5</code> hàng dữ liệu đầu tiên:</p>
-<pre class="r"><code>head(dataset, 5)</code></pre>
-<pre><code>##   V1 V2      V3       V4      V5       V6       V7       V8      V9      V10
-## 1  1  0 0.99539 -0.05889 0.85243  0.02306  0.83398 -0.37708 1.00000  0.03760
-## 2  1  0 1.00000 -0.18829 0.93035 -0.36156 -0.10868 -0.93597 1.00000 -0.04549
-## 3  1  0 1.00000 -0.03365 1.00000  0.00485  1.00000 -0.12062 0.88965  0.01198
-## 4  1  0 1.00000 -0.45161 1.00000  1.00000  0.71216 -1.00000 0.00000  0.00000
-## 5  1  0 1.00000 -0.02401 0.94140  0.06531  0.92106 -0.23255 0.77152 -0.16399
-##       V11      V12     V13      V14      V15      V16     V17      V18      V19
-## 1 0.85243 -0.17755 0.59755 -0.44945  0.60536 -0.38223 0.84356 -0.38542  0.58212
-## 2 0.50874 -0.67743 0.34432 -0.69707 -0.51685 -0.97515 0.05499 -0.62237  0.33109
-## 3 0.73082  0.05346 0.85443  0.00827  0.54591  0.00299 0.83775 -0.13644  0.75535
-## 4 0.00000  0.00000 0.00000  0.00000 -1.00000  0.14516 0.54094 -0.39330 -1.00000
-## 5 0.52798 -0.20275 0.56409 -0.00712  0.34395 -0.27457 0.52940 -0.21780  0.45107
-##        V20      V21      V22      V23      V24      V25      V26      V27
-## 1 -0.32192  0.56971 -0.29674  0.36946 -0.47357  0.56811 -0.51171  0.41078
-## 2 -1.00000 -0.13151 -0.45300 -0.18056 -0.35734 -0.20332 -0.26569 -0.20468
-## 3 -0.08540  0.70887 -0.27502  0.43385 -0.12062  0.57528 -0.40220  0.58984
-## 4 -0.54467 -0.69975  1.00000  0.00000  0.00000  1.00000  0.90695  0.51613
-## 5 -0.17813  0.05982 -0.35575  0.02309 -0.52879  0.03286 -0.65158  0.13290
-##        V28      V29      V30      V31      V32      V33      V34 Class
-## 1 -0.46168  0.21266 -0.34090  0.42267 -0.54487  0.18641 -0.45300  good
-## 2 -0.18401 -0.19040 -0.11593 -0.16626 -0.06288 -0.13738 -0.02447   bad
-## 3 -0.22145  0.43100 -0.17365  0.60436 -0.24180  0.56045 -0.38238  good
-## 4  1.00000  1.00000 -0.20099  0.25682  1.00000 -0.32382  1.00000   bad
-## 5 -0.53206  0.02431 -0.62197 -0.05707 -0.59573 -0.04608 -0.65697  good</code></pre>
-<p>Kiểm tra <code>missing values</code> trong dữ liệu:</p>
-<pre class="r"><code>sum(is.na(dataset))</code></pre>
-<pre><code>## [1] 0</code></pre>
-<p>Kiểm tra phân phối của từng thuộc tính:</p>
-<pre class="r"><code>summary(dataset)</code></pre>
-<pre><code>##  V1      V2            V3                V4                 V5         
-##  0: 38   0:351   Min.   :-1.0000   Min.   :-1.00000   Min.   :-1.0000  
-##  1:313           1st Qu.: 0.4721   1st Qu.:-0.06474   1st Qu.: 0.4127  
-##                  Median : 0.8711   Median : 0.01631   Median : 0.8092  
-##                  Mean   : 0.6413   Mean   : 0.04437   Mean   : 0.6011  
-##                  3rd Qu.: 1.0000   3rd Qu.: 0.19418   3rd Qu.: 1.0000  
-##                  Max.   : 1.0000   Max.   : 1.00000   Max.   : 1.0000  
-##        V6                V7                V8                 V9          
-##  Min.   :-1.0000   Min.   :-1.0000   Min.   :-1.00000   Min.   :-1.00000  
-##  1st Qu.:-0.0248   1st Qu.: 0.2113   1st Qu.:-0.05484   1st Qu.: 0.08711  
-##  Median : 0.0228   Median : 0.7287   Median : 0.01471   Median : 0.68421  
-##  Mean   : 0.1159   Mean   : 0.5501   Mean   : 0.11936   Mean   : 0.51185  
-##  3rd Qu.: 0.3347   3rd Qu.: 0.9692   3rd Qu.: 0.44567   3rd Qu.: 0.95324  
-##  Max.   : 1.0000   Max.   : 1.0000   Max.   : 1.00000   Max.   : 1.00000  
-##       V10                V11                V12                V13         
-##  Min.   :-1.00000   Min.   :-1.00000   Min.   :-1.00000   Min.   :-1.0000  
-##  1st Qu.:-0.04807   1st Qu.: 0.02112   1st Qu.:-0.06527   1st Qu.: 0.0000  
-##  Median : 0.01829   Median : 0.66798   Median : 0.02825   Median : 0.6441  
-##  Mean   : 0.18135   Mean   : 0.47618   Mean   : 0.15504   Mean   : 0.4008  
-##  3rd Qu.: 0.53419   3rd Qu.: 0.95790   3rd Qu.: 0.48237   3rd Qu.: 0.9555  
-##  Max.   : 1.00000   Max.   : 1.00000   Max.   : 1.00000   Max.   : 1.0000  
-##       V14                V15               V16                V17         
-##  Min.   :-1.00000   Min.   :-1.0000   Min.   :-1.00000   Min.   :-1.0000  
-##  1st Qu.:-0.07372   1st Qu.: 0.0000   1st Qu.:-0.08170   1st Qu.: 0.0000  
-##  Median : 0.03027   Median : 0.6019   Median : 0.00000   Median : 0.5909  
-##  Mean   : 0.09341   Mean   : 0.3442   Mean   : 0.07113   Mean   : 0.3819  
-##  3rd Qu.: 0.37486   3rd Qu.: 0.9193   3rd Qu.: 0.30897   3rd Qu.: 0.9357  
-##  Max.   : 1.00000   Max.   : 1.0000   Max.   : 1.00000   Max.   : 1.0000  
-##       V18                 V19               V20                V21         
-##  Min.   :-1.000000   Min.   :-1.0000   Min.   :-1.00000   Min.   :-1.0000  
-##  1st Qu.:-0.225690   1st Qu.: 0.0000   1st Qu.:-0.23467   1st Qu.: 0.0000  
-##  Median : 0.000000   Median : 0.5762   Median : 0.00000   Median : 0.4991  
-##  Mean   :-0.003617   Mean   : 0.3594   Mean   :-0.02402   Mean   : 0.3367  
-##  3rd Qu.: 0.195285   3rd Qu.: 0.8993   3rd Qu.: 0.13437   3rd Qu.: 0.8949  
-##  Max.   : 1.000000   Max.   : 1.0000   Max.   : 1.00000   Max.   : 1.0000  
-##       V22                 V23               V24                V25         
-##  Min.   :-1.000000   Min.   :-1.0000   Min.   :-1.00000   Min.   :-1.0000  
-##  1st Qu.:-0.243870   1st Qu.: 0.0000   1st Qu.:-0.36689   1st Qu.: 0.0000  
-##  Median : 0.000000   Median : 0.5318   Median : 0.00000   Median : 0.5539  
-##  Mean   : 0.008296   Mean   : 0.3625   Mean   :-0.05741   Mean   : 0.3961  
-##  3rd Qu.: 0.188760   3rd Qu.: 0.9112   3rd Qu.: 0.16463   3rd Qu.: 0.9052  
-##  Max.   : 1.000000   Max.   : 1.0000   Max.   : 1.00000   Max.   : 1.0000  
-##       V26                V27               V28                V29         
-##  Min.   :-1.00000   Min.   :-1.0000   Min.   :-1.00000   Min.   :-1.0000  
-##  1st Qu.:-0.33239   1st Qu.: 0.2864   1st Qu.:-0.44316   1st Qu.: 0.0000  
-##  Median :-0.01505   Median : 0.7082   Median :-0.01769   Median : 0.4966  
-##  Mean   :-0.07119   Mean   : 0.5416   Mean   :-0.06954   Mean   : 0.3784  
-##  3rd Qu.: 0.15676   3rd Qu.: 0.9999   3rd Qu.: 0.15354   3rd Qu.: 0.8835  
-##  Max.   : 1.00000   Max.   : 1.0000   Max.   : 1.00000   Max.   : 1.0000  
-##       V30                V31               V32                 V33         
-##  Min.   :-1.00000   Min.   :-1.0000   Min.   :-1.000000   Min.   :-1.0000  
-##  1st Qu.:-0.23689   1st Qu.: 0.0000   1st Qu.:-0.242595   1st Qu.: 0.0000  
-##  Median : 0.00000   Median : 0.4428   Median : 0.000000   Median : 0.4096  
-##  Mean   :-0.02791   Mean   : 0.3525   Mean   :-0.003794   Mean   : 0.3494  
-##  3rd Qu.: 0.15407   3rd Qu.: 0.8576   3rd Qu.: 0.200120   3rd Qu.: 0.8138  
-##  Max.   : 1.00000   Max.   : 1.0000   Max.   : 1.000000   Max.   : 1.0000  
-##       V34            Class    
-##  Min.   :-1.00000   bad :126  
-##  1st Qu.:-0.16535   good:225  
-##  Median : 0.00000             
-##  Mean   : 0.01448             
-##  3rd Qu.: 0.17166             
-##  Max.   : 1.00000</code></pre>
-<p>Thuộc tính thứ <code>V2</code> chỉ có 1 giá trị là <code>0</code> nên có thể loại bỏ:</p>
-<pre class="r"><code>dataset$V2 &lt;- NULL</code></pre>
-<p>Chuyển thuộc tính <code>V1</code> từ <code>factor</code> sang <code>numeric</code>:</p>
-<pre class="r"><code>dataset$V1 &lt;- as.numeric(as.character(dataset$V1))</code></pre>
-<p>Kiểm tra mức độ tương quan (<code>correlation</code>) giữa các thuộc tính (do số lượng thuộc tính lớn nên tôi chỉ hiển thị tương quan giữa 6 thuộc tính đầu làm mẫu):</p>
-<pre class="r"><code>cor(dataset[,1:6])</code></pre>
-<pre><code>##              V1         V3           V4         V5          V6          V7
-## V1  1.000000000 0.30203392 -0.006528852 0.15615240  0.12760571  0.22186692
-## V3  0.302033923 1.00000000  0.143364804 0.47658695  0.02576751  0.44025437
-## V4 -0.006528852 0.14336480  1.000000000 0.00115185 -0.19030761 -0.05402953
-## V5  0.156152397 0.47658695  0.001151850 1.00000000  0.03832312  0.59707508
-## V6  0.127605707 0.02576751 -0.190307607 0.03832312  1.00000000 -0.01022692
-## V7  0.221866916 0.44025437 -0.054029528 0.59707508 -0.01022692  1.00000000</code></pre>
-<p><strong>2.1.2 Trực quan hóa dữ liệu (<code>data visualization</code>)</strong></p>
-<p>Do số lượng thuộc tính nhiều nên tôi chỉ thực hiện <code>data visualization</code> đối 12 thuộc tính đầu của tập dữ liệu.</p>
-<p><code>Histogram</code> cho 12 thuộc tính đầu:</p>
-<pre class="r"><code>par(mfrow=c(3,4))
-for(i in 1:12) { 
-  hist(dataset[,i], main=names(dataset)[i], breaks = 30)
-}</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p><code>Boxplot</code> cho 12 thuộc tính đầu:</p>
-<pre class="r"><code>boxplot(dataset[, 1:12], col = &quot;orange&quot;, main = &quot;Features Boxplot&quot;)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<p>Trong bước này nếu phát hiện trong các thuộc tính có nhiều giá trị ngoại lai (<code>outliers</code>) thì các bạn có thể đọc post trước của tôi về cách loại bỏ <code>outliers</code> trong dữ liệu cho <code>machine learning</code> bằng các phương pháp thống kê tại <a href="https://svcuong.github.io/post/remove-outliers/">đây</a>.</p>
-<p><strong>2.1.3 Tiền xử lý dữ liệu (<code>data preprocessing</code>)</strong></p>
-<p>Xác định và Loại bỏ các thuộc tính tương quan với nhau cao (&gt;0.75)</p>
-<pre class="r"><code># Tìm các thuộc tính tương quan với nhau cao
-cor_coefficient &lt;- 0.75
-correlations &lt;- cor(dataset[,1:13])
-highlyCorrelated &lt;- findCorrelation(correlations, cutoff=cor_coefficient)
-length(highlyCorrelated)</code></pre>
-<pre><code>## [1] 0</code></pre>
-<p>Ở đây không có các thuộc tính tương quan cao với nhau, tuy nhiên nếu có thì các bạn có thể loại bỏ chúng như sau:</p>
-<pre class="r"><code>datasetFeatures &lt;- dataset[,-highlyCorrelated]
-dim(datasetFeatures)</code></pre>
-<p>Chuẩn hóa giá trị của các thuộc tính (<code>data normalization</code>) về khoảng <code>[0,1]</code>:</p>
-<pre class="r"><code>preProcValues &lt;- preProcess(dataset, method = c(&quot;range&quot;))
-data_processed &lt;- predict(preProcValues, dataset)</code></pre>
-<p>Vậy là dữ liệu của chúng ta đã sẵn sàng để <code>test</code> các thuật toán <code>ensemble learning</code> rồi.</p>
-<p><strong>2.2. Thuật toán Boosting</strong></p>
-<p>Trong phạm vi post này tôi sẽ test hai thuật toán <code>boosting</code> khá phổ biến là: <code>C5.0</code> và <code>Stochastic Gradient Boosting</code></p>
-<p>Dưới đây là ví dụ huấn luyện hai mô hình này trên <code>R</code> với các tham số mặc định:</p>
-<pre class="r"><code>seed &lt;- 10
-# tạo một đối tượng control cho cross-validation
-control &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3)
-# Trong đó
-# method = &#39;repeatedcv&#39;: sử dụng cross-validation với các tham số sau:
-# number = 10 có nhĩa là quá trình cross-validation cần chia dữ liệu gốc thành 10 phần bằng nhau
-# repeats = 3 có nhĩa là quá trình cross-validation sẽ hoàn thành sau 3 lần
-
-# C5.0
-set.seed(seed)
-fit.c50 &lt;- train(Class~., data=dataset, method=&quot;C5.0&quot;, metric = &quot;Accuracy&quot;, trControl=control)
-
-# Stochastic Gradient Boosting
-set.seed(seed)
-fit.gbm &lt;- train(Class~., data=dataset, method=&quot;gbm&quot;, metric = &quot;Accuracy&quot;, trControl=control, verbose=FALSE)</code></pre>
-<p>So sánh kết quả hai mô hình:</p>
-<pre class="r"><code>boosting_results &lt;- resamples(list(c5.0=fit.c50, gbm=fit.gbm))
-summary(boosting_results)</code></pre>
-<pre><code>## 
-## Call:
-## summary.resamples(object = boosting_results)
-## 
-## Models: c5.0, gbm 
-## Number of resamples: 30 
-## 
-## Accuracy 
-##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&#39;s
-## c5.0 0.8823529 0.9148810 0.9575163 0.9468627 0.9714286    1    0
-## gbm  0.8529412 0.9166667 0.9428571 0.9420184 0.9714286    1    0
-## 
-## Kappa 
-##           Min.   1st Qu.    Median      Mean  3rd Qu. Max. NA&#39;s
-## c5.0 0.7213115 0.8157164 0.9069808 0.8806722 0.937833    1    0
-## gbm  0.6586345 0.8142060 0.8776224 0.8707906 0.937201    1    0</code></pre>
-<pre class="r"><code>dotplot(boosting_results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<p>Từ kết quả so sánh ta thấy thuật toán <code>C5.0</code> cho kết quả chính xác hơn so với <code>Stochastic Gradient Boosting</code> trong bài toán này (với độ chính xác là <code>94.49%</code>)</p>
-<p><strong>2.3 Thuật toán Bagging</strong></p>
-<p>Chúng ta cùng test hai thuật toán thuộc kỹ thuật <code>Bagging</code> là: <code>Bagged CART</code> và <code>Random Forest</code></p>
-<p>Dưới đây là ví dụ huấn luyện hai mô hình này trên <code>R</code> với các tham số mặc định:</p>
-<pre class="r"><code>control &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3)
-
-# Bagged CART
-set.seed(seed)
-fit.treebag &lt;- train(Class~., data=dataset, method=&quot;treebag&quot;, metric = &quot;Accuracy&quot;, trControl=control)
-
-# Random Forest
-set.seed(seed)
-fit.rf &lt;- train(Class~., data=dataset, method=&quot;rf&quot;, metric = &quot;Accuracy&quot;, trControl=control)</code></pre>
-<p>So sánh kết quả hai mô hình:</p>
-<pre class="r"><code>bagging_results &lt;- resamples(list(treebag=fit.treebag, rf=fit.rf))
-summary(bagging_results)</code></pre>
-<pre><code>## 
-## Call:
-## summary.resamples(object = bagging_results)
-## 
-## Models: treebag, rf 
-## Number of resamples: 30 
-## 
-## Accuracy 
-##              Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
-## treebag 0.8285714 0.8922269 0.9428571 0.9210566 0.9440476 0.9722222    0
-## rf      0.8235294 0.9142857 0.9428571 0.9343946 0.9714286 1.0000000    0
-## 
-## Kappa 
-##              Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
-## treebag 0.6209386 0.7708291 0.8731884 0.8266350 0.8770749 0.9407895    0
-## rf      0.5984252 0.8149436 0.8734173 0.8550575 0.9372010 1.0000000    0</code></pre>
-<pre class="r"><code>dotplot(bagging_results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<p>Từ kết quả so sánh ta thấy thuật toán <code>Random Forest</code> cho kết quả chính xác hơn so với <code>CART</code> trong bài toán này (với độ chính xác là <code>92.97%</code>). Tuy nhiên cả hai thuật toán <code>Bagging</code> đều có độ chính xác nhỏ hơn so với 2 thuật toán <code>Boosting</code> trước.</p>
-<p><strong>2.4. Thuật toán Stacking</strong></p>
-<p>Để kết hợp các mô hình <code>machine learning</code> khác nhau trong <code>R</code> chúng ta sử dụng thư viện <strong>caretEnsemble</strong>. Với danh sách các <code>caret models</code>, hàm <code>caretStack()</code> của gói này có thể sự dụng để chỉ định mô hình bậc cao hơn, từ đó sẽ học cách tìm sự kết hợp tốt nhất những <code>sub-models</code> với nhau.</p>
-<p>Ở ví dụ này, tôi sẽ sử dụng 5 <code>sub-models</code> sau cho tập dữ liệu <code>ionosphere</code>:</p>
+<pre class="r"><code>library(jsonlite) # Thư viện cho phép đọc json files
+library(rvest) # thư viện để scape web
+library(viridis) # Thay đổi bảng màu mặc định ggplot2
+library(tidyverse) # Hệ sinh thái các gói hỗ trợ biến đổi (dplyr) và trực quan hóa dữ liệu (ggplot2)</code></pre>
+<p>Nếu chưa cài các thư viện trên thì các bạn dùng lệnh <code>install.packages(.)</code> để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:</p>
+<pre class="r"><code>install.packages(&quot;rvest&quot;)</code></pre>
+<p>Đầu tiên chúng ta đọc <code>json</code> file từ trang <code>CoinMarketCap</code> để biết thông tin về các loại <code>coins</code>:</p>
+<pre class="r"><code>json &lt;- &quot;https://s2.coinmarketcap.com/generated/search/quick_search.json&quot;
+coins &lt;- read_json(json, simplifyVector = TRUE)</code></pre>
+<p>Hiển thị bảng thông tin 10 đồng <code>coins</code> đầu tiên theo <code>rank</code>:</p>
+<pre class="r"><code>head(coins,10)</code></pre>
+<pre><code>##               name symbol rank            slug
+## 1          Bitcoin    BTC    1         bitcoin
+## 2         Ethereum    ETH    2        ethereum
+## 3              XRP    XRP    3             xrp
+## 4           Tether   USDT    4          tether
+## 5     Bitcoin Cash    BCH    5    bitcoin-cash
+## 6        Chainlink   LINK    6       chainlink
+## 7         Litecoin    LTC    7        litecoin
+## 8       Bitcoin SV    BSV    8      bitcoin-sv
+## 9          Cardano    ADA    9         cardano
+## 10 Crypto.com Coin    CRO   10 crypto-com-coin
+##                                   tokens   id
+## 1                  Bitcoin, bitcoin, BTC    1
+## 2                Ethereum, ethereum, ETH 1027
+## 3                          XRP, xrp, XRP   52
+## 4                   Tether, tether, USDT  825
+## 5        Bitcoin Cash, bitcoin-cash, BCH 1831
+## 6             Chainlink, chainlink, LINK 1975
+## 7                Litecoin, litecoin, LTC    2
+## 8            Bitcoin SV, bitcoin-sv, BSV 3602
+## 9                  Cardano, cardano, ADA 2010
+## 10 Crypto.com Coin, crypto-com-coin, CRO 3635</code></pre>
+<p>Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên <code>CoinMarketCap</code>:</p>
+<pre class="r"><code>dim(coins)[1]</code></pre>
+<pre><code>## [1] 4812</code></pre>
+<p>Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng <code>coins</code> đầu tiên có rank từ 2 đến 11:</p>
+<pre class="r"><code># Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:11]
+coinslug &lt;- coins$slug[2:11]
+coinname &lt;- coins$name[2:11]
+coinsymbol &lt;- coins$symbol[2:11]</code></pre>
+<p><strong>Tạo hàm để get dữ liệu coins.</strong> Khi ta vào mục <code>historical data</code> (như hình bên dưới) để xem thông tin của từng loại <code>coin</code> trên trang <code>CoinMarketCap</code>, ta thấy trong đường <code>link</code> có <code>3</code> thông tin quan trọng đó là:</p>
 <ul>
-<li><p>Linear Discriminate Analysis (<code>LDA</code>)</p></li>
-<li><p>Classification and Regression Trees (<code>CART</code>)</p></li>
-<li><p>Logistic Regression (<code>GLM</code>)</p></li>
-<li><p>k-Nearest Neighbors (<code>kNN</code>)</p></li>
-<li><p>Support Vector Machine with a Radial Basis Kernel Function (<code>SVM</code>)</p></li>
+<li><code>slug</code>: Slug của loại coin đó (như đường link trong hình dưới là <code>bitcoin</code>)</li>
+<li><code>start</code>: Ngày bắt đầu của khoảng thời gian ta muốn xem thông tin</li>
+<li><code>end</code>: ngày kết thúc của khoảng thời gian ta muốn xem thông tin</li>
 </ul>
-<p>Dưới đây là ví dụ huấn luyện 5 mô hình này trên <code>R</code> với các tham số mặc định:</p>
-<pre class="r"><code>control &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3, savePredictions=TRUE, classProbs=TRUE)
-algorithmList &lt;- c(&#39;lda&#39;, &#39;rpart&#39;, &#39;glm&#39;, &#39;knn&#39;, &#39;svmRadial&#39;)
-set.seed(seed)
-models &lt;- caretList(Class~., data=dataset, trControl=control, methodList=algorithmList)</code></pre>
-<p>So sánh kết quả các mô hình:</p>
-<pre class="r"><code>results &lt;- resamples(models)
-summary(results)</code></pre>
-<pre><code>## 
-## Call:
-## summary.resamples(object = results)
-## 
-## Models: lda, rpart, glm, knn, svmRadial 
-## Number of resamples: 30 
-## 
-## Accuracy 
-##                Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
-## lda       0.7941176 0.8297619 0.8571429 0.8669546 0.9136555 0.9428571    0
-## rpart     0.8000000 0.8529412 0.8611111 0.8736819 0.9079365 0.9714286    0
-## glm       0.7428571 0.8539916 0.8823529 0.8824214 0.9166667 0.9714286    0
-## knn       0.7500000 0.8235294 0.8333333 0.8403097 0.8601190 0.9444444    0
-## svmRadial 0.8888889 0.9142857 0.9436508 0.9477591 0.9714286 1.0000000    0
-## 
-## Kappa 
-##                Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
-## lda       0.4803493 0.6048824 0.6697323 0.6868903 0.8032314 0.8679245    0
-## rpart     0.5648313 0.6586345 0.7024010 0.7193438 0.7900135 0.9397590    0
-## glm       0.4578313 0.6618591 0.7267975 0.7371380 0.8163265 0.9368030    0
-## knn       0.4087591 0.5641026 0.6196004 0.6199654 0.6770575 0.8754325    0
-## svmRadial 0.7419355 0.8142060 0.8776224 0.8847121 0.9375755 1.0000000    0</code></pre>
-<pre class="r"><code>dotplot(results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
-<p>Ta thấy trong các mô hình này thì <code>SVM</code> cho kết quả chính xác nhất (<code>95.04%</code>).</p>
-<p>Giờ chúng ta hãy thử dùng kỹ thuật <code>stacking</code> để xem có thể cải thiện được độ chính xác không.</p>
-<p><strong><code>Lưu ý</code>:</strong> Khi các bạn muốn kết hợp các mô hình với nhau sử dụng kỹ thuật <code>stacking</code>, thì các bạn cần kiểm chứng rằng kết quả dự báo từ các mô hình này tương quan với nhau thấp. Nếu kết quả dự báo của các <code>sub-models</code> tương quan cao với nhau (&gt; 0.75) thì có nghĩa là chúng sẽ cho kết quả dự báo tương tự nhau, điều này sẽ làm giảm hiệu quả khi ta kết hợp các mô hình này với nhau.</p>
-<p>Kiểm tra độ tương quan giữa các <code>sub-models</code>:</p>
-<pre class="r"><code>modelCor(results)</code></pre>
-<pre><code>##                 lda       rpart         glm       knn svmRadial
-## lda       1.0000000 0.379461533 0.277037721 0.4898435 0.3056838
-## rpart     0.3794615 1.000000000 0.001889458 0.4040556 0.2539580
-## glm       0.2770377 0.001889458 1.000000000 0.1466240 0.4296011
-## knn       0.4898435 0.404055597 0.146623958 1.0000000 0.5495574
-## svmRadial 0.3056838 0.253957967 0.429601141 0.5495574 1.0000000</code></pre>
-<pre class="r"><code>splom(results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-24-1.png" width="960" /></p>
-<p>Nhìn vào kết quả ta có thể thấy các <code>su-models</code> cho kết quả dự báo tương quan với nhau thấp theo từng cặp. Cặp tương quan với nhau nhất là <code>GML</code> và <code>kNN</code> với độ tương quan <code>0.517</code>, cũng vẫn nhỏ hơn mức quy địn là cao (<code>&gt;0.75</code>).</p>
-<p>Nào chúng ta hãy thử kết hợp <code>predictions</code> của các <code>sub-models</code> sử dụng mô hình <code>gml</code>:</p>
-<pre class="r"><code>stackControl &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3, savePredictions=TRUE, classProbs=TRUE)
-set.seed(seed)
-stack.glm &lt;- caretStack(models, method=&quot;glm&quot;, metric=&quot;Accuracy&quot;, trControl=stackControl)
-print(stack.glm)</code></pre>
-<pre><code>## A glm ensemble of 5 base models: lda, rpart, glm, knn, svmRadial
-## 
-## Ensemble results:
-## Generalized Linear Model 
-## 
-## 1053 samples
-##    5 predictor
-##    2 classes: &#39;bad&#39;, &#39;good&#39; 
-## 
-## No pre-processing
-## Resampling: Cross-Validated (10 fold, repeated 3 times) 
-## Summary of sample sizes: 947, 947, 947, 948, 947, 949, ... 
-## Resampling results:
-## 
-##   Accuracy   Kappa    
-##   0.9544285  0.9003902</code></pre>
-<p>Độ chính xác cải thiện lên <code>95.25%</code>. Tuy nhiên so với sử dụng chỉ <code>SVM model</code> thì cũng chưa chênh lệnh nhiều.</p>
-<p>Tiếp theo tôi thử thử kết hợp <code>predictions</code> của các <code>sub-models</code> sử dụng mô hình <code>random forest</code>:</p>
-<pre class="r"><code>set.seed(seed)
-stack.rf &lt;- caretStack(models, method=&quot;rf&quot;, metric=&quot;Accuracy&quot;, trControl=stackControl)
-print(stack.rf)</code></pre>
-<pre><code>## A rf ensemble of 5 base models: lda, rpart, glm, knn, svmRadial
-## 
-## Ensemble results:
-## Random Forest 
-## 
-## 1053 samples
-##    5 predictor
-##    2 classes: &#39;bad&#39;, &#39;good&#39; 
-## 
-## No pre-processing
-## Resampling: Cross-Validated (10 fold, repeated 3 times) 
-## Summary of sample sizes: 947, 947, 947, 948, 947, 949, ... 
-## Resampling results across tuning parameters:
-## 
-##   mtry  Accuracy   Kappa    
-##   2     0.9623381  0.9177343
-##   3     0.9588700  0.9103978
-##   5     0.9569833  0.9064705
-## 
-## Accuracy was used to select the optimal model using the largest value.
-## The final value used for the model was mtry = 2.</code></pre>
-<p>Độ chính xác cũng cải thiện hơn so với chỉ dùng svm model.</p>
+<div class="figure">
+<img src="/post/2020-08-21-crypto.vn_files/bitcoin.PNG" alt="Screenshot từ trang CoinMarketCap" />
+<p class="caption"><code>Screenshot</code> từ trang <a href="https://coinmarketcap.com/currencies/bitcoin/historical-data/?start=20200722&amp;end=20200822">CoinMarketCap</a></p>
+</div>
+<p>Vì vậy ta sẽ viết hàm để <code>get</code> dữ liệu dựa vào <code>3</code> thông tin trên như sau:</p>
+<pre class="r"><code># Tạo hàm get dữ liệu coin
+get_data_coin &lt;- function(coin, start_date, end_date){
+  # coin: slug của coin
+  # start_date: Ngày bắt đầu lấy dữ liệu
+  # end_date: Ngày kết thúc lấy dữ liệu
+  # Tạo đường link từ 3 thông tin đầu vào
+  historyurl &lt;- paste0(&quot;https://coinmarketcap.com/currencies/&quot;,
+                      coin,
+                      &quot;/historical-data/?start=&quot;,
+                      start_date,
+                      &quot;&amp;end=&quot;,
+                      end_date)
+  
+  # Đọc dữ liệu từ web
+  url &lt;-read_html(historyurl)
+  data &lt;- data.frame(html_table(url)[[3]])
+  data$Slug &lt;- coin
+  return(data)
+}</code></pre>
+<p>Ví dụ sử dụng hàm <code>get_data_coin()</code> vừa tạo để lấy dữ liệu lịch sử của <code>10</code> loại coins trên từ ngày <code>21/08/2019</code> dến ngày <code>21/08/2020</code>:</p>
+<pre class="r"><code># Nhập ngày bắt đầu và và kết thúc trong khoảng thời gian muốn xem theo định đạng &quot;Năm-Tháng-Ngày&quot;
+start_date = 20190821
+end_date = 20200821
+# Tạo list trống để lưu dữ liệu coins
+results_data &lt;- list()
+
+# Lưu dữ liệu từng loại coin trong danh sách 10 coins ở trên vào list trống
+for (i in (1:length(coinslug))){
+  results_data[[i]] &lt;- get_data_coin(coin = coinslug[i], start_date = start_date, end_date = end_date)
+}
+
+# Gộp data.frame của từng loại coin trong list vào thành 1 bảng
+results_data &lt;- do.call(rbind, results_data)</code></pre>
+<p>Để kiểm tra dữ liệu thu được, ta hiển thị <code>10</code> hàng dữ liệu đầu tiên trong bẳng bằng lệnh <code>head()</code>:</p>
+<pre class="r"><code>head(results_data, 10)</code></pre>
+<pre><code>##            Date  Open.   High    Low Close..         Volume     Market.Cap
+## 1  Aug 21, 2020 416.15 418.64 387.44  389.13 11,781,796,374 43,690,315,907
+## 2  Aug 20, 2020 406.76 418.73 404.03  416.44 10,043,032,427 46,751,356,941
+## 3  Aug 19, 2020 423.74 427.02 396.68  406.46 13,137,391,167 45,625,864,918
+## 4  Aug 18, 2020 429.67 432.58 419.67  423.67 11,978,984,079 47,551,407,033
+## 5  Aug 17, 2020 433.97 442.73 422.65  429.53 13,227,089,410 48,203,426,751
+## 6  Aug 16, 2020 433.35 436.27 415.09  433.79 12,168,816,874 48,675,162,267
+## 7  Aug 15, 2020 437.56 441.75 429.87  433.35 12,416,067,894 48,620,820,125
+## 8  Aug 14, 2020 428.68 444.58 423.35  437.40 15,064,589,987 49,068,474,083
+## 9  Aug 13, 2020 390.84 432.90 379.71  428.74 18,480,303,526 48,091,569,052
+## 10 Aug 12, 2020 380.06 391.31 367.92  391.02 12,408,772,745 43,855,501,072
+##        Slug
+## 1  ethereum
+## 2  ethereum
+## 3  ethereum
+## 4  ethereum
+## 5  ethereum
+## 6  ethereum
+## 7  ethereum
+## 8  ethereum
+## 9  ethereum
+## 10 ethereum</code></pre>
+<p>Thêm thông tin gồm <code>name</code> và <code>symbol</code> của từng <code>coin</code> vào bảng dữ liệu:</p>
+<pre class="r"><code>coinnames &lt;- data.frame(
+        Name = as.character(coinname),
+        Symbol = as.character(coinsymbol),
+        Slug = as.character(coinslug))
+df &lt;- full_join(coinnames, results_data, by = &quot;Slug&quot;)</code></pre>
+<p>Để kiểm tra bảng dữ liệu mới thu được, ta hiển thị <code>10</code> hàng dữ liệu đầu tiên trong bảng:</p>
+<pre class="r"><code>head(df, 10)</code></pre>
+<pre><code>##        Name Symbol     Slug         Date  Open.   High    Low Close..
+## 1  Ethereum    ETH ethereum Aug 21, 2020 416.15 418.64 387.44  389.13
+## 2  Ethereum    ETH ethereum Aug 20, 2020 406.76 418.73 404.03  416.44
+## 3  Ethereum    ETH ethereum Aug 19, 2020 423.74 427.02 396.68  406.46
+## 4  Ethereum    ETH ethereum Aug 18, 2020 429.67 432.58 419.67  423.67
+## 5  Ethereum    ETH ethereum Aug 17, 2020 433.97 442.73 422.65  429.53
+## 6  Ethereum    ETH ethereum Aug 16, 2020 433.35 436.27 415.09  433.79
+## 7  Ethereum    ETH ethereum Aug 15, 2020 437.56 441.75 429.87  433.35
+## 8  Ethereum    ETH ethereum Aug 14, 2020 428.68 444.58 423.35  437.40
+## 9  Ethereum    ETH ethereum Aug 13, 2020 390.84 432.90 379.71  428.74
+## 10 Ethereum    ETH ethereum Aug 12, 2020 380.06 391.31 367.92  391.02
+##            Volume     Market.Cap
+## 1  11,781,796,374 43,690,315,907
+## 2  10,043,032,427 46,751,356,941
+## 3  13,137,391,167 45,625,864,918
+## 4  11,978,984,079 47,551,407,033
+## 5  13,227,089,410 48,203,426,751
+## 6  12,168,816,874 48,675,162,267
+## 7  12,416,067,894 48,620,820,125
+## 8  15,064,589,987 49,068,474,083
+## 9  18,480,303,526 48,091,569,052
+## 10 12,408,772,745 43,855,501,072</code></pre>
+<p>Ta thấy cột <code>Date</code> ở dạng <code>character</code> nên cần chuyển về dạng <code>date</code> như sau:</p>
+<pre class="r"><code>df$Date &lt;- lubridate::mdy(unlist(df$Date))
+head(df, 10)</code></pre>
+<pre><code>##        Name Symbol     Slug       Date  Open.   High    Low Close..
+## 1  Ethereum    ETH ethereum 2020-08-21 416.15 418.64 387.44  389.13
+## 2  Ethereum    ETH ethereum 2020-08-20 406.76 418.73 404.03  416.44
+## 3  Ethereum    ETH ethereum 2020-08-19 423.74 427.02 396.68  406.46
+## 4  Ethereum    ETH ethereum 2020-08-18 429.67 432.58 419.67  423.67
+## 5  Ethereum    ETH ethereum 2020-08-17 433.97 442.73 422.65  429.53
+## 6  Ethereum    ETH ethereum 2020-08-16 433.35 436.27 415.09  433.79
+## 7  Ethereum    ETH ethereum 2020-08-15 437.56 441.75 429.87  433.35
+## 8  Ethereum    ETH ethereum 2020-08-14 428.68 444.58 423.35  437.40
+## 9  Ethereum    ETH ethereum 2020-08-13 390.84 432.90 379.71  428.74
+## 10 Ethereum    ETH ethereum 2020-08-12 380.06 391.31 367.92  391.02
+##            Volume     Market.Cap
+## 1  11,781,796,374 43,690,315,907
+## 2  10,043,032,427 46,751,356,941
+## 3  13,137,391,167 45,625,864,918
+## 4  11,978,984,079 47,551,407,033
+## 5  13,227,089,410 48,203,426,751
+## 6  12,168,816,874 48,675,162,267
+## 7  12,416,067,894 48,620,820,125
+## 8  15,064,589,987 49,068,474,083
+## 9  18,480,303,526 48,091,569,052
+## 10 12,408,772,745 43,855,501,072</code></pre>
+<p>Dùng thư viện <code>ggplot2</code> để trực quan hóa và so sánh biến động giá cả của các loại <code>coins</code> trong khoảng thời gian từ ngày <code>21/08/2019</code> dến ngày <code>21/08/2020</code>:</p>
+<pre class="r"><code># Chỉ so sánh thông tìn các cột Open, High, Low, Close
+df &lt;- df[,1:8]
+
+# Chuyển bẳng dữ liệu từ dạng bảng rộng về dài
+library(tidyr)
+df$Name&lt;- factor(df$Name)
+df_tall &lt;- df%&gt;% gather(key = s, value = value, -Name, -Symbol, -Slug, -Date)
+df_tall$s &lt;- factor(df_tall$s, levels=unique(as.character(df_tall$s)))
+
+# Vẽ biểu đồ so sánh thông tin
+ggplot(df_tall, aes(x = Date, y = value, color = Name)) +
+geom_line(size = 0.75) +
+xlab(&quot;Time&quot;)+
+facet_wrap(~s, ncol = 2, scales = &quot;free_y&quot;)+
+theme_bw()</code></pre>
+<p><img src="/post/crypto/index_files/figure-html/unnamed-chunk-13-1.png" width="1152" />
+Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các mô hình dự báo để đự đoán giá các loại <code>coins</code></p>
+<p><strong>Chú thích:</strong></p>
+<ul>
+<li><code>Open</code>: Giá mở cửa</li>
+<li><code>Close</code>: Giá đóng cửa</li>
+<li><code>High</code>: Mức giá cao nhất</li>
+<li><code>Low</code>: Mức giá thấp nhất</li>
+</ul>
+<p><code>4</code> bộ phận này cấu thành nên một <code>nến</code> giao dịch đại diện cho sự lên xuống của giá trị một loại tài sản trong một khoảng thời gian cố định. Điểm <code>“open”</code> của nến đại diện cho mức giá của loại tài sản khi bắt đầu khoảng thời gian giao dịch, trong khi <code>“close”</code> là mức giá khi kết thúc thời gian giao dịch. Còn <code>“high”</code> và <code>“low”</code> lần lượt là các mức giá cao nhất và thấp nhất đạt được trong phiên giao dịch.</p>
+<div class="figure">
+<img src="/post/2020-08-21-crypto.vn_files/Candlestick-Anatomy.jpg" alt="Các bộ phận của một nến giao dịch, với nến tăng (màu xanh) và nếu giảm (màu đỏ)" />
+<p class="caption">Các bộ phận của một nến giao dịch, với nến <code>tăng</code> (màu xanh) và nếu <code>giảm</code> (màu đỏ)</p>
+</div>
 
     </div>
 
@@ -1205,7 +1006,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/crypto/&amp;text=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/crypto/&amp;text=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1218,7 +1019,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/crypto/&amp;t=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/crypto/&amp;t=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1231,7 +1032,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="mailto:?subject=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29&amp;body=/post/crypto/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap&amp;body=/post/crypto/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1244,7 +1045,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/crypto/&amp;title=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/crypto/&amp;title=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1257,7 +1058,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="whatsapp://send?text=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29%20/post/crypto/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap%20/post/crypto/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1270,7 +1071,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/crypto/&amp;title=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/crypto/&amp;title=C%c3%a1ch%20scrape%20m%e1%bb%99t%20trang%20web%20b%e1%ba%b1ng%20R.%20Scrape%20v%c3%a0%20so%20s%c3%a1nh%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%8bch%20s%e1%bb%ad%20th%e1%bb%8b%20tr%c6%b0%e1%bb%9dng%20%20ti%e1%bb%81n%20%c4%91i%e1%bb%87n%20t%e1%bb%ad%20t%e1%bb%ab%20CoinMarketCap" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1437,7 +1238,7 @@ print(stack.rf)</code></pre>
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/post/crypto/">Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap</a></li>
+      <li><a href="/post/ensemble-learning/">Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code)</a></li>
       
       <li><a href="/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/">Sử dụng kết hợp R và Python trong data science</a></li>
       
