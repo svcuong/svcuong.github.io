@@ -30,8 +30,7 @@
   
     
   
-  <meta name="description" content="==&gt; Bài viết chưa hoàn thành, hiện đang cập nhật
-Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameter) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu.">
+  <meta name="description" content="Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt cho mọi ứng dụng và mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameters) hoặc một giả thiết nhất định nào đó về phân bố dữ liệu.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/crypto/">
@@ -286,9 +285,8 @@ Trong machine learning tồn tại định lý “không có bữa trưa miễn 
   
   <meta property="og:site_name" content="Data Science">
   <meta property="og:url" content="/post/crypto/">
-  <meta property="og:title" content="Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging và Stacking (Sử dụng R code) | Data Science">
-  <meta property="og:description" content="==&gt; Bài viết chưa hoàn thành, hiện đang cập nhật
-Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameter) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu."><meta property="og:image" content="/post/crypto/featured.png">
+  <meta property="og:title" content="Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code) | Data Science">
+  <meta property="og:description" content="Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt cho mọi ứng dụng và mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameters) hoặc một giả thiết nhất định nào đó về phân bố dữ liệu."><meta property="og:image" content="/post/crypto/featured.png">
   <meta property="twitter:image" content="/post/crypto/featured.png"><meta property="og:locale" content="en-us">
   
     
@@ -320,7 +318,7 @@ Trong machine learning tồn tại định lý “không có bữa trưa miễn 
     "@type": "WebPage",
     "@id": "/post/crypto/"
   },
-  "headline": "Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging và Stacking (Sử dụng R code)",
+  "headline": "Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code)",
   
   "image": [
     "/post/crypto/featured.png"
@@ -342,7 +340,7 @@ Trong machine learning tồn tại định lý “không có bữa trưa miễn 
       "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
     }
   },
-  "description": "==\u0026gt; Bài viết chưa hoàn thành, hiện đang cập nhật\nTrong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameter) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu."
+  "description": "Trong machine learning tồn tại định lý “không có bữa trưa miễn phí” (No free lunch theorem), tức là không tồn tại một thuật toán mà luôn tốt cho mọi ứng dụng và mọi tập dữ liệu, vì các thuật toán machiner learning thường dựa trên một tập các tham số (hyperparameters) hoặc một giả thiết nhất định nào đó về phân bố dữ liệu."
 }
 </script>
 
@@ -371,7 +369,7 @@ Trong machine learning tồn tại định lý “không có bữa trưa miễn 
       src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
 
-  <title>Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging và Stacking (Sử dụng R code) | Data Science</title>
+  <title>Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code) | Data Science</title>
 
 </head>
 
@@ -691,7 +689,7 @@ Trong machine learning tồn tại định lý “không có bữa trưa miễn 
 
 
 <div class="article-container pt-3">
-  <h1>Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging và Stacking (Sử dụng R code)</h1>
+  <h1>Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code)</h1>
 
   
 
@@ -773,56 +771,56 @@ Trong machine learning tồn tại định lý “không có bữa trưa miễn 
       
 
 
-<p><code>==&gt; Bài viết chưa hoàn thành, hiện đang cập nhật</code></p>
-<p>Trong <code>machine learning</code> tồn tại định lý “không có bữa trưa miễn phí” (<code>No free lunch theorem</code>), tức là không tồn tại một thuật toán mà luôn tốt và cho hiệu suất cao cho mọi ứng dụng và trên mọi tập dữ liệu, vì các thuật toán <code>machiner learning</code> thường dựa trên một tập các tham số (<code>hyperparameter</code>) hoặc dựa trên một giả thiết nhất định nào đó về phân bố dữ liệu. Vì vậy để tìm được những thuật toán phù hợp cho tập <code>dataset</code> của mình có thể các bạn sẽ cần nhiều thời gian để test các thuật toán khác nhau nhằm mục đích tìm ra danh sách một số thuật toán cho kết quả chính xác. Rồi từ đó hiệu chỉnh (<code>tuning</code>) các tham số của các thuật toán này để thu được độ chính xác cao nhất.</p>
-<p>Một cách khác có thể sử dụng để tăng độ chính xác trên tập <code>dataset</code> của bạn là kết hợp (<code>combine</code>) một số mô hình với nhau. Phương pháp này gọi là <code>esemble learning</code>. Ý tưởng của việc <code>combine</code> các mô hình khác nhau xuất phát từ một suy nghĩ hợp lý là: các mô hình khác nhau có khả năng khác nhau, có thể thực hiện tốt nhất các loại công việc khác nhau (<code>subtasks</code>), khi kết hợp các mô hình này với nhau một cách hợp lý thì sẽ tạo thành một mô hình kết hợp (<code>combined model</code>) mạnh có khả năng cải thiện hiệu suât tổng thể và (<code>overall performance</code>) so với việc chỉ dùng các mô hình một cách đơn lẻ.</p>
+<p>Trong <code>machine learning</code> tồn tại định lý <em>“không có bữa trưa miễn phí”</em> (<code>No free lunch theorem</code>), tức là không tồn tại một thuật toán mà luôn tốt cho mọi ứng dụng và mọi tập dữ liệu, vì các thuật toán <code>machiner learning</code> thường dựa trên một tập các tham số (<code>hyperparameters</code>) hoặc một giả thiết nhất định nào đó về phân bố dữ liệu. Vì vậy để tìm được những thuật toán phù hợp cho tập <code>dataset</code> của mình có thể các bạn sẽ cần nhiều thời gian để <code>test</code> các thuật toán khác nhau. Rồi từ đó thực hiện hiệu chỉnh các tham số (`tuning hyperparameters’) của thuật toán để thu được độ chính xác cao nhất.</p>
+<p>Một cách khác có thể sử dụng để tăng độ chính xác trên tập <code>dataset</code> của bạn là kết hợp (<code>combine</code>) một số mô hình với nhau. Phương pháp này gọi là <code>esemble learning</code>. Ý tưởng của việc <code>combine</code> các mô hình khác nhau xuất phát từ một suy nghĩ hợp lý là: các mô hình khác nhau có khả năng khác nhau, có thể thực hiện tốt nhất các loại công việc khác nhau (<code>subtasks</code>), khi kết hợp các mô hình này với nhau một cách hợp lý thì sẽ tạo thành một mô hình kết hợp (<code>combined model</code>) mạnh có khả năng cải thiện hiệu suât tổng thể (<code>overall performance</code>) so với việc chỉ dùng các mô hình một cách đơn lẻ.</p>
 <p>Các phương pháp <code>Ensemble Learning</code> được chia thành 3 loại sau đây:</p>
 <ul>
 <li><code>Bagging</code> (đóng bao)</li>
 <li><code>Boosting</code> (tăng cường)</li>
 <li><code>Stacking</code> (Xếp chồng)</li>
 </ul>
-<p>Ở bài này đầu tiên tôi sẽ giới thiệu với các bạn 3 kỹ thuật <code>ensemble learning</code> này trong <code>machine learning</code> và sau đó là cách áp dụng chúng vào giải quyết bài toán cụ thể sử dụng thừ viện <code>caret</code> và <code>caretEnsemble</code> trong R.</p>
-<p>Để cài đặt 2 thư viện này các bạn dùng lệnh <code>install.packages(.)</code> với tham số đầu vào là tên thư viện muốn cài:</p>
+<p>Trong post này, trước hết tôi sẽ giới thiệu 3 kỹ thuật <code>ensemble learning</code> kể trên, sau đó là cách sử dụng thư viện <code>caret</code> và <code>caretEnsemble</code> trong <code>R</code> để triển khai chúng và áp dụng vào bài toán cụ thể.</p>
+<p>Để cài đặt 2 thư viện này ta dùng lệnh <code>install.packages(.)</code> với tham số đầu vào là tên thư viện muốn cài:</p>
 <pre class="r"><code>install.packages(&quot;caret&quot;)
 intall.packages(&quot;caretEnsemble&quot;)</code></pre>
-<p><strong>Đôi nét về thư viện <code>caret</code></strong>: Ngôn ngữ <code>R</code> khác biệt bởi số lượng rất lớn các <code>packages</code> chuyên dụng khác nhau cho phép xây dựng các mô hình dự đoán. Tuy nhiên đây cũng chính là khuyết điểm, khi có quá nhiều các gói triển khai <code>machine learning algorithms</code> dưới dạng các
-hàm <code>rải rác</code> đòi hỏi ta cần nhiều thời gian để tìm kiếm và nắm vững những đặc trưng về cú pháp cũng như cách sử dụng của từng hàm.Để giải quyết vấn đề này <a href="https://www.linkedin.com/in/max-kuhn-864a9110">Max Kuhn</a> đã xây dựng một giao diện phổ quát cho phép truy cập và sử dụng các <code>machine learning algorithms</code> từ cái gói khác nhau được triển khai trên ngôn ngữ <code>R</code>. Kết quả chính là package <a href="https://cran.r-project.org/web/packages/caret/caret.pdf">caret</a> (viết tắt từ Classification and Regression Training), được công bố đầu tiên vào năm 2008 tại tạp chí phần mềm thống kê (<a href="https://www.jstatsoft.org/article/view/v028i05">Journal of Statistical Software</a>. Gói <code>caret</code> giúp chúng ta tiết kiệm được rất nhiều thời gian trong quá trình phân tích và xây dựng các models. Những đặc trưng cơ bản của package <code>caret</code>:</p>
+<p><strong>Đôi nét về thư viện caret</strong>: Ngôn ngữ <code>R</code> khác biệt bởi số lượng rất lớn các <code>packages</code> chuyên dụng khác nhau cho phép xây dựng các mô hình dự đoán. Tuy nhiên đây cũng chính là khuyết điểm, khi có quá nhiều các gói triển khai <code>machine learning algorithms</code> dưới dạng các
+hàm <code>rải rác</code> đòi hỏi ta cần nhiều thời gian để tìm kiếm và nắm vững những đặc trưng về cú pháp cũng như cách sử dụng của từng hàm. Để giải quyết vấn đề này <a href="https://www.linkedin.com/in/max-kuhn-864a9110">Max Kuhn</a> đã xây dựng một giao diện phổ quát cho phép truy cập và sử dụng các <code>machine learning algorithms</code> từ cái gói khác nhau được triển khai trên ngôn ngữ <code>R</code>. Kết quả chính là package <a href="https://cran.r-project.org/web/packages/caret/caret.pdf">caret</a> (viết tắt từ Classification and Regression Training), được công bố đầu tiên vào năm 2008 tại tạp chí phần mềm thống kê <a href="https://www.jstatsoft.org/article/view/v028i05">Journal of Statistical Software</a>. Gói <code>caret</code> giúp chúng ta tiết kiệm được rất nhiều thời gian trong quá trình phân tích và xây dựng các <code>models</code>. Dưới đây là một số
+đặc trưng cơ bản của gói <code>caret</code>:</p>
 <ul>
-<li><p>sử dụng cú pháp lệnh chung (phổ quát) không phụ thuộc vào cú pháp của các hàm gốc (các hàm triển khai các machine learningalgorithms)</p></li>
+<li><p>Sử dụng cú pháp lệnh chung (phổ quát) không phụ thuộc vào cú pháp của các hàm gốc (các hàm triển khai các machine learningalgorithms)</p></li>
 <li><p>Tự động tìm kiếm những giá trị tối ưu cho các <code>hyperparameters</code> của mô hình (<code>tuning parameters</code>)</p></li>
 <li><p>Có khả năng tổ chức tính toán song song để tăng đáng kể tốc độ quá trình huấn luyện mô hình</p></li>
+<li><p>Sử dụng <code>Caret</code> cho phép giải quyết hầu hết các nhiệm vụ trong <code>machine learning</code> từ tiền xủ lý cho đến đánh giá mô hình</p></li>
 </ul>
-<p>Sử dụng <code>Caret</code> cho phép giải quyết hầu hết các nhiệm vụ trong <code>machine learning</code> từ tiền xủ lý, feature engineering cho đến…</p>
 <p><strong>1. Phân biệt 3 kỹ thuật boosting, baggig và statcking</strong></p>
 <p><strong>Bagging</strong> xây dựng một lượng lớn các <code>models</code> (thường là <code>cùng loại</code>) trên những <code>subsamples</code> khác nhau từ tập <code>training dataset</code> một cách song song nhằm đưa ra dự đoán tốt hơn.</p>
 <p><strong>Boosting</strong> xây dựng một lượng lớn các <code>models</code> (thường là <code>cùng loại</code>). Tuy nhiên quá trình huấn luyện trong phương pháp này diễn ra tuần tự theo chuỗi (sequence). Trong chuỗi này mỗi <code>model</code> sau sẽ học cách sửa những <code>errors</code> của <code>model</code> trước (hay nói cách khác là dữ liệu mà <code>model</code> trước dự đoán sai).</p>
-<p><img src="/img/boosting-bagging.png" /></p>
-<p><code>Note</code>: <code>Bagging</code> sử dụng những mô hình phức tạp để tối giản những dự đoán trong khi <code>boosting</code> kết hợp những mô hình đơn giản ban đầu nhằm tăng cường (boost) độ phức tạp.</p>
-<p><strong>Stacking</strong> Xây dựng một số <code>models</code> (thường là <code>khác loại</code>) và một mô hình <code>supervisor model</code>, mô hình này sẽ học cách kết hợp kết quả dự báo của một số mô hình một cách tốt nhất.</p>
 <div class="figure">
-<img src="/img/stacking.png" alt="Nguồn" />
-<p class="caption"><a href="https://www.geeksforgeeks.org/stacking-in-machine-learning/">Nguồn</a></p>
+<img src="/img/boosting-bagging.png" alt="Nguồn ảnh" />
+<p class="caption"><a href="https://www.datacamp.com/community/tutorials/adaboost-classifier-python">Nguồn ảnh</a></p>
+</div>
+<p><strong>Stacking</strong> xây dựng một số <code>models</code> (thường là <code>khác loại</code>) và một mô hình <code>supervisor model</code>, mô hình này sẽ học cách kết hợp kết quả dự báo của một số mô hình một cách tốt nhất.</p>
+<div class="figure">
+<img src="/img/stacking.png" alt="Nguồn ảnh" />
+<p class="caption"><a href="https://www.geeksforgeeks.org/stacking-in-machine-learning/">Nguồn ảnh</a></p>
 </div>
 <p><strong>2. Thực hành</strong></p>
 <p>Nạp các thư viện cần dùng vào phiên làm việc của <code>R</code> để thực hành:</p>
 <pre class="r"><code>library(caret)
 library(caretEnsemble) </code></pre>
-<p>Kiểm tra số lượng các machine learning algorithms availbe to train in caret:</p>
+<p>Kiểm tra số lượng các machine learning algorithms trong R được hỗ trợ bởi <code>caret</code>:</p>
 <pre class="r"><code>carets &lt;- getModelInfo()
 carets.names &lt;- names(carets)
 length(carets.names)</code></pre>
 <pre><code>## [1] 238</code></pre>
-<p>Nếu chưa cài các thư viện trên thì các bạn dùng lệnh <code>install.packages(.)</code> để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:</p>
-<pre class="r"><code>install.packages(&quot;caret&quot;)</code></pre>
 <p><strong>2.1 Dữ liệu để thực hành</strong></p>
-<p>Để thực hành với các phương pháp <code>ensemble learning</code> tôi lựa chọn bài toán phân loại nhị phân (bi classification) với tập dữ liệu <code>ionoshene</code>. Trong bài toán này chúng ta cần dự đoán xem cao tâǹ trả vể từ năng lượng của các hạt trong khí quyển có cấu trúc hay là không. Để tìm hiểu thêm về bài toán này các bạn có thể đọc ở <a href="http://archive.ics.uci.edu/ml/index.php">đây</a>.</p>
-<p>Load dữ liệu từ gói <code>mlbench</code></p>
+<p>Để thực hành tôi lựa chọn bài toán phân loại nhị phân (<code>binary classification</code>) với tập dữ liệu <code>ionoshene</code>. Trong bài toán này chúng ta cần dự đoán xem cao tần trả vể từ năng lượng của các hạt trong khí quyển có cấu trúc hay là không. Để tìm hiểu thêm về bài toán này các bạn có thể đọc ở <a href="http://archive.ics.uci.edu/ml/index.php">đây</a>.</p>
+<p>Load dữ liệu từ gói <code>mlbench</code>:</p>
 <pre class="r"><code># Load the dataset
 library(mlbench)
 data(Ionosphere)
 dataset &lt;- Ionosphere</code></pre>
-<p><strong>Thống kê mô tả (Descriptive statistics)</strong></p>
+<p><strong>2.1.1 Thống kê mô tả (descriptive statistics)</strong></p>
 <p>Kiểm tra kích thước tập dữ liệu:</p>
 <pre class="r"><code>dim(dataset)</code></pre>
 <pre><code>## [1] 351  35</code></pre>
@@ -962,7 +960,7 @@ dataset &lt;- Ionosphere</code></pre>
 <pre class="r"><code>dataset$V2 &lt;- NULL</code></pre>
 <p>Chuyển thuộc tính <code>V1</code> từ <code>factor</code> sang <code>numeric</code>:</p>
 <pre class="r"><code>dataset$V1 &lt;- as.numeric(as.character(dataset$V1))</code></pre>
-<p>Kiểm tra mức độ tương quan (<code>correlation</code>) giữa các thuộc tính (do số lượng thuộc tính lớn nên tôi chỉ hiển thị tương quan giữa 6 thuộc tính đầu):</p>
+<p>Kiểm tra mức độ tương quan (<code>correlation</code>) giữa các thuộc tính (do số lượng thuộc tính lớn nên tôi chỉ hiển thị tương quan giữa 6 thuộc tính đầu làm mẫu):</p>
 <pre class="r"><code>cor(dataset[,1:6])</code></pre>
 <pre><code>##              V1         V3           V4         V5          V6          V7
 ## V1  1.000000000 0.30203392 -0.006528852 0.15615240  0.12760571  0.22186692
@@ -971,60 +969,53 @@ dataset &lt;- Ionosphere</code></pre>
 ## V5  0.156152397 0.47658695  0.001151850 1.00000000  0.03832312  0.59707508
 ## V6  0.127605707 0.02576751 -0.190307607 0.03832312  1.00000000 -0.01022692
 ## V7  0.221866916 0.44025437 -0.054029528 0.59707508 -0.01022692  1.00000000</code></pre>
-<p><strong>Trực quan hóa dữ liệu (<code>data visualization</code>)</strong></p>
-<p>Do số lượng thuộc tính nhiều nên tôi chỉ trực quan 12 thuộc tính đầu tiên từ tập dữ liệu.</p>
-<p><code>Histogram</code> cho 12 thuộc tính đầu tiên:</p>
+<p><strong>2.1.2 Trực quan hóa dữ liệu (<code>data visualization</code>)</strong></p>
+<p>Do số lượng thuộc tính nhiều nên tôi chỉ thực hiện <code>data visualization</code> đối 12 thuộc tính đầu của tập dữ liệu.</p>
+<p><code>Histogram</code> cho 12 thuộc tính đầu:</p>
 <pre class="r"><code>par(mfrow=c(3,4))
 for(i in 1:12) { 
   hist(dataset[,i], main=names(dataset)[i], breaks = 30)
 }</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<p><code>Boxplot</code> cho 12 thuộc tính đầu tiên</p>
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><code>Boxplot</code> cho 12 thuộc tính đầu:</p>
 <pre class="r"><code>boxplot(dataset[, 1:12], col = &quot;orange&quot;, main = &quot;Features Boxplot&quot;)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<p><strong>Tiền xử lý dữ liệu</strong></p>
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Trong bước này nếu phát hiện trong các thuộc tính có nhiều giá trị ngoại lai (<code>outliers</code>) thì các bạn có thể đọc post trước của tôi về cách loại bỏ <code>outliers</code> trong dữ liệu cho <code>machine learning</code> bằng các phương pháp thống kê tại <a href="https://svcuong.github.io/post/remove-outliers/">đây</a>.</p>
+<p><strong>2.1.3 Tiền xử lý dữ liệu (<code>data preprocessing</code>)</strong></p>
 <p>Xác định và Loại bỏ các thuộc tính tương quan với nhau cao (&gt;0.75)</p>
-<pre class="r"><code># find attributes that are highly corrected
-cutoff &lt;- 0.70
+<pre class="r"><code># Tìm các thuộc tính tương quan với nhau cao
+cor_coefficient &lt;- 0.75
 correlations &lt;- cor(dataset[,1:13])
-highlyCorrelated &lt;- findCorrelation(correlations, cutoff=cutoff)
-highlyCorrelated</code></pre>
-<pre><code>## integer(0)</code></pre>
-<p>Nếu có thì ta có thể xóa như sau:</p>
-<pre class="r"><code># create a new dataset without highly corrected features
-datasetFeatures &lt;- dataset[,-highlyCorrelated]
+highlyCorrelated &lt;- findCorrelation(correlations, cutoff=cor_coefficient)
+length(highlyCorrelated)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>Ở đây không có các thuộc tính tương quan cao với nhau, tuy nhiên nếu có thì các bạn có thể loại bỏ chúng như sau:</p>
+<pre class="r"><code>datasetFeatures &lt;- dataset[,-highlyCorrelated]
 dim(datasetFeatures)</code></pre>
-<p>Chuẩn hóa dữ liệu (<code>standardizing data</code>):</p>
-<pre class="r"><code>preProcValues &lt;- preProcess(dataset, method = c(&quot;center&quot;,&quot;scale&quot;))
+<p>Chuẩn hóa giá trị của các thuộc tính (<code>data normalization</code>) về khoảng <code>[0,1]</code>:</p>
+<pre class="r"><code>preProcValues &lt;- preProcess(dataset, method = c(&quot;range&quot;))
 data_processed &lt;- predict(preProcValues, dataset)</code></pre>
-<p>Kiểm tra dữ liệu sau khi đã chuẩn hóa:</p>
-<pre class="r"><code>head(data_processed[,1:7])</code></pre>
-<pre><code>##          V1         V3         V4         V5         V6         V7         V8
-## 1 0.3479366  0.7113569 -0.2339233  0.4835174 -0.2014474  0.5762362 -0.9533182
-## 2 0.3479366  0.7206193 -0.5270583  0.6334035 -1.0361079 -1.3371969 -2.0265590
-## 3 0.3479366  0.7206193 -0.1767461  0.7673815 -0.2409648  0.9132274 -0.4608361
-## 4 0.3479366  0.7206193 -1.1235677  0.7673815  1.9186015  0.3289631 -2.1495163
-## 5 0.3479366  0.7206193 -0.1549082  0.6546592 -0.1097610  0.7529932 -0.6757762
-## 6 0.3479366 -1.2416349 -0.1139282 -1.3471047 -0.5107939 -1.1320832 -0.4562658</code></pre>
+<p>Vậy là dữ liệu của chúng ta đã sẵn sàng để <code>test</code> các thuật toán <code>ensemble learning</code> rồi.</p>
 <p><strong>2.2. Thuật toán Boosting</strong></p>
-<p>Chúng ta sẽ xem xét hai trong số các thuật toán phổ biến nhất của boosting là:</p>
-<ul>
-<li>C5.0</li>
-<li>Stochastic Gradient Boosting</li>
-</ul>
-<p><strong>Dưới đây là ví dụ huấn luyện hai mô hình này trên R:</strong></p>
-<pre class="r"><code># Example of Boosting Algorithms
+<p>Trong phạm vi post này tôi sẽ test hai thuật toán <code>boosting</code> khá phổ biến là: <code>C5.0</code> và <code>Stochastic Gradient Boosting</code></p>
+<p>Dưới đây là ví dụ huấn luyện hai mô hình này trên <code>R</code> với các tham số mặc định:</p>
+<pre class="r"><code>seed &lt;- 10
+# tạo một đối tượng control cho cross-validation
 control &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3)
-metric &lt;- &quot;Accuracy&quot;
+# Trong đó
+# method = &#39;repeatedcv&#39;: sử dụng cross-validation với các tham số sau:
+# number = 10 có nhĩa là quá trình cross-validation cần chia dữ liệu gốc thành 10 phần bằng nhau
+# repeats = 3 có nhĩa là quá trình cross-validation sẽ hoàn thành sau 3 lần
 
 # C5.0
-fit.c50 &lt;- train(Class~., data=dataset, method=&quot;C5.0&quot;, metric=metric, trControl=control)
+set.seed(seed)
+fit.c50 &lt;- train(Class~., data=dataset, method=&quot;C5.0&quot;, metric = &quot;Accuracy&quot;, trControl=control)
 
 # Stochastic Gradient Boosting
-fit.gbm &lt;- train(Class~., data=dataset, method=&quot;gbm&quot;, metric=metric, trControl=control, verbose=FALSE)</code></pre>
-<p>So sánh kết quả hai thuật toán:</p>
-<pre class="r"><code># summarize results
-boosting_results &lt;- resamples(list(c5.0=fit.c50, gbm=fit.gbm))
+set.seed(seed)
+fit.gbm &lt;- train(Class~., data=dataset, method=&quot;gbm&quot;, metric = &quot;Accuracy&quot;, trControl=control, verbose=FALSE)</code></pre>
+<p>So sánh kết quả hai mô hình:</p>
+<pre class="r"><code>boosting_results &lt;- resamples(list(c5.0=fit.c50, gbm=fit.gbm))
 summary(boosting_results)</code></pre>
 <pre><code>## 
 ## Call:
@@ -1035,37 +1026,30 @@ summary(boosting_results)</code></pre>
 ## 
 ## Accuracy 
 ##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&#39;s
-## c5.0 0.8285714 0.9148810 0.9444444 0.9392702 0.9720238    1    0
-## gbm  0.8285714 0.9142857 0.9411765 0.9335994 0.9444444    1    0
+## c5.0 0.8823529 0.9148810 0.9575163 0.9468627 0.9714286    1    0
+## gbm  0.8529412 0.9166667 0.9428571 0.9420184 0.9714286    1    0
 ## 
 ## Kappa 
-##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&#39;s
-## c5.0 0.6129032 0.8079694 0.8786105 0.8640312 0.9385399    1    0
-## gbm  0.6209386 0.8069010 0.8695683 0.8518867 0.8785571    1    0</code></pre>
+##           Min.   1st Qu.    Median      Mean  3rd Qu. Max. NA&#39;s
+## c5.0 0.7213115 0.8157164 0.9069808 0.8806722 0.937833    1    0
+## gbm  0.6586345 0.8142060 0.8776224 0.8707906 0.937201    1    0</code></pre>
 <pre class="r"><code>dotplot(boosting_results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<p>Chúng ta có thể thấy thuật toán C5.0 cho kết quả chính xác hơn với độ chính xác là <code>94.28%</code></p>
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Từ kết quả so sánh ta thấy thuật toán <code>C5.0</code> cho kết quả chính xác hơn so với <code>Stochastic Gradient Boosting</code> trong bài toán này (với độ chính xác là <code>94.49%</code>)</p>
 <p><strong>2.3 Thuật toán Bagging</strong></p>
-<p>Chúng ta sẽ xem xét hai trong số các thuật toán phổ biến nhất của bagging là:</p>
-<ul>
-<li>Bagged CART</li>
-<li>Random Forest</li>
-</ul>
-<p><strong>Dưới đây là ví dụ huấn luyện hai mô hình này:</strong></p>
-<pre class="r"><code># Example of Bagging algorithms
-control &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3)
-seed &lt;- 7
-metric &lt;- &quot;Accuracy&quot;
+<p>Chúng ta cùng test hai thuật toán thuộc kỹ thuật <code>Bagging</code> là: <code>Bagged CART</code> và <code>Random Forest</code></p>
+<p>Dưới đây là ví dụ huấn luyện hai mô hình này trên <code>R</code> với các tham số mặc định:</p>
+<pre class="r"><code>control &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3)
 
 # Bagged CART
 set.seed(seed)
-fit.treebag &lt;- train(Class~., data=dataset, method=&quot;treebag&quot;, metric=metric, trControl=control)
+fit.treebag &lt;- train(Class~., data=dataset, method=&quot;treebag&quot;, metric = &quot;Accuracy&quot;, trControl=control)
 
 # Random Forest
 set.seed(seed)
-fit.rf &lt;- train(Class~., data=dataset, method=&quot;rf&quot;, metric=metric, trControl=control)</code></pre>
-<pre class="r"><code># summarize results
-bagging_results &lt;- resamples(list(treebag=fit.treebag, rf=fit.rf))
+fit.rf &lt;- train(Class~., data=dataset, method=&quot;rf&quot;, metric = &quot;Accuracy&quot;, trControl=control)</code></pre>
+<p>So sánh kết quả hai mô hình:</p>
+<pre class="r"><code>bagging_results &lt;- resamples(list(treebag=fit.treebag, rf=fit.rf))
 summary(bagging_results)</code></pre>
 <pre><code>## 
 ## Call:
@@ -1076,33 +1060,32 @@ summary(bagging_results)</code></pre>
 ## 
 ## Accuracy 
 ##              Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
-## treebag 0.8000000 0.8857143 0.9166667 0.9211407 0.9640523 0.9722222    0
-## rf      0.8333333 0.8946078 0.9420168 0.9280781 0.9712185 1.0000000    0
+## treebag 0.8285714 0.8922269 0.9428571 0.9210566 0.9440476 0.9722222    0
+## rf      0.8235294 0.9142857 0.9428571 0.9343946 0.9714286 1.0000000    0
 ## 
 ## Kappa 
 ##              Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
-## treebag 0.5648313 0.7552448 0.8208228 0.8265147 0.9216460 0.9407895    0
-## rf      0.6504854 0.7801430 0.8722003 0.8412055 0.9350695 1.0000000    0</code></pre>
+## treebag 0.6209386 0.7708291 0.8731884 0.8266350 0.8770749 0.9407895    0
+## rf      0.5984252 0.8149436 0.8734173 0.8550575 0.9372010 1.0000000    0</code></pre>
 <pre class="r"><code>dotplot(bagging_results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Từ kết quả so sánh ta thấy thuật toán <code>Random Forest</code> cho kết quả chính xác hơn so với <code>CART</code> trong bài toán này (với độ chính xác là <code>92.97%</code>). Tuy nhiên cả hai thuật toán <code>Bagging</code> đều có độ chính xác nhỏ hơn so với 2 thuật toán <code>Boosting</code> trước.</p>
 <p><strong>2.4. Thuật toán Stacking</strong></p>
-<p>Các bạn có thể kết hợp những mô hình khác nhau trên R sử dụng <strong>caretEnsemble</strong> package.</p>
-<p>Với danh sách các caret models, hàm <code>caretStack()</code> có thể sự dụng để chỉ định mô hình bậc cao hơn, từ đó sẽ học cách tìm sự kết hợp tốt nhất những sub-models với nhau.</p>
-<p>Ở ví dụ này, chúng ta sẽ sử dụng 5 sub-models cho tập dữ liệu ionosphere:</p>
+<p>Để kết hợp các mô hình <code>machine learning</code> khác nhau trong <code>R</code> chúng ta sử dụng thư viện <strong>caretEnsemble</strong>. Với danh sách các <code>caret models</code>, hàm <code>caretStack()</code> của gói này có thể sự dụng để chỉ định mô hình bậc cao hơn, từ đó sẽ học cách tìm sự kết hợp tốt nhất những <code>sub-models</code> với nhau.</p>
+<p>Ở ví dụ này, tôi sẽ sử dụng 5 <code>sub-models</code> sau cho tập dữ liệu <code>ionosphere</code>:</p>
 <ul>
-<li><p>Linear Discriminate Analysis (LDA)</p></li>
-<li><p>Classification and Regression Trees (CART)</p></li>
-<li><p>Logistic Regression (via Generalized Linear Model or GLM)</p></li>
-<li><p>k-Nearest Neighbors (kNN)</p></li>
-<li><p>Support Vector Machine with a Radial Basis Kernel Function (SVM)</p></li>
+<li><p>Linear Discriminate Analysis (<code>LDA</code>)</p></li>
+<li><p>Classification and Regression Trees (<code>CART</code>)</p></li>
+<li><p>Logistic Regression (<code>GLM</code>)</p></li>
+<li><p>k-Nearest Neighbors (<code>kNN</code>)</p></li>
+<li><p>Support Vector Machine with a Radial Basis Kernel Function (<code>SVM</code>)</p></li>
 </ul>
-<p><strong>Huấn luyện 5 model này trên tập dữ liệu:</strong></p>
-<pre class="r"><code># Example of Stacking algorithms
-# create submodels
-control &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3, savePredictions=TRUE, classProbs=TRUE)
+<p>Dưới đây là ví dụ huấn luyện 5 mô hình này trên <code>R</code> với các tham số mặc định:</p>
+<pre class="r"><code>control &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3, savePredictions=TRUE, classProbs=TRUE)
 algorithmList &lt;- c(&#39;lda&#39;, &#39;rpart&#39;, &#39;glm&#39;, &#39;knn&#39;, &#39;svmRadial&#39;)
 set.seed(seed)
 models &lt;- caretList(Class~., data=dataset, trControl=control, methodList=algorithmList)</code></pre>
+<p>So sánh kết quả các mô hình:</p>
 <pre class="r"><code>results &lt;- resamples(models)
 summary(results)</code></pre>
 <pre><code>## 
@@ -1114,36 +1097,37 @@ summary(results)</code></pre>
 ## 
 ## Accuracy 
 ##                Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
-## lda       0.7352941 0.8285714 0.8591270 0.8580657 0.8880952 0.9428571    0
-## rpart     0.7714286 0.8529412 0.8857143 0.8838671 0.9350490 1.0000000    0
-## glm       0.7352941 0.8333333 0.8857143 0.8753750 0.9142857 0.9714286    0
-## knn       0.7352941 0.8055556 0.8571429 0.8418659 0.8611111 0.9722222    0
-## svmRadial 0.8529412 0.9411765 0.9444444 0.9484407 0.9714286 1.0000000    0
+## lda       0.7941176 0.8297619 0.8571429 0.8669546 0.9136555 0.9428571    0
+## rpart     0.8000000 0.8529412 0.8611111 0.8736819 0.9079365 0.9714286    0
+## glm       0.7428571 0.8539916 0.8823529 0.8824214 0.9166667 0.9714286    0
+## knn       0.7500000 0.8235294 0.8333333 0.8403097 0.8601190 0.9444444    0
+## svmRadial 0.8888889 0.9142857 0.9436508 0.9477591 0.9714286 1.0000000    0
 ## 
 ## Kappa 
 ##                Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
-## lda       0.3598326 0.6011806 0.6715328 0.6666689 0.7419355 0.8679245    0
-## rpart     0.4838710 0.6479222 0.7490787 0.7436022 0.8551984 1.0000000    0
-## glm       0.3855422 0.6279400 0.7508651 0.7206173 0.8134991 0.9378330    0
-## knn       0.3368421 0.5258215 0.6653724 0.6214965 0.6830986 0.9387755    0
-## svmRadial 0.6586345 0.8665874 0.8788237 0.8870910 0.9385399 1.0000000    0</code></pre>
+## lda       0.4803493 0.6048824 0.6697323 0.6868903 0.8032314 0.8679245    0
+## rpart     0.5648313 0.6586345 0.7024010 0.7193438 0.7900135 0.9397590    0
+## glm       0.4578313 0.6618591 0.7267975 0.7371380 0.8163265 0.9368030    0
+## knn       0.4087591 0.5641026 0.6196004 0.6199654 0.6770575 0.8754325    0
+## svmRadial 0.7419355 0.8142060 0.8776224 0.8847121 0.9375755 1.0000000    0</code></pre>
 <pre class="r"><code>dotplot(results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<p><strong>Lưu ý:</strong> Khi chúng ta muốn kết hợp các mô hình với nhau sử dụng phương pháp stacking, nên kiểm chứng rằng kết quả dự báo từ các mô hình này tương quan với nhau thấp. Nếu kết quả dự báo của các sub-models tương quan cao với nhau (&gt; 0.75) thì có nghĩa là chúng sẽ cho kết quả dự bạo tương tự như nhau, điều này sẽ làm giảm hiệu quả khi ta kết hợp các mô hình này với nhau.</p>
-<pre class="r"><code># correlation between results
-modelCor(results)</code></pre>
-<pre><code>##                 lda     rpart       glm       knn svmRadial
-## lda       1.0000000 0.4001494 0.6029387 0.5112169 0.6008459
-## rpart     0.4001494 1.0000000 0.3307816 0.7040301 0.3739250
-## glm       0.6029387 0.3307816 1.0000000 0.3472425 0.7387988
-## knn       0.5112169 0.7040301 0.3472425 1.0000000 0.4067582
-## svmRadial 0.6008459 0.3739250 0.7387988 0.4067582 1.0000000</code></pre>
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>Ta thấy trong các mô hình này thì <code>SVM</code> cho kết quả chính xác nhất (<code>95.04%</code>).</p>
+<p>Giờ chúng ta hãy thử dùng kỹ thuật <code>stacking</code> để xem có thể cải thiện được độ chính xác không.</p>
+<p><strong><code>Lưu ý</code>:</strong> Khi các bạn muốn kết hợp các mô hình với nhau sử dụng kỹ thuật <code>stacking</code>, thì các bạn cần kiểm chứng rằng kết quả dự báo từ các mô hình này tương quan với nhau thấp. Nếu kết quả dự báo của các <code>sub-models</code> tương quan cao với nhau (&gt; 0.75) thì có nghĩa là chúng sẽ cho kết quả dự báo tương tự nhau, điều này sẽ làm giảm hiệu quả khi ta kết hợp các mô hình này với nhau.</p>
+<p>Kiểm tra độ tương quan giữa các <code>sub-models</code>:</p>
+<pre class="r"><code>modelCor(results)</code></pre>
+<pre><code>##                 lda       rpart         glm       knn svmRadial
+## lda       1.0000000 0.379461533 0.277037721 0.4898435 0.3056838
+## rpart     0.3794615 1.000000000 0.001889458 0.4040556 0.2539580
+## glm       0.2770377 0.001889458 1.000000000 0.1466240 0.4296011
+## knn       0.4898435 0.404055597 0.146623958 1.0000000 0.5495574
+## svmRadial 0.3056838 0.253957967 0.429601141 0.5495574 1.0000000</code></pre>
 <pre class="r"><code>splom(results)</code></pre>
-<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-26-1.png" width="960" /></p>
-<p>Nhìn vào kết quả ta có thể thấy các su-models cho kết quả dự báo tương quan với nhau thấp theo từng cặp. Cặp tương quan với nhau nhất là Logistic Regression (GML) và kNN - 0.517, cũng vẫn nhỏ hơn mức quy địn là cao (&gt;0.75)</p>
-<p><strong>Nào chúng ta hãy thử kết hợp sử dụng gml:</strong></p>
-<pre class="r"><code># stack using glm
-stackControl &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3, savePredictions=TRUE, classProbs=TRUE)
+<p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-24-1.png" width="960" /></p>
+<p>Nhìn vào kết quả ta có thể thấy các <code>su-models</code> cho kết quả dự báo tương quan với nhau thấp theo từng cặp. Cặp tương quan với nhau nhất là <code>GML</code> và <code>kNN</code> với độ tương quan <code>0.517</code>, cũng vẫn nhỏ hơn mức quy địn là cao (<code>&gt;0.75</code>).</p>
+<p>Nào chúng ta hãy thử kết hợp <code>predictions</code> của các <code>sub-models</code> sử dụng mô hình <code>gml</code>:</p>
+<pre class="r"><code>stackControl &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3, savePredictions=TRUE, classProbs=TRUE)
 set.seed(seed)
 stack.glm &lt;- caretStack(models, method=&quot;glm&quot;, metric=&quot;Accuracy&quot;, trControl=stackControl)
 print(stack.glm)</code></pre>
@@ -1158,15 +1142,14 @@ print(stack.glm)</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold, repeated 3 times) 
-## Summary of sample sizes: 947, 947, 948, 948, 947, 948, ... 
+## Summary of sample sizes: 947, 947, 947, 948, 947, 949, ... 
 ## Resampling results:
 ## 
 ##   Accuracy   Kappa    
-##   0.9509604  0.8935122</code></pre>
-<p>Độ chính xác cải thiện lên 95.25 %. Tuy nhiên so với sử dụng chỉ SVM model thì cũng chưa chênh lệnh nhiều.</p>
-<p><strong>Thử sử dụng thuật toán random forest để kết hợp:</strong></p>
-<pre class="r"><code># stack using random forest
-set.seed(seed)
+##   0.9544285  0.9003902</code></pre>
+<p>Độ chính xác cải thiện lên <code>95.25%</code>. Tuy nhiên so với sử dụng chỉ <code>SVM model</code> thì cũng chưa chênh lệnh nhiều.</p>
+<p>Tiếp theo tôi thử thử kết hợp <code>predictions</code> của các <code>sub-models</code> sử dụng mô hình <code>random forest</code>:</p>
+<pre class="r"><code>set.seed(seed)
 stack.rf &lt;- caretStack(models, method=&quot;rf&quot;, metric=&quot;Accuracy&quot;, trControl=stackControl)
 print(stack.rf)</code></pre>
 <pre><code>## A rf ensemble of 5 base models: lda, rpart, glm, knn, svmRadial
@@ -1180,13 +1163,13 @@ print(stack.rf)</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold, repeated 3 times) 
-## Summary of sample sizes: 947, 947, 948, 948, 947, 948, ... 
+## Summary of sample sizes: 947, 947, 947, 948, 947, 949, ... 
 ## Resampling results across tuning parameters:
 ## 
 ##   mtry  Accuracy   Kappa    
-##   2     0.9667798  0.9277270
-##   3     0.9655129  0.9250793
-##   5     0.9645546  0.9233199
+##   2     0.9623381  0.9177343
+##   3     0.9588700  0.9103978
+##   5     0.9569833  0.9064705
 ## 
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 2.</code></pre>
@@ -1222,7 +1205,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/crypto/&amp;text=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging%20v%c3%a0%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/crypto/&amp;text=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1235,7 +1218,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/crypto/&amp;t=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging%20v%c3%a0%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/crypto/&amp;t=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1248,7 +1231,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="mailto:?subject=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging%20v%c3%a0%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29&amp;body=/post/crypto/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29&amp;body=/post/crypto/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1261,7 +1244,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/crypto/&amp;title=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging%20v%c3%a0%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/crypto/&amp;title=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1274,7 +1257,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="whatsapp://send?text=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging%20v%c3%a0%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29%20/post/crypto/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29%20/post/crypto/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1287,7 +1270,7 @@ print(stack.rf)</code></pre>
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/crypto/&amp;title=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging%20v%c3%a0%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/crypto/&amp;title=Ph%c6%b0%c6%a1ng%20ph%c3%a1p%20Ensemble%20Learning%20trong%20Machine%20Learning:%20Boosting,%20Bagging,%20Stacking%20%28S%e1%bb%ad%20d%e1%bb%a5ng%20R%20code%29" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
