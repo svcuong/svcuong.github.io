@@ -306,7 +306,7 @@ summary(boosting_results)&lt;/code&gt;&lt;/pre&gt;
 ## gbm  0.6586345 0.8142060 0.8776224 0.8707906 0.937201    1    0&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dotplot(boosting_results)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Từ kết quả so sánh ta thấy thuật toán &lt;code&gt;C5.0&lt;/code&gt; cho kết quả chính xác hơn so với &lt;code&gt;Stochastic Gradient Boosting&lt;/code&gt; trong bài toán này (với độ chính xác là &lt;code&gt;94.49%&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;Từ kết quả so sánh ta thấy thuật toán &lt;code&gt;C5.0&lt;/code&gt; cho kết quả chính xác hơn so với &lt;code&gt;Stochastic Gradient Boosting&lt;/code&gt; trong bài toán này (với độ chính xác là &lt;code&gt;94.68%&lt;/code&gt;)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2.3 Thuật toán Bagging&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Chúng ta cùng test hai thuật toán thuộc kỹ thuật &lt;code&gt;Bagging&lt;/code&gt; là: &lt;code&gt;Bagged CART&lt;/code&gt; và &lt;code&gt;Random Forest&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Dưới đây là ví dụ huấn luyện hai mô hình này trên &lt;code&gt;R&lt;/code&gt; với các tham số mặc định:&lt;/p&gt;
@@ -340,7 +340,7 @@ summary(bagging_results)&lt;/code&gt;&lt;/pre&gt;
 ## rf      0.5984252 0.8149436 0.8734173 0.8550575 0.9372010 1.0000000    0&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dotplot(bagging_results)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Từ kết quả so sánh ta thấy thuật toán &lt;code&gt;Random Forest&lt;/code&gt; cho kết quả chính xác hơn so với &lt;code&gt;CART&lt;/code&gt; trong bài toán này (với độ chính xác là &lt;code&gt;92.97%&lt;/code&gt;). Tuy nhiên cả hai thuật toán &lt;code&gt;Bagging&lt;/code&gt; đều có độ chính xác nhỏ hơn so với 2 thuật toán &lt;code&gt;Boosting&lt;/code&gt; trước.&lt;/p&gt;
+&lt;p&gt;Từ kết quả so sánh ta thấy thuật toán &lt;code&gt;Random Forest&lt;/code&gt; cho kết quả chính xác hơn so với &lt;code&gt;CART&lt;/code&gt; trong bài toán này (với độ chính xác là &lt;code&gt;93.44%&lt;/code&gt;). Tuy nhiên cả hai thuật toán &lt;code&gt;Bagging&lt;/code&gt; đều có độ chính xác nhỏ hơn so với 2 thuật toán &lt;code&gt;Boosting&lt;/code&gt; trước.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2.4. Thuật toán Stacking&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Để kết hợp các mô hình &lt;code&gt;machine learning&lt;/code&gt; khác nhau trong &lt;code&gt;R&lt;/code&gt; chúng ta sử dụng thư viện &lt;strong&gt;caretEnsemble&lt;/strong&gt;. Với danh sách các &lt;code&gt;caret models&lt;/code&gt;, hàm &lt;code&gt;caretStack()&lt;/code&gt; của gói này có thể sự dụng để chỉ định mô hình bậc cao hơn, từ đó sẽ học cách tìm sự kết hợp tốt nhất những &lt;code&gt;sub-models&lt;/code&gt; với nhau.&lt;/p&gt;
 &lt;p&gt;Ở ví dụ này, tôi sẽ sử dụng 5 &lt;code&gt;sub-models&lt;/code&gt; sau cho tập dữ liệu &lt;code&gt;ionosphere&lt;/code&gt;:&lt;/p&gt;
@@ -383,7 +383,7 @@ summary(results)&lt;/code&gt;&lt;/pre&gt;
 ## svmRadial 0.7419355 0.8142060 0.8776224 0.8847121 0.9375755 1.0000000    0&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dotplot(results)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Ta thấy trong các mô hình này thì &lt;code&gt;SVM&lt;/code&gt; cho kết quả chính xác nhất (&lt;code&gt;95.04%&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Ta thấy trong các mô hình này thì &lt;code&gt;SVM&lt;/code&gt; cho kết quả chính xác nhất (&lt;code&gt;94.78%&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Giờ chúng ta hãy thử dùng kỹ thuật &lt;code&gt;stacking&lt;/code&gt; để xem có thể cải thiện được độ chính xác không.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;code&gt;Lưu ý&lt;/code&gt;:&lt;/strong&gt; Khi các bạn muốn kết hợp các mô hình với nhau sử dụng kỹ thuật &lt;code&gt;stacking&lt;/code&gt;, thì các bạn cần kiểm chứng rằng kết quả dự báo từ các mô hình này tương quan với nhau thấp. Nếu kết quả dự báo của các &lt;code&gt;sub-models&lt;/code&gt; tương quan cao với nhau (&amp;gt; 0.75) thì có nghĩa là chúng sẽ cho kết quả dự báo tương tự nhau, điều này sẽ làm giảm hiệu quả khi ta kết hợp các mô hình này với nhau.&lt;/p&gt;
 &lt;p&gt;Kiểm tra độ tương quan giữa các &lt;code&gt;sub-models&lt;/code&gt;:&lt;/p&gt;
@@ -396,7 +396,7 @@ summary(results)&lt;/code&gt;&lt;/pre&gt;
 ## svmRadial 0.3056838 0.253957967 0.429601141 0.5495574 1.0000000&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;splom(results)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-24-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Nhìn vào kết quả ta có thể thấy các &lt;code&gt;su-models&lt;/code&gt; cho kết quả dự báo tương quan với nhau thấp theo từng cặp. Cặp tương quan với nhau nhất là &lt;code&gt;GML&lt;/code&gt; và &lt;code&gt;kNN&lt;/code&gt; với độ tương quan &lt;code&gt;0.517&lt;/code&gt;, cũng vẫn nhỏ hơn mức quy địn là cao (&lt;code&gt;&amp;gt;0.75&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Nhìn vào kết quả ta có thể thấy các &lt;code&gt;su-models&lt;/code&gt; cho kết quả dự báo tương quan với nhau thấp theo từng cặp. Cặp tương quan với nhau nhất là &lt;code&gt;SVM&lt;/code&gt; và &lt;code&gt;kNN&lt;/code&gt; với độ tương quan &lt;code&gt;0.549&lt;/code&gt;, cũng vẫn nhỏ hơn mức quy địn là cao (&lt;code&gt;&amp;gt;0.75&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Nào chúng ta hãy thử kết hợp &lt;code&gt;predictions&lt;/code&gt; của các &lt;code&gt;sub-models&lt;/code&gt; sử dụng mô hình &lt;code&gt;gml&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;stackControl &amp;lt;- trainControl(method=&amp;quot;repeatedcv&amp;quot;, number=10, repeats=3, savePredictions=TRUE, classProbs=TRUE)
 set.seed(seed)
@@ -418,7 +418,7 @@ print(stack.glm)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ##   Accuracy   Kappa    
 ##   0.9544285  0.9003902&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Độ chính xác cải thiện lên &lt;code&gt;95.25%&lt;/code&gt;. Tuy nhiên so với sử dụng chỉ &lt;code&gt;SVM model&lt;/code&gt; thì cũng chưa chênh lệnh nhiều.&lt;/p&gt;
+&lt;p&gt;Độ chính xác cải thiện lên &lt;code&gt;95.44%&lt;/code&gt; so với chỉ sử dụng &lt;code&gt;SVM model&lt;/code&gt; là &lt;code&gt;94.78%&lt;/code&gt;, tuy nhiên cũng chưa có độ chênh lệnh nhiều.&lt;/p&gt;
 &lt;p&gt;Tiếp theo tôi thử thử kết hợp &lt;code&gt;predictions&lt;/code&gt; của các &lt;code&gt;sub-models&lt;/code&gt; sử dụng mô hình &lt;code&gt;random forest&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(seed)
 stack.rf &amp;lt;- caretStack(models, method=&amp;quot;rf&amp;quot;, metric=&amp;quot;Accuracy&amp;quot;, trControl=stackControl)
@@ -444,7 +444,7 @@ print(stack.rf)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 2.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Độ chính xác cũng cải thiện hơn so với chỉ dùng &lt;code&gt;svm model&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Độ chính xác cũng cải thiện hơn so với chỉ dùng &lt;code&gt;svm model&lt;/code&gt; (&lt;code&gt;96.23%&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Tham khảo:&lt;/strong&gt;
 &lt;a href=&#34;https://machinelearningmastery.com/machine-learning-ensembles-with-r/&#34;&gt;How to Build an Ensemble Of Machine Learning Algorithms in R&lt;/a&gt;&lt;/p&gt;
 </description>

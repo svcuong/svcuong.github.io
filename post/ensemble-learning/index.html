@@ -718,7 +718,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    18 min read
+    19 min read
   </span>
   
 
@@ -1035,7 +1035,7 @@ summary(boosting_results)</code></pre>
 ## gbm  0.6586345 0.8142060 0.8776224 0.8707906 0.937201    1    0</code></pre>
 <pre class="r"><code>dotplot(boosting_results)</code></pre>
 <p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<p>Từ kết quả so sánh ta thấy thuật toán <code>C5.0</code> cho kết quả chính xác hơn so với <code>Stochastic Gradient Boosting</code> trong bài toán này (với độ chính xác là <code>94.49%</code>)</p>
+<p>Từ kết quả so sánh ta thấy thuật toán <code>C5.0</code> cho kết quả chính xác hơn so với <code>Stochastic Gradient Boosting</code> trong bài toán này (với độ chính xác là <code>94.68%</code>)</p>
 <p><strong>2.3 Thuật toán Bagging</strong></p>
 <p>Chúng ta cùng test hai thuật toán thuộc kỹ thuật <code>Bagging</code> là: <code>Bagged CART</code> và <code>Random Forest</code></p>
 <p>Dưới đây là ví dụ huấn luyện hai mô hình này trên <code>R</code> với các tham số mặc định:</p>
@@ -1069,7 +1069,7 @@ summary(bagging_results)</code></pre>
 ## rf      0.5984252 0.8149436 0.8734173 0.8550575 0.9372010 1.0000000    0</code></pre>
 <pre class="r"><code>dotplot(bagging_results)</code></pre>
 <p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<p>Từ kết quả so sánh ta thấy thuật toán <code>Random Forest</code> cho kết quả chính xác hơn so với <code>CART</code> trong bài toán này (với độ chính xác là <code>92.97%</code>). Tuy nhiên cả hai thuật toán <code>Bagging</code> đều có độ chính xác nhỏ hơn so với 2 thuật toán <code>Boosting</code> trước.</p>
+<p>Từ kết quả so sánh ta thấy thuật toán <code>Random Forest</code> cho kết quả chính xác hơn so với <code>CART</code> trong bài toán này (với độ chính xác là <code>93.44%</code>). Tuy nhiên cả hai thuật toán <code>Bagging</code> đều có độ chính xác nhỏ hơn so với 2 thuật toán <code>Boosting</code> trước.</p>
 <p><strong>2.4. Thuật toán Stacking</strong></p>
 <p>Để kết hợp các mô hình <code>machine learning</code> khác nhau trong <code>R</code> chúng ta sử dụng thư viện <strong>caretEnsemble</strong>. Với danh sách các <code>caret models</code>, hàm <code>caretStack()</code> của gói này có thể sự dụng để chỉ định mô hình bậc cao hơn, từ đó sẽ học cách tìm sự kết hợp tốt nhất những <code>sub-models</code> với nhau.</p>
 <p>Ở ví dụ này, tôi sẽ sử dụng 5 <code>sub-models</code> sau cho tập dữ liệu <code>ionosphere</code>:</p>
@@ -1112,7 +1112,7 @@ summary(results)</code></pre>
 ## svmRadial 0.7419355 0.8142060 0.8776224 0.8847121 0.9375755 1.0000000    0</code></pre>
 <pre class="r"><code>dotplot(results)</code></pre>
 <p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
-<p>Ta thấy trong các mô hình này thì <code>SVM</code> cho kết quả chính xác nhất (<code>95.04%</code>).</p>
+<p>Ta thấy trong các mô hình này thì <code>SVM</code> cho kết quả chính xác nhất (<code>94.78%</code>).</p>
 <p>Giờ chúng ta hãy thử dùng kỹ thuật <code>stacking</code> để xem có thể cải thiện được độ chính xác không.</p>
 <p><strong><code>Lưu ý</code>:</strong> Khi các bạn muốn kết hợp các mô hình với nhau sử dụng kỹ thuật <code>stacking</code>, thì các bạn cần kiểm chứng rằng kết quả dự báo từ các mô hình này tương quan với nhau thấp. Nếu kết quả dự báo của các <code>sub-models</code> tương quan cao với nhau (&gt; 0.75) thì có nghĩa là chúng sẽ cho kết quả dự báo tương tự nhau, điều này sẽ làm giảm hiệu quả khi ta kết hợp các mô hình này với nhau.</p>
 <p>Kiểm tra độ tương quan giữa các <code>sub-models</code>:</p>
@@ -1125,7 +1125,7 @@ summary(results)</code></pre>
 ## svmRadial 0.3056838 0.253957967 0.429601141 0.5495574 1.0000000</code></pre>
 <pre class="r"><code>splom(results)</code></pre>
 <p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-24-1.png" width="960" /></p>
-<p>Nhìn vào kết quả ta có thể thấy các <code>su-models</code> cho kết quả dự báo tương quan với nhau thấp theo từng cặp. Cặp tương quan với nhau nhất là <code>GML</code> và <code>kNN</code> với độ tương quan <code>0.517</code>, cũng vẫn nhỏ hơn mức quy địn là cao (<code>&gt;0.75</code>).</p>
+<p>Nhìn vào kết quả ta có thể thấy các <code>su-models</code> cho kết quả dự báo tương quan với nhau thấp theo từng cặp. Cặp tương quan với nhau nhất là <code>SVM</code> và <code>kNN</code> với độ tương quan <code>0.549</code>, cũng vẫn nhỏ hơn mức quy địn là cao (<code>&gt;0.75</code>).</p>
 <p>Nào chúng ta hãy thử kết hợp <code>predictions</code> của các <code>sub-models</code> sử dụng mô hình <code>gml</code>:</p>
 <pre class="r"><code>stackControl &lt;- trainControl(method=&quot;repeatedcv&quot;, number=10, repeats=3, savePredictions=TRUE, classProbs=TRUE)
 set.seed(seed)
@@ -1147,7 +1147,7 @@ print(stack.glm)</code></pre>
 ## 
 ##   Accuracy   Kappa    
 ##   0.9544285  0.9003902</code></pre>
-<p>Độ chính xác cải thiện lên <code>95.25%</code>. Tuy nhiên so với sử dụng chỉ <code>SVM model</code> thì cũng chưa chênh lệnh nhiều.</p>
+<p>Độ chính xác cải thiện lên <code>95.44%</code> so với chỉ sử dụng <code>SVM model</code> là <code>94.78%</code>, tuy nhiên cũng chưa có độ chênh lệnh nhiều.</p>
 <p>Tiếp theo tôi thử thử kết hợp <code>predictions</code> của các <code>sub-models</code> sử dụng mô hình <code>random forest</code>:</p>
 <pre class="r"><code>set.seed(seed)
 stack.rf &lt;- caretStack(models, method=&quot;rf&quot;, metric=&quot;Accuracy&quot;, trControl=stackControl)
@@ -1173,7 +1173,7 @@ print(stack.rf)</code></pre>
 ## 
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 2.</code></pre>
-<p>Độ chính xác cũng cải thiện hơn so với chỉ dùng <code>svm model</code>.</p>
+<p>Độ chính xác cũng cải thiện hơn so với chỉ dùng <code>svm model</code> (<code>96.23%</code>).</p>
 <p><strong>Tham khảo:</strong>
 <a href="https://machinelearningmastery.com/machine-learning-ensembles-with-r/">How to Build an Ensemble Of Machine Learning Algorithms in R</a></p>
 
