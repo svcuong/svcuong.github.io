@@ -25,33 +25,44 @@
 &lt;p&gt;Một cách khác có thể sử dụng để tăng độ chính xác trên tập &lt;code&gt;dataset&lt;/code&gt; của bạn là kết hợp (&lt;code&gt;combine&lt;/code&gt;) một số mô hình với nhau. Phương pháp này gọi là &lt;code&gt;esemble learning&lt;/code&gt;. Ý tưởng của việc &lt;code&gt;combine&lt;/code&gt; các mô hình khác nhau xuất phát từ một suy nghĩ hợp lý là: các mô hình khác nhau có khả năng khác nhau, có thể thực hiện tốt nhất các loại công việc khác nhau (&lt;code&gt;subtasks&lt;/code&gt;), khi kết hợp các mô hình này với nhau một cách hợp lý thì sẽ tạo thành một mô hình kết hợp (&lt;code&gt;combined model&lt;/code&gt;) mạnh có khả năng cải thiện hiệu suât tổng thể và (&lt;code&gt;overall performance&lt;/code&gt;) so với việc chỉ dùng các mô hình một cách đơn lẻ.&lt;/p&gt;
 &lt;p&gt;Các phương pháp &lt;code&gt;Ensemble Learning&lt;/code&gt; được chia thành 3 loại sau đây:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Bagging&lt;/code&gt; (đóng bao): Xây dựng một lượng lớn các &lt;code&gt;models&lt;/code&gt; (thường là &lt;code&gt;cùng loại&lt;/code&gt;) trên những &lt;code&gt;subsamples&lt;/code&gt; khác nhau từ tập &lt;code&gt;training dataset&lt;/code&gt; một cách song song nhằm đưa ra dự đoán tốt hơn.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Boosting&lt;/code&gt; (tăng cường): Xây dựng một lượng lớn các &lt;code&gt;models&lt;/code&gt; (thường là &lt;code&gt;cùng loại&lt;/code&gt;). Tuy nhiên quá trình huấn luyện trong phương pháp này diễn ra tuần tự theo chuỗi (sequence). Trong chuỗi này mỗi &lt;code&gt;model&lt;/code&gt; sau sẽ học cách sửa những &lt;code&gt;errors&lt;/code&gt; của &lt;code&gt;model&lt;/code&gt; trước (hay nói cách khác là dữ liệu mà &lt;code&gt;model&lt;/code&gt; trước dự đoán sai).&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Stacking&lt;/code&gt; (Xếp chồng): Xây dựng một số &lt;code&gt;models&lt;/code&gt; (thường là &lt;code&gt;khác loại&lt;/code&gt;) và một mô hình &lt;code&gt;supervisor model&lt;/code&gt;, mô hình này sẽ học cách kết hợp kết quả dự báo của một số mô hình một cách tốt nhất.
-Chúng tôi sẽ mô tả từng phương pháp và các chủ đề liên quan dưới đây. (Bổ sung sau)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Bagging&lt;/code&gt; (đóng bao)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Boosting&lt;/code&gt; (tăng cường)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Stacking&lt;/code&gt; (Xếp chồng)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;Note&lt;/code&gt;: &lt;code&gt;Bagging&lt;/code&gt; sử dụng những mô hình phức tạp để tối giản những dự đoán trong khi &lt;code&gt;boosting&lt;/code&gt; kết hợp những mô hình đơn giản ban đầu nhằm tăng cường (boost) độ phức tạp.&lt;/p&gt;
-&lt;p&gt;Ở bài này tôi sẽ không giải thích cụ thể từng phương pháp &lt;code&gt;ensemble learning&lt;/code&gt; mà tập trung vào hướng dẫn các bạn cách áp dụng chúng vào bài toán cụ thể sử dụng thư viện &lt;code&gt;caret&lt;/code&gt; trong R.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Đôi nét vể thư viện &lt;code&gt;caret&lt;/code&gt;&lt;/strong&gt;: Ngôn ngữ &lt;code&gt;R&lt;/code&gt; khác biệt bởi số lượng rất lớn các &lt;code&gt;packages&lt;/code&gt; chuyên dụng khác nhau cho phép xây dựng các mô hình dự đoán. Tuy nhiên đây cũng chính là khuyết điểm, khi có quá nhiều các gói triển khai &lt;code&gt;machine learning algorithms&lt;/code&gt; dưới dạng các
+&lt;p&gt;Ở bài này đầu tiên tôi sẽ giới thiệu với các bạn 3 kỹ thuật &lt;code&gt;ensemble learning&lt;/code&gt; này trong &lt;code&gt;machine learning&lt;/code&gt; và sau đó là cách áp dụng chúng vào giải quyết bài toán cụ thể sử dụng thừ viện &lt;code&gt;caret&lt;/code&gt; và &lt;code&gt;caretEnsemble&lt;/code&gt; trong R.&lt;/p&gt;
+&lt;p&gt;Để cài đặt 2 thư viện này các bạn dùng lệnh &lt;code&gt;install.packages(.)&lt;/code&gt; với tham số đầu vào là tên thư viện muốn cài:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;caret&amp;quot;)
+intall.packages(&amp;quot;caretEnsemble&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Đôi nét về thư viện &lt;code&gt;caret&lt;/code&gt;&lt;/strong&gt;: Ngôn ngữ &lt;code&gt;R&lt;/code&gt; khác biệt bởi số lượng rất lớn các &lt;code&gt;packages&lt;/code&gt; chuyên dụng khác nhau cho phép xây dựng các mô hình dự đoán. Tuy nhiên đây cũng chính là khuyết điểm, khi có quá nhiều các gói triển khai &lt;code&gt;machine learning algorithms&lt;/code&gt; dưới dạng các
 hàm &lt;code&gt;rải rác&lt;/code&gt; đòi hỏi ta cần nhiều thời gian để tìm kiếm và nắm vững những đặc trưng về cú pháp cũng như cách sử dụng của từng hàm.Để giải quyết vấn đề này &lt;a href=&#34;https://www.linkedin.com/in/max-kuhn-864a9110&#34;&gt;Max Kuhn&lt;/a&gt; đã xây dựng một giao diện phổ quát cho phép truy cập và sử dụng các &lt;code&gt;machine learning algorithms&lt;/code&gt; từ cái gói khác nhau được triển khai trên ngôn ngữ &lt;code&gt;R&lt;/code&gt;. Kết quả chính là package &lt;a href=&#34;https://cran.r-project.org/web/packages/caret/caret.pdf&#34;&gt;caret&lt;/a&gt; (viết tắt từ Classification and Regression Training), được công bố đầu tiên vào năm 2008 tại tạp chí phần mềm thống kê (&lt;a href=&#34;https://www.jstatsoft.org/article/view/v028i05&#34;&gt;Journal of Statistical Software&lt;/a&gt;. Gói &lt;code&gt;caret&lt;/code&gt; giúp chúng ta tiết kiệm được rất nhiều thời gian trong quá trình phân tích và xây dựng các models. Những đặc trưng cơ bản của package &lt;code&gt;caret&lt;/code&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;sử dụng cú pháp lệnh chung (phổ quát) không phụ thuộc vào cú pháp của các hàm gốc (các hàm triển khai các machine learningalgorithms)&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Tự động tìm kiếm những giá trị tối ưu cho các &lt;code&gt;hyperparameters&lt;/code&gt; của mô hình (&lt;code&gt;tuning parameters&lt;/code&gt;)&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Có khả năng tổ chức tính toán song song để tăng đáng kể tốc độ quá trình huấn luyện mô hình&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Sử dụng &lt;code&gt;Caret&lt;/code&gt; cho phép giải quyết các bài toán chính sau:&lt;/p&gt;
+&lt;p&gt;Sử dụng &lt;code&gt;Caret&lt;/code&gt; cho phép giải quyết hầu hết các nhiệm vụ trong &lt;code&gt;machine learning&lt;/code&gt; từ tiền xủ lý, feature engineering cho đến…&lt;/p&gt;
+&lt;div id=&#34;phân-biệt-3-kỹ-thuật-boosting-baggig-và-statcking&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1. Phân biệt 3 kỹ thuật boosting, baggig và statcking&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;data splitting&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;pre-processing&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;feature selection&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;model tuning using resampling&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;variable importance estimation&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Bagging&lt;/code&gt; xây dựng một lượng lớn các &lt;code&gt;models&lt;/code&gt; (thường là &lt;code&gt;cùng loại&lt;/code&gt;) trên những &lt;code&gt;subsamples&lt;/code&gt; khác nhau từ tập &lt;code&gt;training dataset&lt;/code&gt; một cách song song nhằm đưa ra dự đoán tốt hơn.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Boosting&lt;/code&gt;xây dựng một lượng lớn các &lt;code&gt;models&lt;/code&gt; (thường là &lt;code&gt;cùng loại&lt;/code&gt;). Tuy nhiên quá trình huấn luyện trong phương pháp này diễn ra tuần tự theo chuỗi (sequence). Trong chuỗi này mỗi &lt;code&gt;model&lt;/code&gt; sau sẽ học cách sửa những &lt;code&gt;errors&lt;/code&gt; của &lt;code&gt;model&lt;/code&gt; trước (hay nói cách khác là dữ liệu mà &lt;code&gt;model&lt;/code&gt; trước dự đoán sai).&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;/ensemble-learning/index_files/boosting-bagging.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Note&lt;/code&gt;: &lt;code&gt;Bagging&lt;/code&gt; sử dụng những mô hình phức tạp để tối giản những dự đoán trong khi &lt;code&gt;boosting&lt;/code&gt; kết hợp những mô hình đơn giản ban đầu nhằm tăng cường (boost) độ phức tạp.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Stacking&lt;/code&gt; Xây dựng một số &lt;code&gt;models&lt;/code&gt; (thường là &lt;code&gt;khác loại&lt;/code&gt;) và một mô hình &lt;code&gt;supervisor model&lt;/code&gt;, mô hình này sẽ học cách kết hợp kết quả dự báo của một số mô hình một cách tốt nhất.
+Chúng tôi sẽ mô tả từng phương pháp và các chủ đề liên quan dưới đây. (Bổ sung sau)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/ensemble-learning/index_files/stacking.png&#34; alt=&#34;nguồn&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;&lt;a href=&#34;https://www.geeksforgeeks.org/stacking-in-machine-learning/&#34;&gt;nguồn&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;thực-hành&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2. Thực hành&lt;/h2&gt;
 &lt;p&gt;Nạp các thư viện cần dùng vào phiên làm việc của &lt;code&gt;R&lt;/code&gt; để thực hành:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(caret)
 library(caretEnsemble) &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Nếu chưa cài các thư viện trên thì các bạn dùng lệnh &lt;code&gt;install.packages(.)&lt;/code&gt; để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;caret&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Kiểm tra số lượng các machine learning algorithms availbe to train in caret:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;carets &amp;lt;- getModelInfo()
 carets.names &amp;lt;- names(carets)
@@ -59,7 +70,8 @@ length(carets.names)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 238&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Nếu chưa cài các thư viện trên thì các bạn dùng lệnh &lt;code&gt;install.packages(.)&lt;/code&gt; để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;caret&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Dữ liệu để thực hành&lt;/strong&gt;&lt;/p&gt;
+&lt;div id=&#34;dữ-liệu-để-thực-hành&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;2.1 Dữ liệu để thực hành&lt;/h3&gt;
 &lt;p&gt;Để thực hành với các phương pháp &lt;code&gt;ensemble learning&lt;/code&gt; tôi lựa chọn bài toán phân loại nhị phân (bi classification) với tập dữ liệu &lt;code&gt;ionoshene&lt;/code&gt;. Trong bài toán này chúng ta cần dự đoán xem cao tâǹ trả vể từ năng lượng của các hạt trong khí quyển có cấu trúc hay là không. Để tìm hiểu thêm về bài toán này các bạn có thể đọc ở &lt;a href=&#34;http://archive.ics.uci.edu/ml/index.php&#34;&gt;đây&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Load dữ liệu từ gói &lt;code&gt;mlbench&lt;/code&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Load the dataset
@@ -224,10 +236,7 @@ for(i in 1:12) {
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Boxplot&lt;/code&gt; cho 12 thuộc tính đầu tiên&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mfrow=c(3,4))
-for(i in 1:12) {
-  boxplot(dataset[,i], main=names(dataset)[i])
-}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;boxplot(dataset[, 1:12], col = &amp;quot;orange&amp;quot;, main = &amp;quot;Features Boxplot&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Tiền xử lý dữ liệu&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Xác định và Loại bỏ các thuộc tính tương quan với nhau cao (&amp;gt;0.75)&lt;/p&gt;
@@ -253,7 +262,9 @@ data_processed &amp;lt;- predict(preProcValues, dataset)&lt;/code&gt;&lt;/pre&gt
 ## 4 0.3479366  0.7206193 -1.1235677  0.7673815  1.9186015  0.3289631 -2.1495163
 ## 5 0.3479366  0.7206193 -0.1549082  0.6546592 -0.1097610  0.7529932 -0.6757762
 ## 6 0.3479366 -1.2416349 -0.1139282 -1.3471047 -0.5107939 -1.1320832 -0.4562658&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;1. Thuật toán Boosting&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;thuật-toán-boosting&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;2.2. Thuật toán Boosting&lt;/h3&gt;
 &lt;p&gt;Chúng ta sẽ xem xét hai trong số các thuật toán phổ biến nhất của boosting là:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;C5.0&lt;/li&gt;
@@ -282,17 +293,19 @@ summary(boosting_results)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Accuracy 
 ##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&amp;#39;s
-## c5.0 0.8571429 0.9142857 0.9428571 0.9345378 0.9444444    1    0
-## gbm  0.8888889 0.9142857 0.9411765 0.9362387 0.9444444    1    0
+## c5.0 0.8285714 0.9142857 0.9444444 0.9432073 0.9714286    1    0
+## gbm  0.8333333 0.9117647 0.9420168 0.9317663 0.9640523    1    0
 ## 
 ## Kappa 
 ##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&amp;#39;s
-## c5.0 0.6715328 0.8142060 0.8736462 0.8545695 0.8791046    1    0
-## gbm  0.7419355 0.8134991 0.8661417 0.8573574 0.8771949    1    0&lt;/code&gt;&lt;/pre&gt;
+## c5.0 0.5945946 0.8107691 0.8754325 0.8728061 0.9375755    1    0
+## gbm  0.6262976 0.7971577 0.8736462 0.8475939 0.9206719    1    0&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dotplot(boosting_results)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Chúng ta có thể thấy thuật toán C5.0 cho kết quả chính xác hơn với độ chính xác là &lt;code&gt;94.28%&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2. Thuật toán Bagging&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;thuật-toán-bagging&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;2.3 Thuật toán Bagging&lt;/h3&gt;
 &lt;p&gt;Chúng ta sẽ xem xét hai trong số các thuật toán phổ biến nhất của bagging là:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Bagged CART&lt;/li&gt;
@@ -332,7 +345,9 @@ summary(bagging_results)&lt;/code&gt;&lt;/pre&gt;
 ## rf      0.6504854 0.7801430 0.8722003 0.8412055 0.9350695 1.0000000    0&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dotplot(bagging_results)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/ensemble-learning/index_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;3. Thuật toán Stacking&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;thuật-toán-stacking&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;2.4. Thuật toán Stacking&lt;/h3&gt;
 &lt;p&gt;Các bạn có thể kết hợp những mô hình khác nhau trên R sử dụng &lt;strong&gt;caretEnsemble&lt;/strong&gt; package.&lt;/p&gt;
 &lt;p&gt;Với danh sách các caret models, hàm &lt;code&gt;caretStack()&lt;/code&gt; có thể sự dụng để chỉ định mô hình bậc cao hơn, từ đó sẽ học cách tìm sự kết hợp tốt nhất những sub-models với nhau.&lt;/p&gt;
 &lt;p&gt;Ở ví dụ này, chúng ta sẽ sử dụng 5 sub-models cho tập dữ liệu ionosphere:&lt;/p&gt;
@@ -438,6 +453,8 @@ print(stack.rf)&lt;/code&gt;&lt;/pre&gt;
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 2.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Độ chính xác cũng cải thiện hơn so với chỉ dùng svm model.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     
