@@ -794,25 +794,17 @@ hàm <code>rải rác</code> đòi hỏi ta cần nhiều thời gian để 
 <li><p>Có khả năng tổ chức tính toán song song để tăng đáng kể tốc độ quá trình huấn luyện mô hình</p></li>
 </ul>
 <p>Sử dụng <code>Caret</code> cho phép giải quyết hầu hết các nhiệm vụ trong <code>machine learning</code> từ tiền xủ lý, feature engineering cho đến…</p>
-<div id="phân-biệt-3-kỹ-thuật-boosting-baggig-và-statcking" class="section level2">
-<h2>1. Phân biệt 3 kỹ thuật boosting, baggig và statcking</h2>
-<ul>
-<li><code>Bagging</code> xây dựng một lượng lớn các <code>models</code> (thường là <code>cùng loại</code>) trên những <code>subsamples</code> khác nhau từ tập <code>training dataset</code> một cách song song nhằm đưa ra dự đoán tốt hơn.</li>
-<li><code>Boosting</code>xây dựng một lượng lớn các <code>models</code> (thường là <code>cùng loại</code>). Tuy nhiên quá trình huấn luyện trong phương pháp này diễn ra tuần tự theo chuỗi (sequence). Trong chuỗi này mỗi <code>model</code> sau sẽ học cách sửa những <code>errors</code> của <code>model</code> trước (hay nói cách khác là dữ liệu mà <code>model</code> trước dự đoán sai).</li>
-</ul>
-<p><img src="/ensemble-learning/index_files/boosting-bagging.png" /></p>
+<p><strong>1. Phân biệt 3 kỹ thuật boosting, baggig và statcking</strong></p>
+<p><strong>Bagging</strong> xây dựng một lượng lớn các <code>models</code> (thường là <code>cùng loại</code>) trên những <code>subsamples</code> khác nhau từ tập <code>training dataset</code> một cách song song nhằm đưa ra dự đoán tốt hơn.</p>
+<p><strong>Boosting</strong> xây dựng một lượng lớn các <code>models</code> (thường là <code>cùng loại</code>). Tuy nhiên quá trình huấn luyện trong phương pháp này diễn ra tuần tự theo chuỗi (sequence). Trong chuỗi này mỗi <code>model</code> sau sẽ học cách sửa những <code>errors</code> của <code>model</code> trước (hay nói cách khác là dữ liệu mà <code>model</code> trước dự đoán sai).</p>
+<p><img src="/img/boosting-bagging.png" /></p>
 <p><code>Note</code>: <code>Bagging</code> sử dụng những mô hình phức tạp để tối giản những dự đoán trong khi <code>boosting</code> kết hợp những mô hình đơn giản ban đầu nhằm tăng cường (boost) độ phức tạp.</p>
-<ul>
-<li><code>Stacking</code> Xây dựng một số <code>models</code> (thường là <code>khác loại</code>) và một mô hình <code>supervisor model</code>, mô hình này sẽ học cách kết hợp kết quả dự báo của một số mô hình một cách tốt nhất.
-Chúng tôi sẽ mô tả từng phương pháp và các chủ đề liên quan dưới đây. (Bổ sung sau)</li>
-</ul>
+<p><strong>Stacking</strong> Xây dựng một số <code>models</code> (thường là <code>khác loại</code>) và một mô hình <code>supervisor model</code>, mô hình này sẽ học cách kết hợp kết quả dự báo của một số mô hình một cách tốt nhất.</p>
 <div class="figure">
-<img src="/ensemble-learning/index_files/stacking.png" alt="nguồn" />
-<p class="caption"><a href="https://www.geeksforgeeks.org/stacking-in-machine-learning/">nguồn</a></p>
+<img src="/img/stacking.png" alt="Nguồn" />
+<p class="caption"><a href="https://www.geeksforgeeks.org/stacking-in-machine-learning/">Nguồn</a></p>
 </div>
-</div>
-<div id="thực-hành" class="section level2">
-<h2>2. Thực hành</h2>
+<p><strong>2. Thực hành</strong></p>
 <p>Nạp các thư viện cần dùng vào phiên làm việc của <code>R</code> để thực hành:</p>
 <pre class="r"><code>library(caret)
 library(caretEnsemble) </code></pre>
@@ -823,8 +815,7 @@ length(carets.names)</code></pre>
 <pre><code>## [1] 238</code></pre>
 <p>Nếu chưa cài các thư viện trên thì các bạn dùng lệnh <code>install.packages(.)</code> để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:</p>
 <pre class="r"><code>install.packages(&quot;caret&quot;)</code></pre>
-<div id="dữ-liệu-để-thực-hành" class="section level3">
-<h3>2.1 Dữ liệu để thực hành</h3>
+<p><strong>2.1 Dữ liệu để thực hành</strong></p>
 <p>Để thực hành với các phương pháp <code>ensemble learning</code> tôi lựa chọn bài toán phân loại nhị phân (bi classification) với tập dữ liệu <code>ionoshene</code>. Trong bài toán này chúng ta cần dự đoán xem cao tâǹ trả vể từ năng lượng của các hạt trong khí quyển có cấu trúc hay là không. Để tìm hiểu thêm về bài toán này các bạn có thể đọc ở <a href="http://archive.ics.uci.edu/ml/index.php">đây</a>.</p>
 <p>Load dữ liệu từ gói <code>mlbench</code></p>
 <pre class="r"><code># Load the dataset
@@ -1015,9 +1006,7 @@ data_processed &lt;- predict(preProcValues, dataset)</code></pre>
 ## 4 0.3479366  0.7206193 -1.1235677  0.7673815  1.9186015  0.3289631 -2.1495163
 ## 5 0.3479366  0.7206193 -0.1549082  0.6546592 -0.1097610  0.7529932 -0.6757762
 ## 6 0.3479366 -1.2416349 -0.1139282 -1.3471047 -0.5107939 -1.1320832 -0.4562658</code></pre>
-</div>
-<div id="thuật-toán-boosting" class="section level3">
-<h3>2.2. Thuật toán Boosting</h3>
+<p><strong>2.2. Thuật toán Boosting</strong></p>
 <p>Chúng ta sẽ xem xét hai trong số các thuật toán phổ biến nhất của boosting là:</p>
 <ul>
 <li>C5.0</li>
@@ -1046,19 +1035,17 @@ summary(boosting_results)</code></pre>
 ## 
 ## Accuracy 
 ##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&#39;s
-## c5.0 0.8285714 0.9142857 0.9444444 0.9432073 0.9714286    1    0
-## gbm  0.8333333 0.9117647 0.9420168 0.9317663 0.9640523    1    0
+## c5.0 0.8285714 0.9148810 0.9444444 0.9392702 0.9720238    1    0
+## gbm  0.8285714 0.9142857 0.9411765 0.9335994 0.9444444    1    0
 ## 
 ## Kappa 
 ##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&#39;s
-## c5.0 0.5945946 0.8107691 0.8754325 0.8728061 0.9375755    1    0
-## gbm  0.6262976 0.7971577 0.8736462 0.8475939 0.9206719    1    0</code></pre>
+## c5.0 0.6129032 0.8079694 0.8786105 0.8640312 0.9385399    1    0
+## gbm  0.6209386 0.8069010 0.8695683 0.8518867 0.8785571    1    0</code></pre>
 <pre class="r"><code>dotplot(boosting_results)</code></pre>
 <p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Chúng ta có thể thấy thuật toán C5.0 cho kết quả chính xác hơn với độ chính xác là <code>94.28%</code></p>
-</div>
-<div id="thuật-toán-bagging" class="section level3">
-<h3>2.3 Thuật toán Bagging</h3>
+<p><strong>2.3 Thuật toán Bagging</strong></p>
 <p>Chúng ta sẽ xem xét hai trong số các thuật toán phổ biến nhất của bagging là:</p>
 <ul>
 <li>Bagged CART</li>
@@ -1098,9 +1085,7 @@ summary(bagging_results)</code></pre>
 ## rf      0.6504854 0.7801430 0.8722003 0.8412055 0.9350695 1.0000000    0</code></pre>
 <pre class="r"><code>dotplot(bagging_results)</code></pre>
 <p><img src="/post/ensemble-learning/index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
-</div>
-<div id="thuật-toán-stacking" class="section level3">
-<h3>2.4. Thuật toán Stacking</h3>
+<p><strong>2.4. Thuật toán Stacking</strong></p>
 <p>Các bạn có thể kết hợp những mô hình khác nhau trên R sử dụng <strong>caretEnsemble</strong> package.</p>
 <p>Với danh sách các caret models, hàm <code>caretStack()</code> có thể sự dụng để chỉ định mô hình bậc cao hơn, từ đó sẽ học cách tìm sự kết hợp tốt nhất những sub-models với nhau.</p>
 <p>Ở ví dụ này, chúng ta sẽ sử dụng 5 sub-models cho tập dữ liệu ionosphere:</p>
@@ -1206,8 +1191,6 @@ print(stack.rf)</code></pre>
 ## Accuracy was used to select the optimal model using the largest value.
 ## The final value used for the model was mtry = 2.</code></pre>
 <p>Độ chính xác cũng cải thiện hơn so với chỉ dùng svm model.</p>
-</div>
-</div>
 
     </div>
 
