@@ -30,10 +30,10 @@
   
     
   
-  <meta name="description" content="Tổng hợp các thao tác trực quan hóa dữ liệu - biểu diễn đồ họa của dữ liệu vơi R và Python">
+  <meta name="description" content="Cuốn sách này từng bước hướng dẫn các bạn áp dụng machine learning để xây dựng các mô hình dự đoán trong khoa học dữ liệu với Python thông qua các projects thực tế.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/courses/data-visualization/">
+  <link rel="alternate" hreflang="en-us" href="/courses/data-science-with-python/">
 
   
 
@@ -264,14 +264,14 @@
   
 
   
-  <link rel="alternate" href="/courses/data-visualization/index.xml" type="application/rss+xml" title="Data Science">
+  <link rel="alternate" href="/courses/data-science-with-python/index.xml" type="application/rss+xml" title="Data Science">
   
 
   <link rel="manifest" href="/index.webmanifest">
   <link rel="icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_32x32_fill_lanczos_center_2.PNG">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG">
 
-  <link rel="canonical" href="/courses/data-visualization/">
+  <link rel="canonical" href="/courses/data-science-with-python/">
 
   
   
@@ -287,9 +287,9 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Data Science">
-  <meta property="og:url" content="/courses/data-visualization/">
-  <meta property="og:title" content="Data visualization với R và Python | Data Science">
-  <meta property="og:description" content="Tổng hợp các thao tác trực quan hóa dữ liệu - biểu diễn đồ họa của dữ liệu vơi R và Python"><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
+  <meta property="og:url" content="/courses/data-science-with-python/">
+  <meta property="og:title" content="Khoa học dữ liệu với Python | Data Science">
+  <meta property="og:description" content="Cuốn sách này từng bước hướng dẫn các bạn áp dụng machine learning để xây dựng các mô hình dự đoán trong khoa học dữ liệu với Python thông qua các projects thực tế."><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
   <meta property="twitter:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG"><meta property="og:locale" content="en-us">
   
     <meta property="og:updated_time" content="2019-09-09T00:00:00&#43;00:00">
@@ -320,7 +320,7 @@
       src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
 
-  <title>Data visualization với R và Python | Data Science</title>
+  <title>Khoa học dữ liệu với Python | Data Science</title>
 
 </head>
 
@@ -505,7 +505,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link  active" href="/courses/"><span>Tutorials</span></a>
+          <a class="nav-link  active" href="/courses/"><span>Books</span></a>
         </li>
 
         
@@ -645,23 +645,13 @@
   
   
   
-  <div class="docs-toc-item">
-    <a class="docs-toc-link" href="/courses/data-wrangling/">Data Wrangling</a>
-
-  </div>
-  
   <div class="docs-toc-item active">
-    <a class="docs-toc-link" href="/courses/data-visualization/">Data Visualization</a>
+    <a class="docs-toc-link" href="/courses/data-science-with-python/">Khoa học dữ liệu với Python</a>
 
   </div>
   
   <div class="docs-toc-item">
-    <a class="docs-toc-link" href="/courses/machine-learning/">Machine Learning</a>
-
-  </div>
-  
-  <div class="docs-toc-item">
-    <a class="docs-toc-link" href="/courses/deep-learning/">Deep Learning</a>
+    <a class="docs-toc-link" href="/courses/data-science-with-r/">Khoa học dữ liệu với R</a>
 
   </div>
   
@@ -678,9 +668,14 @@
 
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#data-visualization-là-gì">Data visualization là gì?</a></li>
-    <li><a href="#data-visualization-với-r">Data visualization với R</a></li>
-    <li><a href="#data-visualization-với-python">Data visualization với Python</a></li>
+    <li><a href="#chương-1-mở-đầu-về-data-science-với-python-các-khái-niệm-cơ-bản">Chương 1. Mở đầu về data science với Python. Các khái niệm cơ bản.</a></li>
+    <li><a href="#chương-2-python-cơ-bản">Chương 2. Python cơ bản</a></li>
+    <li><a href="#chương-3-statistics-với-python">Chương 3. Statistics với Python</a></li>
+    <li><a href="#chương-4-data-wrangling-với-python">Chương 4. Data Wrangling với Python</a></li>
+    <li><a href="#chương-5-data-exploring-với-python">Chương 5. Data Exploring với Python</a></li>
+    <li><a href="#chương-6-data-pre-processing-với-python">Chương 6. Data Pre-processing với Python</a></li>
+    <li><a href="#chương-7-machine-learning-với-python">Chương 7. Machine learning với Python</a></li>
+    <li><a href="#chương-8-deep-learning-với-python">Chương 8. Deep Learning với Python</a></li>
   </ul>
 </nav>
 
@@ -693,16 +688,19 @@
       <article class="article">
 
         <div class="docs-article-container">
-          <h1>Data visualization với R và Python</h1>
+          <h1>Khoa học dữ liệu với Python</h1>
 
           <div class="article-style">
-            <p>====&gt; Đang cập nhật</p>
-<h2 id="data-visualization-là-gì">Data visualization là gì?</h2>
-<p>===&gt; Đang cập nhật</p>
-<h2 id="data-visualization-với-r">Data visualization với R</h2>
-<p>===&gt; Đang cập nhật</p>
-<h2 id="data-visualization-với-python">Data visualization với Python</h2>
-<p>===&gt; Đang cập nhật</p>
+            <p>&mdash;&ndash;<code>Đang viết</code>&mdash;&mdash;-</p>
+<p><strong>Sách khoa học dữ liệu với Python sẽ gồm những mục chính sau</strong></p>
+<h2 id="chương-1-mở-đầu-về-data-science-với-python-các-khái-niệm-cơ-bản">Chương 1. Mở đầu về data science với Python. Các khái niệm cơ bản.</h2>
+<h2 id="chương-2-python-cơ-bản">Chương 2. Python cơ bản</h2>
+<h2 id="chương-3-statistics-với-python">Chương 3. Statistics với Python</h2>
+<h2 id="chương-4-data-wrangling-với-python">Chương 4. Data Wrangling với Python</h2>
+<h2 id="chương-5-data-exploring-với-python">Chương 5. Data Exploring với Python</h2>
+<h2 id="chương-6-data-pre-processing-với-python">Chương 6. Data Pre-processing với Python</h2>
+<h2 id="chương-7-machine-learning-với-python">Chương 7. Machine learning với Python</h2>
+<h2 id="chương-8-deep-learning-với-python">Chương 8. Deep Learning với Python</h2>
 
           </div>
 
@@ -736,7 +734,7 @@
   
 
 <p class="edit-page">
-  <a href="https://github.com/gcushen/hugo-academic/edit/master/content/courses%5cdata-visualization%5c_index.md">
+  <a href="https://github.com/gcushen/hugo-academic/edit/master/content/courses%5cdata-science-with-Python%5c_index.md">
     <i class="fas fa-pen pr-2"></i>Edit this page
   </a>
 </p>

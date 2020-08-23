@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Data visualization với R và Python | Data Science</title>
-    <link>/courses/data-visualization/</link>
-      <atom:link href="/courses/data-visualization/index.xml" rel="self" type="application/rss+xml" />
-    <description>Data visualization với R và Python</description>
+    <title>Khoa học dữ liệu với R | Data Science</title>
+    <link>/courses/data-science-with-r-copy/</link>
+      <atom:link href="/courses/data-science-with-r-copy/index.xml" rel="self" type="application/rss+xml" />
+    <description>Khoa học dữ liệu với R</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Mon, 09 Sep 2019 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
-      <title>Data visualization với R và Python</title>
-      <link>/courses/data-visualization/</link>
+      <title>Khoa học dữ liệu với R</title>
+      <link>/courses/data-science-with-r-copy/</link>
     </image>
     
   </channel>
