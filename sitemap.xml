@@ -58,11 +58,6 @@
   </url>
   
   <url>
-    <loc>/post/ggplot-plotly/</loc>
-    <lastmod>2020-08-23T16:50:57+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/</loc>
     <lastmod>2020-08-23T18:45:46+04:00</lastmod>
   </url>
@@ -70,6 +65,21 @@
   <url>
     <loc>/post/crypto/</loc>
     <lastmod>2020-08-22T18:45:46+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/ggplot-plotly/</loc>
+    <lastmod>2020-08-22T16:50:57+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/ggplot2/</loc>
+    <lastmod>2020-08-22T16:50:57+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/plotly/</loc>
+    <lastmod>2020-08-22T16:50:57+04:00</lastmod>
   </url>
   
   <url>
