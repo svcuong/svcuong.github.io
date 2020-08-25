@@ -138,7 +138,17 @@
   </url>
   
   <url>
+    <loc>/tag/iot/</loc>
+    <lastmod>2020-06-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/author/maxim-shcherbakov/</loc>
+    <lastmod>2020-06-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/predictive-maintenance/</loc>
     <lastmod>2020-06-08T00:00:00+00:00</lastmod>
   </url>
   
@@ -153,22 +163,27 @@
   </url>
   
   <url>
-    <loc>/tag/source-themes/</loc>
+    <loc>/publication/moit2020/</loc>
     <lastmod>2020-06-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/journal-article6/</loc>
-    <lastmod>2020-06-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/journal-article2/</loc>
+    <loc>/tag/forecast-evaluation/</loc>
     <lastmod>2020-03-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/journal-article7/</loc>
+    <loc>/publication/vkit2020/</loc>
+    <lastmod>2020-03-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/time-series-forecasting/</loc>
+    <lastmod>2020-03-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/hi-tech2020/</loc>
     <lastmod>2020-03-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -178,7 +193,7 @@
   </url>
   
   <url>
-    <loc>/publication/journal-software/</loc>
+    <loc>/publication/swsys2020/</loc>
     <lastmod>2019-12-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -188,22 +203,12 @@
   </url>
   
   <url>
-    <loc>/tag/iot/</loc>
-    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/publication/soict2019/</loc>
     <lastmod>2019-12-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tag/predictive-maintenance/</loc>
-    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/journal-article4/</loc>
+    <loc>/publication/moit2019/</loc>
     <lastmod>2019-11-08T00:00:00+00:00</lastmod>
   </url>
   
@@ -248,7 +253,7 @@
   </url>
   
   <url>
-    <loc>/publication/journal-article3/</loc>
+    <loc>/publication/hi-tech2019/</loc>
     <lastmod>2019-03-08T00:00:00+00:00</lastmod>
   </url>
   
@@ -268,17 +273,17 @@
   </url>
   
   <url>
-    <loc>/tag/forecast-evaluation/</loc>
-    <lastmod>2018-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/author/alexey-golubev/</loc>
     <lastmod>2018-09-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/publication/%D0%BC%D0%BCe%D1%822018/</loc>
+    <lastmod>2018-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/source-themes/</loc>
     <lastmod>2018-09-10T00:00:00+00:00</lastmod>
   </url>
   
@@ -308,7 +313,7 @@
   </url>
   
   <url>
-    <loc>/publication/journal-article5/</loc>
+    <loc>/publication/swsys2018/</loc>
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
   </url>
   
