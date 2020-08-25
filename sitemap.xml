@@ -33,12 +33,17 @@
   </url>
   
   <url>
-    <loc>/tag/data-science/</loc>
+    <loc>/tag/data-visualization/</loc>
     <lastmod>2020-08-23T18:45:46+04:00</lastmod>
   </url>
   
   <url>
-    <loc>/tag/data-visualization/</loc>
+    <loc>/tag/ensemble-learning/</loc>
+    <lastmod>2020-08-23T18:45:46+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/machine-learning/</loc>
     <lastmod>2020-08-23T18:45:46+04:00</lastmod>
   </url>
   
@@ -73,22 +78,22 @@
   </url>
   
   <url>
-    <loc>/category/ggplot2/</loc>
+    <loc>/tag/ggplot2/</loc>
     <lastmod>2020-08-22T16:50:57+04:00</lastmod>
   </url>
   
   <url>
-    <loc>/category/plotly/</loc>
-    <lastmod>2020-08-22T16:50:57+04:00</lastmod>
+    <loc>/tag/web-scraping/</loc>
+    <lastmod>2020-08-22T18:45:46+04:00</lastmod>
   </url>
   
   <url>
-    <loc>/tag/deep-learning/</loc>
+    <loc>/tag/data-science/</loc>
     <lastmod>2020-08-20T15:43:27+04:00</lastmod>
   </url>
   
   <url>
-    <loc>/tag/machine-learning/</loc>
+    <loc>/tag/deep-learning/</loc>
     <lastmod>2020-08-20T15:43:27+04:00</lastmod>
   </url>
   
@@ -328,11 +333,6 @@
   </url>
   
   <url>
-    <loc>/tag/r-markdown/</loc>
-    <lastmod>2018-04-18T08:40:38+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/</loc>
     <lastmod>2018-04-18T08:40:38+04:00</lastmod>
   </url>
@@ -384,6 +384,11 @@
   
   <url>
     <loc>/tag/plot/</loc>
+    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/r-markdown/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url>
   

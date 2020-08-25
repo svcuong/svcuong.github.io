@@ -500,6 +500,35 @@
         
 
         <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>Topics</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
           <a class="nav-link " href="/#publications"><span>Publications</span></a>
         </li>
 
@@ -764,7 +793,7 @@
 <p>Trong khi đó, Python là ngôn ngữ đa mục đích có thể sử dụng trong nhiều lĩnh vực khác nhau từ lập trình ứng dụng web đến viết game. Có thể thấy là hiện nay Python đang thách thức ngôi vị lâu đầu của R như là một ngôn ngữ chung cho các nhà khoa học dữ liệu.</p>
 <p>Tuy nhiên các doanh nghiệp sẽ không ưu tiên ngôn ngữ nào khi xem xét các kỹ năng của một nhà khoa học dữ liệu, vì vậy các bạn phải biết cách linh hoạt trong việc sử dụng các ngôn ngữ này làm công cụ cho khoa học dữ liệu làm sao hiệu quả nhất.</p>
 <p>Cả R và Python đều có sử dụng để giải quyết các bài toán tương tự nhau trong khoa học dữ liệu. Cả hai đều có những packages hoặc libraries để giải quyết những vấn đề trong phân tích dữ liệu như tiền xủ lý, ứng dụng machine learning cho dữ liệu. Cả hai đều là lựa chọn tốt cho nghiên cứu khả lặp - một kỹ năng đòi hỏi trong rất nhiều lĩnh vực khác nhau. Tuy nhiên hai ngôn ngữ này lại có những tính năng tuyệt vời và điểm mạnh riêng vì vậy chúng ta nên kết hợp chúng để tận dụng những lợi thế của nhau, chỗ nào tiện và mạnh cái gì thì dùng cái đó. Hình dưới đây mô tả tóm tắt những điểm nổi trội của hai ngôn ngữ này:</p>
-<p><img src="/post/2020-08-18-s-d-ng-k-t-h-p-r-và-python-trong-data-science.vn_files/r-python.png" /></p>
+<p><img src="img/r-python.png" /></p>
 <p>Ở post này tôi sẽ giới thiệu với các bạn cách kết hợp hai ngôn ngữ này trong môi trường R bằng cách sử dụng package <a href="https://rstudio.github.io/reticulate/">reticulate</a>.</p>
 <p>Trước hết để tiến hành làm việc với Python và R chúng ta cần cài đặt chúng:</p>
 <ul>
@@ -777,7 +806,7 @@
 số gói của R để sử dụng được còn phụ thuộc vào một hoặc một số gói khác. Do vậy an toàn nhất là cài
 đặt với lựa chọn <code>dependencies = TRUE</code> với hàm ý rằng chúng ta sẽ cài đặt luôn tất cả các gói phụ
 thuộc:</p>
-<pre class="r"><code>install.packages(&quot;reticulate&quot;, dependencies = TRU)</code></pre>
+<pre class="r"><code>install.packages(&quot;reticulate&quot;, dependencies = TRUE)</code></pre>
 <p>Package <code>reticulate</code> gồm các công cụ hỗ trợ tương tác giữa R và Python. Cụ thể package này giải quyết được những việc sau:</p>
 <ul>
 <li>Gọi Python từ R bằng những phương pháp khác nhau: từ R Markdown, từ mã nguồn Python, import các Python modules, và sử dụng tương tác trực tiếp trên R session.</li>
@@ -835,7 +864,7 @@ library(ggplot2)
 ggplot(flights, aes(carrier, arr_delay)) + geom_point() + geom_jitter()</code></pre>
 <p><strong>3. Python REPL</strong></p>
 <p>Hàm <code>repl_python()</code> cho phép các bạn có thể làm việc trực tiếp với Python trên R session. Các đối tượng được tạo ra từ Python REPL có thể được truy cập từ R bằng cách sử dụng <em>py$object</em>. Ví dụ:</p>
-<p><img src="/post/2020-08-18-s-d-ng-k-t-h-p-r-và-python-trong-data-science.vn_files/python-repl.png" /></p>
+<p><img src="img/python-repl.png" /></p>
 <p>Dùng lệnh <code>exit</code> để thoát python REPL</p>
 <p><strong>Chú ý:</strong> Trong Python code có thể sử dụng mọi đối tượng được tạo ra từ R bằng các sử dụng đối tượng <code>r.object</code> (ví dụ <code>r.flights</code>).</p>
 <p><strong>4. Sử dụng python trong R markdown</strong></p>
@@ -849,7 +878,7 @@ ggplot(flights, aes(carrier, arr_delay)) + geom_point() + geom_jitter()</code></
 <p>Nạp dữ liệu vào Python:</p>
 <pre class="python"><code># Python
 import pandas as pd
-dataset_url = &#39;https://raw.githubusercontent.com/forvis/MLdata/master/pima-indians-diabetes.data.csv&#39;
+dataset_url = &#39;https://raw.githubusercontent.com/svcuong/Datasets/master/pima-indians-diabetes.data.csv&#39;
 
 names = [&#39;preg&#39;, &#39;plas&#39;, &#39;pres&#39;, &#39;skin&#39;, &#39;test&#39;, &#39;mass&#39;, &#39;pedi&#39;, &#39;age&#39;, &#39;class&#39;]
 data = pd.read_csv(dataset_url, names = names)
@@ -877,7 +906,7 @@ par(mfrow=c(1,4))
 for(i in 1:4) {
 boxplot(x[,i], main=names[i])
 }</code></pre>
-<p><img src="/post/2020-08-18-s-d-ng-k-t-h-p-r-và-python-trong-data-science.vn_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Thực hiện data visualization trong R với <code>ggplot2</code>:</p>
 <pre class="r"><code># R
 library(ggplot2)
@@ -887,7 +916,7 @@ ggplot(data = py$data,aes(x = preg)) +
   ggtitle(&quot;Pregnancies Data Distribution&quot;) + ylab(&quot;class Counts&quot;) +
   theme_gray() +
   theme_update(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="/post/2020-08-18-s-d-ng-k-t-h-p-r-và-python-trong-data-science.vn_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <hr />
 <p><strong>Tham khảo:</strong></p>
 <p><sub><a href="https://rstudio.github.io/reticulate/">R Interface to Python</a></sup></p>
@@ -904,8 +933,6 @@ ggplot(data = py$data,aes(x = preg)) +
 <div class="article-tags">
   
   <a class="badge badge-light" href="/tag/data-science/">Data Science</a>
-  
-  <a class="badge badge-light" href="/tag/r-markdown/">R Markdown</a>
   
 </div>
 
@@ -1156,13 +1183,13 @@ ggplot(data = py$data,aes(x = preg)) +
       
       <li><a href="/post/remove-outliers/">Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python</a></li>
       
+      <li><a href="/post/data-manipulation/">So sánh dplyr và pandas cho data manipulation</a></li>
+      
       <li><a href="/post/ensemble-learning/">Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code)</a></li>
       
       <li><a href="/post/crypto/">Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap</a></li>
       
       <li><a href="/post/ggplot-plotly/">Data visualization với ggplot2. Chuyển đổi từ ggplot2 objects sang biểu đồ tương tác plotly</a></li>
-      
-      <li><a href="/post/2015-07-23-r-rmarkdown/">Mở đầu với R Markdown</a></li>
       
     </ul>
   </div>
