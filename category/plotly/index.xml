@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>plotly | Khoa học dữ liệu với R và Python</title>
+    <title>plotly | Khoa Học Dữ Liệu</title>
     <link>/category/plotly/</link>
       <atom:link href="/category/plotly/index.xml" rel="self" type="application/rss+xml" />
     <description>plotly</description>

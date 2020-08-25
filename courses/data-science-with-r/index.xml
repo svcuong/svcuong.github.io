@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Khoa học dữ liệu với R | Khoa học dữ liệu với R và Python</title>
+    <title>Khoa học dữ liệu với R | Khoa Học Dữ Liệu</title>
     <link>/courses/data-science-with-r/</link>
       <atom:link href="/courses/data-science-with-r/index.xml" rel="self" type="application/rss+xml" />
     <description>Khoa học dữ liệu với R</description>

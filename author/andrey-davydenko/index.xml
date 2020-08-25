@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Andrey Davydenko | Khoa học dữ liệu với R và Python</title>
+    <title>Andrey Davydenko | Khoa Học Dữ Liệu</title>
     <link>/author/andrey-davydenko/</link>
       <atom:link href="/author/andrey-davydenko/index.xml" rel="self" type="application/rss+xml" />
     <description>Andrey Davydenko</description>
@@ -29,9 +29,9 @@
     
     <item>
       <title>Data Schemas for Forecasting (with Examples in R)</title>
-      <link>/publication/conference-paper1/</link>
+      <link>/publication/smart2018/</link>
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/conference-paper1/</guid>
+      <guid>/publication/smart2018/</guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
     Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.

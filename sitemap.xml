@@ -183,7 +183,7 @@
   </url>
   
   <url>
-    <loc>/publication/conference-paper3/</loc>
+    <loc>/publication/soict2019/</loc>
     <lastmod>2019-12-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -198,7 +198,7 @@
   </url>
   
   <url>
-    <loc>/publication/conference-paper2/</loc>
+    <loc>/publication/citds2019/</loc>
     <lastmod>2019-08-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -258,7 +258,12 @@
   </url>
   
   <url>
-    <loc>/publication/conference-paper1/</loc>
+    <loc>/publication/smart2018/</loc>
+    <lastmod>2018-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/forecast-evaluation/</loc>
     <lastmod>2018-11-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -273,7 +278,17 @@
   </url>
   
   <url>
-    <loc>/publication/conference-paper4/</loc>
+    <loc>/tag/augmented-reality/</loc>
+    <lastmod>2018-08-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/multiple-source-analysis/</loc>
+    <lastmod>2018-08-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/dcnn2018/</loc>
     <lastmod>2018-08-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -300,11 +315,6 @@
   <url>
     <loc>/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/</loc>
     <lastmod>2018-04-18T08:40:38+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/forecast-evaluation/</loc>
-    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
