@@ -168,6 +168,16 @@
   </url>
   
   <url>
+    <loc>/publication-type/8/</loc>
+    <lastmod>2020-03-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/paten4/</loc>
+    <lastmod>2020-03-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tag/forecast-evaluation/</loc>
     <lastmod>2020-03-08T00:00:00+00:00</lastmod>
   </url>
@@ -283,11 +293,6 @@
   </url>
   
   <url>
-    <loc>/tag/source-themes/</loc>
-    <lastmod>2018-09-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tag/augmented-reality/</loc>
     <lastmod>2018-08-24T00:00:00+00:00</lastmod>
   </url>
@@ -318,6 +323,11 @@
   </url>
   
   <url>
+    <loc>/tag/source-themes/</loc>
+    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tag/r-markdown/</loc>
     <lastmod>2018-04-18T08:40:38+04:00</lastmod>
   </url>
@@ -330,11 +340,6 @@
   <url>
     <loc>/project/forvision-project/</loc>
     <lastmod>2018-02-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication-type/8/</loc>
-    <lastmod>2017-09-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
