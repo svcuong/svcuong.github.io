@@ -178,12 +178,27 @@
   </url>
   
   <url>
-    <loc>/publication/journal-article1/</loc>
+    <loc>/publication/journal-software/</loc>
+    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/industry-4.0/</loc>
+    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/iot/</loc>
     <lastmod>2019-12-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/publication/soict2019/</loc>
+    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/predictive-maintenance/</loc>
     <lastmod>2019-12-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -203,22 +218,7 @@
   </url>
   
   <url>
-    <loc>/tag/industry-4.0/</loc>
-    <lastmod>2019-08-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/iot/</loc>
-    <lastmod>2019-08-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/author/phu-tran/</loc>
-    <lastmod>2019-08-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/predictive-maintenance/</loc>
     <lastmod>2019-08-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -278,7 +278,7 @@
   </url>
   
   <url>
-    <loc>/publication/conference-paper5/</loc>
+    <loc>/publication/%D0%BC%D0%BCe%D1%822018/</loc>
     <lastmod>2018-09-10T00:00:00+00:00</lastmod>
   </url>
   

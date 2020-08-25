@@ -5,12 +5,52 @@
     <link>/tag/predictive-maintenance/</link>
       <atom:link href="/tag/predictive-maintenance/index.xml" rel="self" type="application/rss+xml" />
     <description>Predictive Maintenance</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Tue, 20 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Fri, 20 Dec 2019 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
       <title>Predictive Maintenance</title>
       <link>/tag/predictive-maintenance/</link>
     </image>
+    
+    <item>
+      <title>Architecture of predictive maintenance system of complex multi-object systems in Industry 4.0 concept</title>
+      <link>/publication/journal-software/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/journal-software/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PdM&#39;:&#39; A predictive maintenance modeling tool implemented as R-package and web-application</title>
+      <link>/publication/soict2019/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/soict2019/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Data-Driven Framework for Predictive Maintenance in Industry 4.0 Concept</title>
