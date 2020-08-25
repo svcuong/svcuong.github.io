@@ -46,6 +46,9 @@
 
   
   
+  
+  <script src="/js/mathjax-config.js"></script>
+  
 
   
   
@@ -183,9 +186,9 @@
 
       
       
-        
-      
 
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
       
     
       
@@ -837,8 +840,8 @@ coins &lt;- read_json(json, simplifyVector = TRUE)</code></pre>
 ## 6        Chainlink   LINK    6       chainlink
 ## 7         Litecoin    LTC    7        litecoin
 ## 8       Bitcoin SV    BSV    8      bitcoin-sv
-## 9          Cardano    ADA    9         cardano
-## 10 Crypto.com Coin    CRO   10 crypto-com-coin
+## 9  Crypto.com Coin    CRO    9 crypto-com-coin
+## 10    Binance Coin    BNB   10    binance-coin
 ##                                   tokens   id
 ## 1                  Bitcoin, bitcoin, BTC    1
 ## 2                Ethereum, ethereum, ETH 1027
@@ -848,11 +851,11 @@ coins &lt;- read_json(json, simplifyVector = TRUE)</code></pre>
 ## 6             Chainlink, chainlink, LINK 1975
 ## 7                Litecoin, litecoin, LTC    2
 ## 8            Bitcoin SV, bitcoin-sv, BSV 3602
-## 9                  Cardano, cardano, ADA 2010
-## 10 Crypto.com Coin, crypto-com-coin, CRO 3635</code></pre>
+## 9  Crypto.com Coin, crypto-com-coin, CRO 3635
+## 10       Binance Coin, binance-coin, BNB 1839</code></pre>
 <p>Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên <code>CoinMarketCap</code>:</p>
 <pre class="r"><code>dim(coins)[1]</code></pre>
-<pre><code>## [1] 4812</code></pre>
+<pre><code>## [1] 4851</code></pre>
 <p>Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng <code>coins</code> đầu tiên có rank từ 2 đến 11:</p>
 <pre class="r"><code># Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:11]
 coinslug &lt;- coins$slug[2:11]
@@ -905,16 +908,16 @@ results_data &lt;- do.call(rbind, results_data)</code></pre>
 <p>Để kiểm tra dữ liệu thu được, ta hiển thị <code>10</code> hàng dữ liệu đầu tiên trong bẳng bằng lệnh <code>head()</code>:</p>
 <pre class="r"><code>head(results_data, 10)</code></pre>
 <pre><code>##            Date  Open.   High    Low Close..         Volume     Market.Cap
-## 1  Aug 21, 2020 416.15 418.64 387.44  389.13 11,781,796,374 43,690,315,907
-## 2  Aug 20, 2020 406.76 418.73 404.03  416.44 10,043,032,427 46,751,356,941
-## 3  Aug 19, 2020 423.74 427.02 396.68  406.46 13,137,391,167 45,625,864,918
-## 4  Aug 18, 2020 429.67 432.58 419.67  423.67 11,978,984,079 47,551,407,033
-## 5  Aug 17, 2020 433.97 442.73 422.65  429.53 13,227,089,410 48,203,426,751
-## 6  Aug 16, 2020 433.35 436.27 415.09  433.79 12,168,816,874 48,675,162,267
-## 7  Aug 15, 2020 437.56 441.75 429.87  433.35 12,416,067,894 48,620,820,125
-## 8  Aug 14, 2020 428.68 444.58 423.35  437.40 15,064,589,987 49,068,474,083
-## 9  Aug 13, 2020 390.84 432.90 379.71  428.74 18,480,303,526 48,091,569,052
-## 10 Aug 12, 2020 380.06 391.31 367.92  391.02 12,408,772,745 43,855,501,072
+## 1  Aug 22, 2020 389.03 396.47 382.81  395.84 10,131,847,985 44,448,918,222
+## 2  Aug 21, 2020 416.15 418.64 387.44  389.13 11,781,796,374 43,690,315,907
+## 3  Aug 20, 2020 406.76 418.73 404.03  416.44 10,043,032,427 46,751,356,941
+## 4  Aug 19, 2020 423.74 427.02 396.68  406.46 13,137,391,167 45,625,864,918
+## 5  Aug 18, 2020 429.67 432.58 419.67  423.67 11,978,984,079 47,551,407,033
+## 6  Aug 17, 2020 433.97 442.73 422.65  429.53 13,227,089,410 48,203,426,751
+## 7  Aug 16, 2020 433.35 436.27 415.09  433.79 12,168,816,874 48,675,162,267
+## 8  Aug 15, 2020 437.56 441.75 429.87  433.35 12,416,067,894 48,620,820,125
+## 9  Aug 14, 2020 428.68 444.58 423.35  437.40 15,064,589,987 49,068,474,083
+## 10 Aug 13, 2020 390.84 432.90 379.71  428.74 18,480,303,526 48,091,569,052
 ##        Slug
 ## 1  ethereum
 ## 2  ethereum
@@ -935,52 +938,52 @@ df &lt;- full_join(coinnames, results_data, by = &quot;Slug&quot;)</code></pre>
 <p>Để kiểm tra bảng dữ liệu mới thu được, ta hiển thị <code>10</code> hàng dữ liệu đầu tiên trong bảng:</p>
 <pre class="r"><code>head(df, 10)</code></pre>
 <pre><code>##        Name Symbol     Slug         Date  Open.   High    Low Close..
-## 1  Ethereum    ETH ethereum Aug 21, 2020 416.15 418.64 387.44  389.13
-## 2  Ethereum    ETH ethereum Aug 20, 2020 406.76 418.73 404.03  416.44
-## 3  Ethereum    ETH ethereum Aug 19, 2020 423.74 427.02 396.68  406.46
-## 4  Ethereum    ETH ethereum Aug 18, 2020 429.67 432.58 419.67  423.67
-## 5  Ethereum    ETH ethereum Aug 17, 2020 433.97 442.73 422.65  429.53
-## 6  Ethereum    ETH ethereum Aug 16, 2020 433.35 436.27 415.09  433.79
-## 7  Ethereum    ETH ethereum Aug 15, 2020 437.56 441.75 429.87  433.35
-## 8  Ethereum    ETH ethereum Aug 14, 2020 428.68 444.58 423.35  437.40
-## 9  Ethereum    ETH ethereum Aug 13, 2020 390.84 432.90 379.71  428.74
-## 10 Ethereum    ETH ethereum Aug 12, 2020 380.06 391.31 367.92  391.02
+## 1  Ethereum    ETH ethereum Aug 22, 2020 389.03 396.47 382.81  395.84
+## 2  Ethereum    ETH ethereum Aug 21, 2020 416.15 418.64 387.44  389.13
+## 3  Ethereum    ETH ethereum Aug 20, 2020 406.76 418.73 404.03  416.44
+## 4  Ethereum    ETH ethereum Aug 19, 2020 423.74 427.02 396.68  406.46
+## 5  Ethereum    ETH ethereum Aug 18, 2020 429.67 432.58 419.67  423.67
+## 6  Ethereum    ETH ethereum Aug 17, 2020 433.97 442.73 422.65  429.53
+## 7  Ethereum    ETH ethereum Aug 16, 2020 433.35 436.27 415.09  433.79
+## 8  Ethereum    ETH ethereum Aug 15, 2020 437.56 441.75 429.87  433.35
+## 9  Ethereum    ETH ethereum Aug 14, 2020 428.68 444.58 423.35  437.40
+## 10 Ethereum    ETH ethereum Aug 13, 2020 390.84 432.90 379.71  428.74
 ##            Volume     Market.Cap
-## 1  11,781,796,374 43,690,315,907
-## 2  10,043,032,427 46,751,356,941
-## 3  13,137,391,167 45,625,864,918
-## 4  11,978,984,079 47,551,407,033
-## 5  13,227,089,410 48,203,426,751
-## 6  12,168,816,874 48,675,162,267
-## 7  12,416,067,894 48,620,820,125
-## 8  15,064,589,987 49,068,474,083
-## 9  18,480,303,526 48,091,569,052
-## 10 12,408,772,745 43,855,501,072</code></pre>
+## 1  10,131,847,985 44,448,918,222
+## 2  11,781,796,374 43,690,315,907
+## 3  10,043,032,427 46,751,356,941
+## 4  13,137,391,167 45,625,864,918
+## 5  11,978,984,079 47,551,407,033
+## 6  13,227,089,410 48,203,426,751
+## 7  12,168,816,874 48,675,162,267
+## 8  12,416,067,894 48,620,820,125
+## 9  15,064,589,987 49,068,474,083
+## 10 18,480,303,526 48,091,569,052</code></pre>
 <p>Ta thấy cột <code>Date</code> ở dạng <code>character</code> nên cần chuyển về dạng <code>date</code> như sau:</p>
 <pre class="r"><code>df$Date &lt;- lubridate::mdy(unlist(df$Date))
 head(df, 10)</code></pre>
 <pre><code>##        Name Symbol     Slug       Date  Open.   High    Low Close..
-## 1  Ethereum    ETH ethereum 2020-08-21 416.15 418.64 387.44  389.13
-## 2  Ethereum    ETH ethereum 2020-08-20 406.76 418.73 404.03  416.44
-## 3  Ethereum    ETH ethereum 2020-08-19 423.74 427.02 396.68  406.46
-## 4  Ethereum    ETH ethereum 2020-08-18 429.67 432.58 419.67  423.67
-## 5  Ethereum    ETH ethereum 2020-08-17 433.97 442.73 422.65  429.53
-## 6  Ethereum    ETH ethereum 2020-08-16 433.35 436.27 415.09  433.79
-## 7  Ethereum    ETH ethereum 2020-08-15 437.56 441.75 429.87  433.35
-## 8  Ethereum    ETH ethereum 2020-08-14 428.68 444.58 423.35  437.40
-## 9  Ethereum    ETH ethereum 2020-08-13 390.84 432.90 379.71  428.74
-## 10 Ethereum    ETH ethereum 2020-08-12 380.06 391.31 367.92  391.02
+## 1  Ethereum    ETH ethereum 2020-08-22 389.03 396.47 382.81  395.84
+## 2  Ethereum    ETH ethereum 2020-08-21 416.15 418.64 387.44  389.13
+## 3  Ethereum    ETH ethereum 2020-08-20 406.76 418.73 404.03  416.44
+## 4  Ethereum    ETH ethereum 2020-08-19 423.74 427.02 396.68  406.46
+## 5  Ethereum    ETH ethereum 2020-08-18 429.67 432.58 419.67  423.67
+## 6  Ethereum    ETH ethereum 2020-08-17 433.97 442.73 422.65  429.53
+## 7  Ethereum    ETH ethereum 2020-08-16 433.35 436.27 415.09  433.79
+## 8  Ethereum    ETH ethereum 2020-08-15 437.56 441.75 429.87  433.35
+## 9  Ethereum    ETH ethereum 2020-08-14 428.68 444.58 423.35  437.40
+## 10 Ethereum    ETH ethereum 2020-08-13 390.84 432.90 379.71  428.74
 ##            Volume     Market.Cap
-## 1  11,781,796,374 43,690,315,907
-## 2  10,043,032,427 46,751,356,941
-## 3  13,137,391,167 45,625,864,918
-## 4  11,978,984,079 47,551,407,033
-## 5  13,227,089,410 48,203,426,751
-## 6  12,168,816,874 48,675,162,267
-## 7  12,416,067,894 48,620,820,125
-## 8  15,064,589,987 49,068,474,083
-## 9  18,480,303,526 48,091,569,052
-## 10 12,408,772,745 43,855,501,072</code></pre>
+## 1  10,131,847,985 44,448,918,222
+## 2  11,781,796,374 43,690,315,907
+## 3  10,043,032,427 46,751,356,941
+## 4  13,137,391,167 45,625,864,918
+## 5  11,978,984,079 47,551,407,033
+## 6  13,227,089,410 48,203,426,751
+## 7  12,168,816,874 48,675,162,267
+## 8  12,416,067,894 48,620,820,125
+## 9  15,064,589,987 49,068,474,083
+## 10 18,480,303,526 48,091,569,052</code></pre>
 <p>Dùng thư viện <code>ggplot2</code> để trực quan hóa và so sánh biến động giá cả của các loại <code>coins</code> trong khoảng thời gian từ ngày <code>21/08/2019</code> dến ngày <code>21/08/2020</code>:</p>
 <pre class="r"><code># Chỉ so sánh thông tìn các cột Open, High, Low, Close
 df &lt;- df[,1:8]
@@ -1023,7 +1026,7 @@ Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các 
 
 <div class="article-tags">
   
-  <a class="badge badge-light" href="/tag/web-scraping/">Web scraping</a>
+  <a class="badge badge-light" href="/tag/data-science/">Data Science</a>
   
   <a class="badge badge-light" href="/tag/data-visualization/">Data Visualization</a>
   
@@ -1200,7 +1203,7 @@ Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các 
     
     <li>
       <a href="https://scholar.google.co.uk/citations?hl=en&amp;user=qhiD3RUAAAAJ" target="_blank" rel="noopener">
-        <i class="fab fa-google-sholar"></i>
+        <i class="fab fa-google-scholar"></i>
       </a>
     </li>
   
@@ -1282,7 +1285,7 @@ Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các 
       
       <li><a href="/post/remove-outliers/">Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python</a></li>
       
-      <li><a href="/post/data-manipulation/">So sánh dplyr và pandas cho data manipulation</a></li>
+      <li><a href="/project/pdm-project/">The PdM Project</a></li>
       
     </ul>
   </div>

@@ -73,6 +73,11 @@
   </url>
   
   <url>
+    <loc>/tag/data-science/</loc>
+    <lastmod>2020-08-22T18:45:46+04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/ggplot-plotly/</loc>
     <lastmod>2020-08-22T16:50:57+04:00</lastmod>
   </url>
@@ -80,16 +85,6 @@
   <url>
     <loc>/tag/ggplot2/</loc>
     <lastmod>2020-08-22T16:50:57+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/web-scraping/</loc>
-    <lastmod>2020-08-22T18:45:46+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/data-science/</loc>
-    <lastmod>2020-08-20T15:43:27+04:00</lastmod>
   </url>
   
   <url>
@@ -398,7 +393,7 @@
   </url>
   
   <url>
-    <loc>/author/%E5%90%B3%E6%81%A9%E9%81%94/</loc>
+    <loc>/author/quyen-vo/</loc>
   </url>
   
 </urlset>

@@ -46,6 +46,9 @@
 
   
   
+  
+  <script src="/js/mathjax-config.js"></script>
+  
 
   
   
@@ -183,9 +186,9 @@
 
       
       
-        
-      
 
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
       
     
       
@@ -787,7 +790,7 @@
     <div class="article-style">
       <p>
 <a href="https://leadupcollective.org/2017/06/02/statistics-high-performers-studying-the-outliers/" target="_blank" rel="noopener">Nguồn ảnh</a>
-<img src="/post/2020-08-19-remove-outliers.vn_files/outliers1.jpg" alt=""></p>
+<img src="/img/outliers1.jpg" alt=""></p>
 <p>Outliers (dữ liệu ngoại lai hay là nhiễu) là một trong những thuật ngữ được sử dụng rất rộng rãi trong thế giới data science. Trong quá trình xây dựng các mô hình dự đoán, việc xác định và loại bỏ outliers trong dữ liệu là một bước vô cùng quan trọng. Nó giúp tăng cao độ chính xác cho các mô hình dự đoán.</p>
 <p>Khi phân tích, chúng ta thường dùng các tham số như là <code>mean</code>, <code>median</code> và <code>mode</code> để biết xu hướng tập trung của dữ liệu. Tuy nhiên, một câu hỏi quan trọng cần phải trả lời khi xem xét chất lượng của một mẫu dữ liệu trong  phân tích  đó là <em>&ldquo;làm sao để đo được độ biến động (hay độ phân tán) của mẫu dữ liệu đó&rdquo;?</em>.  Vì chúng ta có thể có 2 mẫu dữ liệu với cùng giá trị <code>mean</code> nhưng độ biến động của chúng lại hoàn toàn khác nhau. Trong thống kê những đại lượng phổ biến nhất để đo lường tiêu chí này là khoảng phần tư (interquartile range, <code>IQR</code>) (hay còn được gọi là khoảng cách giữa các tứ phân vị), phương sai (<code>variance</code>) và độ lệch chuẩn (standard deviation, <code>STD</code>).</p>
 <p>Ở post này tôi sẽ giới thiệu với các bạn cách sử dụng 2 phương pháp thống kê trong R và Python để xác định và loại bỏ outliers trong dữ liệu đó là:</p>
@@ -827,13 +830,13 @@ hist(data, breaks= 60, main=&quot;Histogram With breaks=60&quot;)
 summary(data)
 </code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   13.49   18.64   19.97   19.99   21.32   27.42
+##   12.48   18.69   19.97   20.00   21.38   27.36
 </code></pre>
 <p>Ví dụ sử dụng hàm <code>sample()</code> để tạo mẫu ngẫu nhiên có lặp lại 10 số nguyên từ 0 đến 9:</p>
 <pre><code class="language-r"># R
 sample(0:9, replace = TRUE)
 </code></pre>
-<pre><code>##  [1] 4 2 4 1 6 1 9 6 2 7
+<pre><code>##  [1] 5 3 5 2 7 4 9 7 6 8
 </code></pre>
 <p>Ví dụ sử dụng hàm tính mật độ phân phối chuẩn <code>dnorm()</code> để ước tính xác xuất của học sinh có điểm là <code>16.5</code>  biết rằng điểm của học sinh tuân theo phân phối chuẩn với giá trị trung bình là <code>15</code>, độ lệnh chuẩn là <code>2.5</code>:</p>
 <pre><code class="language-r"># R
@@ -896,7 +899,7 @@ print(paste(&quot;Number of outliers:&quot;, length(ouliers_index_std)))
 ouliers_index_std = [x for x in data if x &lt; lower_std or x &gt; upper_std]
 print('Number of outliers: %d' % len(ouliers_index_std))
 </code></pre>
-<pre><code>## Number of outliers: 16
+<pre><code>## Number of outliers: 15
 </code></pre>
 <pre><code class="language-r"># Loại bỏ outliers
 # R
@@ -909,7 +912,7 @@ print(paste(&quot;Number of Non-outliers:&quot;, length(data_new_std)))
 data_new_std = [x for x in data if x &gt;= lower_std and x &lt;= upper_std]
 print('Number of Non-outliers:: %d' % len(data_new_std))
 </code></pre>
-<pre><code>## Number of Non-outliers:: 4984
+<pre><code>## Number of Non-outliers:: 4985
 </code></pre>
 <p><strong>2. Phương pháp <code>IQR</code></strong></p>
 <p>Tứ phân vị là đại lượng mô tả sự phân bố và sự phân tán của tập dữ liệu. Tứ phân vị có <code>3</code> giá trị, đó là tứ phân vị thứ nhất <code>Q1</code> (25th), thứ hai <code>Q2</code> (50th) hay <code>median</code>, và thứ ba <code>Q3</code> (75th). Ba giá trị này chia một tập hợp dữ liệu (đã sắp xếp dữ liệu theo trật từ từ bé đến lớn) thành <code>4</code> phần có số lượng quan sát đều nhau. Tứ phân vị được xác định như sau:</p>
@@ -954,26 +957,26 @@ lower_iqr, upper_iqr = q25 - limit_iqr, q75 + limit_iqr
 ouliers_index_iqr &lt;- which(data &gt; upper_iqr | data &lt; lower_iqr)
 print(paste(&quot;Number of outliers:&quot;, length(ouliers_index_iqr)))
 </code></pre>
-<pre><code>## [1] &quot;Number of outliers: 38&quot;
+<pre><code>## [1] &quot;Number of outliers: 33&quot;
 </code></pre>
 <pre><code class="language-python"># Python
 ouliers_index_iqr = [x for x in data if x &lt; lower_iqr or x &gt; upper_iqr]
 print('Number of outliers: %d' % len(ouliers_index_iqr))
 </code></pre>
-<pre><code>## Number of outliers: 30
+<pre><code>## Number of outliers: 37
 </code></pre>
 <pre><code class="language-r"># Loại bỏ outliers
 # R
 data_new_iqr &lt;- data[-ouliers_index_iqr]
 print(paste(&quot;Number of Non-outliers:&quot;, length(data_new_iqr)))
 </code></pre>
-<pre><code>## [1] &quot;Number of Non-outliers: 4962&quot;
+<pre><code>## [1] &quot;Number of Non-outliers: 4967&quot;
 </code></pre>
 <pre><code class="language-python"># Python
 data_new_iqr = [x for x in data if x &gt;= lower_iqr and x &lt;= upper_iqr]
 print('Non-outlier observations: %d' % len(data_new_iqr))
 </code></pre>
-<pre><code>## Non-outlier observations: 4970
+<pre><code>## Non-outlier observations: 4963
 </code></pre>
 <p><strong>3. Xây dựng hàm tự động xác định và loại bỏ <code>outliers</code></strong></p>
 <p>Chúng ta có thể tạo một hàm trên R dựa vào các bước ở trên để tự động xác định và xóa outliers như sau:</p>
@@ -1029,13 +1032,13 @@ find_outliers_iqr &lt;- function(data) {
 </code></pre>
 <pre><code>## Number of outliers: 14
 </code></pre>
-<pre><code>## Number of Non-outliers: 4962
+<pre><code>## Number of Non-outliers: 4967
 </code></pre>
 <pre><code class="language-r">new_data_iqr &lt;- find_outliers_iqr(data)
 </code></pre>
-<pre><code>## Number of outliers: 38
+<pre><code>## Number of outliers: 33
 </code></pre>
-<pre><code>## Number of Non-outliers: 4962
+<pre><code>## Number of Non-outliers: 4967
 </code></pre>
 <p>Đối với Python thì các bạn có thể tạo hàm tương tự sử dụng các bước trên</p>
 <hr>
@@ -1230,7 +1233,7 @@ find_outliers_iqr &lt;- function(data) {
     
     <li>
       <a href="https://scholar.google.co.uk/citations?hl=en&amp;user=qhiD3RUAAAAJ" target="_blank" rel="noopener">
-        <i class="fab fa-google-sholar"></i>
+        <i class="fab fa-google-scholar"></i>
       </a>
     </li>
   
