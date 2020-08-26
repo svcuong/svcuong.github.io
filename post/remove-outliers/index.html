@@ -830,13 +830,13 @@ hist(data, breaks= 60, main=&quot;Histogram With breaks=60&quot;)
 summary(data)
 </code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   12.48   18.69   19.97   20.00   21.38   27.36
+##   12.43   18.54   19.90   19.92   21.32   27.40
 </code></pre>
 <p>Ví dụ sử dụng hàm <code>sample()</code> để tạo mẫu ngẫu nhiên có lặp lại 10 số nguyên từ 0 đến 9:</p>
 <pre><code class="language-r"># R
 sample(0:9, replace = TRUE)
 </code></pre>
-<pre><code>##  [1] 5 3 5 2 7 4 9 7 6 8
+<pre><code>##  [1] 9 0 1 5 4 5 1 7 7 9
 </code></pre>
 <p>Ví dụ sử dụng hàm tính mật độ phân phối chuẩn <code>dnorm()</code> để ước tính xác xuất của học sinh có điểm là <code>16.5</code>  biết rằng điểm của học sinh tuân theo phân phối chuẩn với giá trị trung bình là <code>15</code>, độ lệnh chuẩn là <code>2.5</code>:</p>
 <pre><code class="language-r"># R
@@ -893,26 +893,26 @@ lower_std, upper_std = mean_data - limit_std, mean_data + limit_std
 ouliers_index_std &lt;- which(data &gt; upper_std | data &lt; lower_std)
 print(paste(&quot;Number of outliers:&quot;, length(ouliers_index_std)))
 </code></pre>
-<pre><code>## [1] &quot;Number of outliers: 14&quot;
+<pre><code>## [1] &quot;Number of outliers: 9&quot;
 </code></pre>
 <pre><code class="language-python"># Python
 ouliers_index_std = [x for x in data if x &lt; lower_std or x &gt; upper_std]
 print('Number of outliers: %d' % len(ouliers_index_std))
 </code></pre>
-<pre><code>## Number of outliers: 15
+<pre><code>## Number of outliers: 13
 </code></pre>
 <pre><code class="language-r"># Loại bỏ outliers
 # R
 data_new_std &lt;- data[-ouliers_index_std]
 print(paste(&quot;Number of Non-outliers:&quot;, length(data_new_std)))
 </code></pre>
-<pre><code>## [1] &quot;Number of Non-outliers: 4986&quot;
+<pre><code>## [1] &quot;Number of Non-outliers: 4991&quot;
 </code></pre>
 <pre><code class="language-python"># Python
 data_new_std = [x for x in data if x &gt;= lower_std and x &lt;= upper_std]
 print('Number of Non-outliers:: %d' % len(data_new_std))
 </code></pre>
-<pre><code>## Number of Non-outliers:: 4985
+<pre><code>## Number of Non-outliers:: 4987
 </code></pre>
 <p><strong>2. Phương pháp <code>IQR</code></strong></p>
 <p>Tứ phân vị là đại lượng mô tả sự phân bố và sự phân tán của tập dữ liệu. Tứ phân vị có <code>3</code> giá trị, đó là tứ phân vị thứ nhất <code>Q1</code> (25th), thứ hai <code>Q2</code> (50th) hay <code>median</code>, và thứ ba <code>Q3</code> (75th). Ba giá trị này chia một tập hợp dữ liệu (đã sắp xếp dữ liệu theo trật từ từ bé đến lớn) thành <code>4</code> phần có số lượng quan sát đều nhau. Tứ phân vị được xác định như sau:</p>
@@ -957,26 +957,26 @@ lower_iqr, upper_iqr = q25 - limit_iqr, q75 + limit_iqr
 ouliers_index_iqr &lt;- which(data &gt; upper_iqr | data &lt; lower_iqr)
 print(paste(&quot;Number of outliers:&quot;, length(ouliers_index_iqr)))
 </code></pre>
-<pre><code>## [1] &quot;Number of outliers: 33&quot;
+<pre><code>## [1] &quot;Number of outliers: 28&quot;
 </code></pre>
 <pre><code class="language-python"># Python
 ouliers_index_iqr = [x for x in data if x &lt; lower_iqr or x &gt; upper_iqr]
 print('Number of outliers: %d' % len(ouliers_index_iqr))
 </code></pre>
-<pre><code>## Number of outliers: 37
+<pre><code>## Number of outliers: 38
 </code></pre>
 <pre><code class="language-r"># Loại bỏ outliers
 # R
 data_new_iqr &lt;- data[-ouliers_index_iqr]
 print(paste(&quot;Number of Non-outliers:&quot;, length(data_new_iqr)))
 </code></pre>
-<pre><code>## [1] &quot;Number of Non-outliers: 4967&quot;
+<pre><code>## [1] &quot;Number of Non-outliers: 4972&quot;
 </code></pre>
 <pre><code class="language-python"># Python
 data_new_iqr = [x for x in data if x &gt;= lower_iqr and x &lt;= upper_iqr]
 print('Non-outlier observations: %d' % len(data_new_iqr))
 </code></pre>
-<pre><code>## Non-outlier observations: 4963
+<pre><code>## Non-outlier observations: 4962
 </code></pre>
 <p><strong>3. Xây dựng hàm tự động xác định và loại bỏ <code>outliers</code></strong></p>
 <p>Chúng ta có thể tạo một hàm trên R dựa vào các bước ở trên để tự động xác định và xóa outliers như sau:</p>
@@ -1030,15 +1030,15 @@ find_outliers_iqr &lt;- function(data) {
 <p>Kiểm tra kết quả thực hiện của hai hàm này:</p>
 <pre><code class="language-r">new_data_std &lt;- find_outliers_std(data)
 </code></pre>
-<pre><code>## Number of outliers: 14
+<pre><code>## Number of outliers: 9
 </code></pre>
-<pre><code>## Number of Non-outliers: 4967
+<pre><code>## Number of Non-outliers: 4972
 </code></pre>
 <pre><code class="language-r">new_data_iqr &lt;- find_outliers_iqr(data)
 </code></pre>
-<pre><code>## Number of outliers: 33
+<pre><code>## Number of outliers: 28
 </code></pre>
-<pre><code>## Number of Non-outliers: 4967
+<pre><code>## Number of Non-outliers: 4972
 </code></pre>
 <p>Đối với Python thì các bạn có thể tạo hàm tương tự sử dụng các bước trên</p>
 <hr>

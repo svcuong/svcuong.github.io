@@ -836,8 +836,8 @@ coins &lt;- read_json(json, simplifyVector = TRUE)</code></pre>
 ## 2         Ethereum    ETH    2        ethereum
 ## 3              XRP    XRP    3             xrp
 ## 4           Tether   USDT    4          tether
-## 5     Bitcoin Cash    BCH    5    bitcoin-cash
-## 6        Chainlink   LINK    6       chainlink
+## 5        Chainlink   LINK    5       chainlink
+## 6     Bitcoin Cash    BCH    6    bitcoin-cash
 ## 7         Litecoin    LTC    7        litecoin
 ## 8       Bitcoin SV    BSV    8      bitcoin-sv
 ## 9  Crypto.com Coin    CRO    9 crypto-com-coin
@@ -847,15 +847,15 @@ coins &lt;- read_json(json, simplifyVector = TRUE)</code></pre>
 ## 2                Ethereum, ethereum, ETH 1027
 ## 3                          XRP, xrp, XRP   52
 ## 4                   Tether, tether, USDT  825
-## 5        Bitcoin Cash, bitcoin-cash, BCH 1831
-## 6             Chainlink, chainlink, LINK 1975
+## 5             Chainlink, chainlink, LINK 1975
+## 6        Bitcoin Cash, bitcoin-cash, BCH 1831
 ## 7                Litecoin, litecoin, LTC    2
 ## 8            Bitcoin SV, bitcoin-sv, BSV 3602
 ## 9  Crypto.com Coin, crypto-com-coin, CRO 3635
 ## 10       Binance Coin, binance-coin, BNB 1839</code></pre>
 <p>Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên <code>CoinMarketCap</code>:</p>
 <pre class="r"><code>dim(coins)[1]</code></pre>
-<pre><code>## [1] 4851</code></pre>
+<pre><code>## [1] 4861</code></pre>
 <p>Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng <code>coins</code> đầu tiên có rank từ 2 đến 11:</p>
 <pre class="r"><code># Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:11]
 coinslug &lt;- coins$slug[2:11]
@@ -1285,7 +1285,7 @@ Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các 
       
       <li><a href="/post/remove-outliers/">Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python</a></li>
       
-      <li><a href="/project/pdm-project/">The PdM Project</a></li>
+      <li><a href="/post/jupyter/">Thử sử dụng jupyter notebook để viết posts cho blog. Machine Learning Project Template với Python</a></li>
       
     </ul>
   </div>
