@@ -346,13 +346,13 @@ hist(data, breaks= 60, main=&amp;quot;Histogram With breaks=60&amp;quot;)
 summary(data)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   12.43   18.54   19.90   19.92   21.32   27.40
+##   12.01   18.71   20.04   20.05   21.40   27.40
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ví dụ sử dụng hàm &lt;code&gt;sample()&lt;/code&gt; để tạo mẫu ngẫu nhiên có lặp lại 10 số nguyên từ 0 đến 9:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
 sample(0:9, replace = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] 9 0 1 5 4 5 1 7 7 9
+&lt;pre&gt;&lt;code&gt;##  [1] 1 8 5 8 5 5 2 9 8 2
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ví dụ sử dụng hàm tính mật độ phân phối chuẩn &lt;code&gt;dnorm()&lt;/code&gt; để ước tính xác xuất của học sinh có điểm là &lt;code&gt;16.5&lt;/code&gt;  biết rằng điểm của học sinh tuân theo phân phối chuẩn với giá trị trung bình là &lt;code&gt;15&lt;/code&gt;, độ lệnh chuẩn là &lt;code&gt;2.5&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
@@ -409,26 +409,26 @@ lower_std, upper_std = mean_data - limit_std, mean_data + limit_std
 ouliers_index_std &amp;lt;- which(data &amp;gt; upper_std | data &amp;lt; lower_std)
 print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_std)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 9&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 17&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 ouliers_index_std = [x for x in data if x &amp;lt; lower_std or x &amp;gt; upper_std]
 print(&#39;Number of outliers: %d&#39; % len(ouliers_index_std))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 13
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 8
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
 # R
 data_new_std &amp;lt;- data[-ouliers_index_std]
 print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_std)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4991&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4983&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 data_new_std = [x for x in data if x &amp;gt;= lower_std and x &amp;lt;= upper_std]
 print(&#39;Number of Non-outliers:: %d&#39; % len(data_new_std))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4987
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4992
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;2. Phương pháp &lt;code&gt;IQR&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Tứ phân vị là đại lượng mô tả sự phân bố và sự phân tán của tập dữ liệu. Tứ phân vị có &lt;code&gt;3&lt;/code&gt; giá trị, đó là tứ phân vị thứ nhất &lt;code&gt;Q1&lt;/code&gt; (25th), thứ hai &lt;code&gt;Q2&lt;/code&gt; (50th) hay &lt;code&gt;median&lt;/code&gt;, và thứ ba &lt;code&gt;Q3&lt;/code&gt; (75th). Ba giá trị này chia một tập hợp dữ liệu (đã sắp xếp dữ liệu theo trật từ từ bé đến lớn) thành &lt;code&gt;4&lt;/code&gt; phần có số lượng quan sát đều nhau. Tứ phân vị được xác định như sau:&lt;/p&gt;
@@ -473,26 +473,26 @@ lower_iqr, upper_iqr = q25 - limit_iqr, q75 + limit_iqr
 ouliers_index_iqr &amp;lt;- which(data &amp;gt; upper_iqr | data &amp;lt; lower_iqr)
 print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_iqr)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 28&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 42&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 ouliers_index_iqr = [x for x in data if x &amp;lt; lower_iqr or x &amp;gt; upper_iqr]
 print(&#39;Number of outliers: %d&#39; % len(ouliers_index_iqr))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 38
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 26
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
 # R
 data_new_iqr &amp;lt;- data[-ouliers_index_iqr]
 print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_iqr)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4972&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4958&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 data_new_iqr = [x for x in data if x &amp;gt;= lower_iqr and x &amp;lt;= upper_iqr]
 print(&#39;Non-outlier observations: %d&#39; % len(data_new_iqr))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4962
+&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4974
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;3. Xây dựng hàm tự động xác định và loại bỏ &lt;code&gt;outliers&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Chúng ta có thể tạo một hàm trên R dựa vào các bước ở trên để tự động xác định và xóa outliers như sau:&lt;/p&gt;
@@ -546,15 +546,15 @@ find_outliers_iqr &amp;lt;- function(data) {
 &lt;p&gt;Kiểm tra kết quả thực hiện của hai hàm này:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_std &amp;lt;- find_outliers_std(data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 9
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 17
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4972
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4958
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_iqr &amp;lt;- find_outliers_iqr(data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 28
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 42
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4972
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4958
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Đối với Python thì các bạn có thể tạo hàm tương tự sử dụng các bước trên&lt;/p&gt;
 &lt;hr&gt;
@@ -1008,7 +1008,7 @@ data_py.groupby([&amp;#39;cyl&amp;#39;, &amp;#39;am&amp;#39;])[&amp;#39;cyl&amp;
 &lt;p&gt;Trong khi đó, Python là ngôn ngữ đa mục đích có thể sử dụng trong nhiều lĩnh vực khác nhau từ lập trình ứng dụng web đến viết game. Có thể thấy là hiện nay Python đang thách thức ngôi vị lâu đầu của R như là một ngôn ngữ chung cho các nhà khoa học dữ liệu.&lt;/p&gt;
 &lt;p&gt;Tuy nhiên các doanh nghiệp sẽ không ưu tiên ngôn ngữ nào khi xem xét các kỹ năng của một nhà khoa học dữ liệu, vì vậy các bạn phải biết cách linh hoạt trong việc sử dụng các ngôn ngữ này làm công cụ cho khoa học dữ liệu làm sao hiệu quả nhất.&lt;/p&gt;
 &lt;p&gt;Cả R và Python đều có sử dụng để giải quyết các bài toán tương tự nhau trong khoa học dữ liệu. Cả hai đều có những packages hoặc libraries để giải quyết những vấn đề trong phân tích dữ liệu như tiền xủ lý, ứng dụng machine learning cho dữ liệu. Cả hai đều là lựa chọn tốt cho nghiên cứu khả lặp - một kỹ năng đòi hỏi trong rất nhiều lĩnh vực khác nhau. Tuy nhiên hai ngôn ngữ này lại có những tính năng tuyệt vời và điểm mạnh riêng vì vậy chúng ta nên kết hợp chúng để tận dụng những lợi thế của nhau, chỗ nào tiện và mạnh cái gì thì dùng cái đó. Hình dưới đây mô tả tóm tắt những điểm nổi trội của hai ngôn ngữ này:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;img/r-python.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/r-python.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Ở post này tôi sẽ giới thiệu với các bạn cách kết hợp hai ngôn ngữ này trong môi trường R bằng cách sử dụng package &lt;a href=&#34;https://rstudio.github.io/reticulate/&#34;&gt;reticulate&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Trước hết để tiến hành làm việc với Python và R chúng ta cần cài đặt chúng:&lt;/p&gt;
 &lt;ul&gt;
@@ -1079,7 +1079,7 @@ library(ggplot2)
 ggplot(flights, aes(carrier, arr_delay)) + geom_point() + geom_jitter()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;3. Python REPL&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Hàm &lt;code&gt;repl_python()&lt;/code&gt; cho phép các bạn có thể làm việc trực tiếp với Python trên R session. Các đối tượng được tạo ra từ Python REPL có thể được truy cập từ R bằng cách sử dụng &lt;em&gt;py$object&lt;/em&gt;. Ví dụ:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;img/python-repl.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/python-repl.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Dùng lệnh &lt;code&gt;exit&lt;/code&gt; để thoát python REPL&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Chú ý:&lt;/strong&gt; Trong Python code có thể sử dụng mọi đối tượng được tạo ra từ R bằng các sử dụng đối tượng &lt;code&gt;r.object&lt;/code&gt; (ví dụ &lt;code&gt;r.flights&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;4. Sử dụng python trong R markdown&lt;/strong&gt;&lt;/p&gt;

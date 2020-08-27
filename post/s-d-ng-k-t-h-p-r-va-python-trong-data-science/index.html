@@ -796,7 +796,7 @@
 <p>Trong khi đó, Python là ngôn ngữ đa mục đích có thể sử dụng trong nhiều lĩnh vực khác nhau từ lập trình ứng dụng web đến viết game. Có thể thấy là hiện nay Python đang thách thức ngôi vị lâu đầu của R như là một ngôn ngữ chung cho các nhà khoa học dữ liệu.</p>
 <p>Tuy nhiên các doanh nghiệp sẽ không ưu tiên ngôn ngữ nào khi xem xét các kỹ năng của một nhà khoa học dữ liệu, vì vậy các bạn phải biết cách linh hoạt trong việc sử dụng các ngôn ngữ này làm công cụ cho khoa học dữ liệu làm sao hiệu quả nhất.</p>
 <p>Cả R và Python đều có sử dụng để giải quyết các bài toán tương tự nhau trong khoa học dữ liệu. Cả hai đều có những packages hoặc libraries để giải quyết những vấn đề trong phân tích dữ liệu như tiền xủ lý, ứng dụng machine learning cho dữ liệu. Cả hai đều là lựa chọn tốt cho nghiên cứu khả lặp - một kỹ năng đòi hỏi trong rất nhiều lĩnh vực khác nhau. Tuy nhiên hai ngôn ngữ này lại có những tính năng tuyệt vời và điểm mạnh riêng vì vậy chúng ta nên kết hợp chúng để tận dụng những lợi thế của nhau, chỗ nào tiện và mạnh cái gì thì dùng cái đó. Hình dưới đây mô tả tóm tắt những điểm nổi trội của hai ngôn ngữ này:</p>
-<p><img src="img/r-python.png" /></p>
+<p><img src="/img/r-python.png" /></p>
 <p>Ở post này tôi sẽ giới thiệu với các bạn cách kết hợp hai ngôn ngữ này trong môi trường R bằng cách sử dụng package <a href="https://rstudio.github.io/reticulate/">reticulate</a>.</p>
 <p>Trước hết để tiến hành làm việc với Python và R chúng ta cần cài đặt chúng:</p>
 <ul>
@@ -867,7 +867,7 @@ library(ggplot2)
 ggplot(flights, aes(carrier, arr_delay)) + geom_point() + geom_jitter()</code></pre>
 <p><strong>3. Python REPL</strong></p>
 <p>Hàm <code>repl_python()</code> cho phép các bạn có thể làm việc trực tiếp với Python trên R session. Các đối tượng được tạo ra từ Python REPL có thể được truy cập từ R bằng cách sử dụng <em>py$object</em>. Ví dụ:</p>
-<p><img src="img/python-repl.png" /></p>
+<p><img src="/img/python-repl.png" /></p>
 <p>Dùng lệnh <code>exit</code> để thoát python REPL</p>
 <p><strong>Chú ý:</strong> Trong Python code có thể sử dụng mọi đối tượng được tạo ra từ R bằng các sử dụng đối tượng <code>r.object</code> (ví dụ <code>r.flights</code>).</p>
 <p><strong>4. Sử dụng python trong R markdown</strong></p>
@@ -1190,9 +1190,9 @@ ggplot(data = py$data,aes(x = preg)) +
       
       <li><a href="/post/data-manipulation/">So sánh dplyr và pandas cho data manipulation</a></li>
       
-      <li><a href="/post/jupyter/">Thử sử dụng jupyter notebook để viết posts cho blog. Machine Learning Project Template với Python</a></li>
+      <li><a href="/post/scatter-plot/">Ý  nghĩa của biểu đồ tán xạ (scatter plot) trong dự đoán và đánh giá chất lượng mô hình dự đoán.</a></li>
       
-      <li><a href="/post/ensemble-learning/">Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code)</a></li>
+      <li><a href="/post/jupyter/">Thử sử dụng jupyter notebook để viết posts cho blog. Machine Learning Project Template với Python</a></li>
       
     </ul>
   </div>
