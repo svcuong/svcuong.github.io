@@ -925,7 +925,7 @@ ggpairs(dataset[,1:5], title=&quot;A scatterplot matrix&quot;) </code></pre>
 <p>Trong PRD, nếu phần lớn các điểm phân bố dọc theo đường <code>perfect forecast</code> và có rất ít hoặc không có các điểm phân tán cách xa đường này thì mô hình dự đoán đó có chất lượng tốt. Trường hợp ngược lại có nghĩa là mô hình có chất lượng kém.</p>
 <p>Để minh họa tôi sẽ sử dụng <code>PRD</code> để so sánh các mô hình dự đoán khác nhau được sử dụng trong cuộc thi dự đoán thế giới <a href="https://forecasters.org/resources/time-series-data/m3-competition/">M3 forecasting competition</a>. Trong cuộc thi này, <code>22</code> mô hình được sử dụng để test với <code>3003</code> tập dữ liệu chuỗi thời gian khác nhau.</p>
 <p>Dữ liệu này đã được tôi xử lý và lưu trong gói <code>forvision</code> nằm trong <a href="https://forvis.github.io/">Forecast evaluation framework</a> được chúng tôi thực hiện vào năm 2018. Để biết thêm thông tin các bạn có thể đọc ở <code>website</code> của dự án tại <a href="https://forvis.github.io/">đây</a>.</p>
-<p>Để tải gói <code>này</code>forvision` về cài đặt trong R các bạn dùng lệnh sau:</p>
+<p>Để tải gói <code>forvision</code> về cài đặt trong R các bạn dùng lệnh sau:</p>
 <pre class="r"><code>install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;forvis/forvision&quot;, build_vignettes = TRUE)</code></pre>
 <p>Nạp gói <code>forvision</code> và xuất dữ liệu để thực hành:</p>
@@ -958,7 +958,7 @@ gp</code></pre>
 m3_dataset$method_id &lt;- as.factor(m3_dataset$method_id)
 # Plot
 gp &lt;- ggplot()+
-  geom_point(data = m3_dataset, ggplot2::aes(x = forecast, y= value,colour = method_id, shape = method_id, size=2)) +
+  geom_point(data = m3_dataset, ggplot2::aes(x = forecast, y= value,colour = method_id, shape = method_id)) +
   scale_shape_manual(values=1:nlevels(m3_dataset$method_id))+
   geom_line(data = m3_dataset, ggplot2::aes(x = value, y=value, linetype = &quot;perfect forecast&quot;), size = 1) +
   ggtitle(&quot;Prediction-Realization Diagram&quot;) +

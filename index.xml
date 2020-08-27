@@ -170,7 +170,7 @@ ggpairs(dataset[,1:5], title=&amp;quot;A scatterplot matrix&amp;quot;) &lt;/code
 &lt;p&gt;Trong PRD, nếu phần lớn các điểm phân bố dọc theo đường &lt;code&gt;perfect forecast&lt;/code&gt; và có rất ít hoặc không có các điểm phân tán cách xa đường này thì mô hình dự đoán đó có chất lượng tốt. Trường hợp ngược lại có nghĩa là mô hình có chất lượng kém.&lt;/p&gt;
 &lt;p&gt;Để minh họa tôi sẽ sử dụng &lt;code&gt;PRD&lt;/code&gt; để so sánh các mô hình dự đoán khác nhau được sử dụng trong cuộc thi dự đoán thế giới &lt;a href=&#34;https://forecasters.org/resources/time-series-data/m3-competition/&#34;&gt;M3 forecasting competition&lt;/a&gt;. Trong cuộc thi này, &lt;code&gt;22&lt;/code&gt; mô hình được sử dụng để test với &lt;code&gt;3003&lt;/code&gt; tập dữ liệu chuỗi thời gian khác nhau.&lt;/p&gt;
 &lt;p&gt;Dữ liệu này đã được tôi xử lý và lưu trong gói &lt;code&gt;forvision&lt;/code&gt; nằm trong &lt;a href=&#34;https://forvis.github.io/&#34;&gt;Forecast evaluation framework&lt;/a&gt; được chúng tôi thực hiện vào năm 2018. Để biết thêm thông tin các bạn có thể đọc ở &lt;code&gt;website&lt;/code&gt; của dự án tại &lt;a href=&#34;https://forvis.github.io/&#34;&gt;đây&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Để tải gói &lt;code&gt;này&lt;/code&gt;forvision` về cài đặt trong R các bạn dùng lệnh sau:&lt;/p&gt;
+&lt;p&gt;Để tải gói &lt;code&gt;forvision&lt;/code&gt; về cài đặt trong R các bạn dùng lệnh sau:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;devtools&amp;quot;)
 devtools::install_github(&amp;quot;forvis/forvision&amp;quot;, build_vignettes = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Nạp gói &lt;code&gt;forvision&lt;/code&gt; và xuất dữ liệu để thực hành:&lt;/p&gt;
@@ -203,7 +203,7 @@ gp&lt;/code&gt;&lt;/pre&gt;
 m3_dataset$method_id &amp;lt;- as.factor(m3_dataset$method_id)
 # Plot
 gp &amp;lt;- ggplot()+
-  geom_point(data = m3_dataset, ggplot2::aes(x = forecast, y= value,colour = method_id, shape = method_id, size=2)) +
+  geom_point(data = m3_dataset, ggplot2::aes(x = forecast, y= value,colour = method_id, shape = method_id)) +
   scale_shape_manual(values=1:nlevels(m3_dataset$method_id))+
   geom_line(data = m3_dataset, ggplot2::aes(x = value, y=value, linetype = &amp;quot;perfect forecast&amp;quot;), size = 1) +
   ggtitle(&amp;quot;Prediction-Realization Diagram&amp;quot;) +
