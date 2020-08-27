@@ -805,7 +805,7 @@
 <hr />
 <div id="sec1" class="section level2">
 <h2>1. Ý nghĩa của biểu đồ tán xạ</h2>
-<p>Biểu đồ tán xạ (<code>scatter plot</code>) là một dạng biểu đồ được dùng rất phổ biến trong khoa học với mục đích đánh giá mối tương quan giữa hai biến. Trong bài toán đự đoán (<code>forecasting</code>), sử dụng <code>scatter plot</code> cho phép chúng ta đánh giá được mức độ tương quan giữa các thuộc tính với nhau cũng như với các biến đầu ra của mô hình cần dự đoán, điều này cho phép lựa chọn được những chiến lược phù hợp trong quá trình xử lý và xây dựng mô hình dự đoán.</p>
+<p>Biểu đồ tán xạ (<code>scatter plot</code>) là một dạng biểu đồ được dùng rất phổ biến trong khoa học với mục đích đánh giá mối tương quan giữa hai biến. Trong bài toán đự đoán (<code>forecasting</code>), sử dụng <code>scatter plot</code> cho phép chúng ta đánh giá được mức độ tương quan giữa các thuộc tính với nhau cũng như với các biến đầu ra của mô hình cần dự đoán, điều này cho phép lựa chọn được những chiến lược phù hợp trong quá trình chuẩn bị dữ liệu và xây dựng mô hình dự đoán.</p>
 <p>Có nhiều cách phân chia sự tương quan giữa hai biến số. Nhưng một cách tổng quát nhất thì chúng ta có thể chia làm 2 loại chính là có tương quan và không tương quan (giữa hai biến số không có mối tương quan nào với nhau).</p>
 <p>Trong tương quan thì có thể có các trường hợp sau đây:</p>
 <ul>
@@ -870,7 +870,7 @@ abline(lm(dataset$mpg~dataset$wt), col=&quot;red&quot;)</code></pre>
 <p>Vẽ biểu độ tán xạ giữa hai thuộc tính <code>wt</code> và <code>mpg</code> sử dụng <code>ggplot2</code></p>
 <pre class="r"><code>library(ggplot2)
 ggplot(dataset, aes(x = wt, y = mpg)) +geom_point() +
-  geom_smooth(method=&#39;lm&#39;, formula= y~x)</code></pre>
+  geom_smooth(method=&#39;lm&#39;, formula= y~x) #   Thêm regression line</code></pre>
 <p><img src="/post/2020-08-26-scatter-plot.vn_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Vẽ scatter plot cho hai biến <code>wt</code> và <code>mpg</code> theo groups của thuộc tính <code>cyl</code>:</p>
 <pre class="r"><code>dataset$cyl &lt;- as.factor(dataset$cyl)

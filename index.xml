@@ -50,7 +50,7 @@
 &lt;hr /&gt;
 &lt;div id=&#34;sec1&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;1. Ý nghĩa của biểu đồ tán xạ&lt;/h2&gt;
-&lt;p&gt;Biểu đồ tán xạ (&lt;code&gt;scatter plot&lt;/code&gt;) là một dạng biểu đồ được dùng rất phổ biến trong khoa học với mục đích đánh giá mối tương quan giữa hai biến. Trong bài toán đự đoán (&lt;code&gt;forecasting&lt;/code&gt;), sử dụng &lt;code&gt;scatter plot&lt;/code&gt; cho phép chúng ta đánh giá được mức độ tương quan giữa các thuộc tính với nhau cũng như với các biến đầu ra của mô hình cần dự đoán, điều này cho phép lựa chọn được những chiến lược phù hợp trong quá trình xử lý và xây dựng mô hình dự đoán.&lt;/p&gt;
+&lt;p&gt;Biểu đồ tán xạ (&lt;code&gt;scatter plot&lt;/code&gt;) là một dạng biểu đồ được dùng rất phổ biến trong khoa học với mục đích đánh giá mối tương quan giữa hai biến. Trong bài toán đự đoán (&lt;code&gt;forecasting&lt;/code&gt;), sử dụng &lt;code&gt;scatter plot&lt;/code&gt; cho phép chúng ta đánh giá được mức độ tương quan giữa các thuộc tính với nhau cũng như với các biến đầu ra của mô hình cần dự đoán, điều này cho phép lựa chọn được những chiến lược phù hợp trong quá trình chuẩn bị dữ liệu và xây dựng mô hình dự đoán.&lt;/p&gt;
 &lt;p&gt;Có nhiều cách phân chia sự tương quan giữa hai biến số. Nhưng một cách tổng quát nhất thì chúng ta có thể chia làm 2 loại chính là có tương quan và không tương quan (giữa hai biến số không có mối tương quan nào với nhau).&lt;/p&gt;
 &lt;p&gt;Trong tương quan thì có thể có các trường hợp sau đây:&lt;/p&gt;
 &lt;ul&gt;
@@ -115,7 +115,7 @@ abline(lm(dataset$mpg~dataset$wt), col=&amp;quot;red&amp;quot;)&lt;/code&gt;&lt;
 &lt;p&gt;Vẽ biểu độ tán xạ giữa hai thuộc tính &lt;code&gt;wt&lt;/code&gt; và &lt;code&gt;mpg&lt;/code&gt; sử dụng &lt;code&gt;ggplot2&lt;/code&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 ggplot(dataset, aes(x = wt, y = mpg)) +geom_point() +
-  geom_smooth(method=&amp;#39;lm&amp;#39;, formula= y~x)&lt;/code&gt;&lt;/pre&gt;
+  geom_smooth(method=&amp;#39;lm&amp;#39;, formula= y~x) #   Thêm regression line&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-26-scatter-plot.vn_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Vẽ scatter plot cho hai biến &lt;code&gt;wt&lt;/code&gt; và &lt;code&gt;mpg&lt;/code&gt; theo groups của thuộc tính &lt;code&gt;cyl&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dataset$cyl &amp;lt;- as.factor(dataset$cyl)
