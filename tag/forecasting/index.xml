@@ -89,7 +89,7 @@ abline(lm(dataset$mpg~dataset$wt), col=&amp;quot;red&amp;quot;)&lt;/code&gt;&lt;
 &lt;p&gt;Cách vẽ biểu đồ Scatter Matrix sử dụng hàm &lt;code&gt;pairs()&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pairs(dataset[,1:4], pch = 19, col = &amp;quot;blue&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-26-scatter-plot.vn_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2.2 Vẽ scatter plot sử dụng ggplot2 và các gói được phát triển trên cơ sở ggplot2&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.2 Vẽ scatter plot sử dụng &lt;code&gt;ggplot2&lt;/code&gt; và các gói được phát triển trên cơ sở &lt;code&gt;ggplot2&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Vẽ biểu độ tán xạ giữa hai thuộc tính &lt;code&gt;wt&lt;/code&gt; và &lt;code&gt;mpg&lt;/code&gt; sử dụng &lt;code&gt;ggplot2&lt;/code&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 ggplot(dataset, aes(x = wt, y = mpg)) +geom_point() +
