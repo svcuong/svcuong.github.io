@@ -50,7 +50,7 @@
 &lt;hr /&gt;
 &lt;div id=&#34;sec1&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;1. Ý nghĩa của biểu đồ tán xạ&lt;/h2&gt;
-&lt;p&gt;Biểu đồ tán xạ (&lt;code&gt;scatter plot&lt;/code&gt;) là một dạng biểu đồ được dùng rất phổ biến trong khoa học với mục đích đánh giá mối tương quan giữa hai biến. Vì vậy sử dụng &lt;code&gt;scatter plot&lt;/code&gt; cho phép chúng ta đánh giá được mức độ tương quan giữa các thuộc tính với nhau cũng như với cái biến đầu ra của mô hình cần dự đoán, điều này cho phép lựa chọn được những chiến lược phù hợp trong quá trình xử lý và xây dựng mô hình dự đoán.&lt;/p&gt;
+&lt;p&gt;Biểu đồ tán xạ (&lt;code&gt;scatter plot&lt;/code&gt;) là một dạng biểu đồ được dùng rất phổ biến trong khoa học với mục đích đánh giá mối tương quan giữa hai biến. Trong bài toán đự đoán (&lt;code&gt;forecasting&lt;/code&gt;), sử dụng &lt;code&gt;scatter plot&lt;/code&gt; cho phép chúng ta đánh giá được mức độ tương quan giữa các thuộc tính với nhau cũng như với các biến đầu ra của mô hình cần dự đoán, điều này cho phép lựa chọn được những chiến lược phù hợp trong quá trình xử lý và xây dựng mô hình dự đoán.&lt;/p&gt;
 &lt;p&gt;Có nhiều cách phân chia sự tương quan giữa hai biến số. Nhưng một cách tổng quát nhất thì chúng ta có thể chia làm 2 loại chính là có tương quan và không tương quan (giữa hai biến số không có mối tương quan nào với nhau).&lt;/p&gt;
 &lt;p&gt;Trong tương quan thì có thể có các trường hợp sau đây:&lt;/p&gt;
 &lt;ul&gt;
@@ -100,7 +100,7 @@ r&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Kiểm tra xem kết quả tính &lt;code&gt;r&lt;/code&gt; có đúng không bằng hàm &lt;code&gt;cor()&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor(dataset$wt, dataset$mpg)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] -0.8676594&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;2.1 Vẽ scatter plot Sử dụng base funtion&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.1 Vẽ scatter plot Sử dụng &lt;code&gt;R base&lt;/code&gt; funtions&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Vẽ biểu độ tán xạ giữa hai thuộc tính &lt;code&gt;wt&lt;/code&gt; và &lt;code&gt;mpg&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(dataset$wt, dataset$mpg, col = &amp;quot;blue&amp;quot;, 
      main = &amp;quot;Scatter Plot for mtcars dataset&amp;quot;, 

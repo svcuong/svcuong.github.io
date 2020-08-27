@@ -805,7 +805,7 @@
 <hr />
 <div id="sec1" class="section level2">
 <h2>1. Ý nghĩa của biểu đồ tán xạ</h2>
-<p>Biểu đồ tán xạ (<code>scatter plot</code>) là một dạng biểu đồ được dùng rất phổ biến trong khoa học với mục đích đánh giá mối tương quan giữa hai biến. Vì vậy sử dụng <code>scatter plot</code> cho phép chúng ta đánh giá được mức độ tương quan giữa các thuộc tính với nhau cũng như với cái biến đầu ra của mô hình cần dự đoán, điều này cho phép lựa chọn được những chiến lược phù hợp trong quá trình xử lý và xây dựng mô hình dự đoán.</p>
+<p>Biểu đồ tán xạ (<code>scatter plot</code>) là một dạng biểu đồ được dùng rất phổ biến trong khoa học với mục đích đánh giá mối tương quan giữa hai biến. Trong bài toán đự đoán (<code>forecasting</code>), sử dụng <code>scatter plot</code> cho phép chúng ta đánh giá được mức độ tương quan giữa các thuộc tính với nhau cũng như với các biến đầu ra của mô hình cần dự đoán, điều này cho phép lựa chọn được những chiến lược phù hợp trong quá trình xử lý và xây dựng mô hình dự đoán.</p>
 <p>Có nhiều cách phân chia sự tương quan giữa hai biến số. Nhưng một cách tổng quát nhất thì chúng ta có thể chia làm 2 loại chính là có tương quan và không tương quan (giữa hai biến số không có mối tương quan nào với nhau).</p>
 <p>Trong tương quan thì có thể có các trường hợp sau đây:</p>
 <ul>
@@ -855,7 +855,7 @@ r</code></pre>
 <p>Kiểm tra xem kết quả tính <code>r</code> có đúng không bằng hàm <code>cor()</code>:</p>
 <pre class="r"><code>cor(dataset$wt, dataset$mpg)</code></pre>
 <pre><code>## [1] -0.8676594</code></pre>
-<p><strong>2.1 Vẽ scatter plot Sử dụng base funtion</strong></p>
+<p><strong>2.1 Vẽ scatter plot Sử dụng <code>R base</code> funtions</strong></p>
 <p>Vẽ biểu độ tán xạ giữa hai thuộc tính <code>wt</code> và <code>mpg</code>:</p>
 <pre class="r"><code>plot(dataset$wt, dataset$mpg, col = &quot;blue&quot;, 
      main = &quot;Scatter Plot for mtcars dataset&quot;, 
