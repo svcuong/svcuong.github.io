@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Covid-19 | Khoa Học Dữ Liệu</title>
+    <link>/tag/covid-19/</link>
+      <atom:link href="/tag/covid-19/index.xml" rel="self" type="application/rss+xml" />
+    <description>Covid-19</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Thu, 27 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
+      <title>Covid-19</title>
+      <link>/tag/covid-19/</link>
+    </image>
+    
+    <item>
+      <title>Download và trực quan hóa dữ liệu Covid-19 từ John Hopkins database (sử dụng Python code)</title>
+      <link>/post/covid-19/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/covid-19/</guid>
+      <description>&lt;p&gt;&lt;code&gt;CoVvid-19&lt;/code&gt; là một đại dịch bệnh truyền nhiễm với tác nhân là virus &lt;code&gt;SARS-CoV-2&lt;/code&gt;, hiện đang ảnh hưởng và gây thiệt hại nặng nề trên phạm vi toàn cầu. Kể từ khi đại dịch &lt;code&gt;Covid-19&lt;/code&gt; bắt đầu xuất hiện ở Vũ Hán - Trung Quốc đến nay, cái tên trường Đại học Jonhs Hopkins (Mỹ) được nhắc đi nhắc lại hằng ngày trên các phương tiện truyền thông và là một trong những cụm từ được trích dẫn nhiều nhất. Lý do đó là Đại học Johns Hopkins đã phát triển một trong những hệ thống theo dõi dữ liệu COVID-19 bền bỉ và đáng tin cậy nhất trên thế giới cho đến nay.&lt;/p&gt;
+&lt;p&gt;Dữ liệu Covid-19 được đại học &lt;code&gt;John Hopkins&lt;/code&gt; thu thập và cập nhật hàng ngày tại đây 
+&lt;a href=&#34;https://github.com/CSSEGISandData/COVID-19&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;John Hopkins database&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Trong bài này để hiểu hơn về đại dịch này tôi sẽ hướng dẫn các bạn cách download dữ liệu Covid-19 từ 
+&lt;a href=&#34;https://github.com/CSSEGISandData/COVID-19&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;John Hopkins database&lt;/a&gt; và thực hành các thao tác chuẩn bị dữ liệu (làm sạch và biến đổi) với thư viện &lt;code&gt;pandas&lt;/code&gt; và trực quan hóa dữ liệu với thư viện &lt;code&gt;maplotlib&lt;/code&gt; sử dụng ngôn ngữ Python.&lt;/p&gt;
+&lt;h3 id=&#34;nội-dung-chính-của-bài-bao-gồm&#34;&gt;Nội dung chính của bài bao gồm:&lt;/h3&gt;
+&lt;p&gt;
+&lt;a href=&#34;#prepare-data&#34;&gt;1. Download &amp;amp; chuẩn bị dữ liệu Covid-19 sử dụng thư viện pandas&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;#data-visualization&#34;&gt;2. Trực quan hóa dữ liệu Covid-19 sử dụng thư viện matploblib&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;prepare-data&#34;&gt;1. Download và chuẩ bị dữ liệu&lt;/h2&gt;
+&lt;p&gt;Trước hết để thực hành chúng ta cần nạp các thư viện cần thiết trên &lt;code&gt;Python&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+from datetime import datetime, timedelta
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Để thực hành tôi sẽ load 3 tập dữ liệu sau từ kho dữ liệu qua &lt;code&gt;url_links&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Confirmed:&lt;/code&gt; (Số trường hợp mới phát hiện)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Deaths:&lt;/code&gt; (Số trường hợp tử vong)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Recovered:&lt;/code&gt; (Số trường hợp hồi phục)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;url_confd = &#39;https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv&#39;
+url_death = &#39;https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv&#39;
+url_recvd = &#39;https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv&#39;
+df_confd = pd.read_csv(url_confd)
+df_death = pd.read_csv(url_death)
+df_recvd = pd.read_csv(url_recvd)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra thông tin các tập dữ liệu này:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(df_confd.info())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;class &#39;pandas.core.frame.DataFrame&#39;&amp;gt;
+RangeIndex: 266 entries, 0 to 265
+Columns: 223 entries, Province/State to 8/27/20
+dtypes: float64(2), int64(219), object(2)
+memory usage: 463.5+ KB
+None
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(df_death.info())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;class &#39;pandas.core.frame.DataFrame&#39;&amp;gt;
+RangeIndex: 266 entries, 0 to 265
+Columns: 222 entries, Province/State to 8/26/20
+dtypes: float64(2), int64(218), object(2)
+memory usage: 461.5+ KB
+None
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(df_recvd.info())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;class &#39;pandas.core.frame.DataFrame&#39;&amp;gt;
+RangeIndex: 253 entries, 0 to 252
+Columns: 223 entries, Province/State to 8/27/20
+dtypes: float64(2), int64(219), object(2)
+memory usage: 440.9+ KB
+None
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra 5 hàng đầu tiên của tập dữ liệu &lt;code&gt;df_confd&lt;/code&gt; (2 tập còn lại tương tự):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(df_confd.head(5))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  Province/State Country/Region       Lat       Long  1/22/20  1/23/20  \
+0            NaN    Afghanistan  33.93911  67.709953        0        0   
+1            NaN        Albania  41.15330  20.168300        0        0   
+2            NaN        Algeria  28.03390   1.659600        0        0   
+3            NaN        Andorra  42.50630   1.521800        0        0   
+4            NaN         Angola -11.20270  17.873900        0        0   
+
+   1/24/20  1/25/20  1/26/20  1/27/20  ...  8/18/20  8/19/20  8/20/20  \
+0        0        0        0        0  ...    37599    37599    37856   
+1        0        0        0        0  ...     7654     7812     7967   
+2        0        0        0        0  ...    39444    39847    40258   
+3        0        0        0        0  ...     1005     1024     1024   
+4        0        0        0        0  ...     1966     2015     2044   
+
+   8/21/20  8/22/20  8/23/20  8/24/20  8/25/20  8/26/20  8/27/20  
+0    37894    37953    37999    38054    38070    38113    38129  
+1     8119     8275     8427     8605     8759     8927     9083  
+2    40667    41068    41460    41858    42228    42619    43016  
+3     1045     1045     1045     1060     1060     1098     1098  
+4     2068     2134     2171     2222     2283     2332     2415  
+
+[5 rows x 223 columns]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Trích xuất thông tin về ngày từ tập dữ liệu:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;dates = df_confd.columns[4:]
+print(dates)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Index([&#39;1/22/20&#39;, &#39;1/23/20&#39;, &#39;1/24/20&#39;, &#39;1/25/20&#39;, &#39;1/26/20&#39;, &#39;1/27/20&#39;,
+       &#39;1/28/20&#39;, &#39;1/29/20&#39;, &#39;1/30/20&#39;, &#39;1/31/20&#39;,
+       ...
+       &#39;8/18/20&#39;, &#39;8/19/20&#39;, &#39;8/20/20&#39;, &#39;8/21/20&#39;, &#39;8/22/20&#39;, &#39;8/23/20&#39;,
+       &#39;8/24/20&#39;, &#39;8/25/20&#39;, &#39;8/26/20&#39;, &#39;8/27/20&#39;],
+      dtype=&#39;object&#39;, length=219)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Các tập dữ liệu này được lưu ở dạng &lt;code&gt;wide format&lt;/code&gt; do đó chúng ta cần chuyển chúng dạng &lt;code&gt;long fromat&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;dates = df_confd.columns[4:]
+long_df_confd = df_confd.melt(id_vars=[&#39;Province/State&#39;, &#39;Country/Region&#39;, &#39;Lat&#39;, &#39;Long&#39;], 
+                            value_vars=dates, var_name=&#39;Date&#39;, value_name=&#39;Confirmed&#39;)
+
+long_df_death = df_death.melt(id_vars=[&#39;Province/State&#39;, &#39;Country/Region&#39;, &#39;Lat&#39;, &#39;Long&#39;], 
+                            value_vars=dates, var_name=&#39;Date&#39;, value_name=&#39;Deaths&#39;)
+
+long_df_recvd = df_recvd.melt(id_vars=[&#39;Province/State&#39;, &#39;Country/Region&#39;, &#39;Lat&#39;, &#39;Long&#39;], 
+                            value_vars=dates, var_name=&#39;Date&#39;, value_name=&#39;Recovered&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra dữ liệu sau khi đã chuyển:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(long_df_confd.head(5))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  Province/State Country/Region       Lat       Long     Date  Confirmed
+0            NaN    Afghanistan  33.93911  67.709953  1/22/20          0
+1            NaN        Albania  41.15330  20.168300  1/22/20          0
+2            NaN        Algeria  28.03390   1.659600  1/22/20          0
+3            NaN        Andorra  42.50630   1.521800  1/22/20          0
+4            NaN         Angola -11.20270  17.873900  1/22/20          0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(long_df_death.head(5))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  Province/State Country/Region       Lat       Long     Date  Deaths
+0            NaN    Afghanistan  33.93911  67.709953  1/22/20       0
+1            NaN        Albania  41.15330  20.168300  1/22/20       0
+2            NaN        Algeria  28.03390   1.659600  1/22/20       0
+3            NaN        Andorra  42.50630   1.521800  1/22/20       0
+4            NaN         Angola -11.20270  17.873900  1/22/20       0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(long_df_recvd.head(5))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  Province/State Country/Region       Lat       Long     Date  Recovered
+0            NaN    Afghanistan  33.93911  67.709953  1/22/20          0
+1            NaN        Albania  41.15330  20.168300  1/22/20          0
+2            NaN        Algeria  28.03390   1.659600  1/22/20          0
+3            NaN        Andorra  42.50630   1.521800  1/22/20          0
+4            NaN         Angola -11.20270  17.873900  1/22/20          0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Gộp 3 tập dữ liệu này thành 1 dataframe:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;final_df = pd.merge(left=long_df_confd, right=long_df_death, how=&#39;left&#39;,
+                      on=[&#39;Province/State&#39;, &#39;Country/Region&#39;, &#39;Date&#39;, &#39;Lat&#39;, &#39;Long&#39;])
+final_df = pd.merge(left=final_df, right=long_df_recvd, how=&#39;left&#39;,
+                      on=[&#39;Province/State&#39;, &#39;Country/Region&#39;, &#39;Date&#39;, &#39;Lat&#39;, &#39;Long&#39;])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Chuyển cột dữ liệu ngày về dạng &lt;code&gt;date&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;final_df[&#39;Date&#39;] = pd.to_datetime(final_df[&#39;Date&#39;])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra bảng dữ liệu thu được:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(final_df.head(5))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  Province/State Country/Region       Lat       Long       Date  Confirmed  \
+0            NaN    Afghanistan  33.93911  67.709953 2020-01-22          0   
+1            NaN        Albania  41.15330  20.168300 2020-01-22          0   
+2            NaN        Algeria  28.03390   1.659600 2020-01-22          0   
+3            NaN        Andorra  42.50630   1.521800 2020-01-22          0   
+4            NaN         Angola -11.20270  17.873900 2020-01-22          0   
+
+   Deaths  Recovered  
+0       0        0.0  
+1       0        0.0  
+2       0        0.0  
+3       0        0.0  
+4       0        0.0  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra kích thước của bảng dữ liệu thu được:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(final_df.shape)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;(58254, 8)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra khoảng thời gian của dữ liệu được thu thập:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;a = final_df.Date.value_counts().sort_index()
+print(&#39;Ngày bắt đầu là:&#39;,a.index[0])
+print(&#39;Ngày hiện tại là:&#39;,a.index[-1])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Ngày bắt đầu là: 2020-01-22 00:00:00
+Ngày hiện tại là: 2020-08-27 00:00:00
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra &lt;code&gt;missing values&lt;/code&gt; trong tập dữ liệu:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;final_df.isna().sum()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Province/State    40515
+Country/Region        0
+Lat                   0
+Long                  0
+Date                  0
+Confirmed             0
+Deaths                0
+Recovered          4161
+dtype: int64
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Đánh giá phần trăm &lt;code&gt;missing values&lt;/code&gt; của từng cột dữ liệu:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;NAN = [(c, final_df[c].isna().mean()*100) for c in final_df]
+NAN = pd.DataFrame(NAN, columns=[&amp;quot;column_name&amp;quot;, &amp;quot;percentage&amp;quot;])
+print(NAN)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;      column_name  percentage
+0  Province/State   69.548872
+1  Country/Region    0.000000
+2             Lat    0.000000
+3            Long    0.000000
+4            Date    0.000000
+5       Confirmed    0.000000
+6          Deaths    0.000000
+7       Recovered    7.142857
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ta thấy cột &lt;code&gt;Province/State&lt;/code&gt; có gần &lt;code&gt;69.55%&lt;/code&gt; dữ liệu bị thiếu và cột &lt;code&gt;Recovered&lt;/code&gt; có &lt;code&gt;7,14%&lt;/code&gt;. Vì vậy chúng ta cần xử lý các giá trị thiếu này:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Thay thế na thành 0 cho cột Recovered
+final_df[&#39;Recovered&#39;] = final_df[&#39;Recovered&#39;].fillna(0)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Thay thế na thành Unknown cho cột Province/State
+final_df[&amp;quot;Province/State&amp;quot;]= final_df[&amp;quot;Province/State&amp;quot;].fillna(&#39;Unknown&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra xem trong dữ liệu còn &lt;code&gt;missing values&lt;/code&gt; không:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;final_df.isna().sum()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Province/State    0
+Country/Region    0
+Lat               0
+Long              0
+Date              0
+Confirmed         0
+Deaths            0
+Recovered         0
+dtype: int64
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra kiểu dữ liệu:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(final_df.dtypes)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Province/State            object
+Country/Region            object
+Lat                      float64
+Long                     float64
+Date              datetime64[ns]
+Confirmed                  int64
+Deaths                     int64
+Recovered                float64
+dtype: object
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Thay đổi kiểu dữ liệu cho các cột &lt;code&gt;Confirmed, Deaths và Recovered&lt;/code&gt; thành &lt;code&gt;int&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;final_df[[&amp;quot;Confirmed&amp;quot;,&amp;quot;Deaths&amp;quot;,&amp;quot;Recovered&amp;quot;]] = final_df[[&amp;quot;Confirmed&amp;quot;,&amp;quot;Deaths&amp;quot;,&amp;quot;Recovered&amp;quot;]].astype(int)
+print(final_df.dtypes)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Province/State            object
+Country/Region            object
+Lat                      float64
+Long                     float64
+Date              datetime64[ns]
+Confirmed                  int32
+Deaths                     int32
+Recovered                  int32
+dtype: object
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tạo thuộc tính mới &lt;code&gt;Active&lt;/code&gt; (Số trường hợp còn đang nhiễm sau khi đã trừ đi số trường hợp tử vong và hồi phục): 
+$$Active = Confirmed - Deaths - Recovered$$&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;final_df[&#39;Active&#39;] = final_df[&#39;Confirmed&#39;] - final_df[&#39;Deaths&#39;] - final_df[&#39;Recovered&#39;]
+print(final_df.head(5))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  Province/State Country/Region       Lat       Long       Date  Confirmed  \
+0        Unknown    Afghanistan  33.93911  67.709953 2020-01-22          0   
+1        Unknown        Albania  41.15330  20.168300 2020-01-22          0   
+2        Unknown        Algeria  28.03390   1.659600 2020-01-22          0   
+3        Unknown        Andorra  42.50630   1.521800 2020-01-22          0   
+4        Unknown         Angola -11.20270  17.873900 2020-01-22          0   
+
+   Deaths  Recovered  Active  
+0       0          0       0  
+1       0          0       0  
+2       0          0       0  
+3       0          0       0  
+4       0          0       0  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra tổng số nước trên toàn thế giới trong tập dữ liệu:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;len(final_df[&#39;Country/Region&#39;].unique())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;188
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Tình hình Covid -19 trên toàn thế giới tính tới thời điểm đang viết bài này:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Tổng các cases trên toàn thế giới:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df = pd.DataFrame(pd.to_numeric(final_df[[&#39;Confirmed&#39;, &#39;Deaths&#39;, &#39;Recovered&#39;, &#39;Active&#39;]].sum()),dtype=np.float64).transpose()
+df[&#39;Last date&#39;] = max(final_df[&#39;Date&#39;])
+print(df)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;      Confirmed      Deaths    Recovered       Active  Last date
+0  1.468017e+09  66417411.0  782699851.0  618899989.0 2020-08-27
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tạo &lt;code&gt;Pie chart&lt;/code&gt; so sánh các cases trên toàn thế giới:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;labels = [&#39;Confirmed&#39;, &#39;Deaths&#39;, &#39;Recovered&#39;, &#39;Active&#39;]
+colors = [&#39;gold&#39;, &#39;yellowgreen&#39;, &#39;lightcoral&#39;, &#39;lightskyblue&#39;]
+explode = (0.1, 0, 0, 0)  # explode 1st slice
+sizes = sum(df.loc[:, &#39;Confirmed&#39;:&#39;Active&#39;].values)
+explode = (0.1, 0, 0, 0)  # explode 1st slice
+
+# Plot
+f = plt.figure(figsize=(8,8))
+plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+autopct=&#39;%1.1f%%&#39;, shadow=True, startangle=140)
+plt.axis(&#39;equal&#39;)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_53_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;data-visualization&#34;&gt;2. Trực quan hóa dữ liệu&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;2.1 Top 10 nước có số trường hợp (confirmed, deaths, recovered and active cases) lớn nhất&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Tính tổng các &lt;code&gt;cases&lt;/code&gt; của từng nước tính đến thười điểm hiện tại:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df_countries = final_df.copy().drop([&#39;Lat&#39;,&#39;Long&#39;,&#39;Province/State&#39;, &#39;Date&#39;],axis =1)
+df_countries = df_countries.groupby([&amp;quot;Country/Region&amp;quot;]).sum()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Top 10 nước có &lt;code&gt;confirmed cases&lt;/code&gt; lớn nhất:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f = plt.figure(figsize=(10,5))
+f.add_subplot(111)
+plt.axes(axisbelow=True)
+plt.barh(df_countries.sort_values(&#39;Confirmed&#39;)[&amp;quot;Confirmed&amp;quot;].index[-10:],df_countries.sort_values(&#39;Confirmed&#39;)[&amp;quot;Confirmed&amp;quot;].values[-10:],color=&amp;quot;darkcyan&amp;quot;)
+plt.tick_params(size=5,labelsize = 13)
+plt.xlabel(&amp;quot;Confirmed Cases&amp;quot;,fontsize=18)
+plt.title(&amp;quot;Top 10 Countries (Confirmed Cases)&amp;quot;,fontsize=20)
+plt.grid(alpha=0.3)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_59_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Top 10 nước có &lt;code&gt;Deaths&lt;/code&gt; lớn nhất:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f = plt.figure(figsize=(10,5))
+f.add_subplot(111)
+
+plt.axes(axisbelow=True)
+plt.barh(df_countries.sort_values(&#39;Deaths&#39;)[&amp;quot;Deaths&amp;quot;].index[-10:],df_countries.sort_values(&#39;Deaths&#39;)[&amp;quot;Deaths&amp;quot;].values[-10:],color=&amp;quot;crimson&amp;quot;)
+plt.tick_params(size=5,labelsize = 13)
+plt.xlabel(&amp;quot;Deaths Cases&amp;quot;,fontsize=18)
+plt.title(&amp;quot;Top 10 Countries (Deaths)&amp;quot;,fontsize=20)
+plt.grid(alpha=0.3,which=&#39;both&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_61_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Top 10 nước có &lt;code&gt;Recovered Cases&lt;/code&gt; lớn nhất:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f = plt.figure(figsize=(10,5))
+f.add_subplot(111)
+
+plt.axes(axisbelow=True)
+plt.barh(df_countries.sort_values(&#39;Recovered&#39;)[&amp;quot;Recovered&amp;quot;].index[-10:],df_countries.sort_values(&#39;Recovered&#39;)[&amp;quot;Recovered&amp;quot;].values[-10:],color=&amp;quot;limegreen&amp;quot;)
+plt.tick_params(size=5,labelsize = 13)
+plt.xlabel(&amp;quot;Recovered Cases&amp;quot;,fontsize=18)
+plt.title(&amp;quot;Top 10 Countries (Recovered Cases)&amp;quot;,fontsize=20)
+plt.grid(alpha=0.3,which=&#39;both&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_63_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Top 10 nước có &lt;code&gt;Active Cases&lt;/code&gt; lớn nhất:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;f = plt.figure(figsize=(10,5))
+f.add_subplot(111)
+
+plt.axes(axisbelow=True)
+plt.barh(df_countries.sort_values(&#39;Active&#39;)[&amp;quot;Active&amp;quot;].index[-10:],df_countries.sort_values(&#39;Active&#39;)[&amp;quot;Active&amp;quot;].values[-10:],color=&amp;quot;darkorange&amp;quot;)
+plt.tick_params(size=5,labelsize = 13)
+plt.xlabel(&amp;quot;Active Cases&amp;quot;,fontsize=18)
+plt.title(&amp;quot;Top 10 Countries (Active Cases)&amp;quot;,fontsize=20)
+plt.grid(alpha=0.3,which=&#39;both&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_65_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.1 Mức độ phát triển của Covid-19 theo thời gian trên toàn thế giới&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Tính tổng các &lt;code&gt;cases&lt;/code&gt; trên toàn thế giới theo thời gian&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df_world = final_df.groupby([&amp;quot;Date&amp;quot;])[[&amp;quot;Confirmed&amp;quot;,&amp;quot;Active&amp;quot;,&amp;quot;Recovered&amp;quot;,&amp;quot;Deaths&amp;quot;]].sum().reset_index()
+df_world.set_index(&#39;Date&#39;,inplace=True)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Mức độ phát triển của &lt;code&gt;Confirmed cases&lt;/code&gt; trên toàn thế giới theo thời gian:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Create figure and plot space
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Add x-axis and y-axis
+ax.bar(df_world.index.values,
+        df_world[&#39;Confirmed&#39;],
+        color=&#39;blue&#39;)
+
+# Set title and labels for axes
+ax.set(xlabel=&amp;quot;Date&amp;quot;,
+       ylabel=&amp;quot;Confirmed cases&amp;quot;,
+       title=&amp;quot;Confirmed Cases In Each Day&amp;quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.grid(alpha=0.3,which=&#39;both&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_70_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Mức độ phát triển của &lt;code&gt;Deaths&lt;/code&gt; trên toàn thế giới theo thời gian:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Create figure and plot space
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Add x-axis and y-axis
+ax.bar(df_world.index.values,
+        df_world[&#39;Deaths&#39;],
+        color=&#39;red&#39;)
+
+# Set title and labels for axes
+ax.set(xlabel=&amp;quot;Date&amp;quot;,
+       ylabel=&amp;quot;Deaths&amp;quot;,
+       title=&amp;quot;Deaths In Each Day&amp;quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.grid(alpha=0.3,which=&#39;both&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_72_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Mức độ phát triển của &lt;code&gt;Recovered cases&lt;/code&gt; trên toàn thế giới theo thời gian:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Create figure and plot space
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Add x-axis and y-axis
+ax.bar(df_world.index.values,
+        df_world[&#39;Recovered&#39;],
+        color=&#39;purple&#39;)
+
+# Set title and labels for axes
+ax.set(xlabel=&amp;quot;Date&amp;quot;,
+       ylabel=&amp;quot;Recovered cases&amp;quot;,
+       title=&amp;quot;Recovered Cases In Each Day&amp;quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.grid(alpha=0.3,which=&#39;both&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_74_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Mức độ phát triển của &lt;code&gt;Active Cases&lt;/code&gt; trên toàn thế giới theo thời gian:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Create figure and plot space
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Add x-axis and y-axis
+ax.plot(df_world.index.values,
+        df_world[&#39;Active&#39;],
+        color= &#39;green&#39;)
+
+# Set title and labels for axes
+ax.set(xlabel=&amp;quot;Date&amp;quot;,
+       ylabel=&amp;quot;Active Cases&amp;quot;,
+       title=&amp;quot;Active Cases In Each Day&amp;quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.grid(alpha=0.3,which=&#39;both&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_76_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;hiển-thị-tất-cả-các-cases-trên-thế-giới-theo-thời-gian&#34;&gt;Hiển thị tất cả các cases trên thế giới theo thời gian&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Create figure and plot space
+fig, ax = plt.subplots(figsize=(12, 6))
+
+# Add x-axis and y-axis
+ax.plot(df_world.index.values,
+        df_world[&#39;Confirmed&#39;],
+        color=&#39;blue&#39;, label = &#39;Confirmed Cases&#39;)
+
+ax.plot(df_world.index.values,
+        df_world[&#39;Deaths&#39;],
+        color=&#39;red&#39;, label = &#39;Deaths&#39;)
+
+ax.plot(df_world.index.values,
+        df_world[&#39;Recovered&#39;],
+        color=&#39;purple&#39;, label = &#39;Recovered Cases&#39;)
+
+
+ax.plot(df_world.index.values,
+        df_world[&#39;Active&#39;],
+        color= &#39;green&#39;,  label= &#39;Active Cases&#39;)
+
+
+# Set title and labels for axes
+ax.set(xlabel=&amp;quot;Date&amp;quot;,
+       ylabel=&amp;quot;Cases&amp;quot;,
+       title=&amp;quot;COVID-19 Cases In Each Day&amp;quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.legend(loc=&amp;quot;upper left&amp;quot;)
+plt.grid(alpha=0.3,which=&#39;both&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_78_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tổng số lượng các quốc gia trên thế giới xuất hiện dịch bệnh Covid-19 theo thời gian&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;case_nums_country = df_confd.groupby(&amp;quot;Country/Region&amp;quot;).sum().drop([&#39;Lat&#39;,&#39;Long&#39;],axis =1).apply(lambda x: x[x &amp;gt; 0].count(), axis =0)
+d = [datetime.strptime(date,&#39;%m/%d/%y&#39;).strftime(&amp;quot;%d %b&amp;quot;) for date in case_nums_country.index]
+f = plt.figure(figsize=(10,5))
+f.add_subplot(111)
+marker_style = dict(c=&amp;quot;crimson&amp;quot;,linewidth=1, linestyle=&#39;-&#39;, marker=&#39;o&#39;,markersize=4, markerfacecolor=&#39;blue&#39;)
+plt.plot(df_world.index.values, case_nums_country,**marker_style)
+plt.setp(ax.get_xticklabels(), rotation=90)
+plt.xlabel(&amp;quot;Dates&amp;quot;,fontsize=10)
+plt.grid(alpha = 0.3)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_80_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.3 So sánh sự phát triển của COVID-19 theo thời gian giữa các nước&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So sánh Việt Nam, Mỹ, Nga:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df_Vietnam = final_df[final_df[&#39;Country/Region&#39;] == &#39;Vietnam&#39;]
+df_Russia = final_df[final_df[&#39;Country/Region&#39;] == &#39;Russia&#39;]
+df_US = final_df[final_df[&#39;Country/Region&#39;] == &#39;US&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Do Mỹ và Nga cùng có số lượng các &lt;code&gt;cases&lt;/code&gt; lớn nên biểu thị vào cùng một biểu đồ:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Create figure and plot space
+fig, ax = plt.subplots(figsize=(12, 6))
+
+# Add x-axis and y-axis
+ax.plot(df_US[&#39;Date&#39;],
+        df_US[&#39;Confirmed&#39;],
+        color=&#39;blue&#39;, label = &#39;Confirmed Cases of US&#39;)
+
+ax.plot(df_US[&#39;Date&#39;],
+        df_US[&#39;Active&#39;],
+        &#39;-.&#39;,
+        color=&#39;blue&#39;, label = &#39;Active Cases of US&#39;)
+
+ax.plot(df_US[&#39;Date&#39;],
+        df_US[&#39;Recovered&#39;],
+        &#39;--&#39;,
+        color=&#39;blue&#39;, label = &#39;Recovered Cases of US&#39;)
+
+ax.plot(df_Russia[&#39;Date&#39;],
+        df_Russia[&#39;Confirmed&#39;],
+        color=&#39;red&#39;, label = &#39;Confirmed Cases of Russia&#39;)
+
+ax.plot(df_Russia[&#39;Date&#39;],
+        df_Russia[&#39;Active&#39;],
+        &#39;-.&#39;,
+        color=&#39;red&#39;, label = &#39;Active Cases of Russia&#39;)
+
+ax.plot(df_Russia[&#39;Date&#39;],
+        df_Russia[&#39;Recovered&#39;],
+        &#39;--&#39;,
+        color=&#39;red&#39;, label = &#39;Recovered Cases of Russia&#39;)
+
+# Set title and labels for axes
+ax.set(xlabel=&amp;quot;Date&amp;quot;,
+       ylabel=&amp;quot;Cases&amp;quot;,
+       title=&amp;quot;Confirmed Cases of COVID-19 of Russia vs US&amp;quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.legend(loc=&amp;quot;upper left&amp;quot;)
+plt.grid(alpha=0.3,which=&#39;both&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_84_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Việt nam có tổng số các &lt;code&gt;cases&lt;/code&gt; nhỏ hơn rất nhiều so với Russia và Mỹ nến nếu biểu thị vào cùng 1 biểu đồ thì sẽ rất khó nhìn. Do vậy tôi biểu diễn Việt Nam riêng:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig, ax = plt.subplots(figsize=(12, 6))
+
+# Add x-axis and y-axis
+ax.plot(df_Vietnam[&#39;Date&#39;],
+        df_Vietnam[&#39;Confirmed&#39;],
+        color=&amp;quot;red&amp;quot;, label = &#39;Confirmed Cases of Vietnam&#39;)
+
+ax.plot(df_Vietnam[&#39;Date&#39;],
+        df_Vietnam[&#39;Deaths&#39;],
+        &#39;-.&#39;,
+        color=&amp;quot;black&amp;quot;, label = &#39;Death Case of Vietnam&#39;)
+
+ax.plot(df_Vietnam[&#39;Date&#39;],
+        df_Vietnam[&#39;Active&#39;],
+        &#39;-.&#39;,
+        color=&amp;quot;blue&amp;quot;, label = &#39;Active Cases of Vietnam&#39;)
+
+ax.plot(df_Vietnam[&#39;Date&#39;],
+        df_Vietnam[&#39;Recovered&#39;],
+        &#39;--&#39;,
+        color=&amp;quot;green&amp;quot;, label = &#39;Recovered Cases of Vietnam&#39;)
+
+# Set title and labels for axes
+ax.set(xlabel=&amp;quot;Date&amp;quot;,
+       ylabel=&amp;quot;Cases&amp;quot;,
+       title=&amp;quot;COVID-19 cases of Vietnam&amp;quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.legend(loc=&amp;quot;upper left&amp;quot;)
+plt.grid(alpha=0.3,which=&#39;both&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_86_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

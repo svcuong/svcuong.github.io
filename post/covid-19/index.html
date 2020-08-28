@@ -1,0 +1,1869 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Cuong Sai">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="CoVvid-19 là một đại dịch bệnh truyền nhiễm với tác nhân là virus SARS-CoV-2, hiện đang ảnh hưởng và gây thiệt hại nặng nề trên phạm vi toàn cầu. Kể từ khi đại dịch Covid-19 bắt đầu xuất hiện ở Vũ Hán - Trung Quốc đến nay, cái tên trường Đại học Jonhs Hopkins (Mỹ) được nhắc đi nhắc lại hằng ngày trên các phương tiện truyền thông và là một trong những cụm từ được trích dẫn nhiều nhất.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/covid-19/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128408660-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-128408660-5', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_32x32_fill_lanczos_center_2.PNG">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG">
+
+  <link rel="canonical" href="/post/covid-19/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Khoa Học Dữ Liệu">
+  <meta property="og:url" content="/post/covid-19/">
+  <meta property="og:title" content="Download và trực quan hóa dữ liệu Covid-19 từ John Hopkins database (sử dụng Python code) | Khoa Học Dữ Liệu">
+  <meta property="og:description" content="CoVvid-19 là một đại dịch bệnh truyền nhiễm với tác nhân là virus SARS-CoV-2, hiện đang ảnh hưởng và gây thiệt hại nặng nề trên phạm vi toàn cầu. Kể từ khi đại dịch Covid-19 bắt đầu xuất hiện ở Vũ Hán - Trung Quốc đến nay, cái tên trường Đại học Jonhs Hopkins (Mỹ) được nhắc đi nhắc lại hằng ngày trên các phương tiện truyền thông và là một trong những cụm từ được trích dẫn nhiều nhất."><meta property="og:image" content="/post/covid-19/featured.jpg">
+  <meta property="twitter:image" content="/post/covid-19/featured.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-08-27T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-08-27T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/covid-19/"
+  },
+  "headline": "Download và trực quan hóa dữ liệu Covid-19 từ John Hopkins database (sử dụng Python code)",
+  
+  "image": [
+    "/post/covid-19/featured.jpg"
+  ],
+  
+  "datePublished": "2020-08-27T00:00:00Z",
+  "dateModified": "2020-08-27T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Cuong Sai"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Khoa Học Dữ Liệu",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
+    }
+  },
+  "description": "CoVvid-19 là một đại dịch bệnh truyền nhiễm với tác nhân là virus SARS-CoV-2, hiện đang ảnh hưởng và gây thiệt hại nặng nề trên phạm vi toàn cầu. Kể từ khi đại dịch Covid-19 bắt đầu xuất hiện ở Vũ Hán - Trung Quốc đến nay, cái tên trường Đại học Jonhs Hopkins (Mỹ) được nhắc đi nhắc lại hằng ngày trên các phương tiện truyền thông và là một trong những cụm từ được trích dẫn nhiều nhất."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script async type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+  <title>Download và trực quan hóa dữ liệu Covid-19 từ John Hopkins database (sử dụng Python code) | Khoa Học Dữ Liệu</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Khoa Học Dữ Liệu</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Khoa Học Dữ Liệu</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>Topics</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/courses/"><span>Books</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#gallery"><span>Gallery</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact Me</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+
+
+<div class="article-container pt-3">
+  <h1>Download và trực quan hóa dữ liệu Covid-19 từ John Hopkins database (sử dụng Python code)</h1>
+
+  
+  
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span ><a href="/author/cuong-sai/">Cuong Sai</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Aug 27, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    11 min read
+  </span>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/covid-19/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/python/">Python</a></span>
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 340px;">
+  <div style="position: relative">
+    <img src="/post/covid-19/featured_hub914b0091a307a90159980c356261c39_281112_720x0_resize_q90_lanczos.jpg" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p><code>CoVvid-19</code> là một đại dịch bệnh truyền nhiễm với tác nhân là virus <code>SARS-CoV-2</code>, hiện đang ảnh hưởng và gây thiệt hại nặng nề trên phạm vi toàn cầu. Kể từ khi đại dịch <code>Covid-19</code> bắt đầu xuất hiện ở Vũ Hán - Trung Quốc đến nay, cái tên trường Đại học Jonhs Hopkins (Mỹ) được nhắc đi nhắc lại hằng ngày trên các phương tiện truyền thông và là một trong những cụm từ được trích dẫn nhiều nhất. Lý do đó là Đại học Johns Hopkins đã phát triển một trong những hệ thống theo dõi dữ liệu COVID-19 bền bỉ và đáng tin cậy nhất trên thế giới cho đến nay.</p>
+<p>Dữ liệu Covid-19 được đại học <code>John Hopkins</code> thu thập và cập nhật hàng ngày tại đây 
+<a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener">John Hopkins database</a>.</p>
+<p>Trong bài này để hiểu hơn về đại dịch này tôi sẽ hướng dẫn các bạn cách download dữ liệu Covid-19 từ 
+<a href="https://github.com/CSSEGISandData/COVID-19" target="_blank" rel="noopener">John Hopkins database</a> và thực hành các thao tác chuẩn bị dữ liệu (làm sạch và biến đổi) với thư viện <code>pandas</code> và trực quan hóa dữ liệu với thư viện <code>maplotlib</code> sử dụng ngôn ngữ Python.</p>
+<h3 id="nội-dung-chính-của-bài-bao-gồm">Nội dung chính của bài bao gồm:</h3>
+<p>
+<a href="#prepare-data">1. Download &amp; chuẩn bị dữ liệu Covid-19 sử dụng thư viện pandas</a></p>
+<p>
+<a href="#data-visualization">2. Trực quan hóa dữ liệu Covid-19 sử dụng thư viện matploblib</a></p>
+<h2 id="prepare-data">1. Download và chuẩ bị dữ liệu</h2>
+<p>Trước hết để thực hành chúng ta cần nạp các thư viện cần thiết trên <code>Python</code>:</p>
+<pre><code class="language-python">import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+from datetime import datetime, timedelta
+</code></pre>
+<p>Để thực hành tôi sẽ load 3 tập dữ liệu sau từ kho dữ liệu qua <code>url_links</code>:</p>
+<ul>
+<li>
+<p><code>Confirmed:</code> (Số trường hợp mới phát hiện)</p>
+</li>
+<li>
+<p><code>Deaths:</code> (Số trường hợp tử vong)</p>
+</li>
+<li>
+<p><code>Recovered:</code> (Số trường hợp hồi phục)</p>
+</li>
+</ul>
+<pre><code class="language-python">url_confd = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
+url_death = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv'
+url_recvd = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv'
+df_confd = pd.read_csv(url_confd)
+df_death = pd.read_csv(url_death)
+df_recvd = pd.read_csv(url_recvd)
+</code></pre>
+<p>Kiểm tra thông tin các tập dữ liệu này:</p>
+<pre><code class="language-python">print(df_confd.info())
+</code></pre>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 266 entries, 0 to 265
+Columns: 223 entries, Province/State to 8/27/20
+dtypes: float64(2), int64(219), object(2)
+memory usage: 463.5+ KB
+None
+</code></pre>
+<pre><code class="language-python">print(df_death.info())
+</code></pre>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 266 entries, 0 to 265
+Columns: 222 entries, Province/State to 8/26/20
+dtypes: float64(2), int64(218), object(2)
+memory usage: 461.5+ KB
+None
+</code></pre>
+<pre><code class="language-python">print(df_recvd.info())
+</code></pre>
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 253 entries, 0 to 252
+Columns: 223 entries, Province/State to 8/27/20
+dtypes: float64(2), int64(219), object(2)
+memory usage: 440.9+ KB
+None
+</code></pre>
+<p>Kiểm tra 5 hàng đầu tiên của tập dữ liệu <code>df_confd</code> (2 tập còn lại tương tự):</p>
+<pre><code class="language-python">print(df_confd.head(5))
+</code></pre>
+<pre><code>  Province/State Country/Region       Lat       Long  1/22/20  1/23/20  \
+0            NaN    Afghanistan  33.93911  67.709953        0        0   
+1            NaN        Albania  41.15330  20.168300        0        0   
+2            NaN        Algeria  28.03390   1.659600        0        0   
+3            NaN        Andorra  42.50630   1.521800        0        0   
+4            NaN         Angola -11.20270  17.873900        0        0   
+
+   1/24/20  1/25/20  1/26/20  1/27/20  ...  8/18/20  8/19/20  8/20/20  \
+0        0        0        0        0  ...    37599    37599    37856   
+1        0        0        0        0  ...     7654     7812     7967   
+2        0        0        0        0  ...    39444    39847    40258   
+3        0        0        0        0  ...     1005     1024     1024   
+4        0        0        0        0  ...     1966     2015     2044   
+
+   8/21/20  8/22/20  8/23/20  8/24/20  8/25/20  8/26/20  8/27/20  
+0    37894    37953    37999    38054    38070    38113    38129  
+1     8119     8275     8427     8605     8759     8927     9083  
+2    40667    41068    41460    41858    42228    42619    43016  
+3     1045     1045     1045     1060     1060     1098     1098  
+4     2068     2134     2171     2222     2283     2332     2415  
+
+[5 rows x 223 columns]
+</code></pre>
+<p>Trích xuất thông tin về ngày từ tập dữ liệu:</p>
+<pre><code class="language-python">dates = df_confd.columns[4:]
+print(dates)
+</code></pre>
+<pre><code>Index(['1/22/20', '1/23/20', '1/24/20', '1/25/20', '1/26/20', '1/27/20',
+       '1/28/20', '1/29/20', '1/30/20', '1/31/20',
+       ...
+       '8/18/20', '8/19/20', '8/20/20', '8/21/20', '8/22/20', '8/23/20',
+       '8/24/20', '8/25/20', '8/26/20', '8/27/20'],
+      dtype='object', length=219)
+</code></pre>
+<p>Các tập dữ liệu này được lưu ở dạng <code>wide format</code> do đó chúng ta cần chuyển chúng dạng <code>long fromat</code>:</p>
+<pre><code class="language-python">dates = df_confd.columns[4:]
+long_df_confd = df_confd.melt(id_vars=['Province/State', 'Country/Region', 'Lat', 'Long'], 
+                            value_vars=dates, var_name='Date', value_name='Confirmed')
+
+long_df_death = df_death.melt(id_vars=['Province/State', 'Country/Region', 'Lat', 'Long'], 
+                            value_vars=dates, var_name='Date', value_name='Deaths')
+
+long_df_recvd = df_recvd.melt(id_vars=['Province/State', 'Country/Region', 'Lat', 'Long'], 
+                            value_vars=dates, var_name='Date', value_name='Recovered')
+</code></pre>
+<p>Kiểm tra dữ liệu sau khi đã chuyển:</p>
+<pre><code class="language-python">print(long_df_confd.head(5))
+</code></pre>
+<pre><code>  Province/State Country/Region       Lat       Long     Date  Confirmed
+0            NaN    Afghanistan  33.93911  67.709953  1/22/20          0
+1            NaN        Albania  41.15330  20.168300  1/22/20          0
+2            NaN        Algeria  28.03390   1.659600  1/22/20          0
+3            NaN        Andorra  42.50630   1.521800  1/22/20          0
+4            NaN         Angola -11.20270  17.873900  1/22/20          0
+</code></pre>
+<pre><code class="language-python">print(long_df_death.head(5))
+</code></pre>
+<pre><code>  Province/State Country/Region       Lat       Long     Date  Deaths
+0            NaN    Afghanistan  33.93911  67.709953  1/22/20       0
+1            NaN        Albania  41.15330  20.168300  1/22/20       0
+2            NaN        Algeria  28.03390   1.659600  1/22/20       0
+3            NaN        Andorra  42.50630   1.521800  1/22/20       0
+4            NaN         Angola -11.20270  17.873900  1/22/20       0
+</code></pre>
+<pre><code class="language-python">print(long_df_recvd.head(5))
+</code></pre>
+<pre><code>  Province/State Country/Region       Lat       Long     Date  Recovered
+0            NaN    Afghanistan  33.93911  67.709953  1/22/20          0
+1            NaN        Albania  41.15330  20.168300  1/22/20          0
+2            NaN        Algeria  28.03390   1.659600  1/22/20          0
+3            NaN        Andorra  42.50630   1.521800  1/22/20          0
+4            NaN         Angola -11.20270  17.873900  1/22/20          0
+</code></pre>
+<p>Gộp 3 tập dữ liệu này thành 1 dataframe:</p>
+<pre><code class="language-python">final_df = pd.merge(left=long_df_confd, right=long_df_death, how='left',
+                      on=['Province/State', 'Country/Region', 'Date', 'Lat', 'Long'])
+final_df = pd.merge(left=final_df, right=long_df_recvd, how='left',
+                      on=['Province/State', 'Country/Region', 'Date', 'Lat', 'Long'])
+</code></pre>
+<p>Chuyển cột dữ liệu ngày về dạng <code>date</code>:</p>
+<pre><code class="language-python">final_df['Date'] = pd.to_datetime(final_df['Date'])
+</code></pre>
+<p>Kiểm tra bảng dữ liệu thu được:</p>
+<pre><code class="language-python">print(final_df.head(5))
+</code></pre>
+<pre><code>  Province/State Country/Region       Lat       Long       Date  Confirmed  \
+0            NaN    Afghanistan  33.93911  67.709953 2020-01-22          0   
+1            NaN        Albania  41.15330  20.168300 2020-01-22          0   
+2            NaN        Algeria  28.03390   1.659600 2020-01-22          0   
+3            NaN        Andorra  42.50630   1.521800 2020-01-22          0   
+4            NaN         Angola -11.20270  17.873900 2020-01-22          0   
+
+   Deaths  Recovered  
+0       0        0.0  
+1       0        0.0  
+2       0        0.0  
+3       0        0.0  
+4       0        0.0  
+</code></pre>
+<p>Kiểm tra kích thước của bảng dữ liệu thu được:</p>
+<pre><code class="language-python">print(final_df.shape)
+</code></pre>
+<pre><code>(58254, 8)
+</code></pre>
+<p>Kiểm tra khoảng thời gian của dữ liệu được thu thập:</p>
+<pre><code class="language-python">a = final_df.Date.value_counts().sort_index()
+print('Ngày bắt đầu là:',a.index[0])
+print('Ngày hiện tại là:',a.index[-1])
+</code></pre>
+<pre><code>Ngày bắt đầu là: 2020-01-22 00:00:00
+Ngày hiện tại là: 2020-08-27 00:00:00
+</code></pre>
+<p>Kiểm tra <code>missing values</code> trong tập dữ liệu:</p>
+<pre><code class="language-python">final_df.isna().sum()
+</code></pre>
+<pre><code>Province/State    40515
+Country/Region        0
+Lat                   0
+Long                  0
+Date                  0
+Confirmed             0
+Deaths                0
+Recovered          4161
+dtype: int64
+</code></pre>
+<p>Đánh giá phần trăm <code>missing values</code> của từng cột dữ liệu:</p>
+<pre><code class="language-python">NAN = [(c, final_df[c].isna().mean()*100) for c in final_df]
+NAN = pd.DataFrame(NAN, columns=[&quot;column_name&quot;, &quot;percentage&quot;])
+print(NAN)
+</code></pre>
+<pre><code>      column_name  percentage
+0  Province/State   69.548872
+1  Country/Region    0.000000
+2             Lat    0.000000
+3            Long    0.000000
+4            Date    0.000000
+5       Confirmed    0.000000
+6          Deaths    0.000000
+7       Recovered    7.142857
+</code></pre>
+<p>Ta thấy cột <code>Province/State</code> có gần <code>69.55%</code> dữ liệu bị thiếu và cột <code>Recovered</code> có <code>7,14%</code>. Vì vậy chúng ta cần xử lý các giá trị thiếu này:</p>
+<pre><code class="language-python"># Thay thế na thành 0 cho cột Recovered
+final_df['Recovered'] = final_df['Recovered'].fillna(0)
+</code></pre>
+<pre><code class="language-python"># Thay thế na thành Unknown cho cột Province/State
+final_df[&quot;Province/State&quot;]= final_df[&quot;Province/State&quot;].fillna('Unknown')
+</code></pre>
+<p>Kiểm tra xem trong dữ liệu còn <code>missing values</code> không:</p>
+<pre><code class="language-python">final_df.isna().sum()
+</code></pre>
+<pre><code>Province/State    0
+Country/Region    0
+Lat               0
+Long              0
+Date              0
+Confirmed         0
+Deaths            0
+Recovered         0
+dtype: int64
+</code></pre>
+<p>Kiểm tra kiểu dữ liệu:</p>
+<pre><code class="language-python">print(final_df.dtypes)
+</code></pre>
+<pre><code>Province/State            object
+Country/Region            object
+Lat                      float64
+Long                     float64
+Date              datetime64[ns]
+Confirmed                  int64
+Deaths                     int64
+Recovered                float64
+dtype: object
+</code></pre>
+<p>Thay đổi kiểu dữ liệu cho các cột <code>Confirmed, Deaths và Recovered</code> thành <code>int</code>:</p>
+<pre><code class="language-python">final_df[[&quot;Confirmed&quot;,&quot;Deaths&quot;,&quot;Recovered&quot;]] = final_df[[&quot;Confirmed&quot;,&quot;Deaths&quot;,&quot;Recovered&quot;]].astype(int)
+print(final_df.dtypes)
+</code></pre>
+<pre><code>Province/State            object
+Country/Region            object
+Lat                      float64
+Long                     float64
+Date              datetime64[ns]
+Confirmed                  int32
+Deaths                     int32
+Recovered                  int32
+dtype: object
+</code></pre>
+<p>Tạo thuộc tính mới <code>Active</code> (Số trường hợp còn đang nhiễm sau khi đã trừ đi số trường hợp tử vong và hồi phục): 
+$$Active = Confirmed - Deaths - Recovered$$</p>
+<pre><code class="language-python">final_df['Active'] = final_df['Confirmed'] - final_df['Deaths'] - final_df['Recovered']
+print(final_df.head(5))
+</code></pre>
+<pre><code>  Province/State Country/Region       Lat       Long       Date  Confirmed  \
+0        Unknown    Afghanistan  33.93911  67.709953 2020-01-22          0   
+1        Unknown        Albania  41.15330  20.168300 2020-01-22          0   
+2        Unknown        Algeria  28.03390   1.659600 2020-01-22          0   
+3        Unknown        Andorra  42.50630   1.521800 2020-01-22          0   
+4        Unknown         Angola -11.20270  17.873900 2020-01-22          0   
+
+   Deaths  Recovered  Active  
+0       0          0       0  
+1       0          0       0  
+2       0          0       0  
+3       0          0       0  
+4       0          0       0  
+</code></pre>
+<p>Kiểm tra tổng số nước trên toàn thế giới trong tập dữ liệu:</p>
+<pre><code class="language-python">len(final_df['Country/Region'].unique())
+</code></pre>
+<pre><code>188
+</code></pre>
+<p><strong>Tình hình Covid -19 trên toàn thế giới tính tới thời điểm đang viết bài này:</strong></p>
+<p>Tổng các cases trên toàn thế giới:</p>
+<pre><code class="language-python">df = pd.DataFrame(pd.to_numeric(final_df[['Confirmed', 'Deaths', 'Recovered', 'Active']].sum()),dtype=np.float64).transpose()
+df['Last date'] = max(final_df['Date'])
+print(df)
+</code></pre>
+<pre><code>      Confirmed      Deaths    Recovered       Active  Last date
+0  1.468017e+09  66417411.0  782699851.0  618899989.0 2020-08-27
+</code></pre>
+<p>Tạo <code>Pie chart</code> so sánh các cases trên toàn thế giới:</p>
+<pre><code class="language-python">labels = ['Confirmed', 'Deaths', 'Recovered', 'Active']
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue']
+explode = (0.1, 0, 0, 0)  # explode 1st slice
+sizes = sum(df.loc[:, 'Confirmed':'Active'].values)
+explode = (0.1, 0, 0, 0)  # explode 1st slice
+
+# Plot
+f = plt.figure(figsize=(8,8))
+plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+autopct='%1.1f%%', shadow=True, startangle=140)
+plt.axis('equal')
+plt.show()
+</code></pre>
+<p><img src="./index_53_0.png" alt="png"></p>
+<h2 id="data-visualization">2. Trực quan hóa dữ liệu</h2>
+<p><strong>2.1 Top 10 nước có số trường hợp (confirmed, deaths, recovered and active cases) lớn nhất</strong></p>
+<p>Tính tổng các <code>cases</code> của từng nước tính đến thười điểm hiện tại:</p>
+<pre><code class="language-python">df_countries = final_df.copy().drop(['Lat','Long','Province/State', 'Date'],axis =1)
+df_countries = df_countries.groupby([&quot;Country/Region&quot;]).sum()
+</code></pre>
+<p>Top 10 nước có <code>confirmed cases</code> lớn nhất:</p>
+<pre><code class="language-python">f = plt.figure(figsize=(10,5))
+f.add_subplot(111)
+plt.axes(axisbelow=True)
+plt.barh(df_countries.sort_values('Confirmed')[&quot;Confirmed&quot;].index[-10:],df_countries.sort_values('Confirmed')[&quot;Confirmed&quot;].values[-10:],color=&quot;darkcyan&quot;)
+plt.tick_params(size=5,labelsize = 13)
+plt.xlabel(&quot;Confirmed Cases&quot;,fontsize=18)
+plt.title(&quot;Top 10 Countries (Confirmed Cases)&quot;,fontsize=20)
+plt.grid(alpha=0.3)
+</code></pre>
+<p><img src="./index_59_0.png" alt="png"></p>
+<p>Top 10 nước có <code>Deaths</code> lớn nhất:</p>
+<pre><code class="language-python">f = plt.figure(figsize=(10,5))
+f.add_subplot(111)
+
+plt.axes(axisbelow=True)
+plt.barh(df_countries.sort_values('Deaths')[&quot;Deaths&quot;].index[-10:],df_countries.sort_values('Deaths')[&quot;Deaths&quot;].values[-10:],color=&quot;crimson&quot;)
+plt.tick_params(size=5,labelsize = 13)
+plt.xlabel(&quot;Deaths Cases&quot;,fontsize=18)
+plt.title(&quot;Top 10 Countries (Deaths)&quot;,fontsize=20)
+plt.grid(alpha=0.3,which='both')
+</code></pre>
+<p><img src="./index_61_0.png" alt="png"></p>
+<p>Top 10 nước có <code>Recovered Cases</code> lớn nhất:</p>
+<pre><code class="language-python">f = plt.figure(figsize=(10,5))
+f.add_subplot(111)
+
+plt.axes(axisbelow=True)
+plt.barh(df_countries.sort_values('Recovered')[&quot;Recovered&quot;].index[-10:],df_countries.sort_values('Recovered')[&quot;Recovered&quot;].values[-10:],color=&quot;limegreen&quot;)
+plt.tick_params(size=5,labelsize = 13)
+plt.xlabel(&quot;Recovered Cases&quot;,fontsize=18)
+plt.title(&quot;Top 10 Countries (Recovered Cases)&quot;,fontsize=20)
+plt.grid(alpha=0.3,which='both')
+</code></pre>
+<p><img src="./index_63_0.png" alt="png"></p>
+<p>Top 10 nước có <code>Active Cases</code> lớn nhất:</p>
+<pre><code class="language-python">f = plt.figure(figsize=(10,5))
+f.add_subplot(111)
+
+plt.axes(axisbelow=True)
+plt.barh(df_countries.sort_values('Active')[&quot;Active&quot;].index[-10:],df_countries.sort_values('Active')[&quot;Active&quot;].values[-10:],color=&quot;darkorange&quot;)
+plt.tick_params(size=5,labelsize = 13)
+plt.xlabel(&quot;Active Cases&quot;,fontsize=18)
+plt.title(&quot;Top 10 Countries (Active Cases)&quot;,fontsize=20)
+plt.grid(alpha=0.3,which='both')
+</code></pre>
+<p><img src="./index_65_0.png" alt="png"></p>
+<p><strong>2.1 Mức độ phát triển của Covid-19 theo thời gian trên toàn thế giới</strong></p>
+<p>Tính tổng các <code>cases</code> trên toàn thế giới theo thời gian</p>
+<pre><code class="language-python">df_world = final_df.groupby([&quot;Date&quot;])[[&quot;Confirmed&quot;,&quot;Active&quot;,&quot;Recovered&quot;,&quot;Deaths&quot;]].sum().reset_index()
+df_world.set_index('Date',inplace=True)
+</code></pre>
+<p>Mức độ phát triển của <code>Confirmed cases</code> trên toàn thế giới theo thời gian:</p>
+<pre><code class="language-python"># Create figure and plot space
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Add x-axis and y-axis
+ax.bar(df_world.index.values,
+        df_world['Confirmed'],
+        color='blue')
+
+# Set title and labels for axes
+ax.set(xlabel=&quot;Date&quot;,
+       ylabel=&quot;Confirmed cases&quot;,
+       title=&quot;Confirmed Cases In Each Day&quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.grid(alpha=0.3,which='both')
+</code></pre>
+<p><img src="./index_70_0.png" alt="png"></p>
+<p>Mức độ phát triển của <code>Deaths</code> trên toàn thế giới theo thời gian:</p>
+<pre><code class="language-python"># Create figure and plot space
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Add x-axis and y-axis
+ax.bar(df_world.index.values,
+        df_world['Deaths'],
+        color='red')
+
+# Set title and labels for axes
+ax.set(xlabel=&quot;Date&quot;,
+       ylabel=&quot;Deaths&quot;,
+       title=&quot;Deaths In Each Day&quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.grid(alpha=0.3,which='both')
+</code></pre>
+<p><img src="./index_72_0.png" alt="png"></p>
+<p>Mức độ phát triển của <code>Recovered cases</code> trên toàn thế giới theo thời gian:</p>
+<pre><code class="language-python"># Create figure and plot space
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Add x-axis and y-axis
+ax.bar(df_world.index.values,
+        df_world['Recovered'],
+        color='purple')
+
+# Set title and labels for axes
+ax.set(xlabel=&quot;Date&quot;,
+       ylabel=&quot;Recovered cases&quot;,
+       title=&quot;Recovered Cases In Each Day&quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.grid(alpha=0.3,which='both')
+</code></pre>
+<p><img src="./index_74_0.png" alt="png"></p>
+<p>Mức độ phát triển của <code>Active Cases</code> trên toàn thế giới theo thời gian:</p>
+<pre><code class="language-python"># Create figure and plot space
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Add x-axis and y-axis
+ax.plot(df_world.index.values,
+        df_world['Active'],
+        color= 'green')
+
+# Set title and labels for axes
+ax.set(xlabel=&quot;Date&quot;,
+       ylabel=&quot;Active Cases&quot;,
+       title=&quot;Active Cases In Each Day&quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.grid(alpha=0.3,which='both')
+</code></pre>
+<p><img src="./index_76_0.png" alt="png"></p>
+<h3 id="hiển-thị-tất-cả-các-cases-trên-thế-giới-theo-thời-gian">Hiển thị tất cả các cases trên thế giới theo thời gian</h3>
+<pre><code class="language-python"># Create figure and plot space
+fig, ax = plt.subplots(figsize=(12, 6))
+
+# Add x-axis and y-axis
+ax.plot(df_world.index.values,
+        df_world['Confirmed'],
+        color='blue', label = 'Confirmed Cases')
+
+ax.plot(df_world.index.values,
+        df_world['Deaths'],
+        color='red', label = 'Deaths')
+
+ax.plot(df_world.index.values,
+        df_world['Recovered'],
+        color='purple', label = 'Recovered Cases')
+
+
+ax.plot(df_world.index.values,
+        df_world['Active'],
+        color= 'green',  label= 'Active Cases')
+
+
+# Set title and labels for axes
+ax.set(xlabel=&quot;Date&quot;,
+       ylabel=&quot;Cases&quot;,
+       title=&quot;COVID-19 Cases In Each Day&quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.legend(loc=&quot;upper left&quot;)
+plt.grid(alpha=0.3,which='both')
+</code></pre>
+<p><img src="./index_78_0.png" alt="png"></p>
+<p><strong>Tổng số lượng các quốc gia trên thế giới xuất hiện dịch bệnh Covid-19 theo thời gian</strong></p>
+<pre><code class="language-python">case_nums_country = df_confd.groupby(&quot;Country/Region&quot;).sum().drop(['Lat','Long'],axis =1).apply(lambda x: x[x &gt; 0].count(), axis =0)
+d = [datetime.strptime(date,'%m/%d/%y').strftime(&quot;%d %b&quot;) for date in case_nums_country.index]
+f = plt.figure(figsize=(10,5))
+f.add_subplot(111)
+marker_style = dict(c=&quot;crimson&quot;,linewidth=1, linestyle='-', marker='o',markersize=4, markerfacecolor='blue')
+plt.plot(df_world.index.values, case_nums_country,**marker_style)
+plt.setp(ax.get_xticklabels(), rotation=90)
+plt.xlabel(&quot;Dates&quot;,fontsize=10)
+plt.grid(alpha = 0.3)
+</code></pre>
+<p><img src="./index_80_0.png" alt="png"></p>
+<p><strong>2.3 So sánh sự phát triển của COVID-19 theo thời gian giữa các nước</strong></p>
+<p>So sánh Việt Nam, Mỹ, Nga:</p>
+<pre><code class="language-python">df_Vietnam = final_df[final_df['Country/Region'] == 'Vietnam']
+df_Russia = final_df[final_df['Country/Region'] == 'Russia']
+df_US = final_df[final_df['Country/Region'] == 'US']
+</code></pre>
+<p>Do Mỹ và Nga cùng có số lượng các <code>cases</code> lớn nên biểu thị vào cùng một biểu đồ:</p>
+<pre><code class="language-python"># Create figure and plot space
+fig, ax = plt.subplots(figsize=(12, 6))
+
+# Add x-axis and y-axis
+ax.plot(df_US['Date'],
+        df_US['Confirmed'],
+        color='blue', label = 'Confirmed Cases of US')
+
+ax.plot(df_US['Date'],
+        df_US['Active'],
+        '-.',
+        color='blue', label = 'Active Cases of US')
+
+ax.plot(df_US['Date'],
+        df_US['Recovered'],
+        '--',
+        color='blue', label = 'Recovered Cases of US')
+
+ax.plot(df_Russia['Date'],
+        df_Russia['Confirmed'],
+        color='red', label = 'Confirmed Cases of Russia')
+
+ax.plot(df_Russia['Date'],
+        df_Russia['Active'],
+        '-.',
+        color='red', label = 'Active Cases of Russia')
+
+ax.plot(df_Russia['Date'],
+        df_Russia['Recovered'],
+        '--',
+        color='red', label = 'Recovered Cases of Russia')
+
+# Set title and labels for axes
+ax.set(xlabel=&quot;Date&quot;,
+       ylabel=&quot;Cases&quot;,
+       title=&quot;Confirmed Cases of COVID-19 of Russia vs US&quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.legend(loc=&quot;upper left&quot;)
+plt.grid(alpha=0.3,which='both')
+</code></pre>
+<p><img src="./index_84_0.png" alt="png"></p>
+<p>Việt nam có tổng số các <code>cases</code> nhỏ hơn rất nhiều so với Russia và Mỹ nến nếu biểu thị vào cùng 1 biểu đồ thì sẽ rất khó nhìn. Do vậy tôi biểu diễn Việt Nam riêng:</p>
+<pre><code class="language-python">fig, ax = plt.subplots(figsize=(12, 6))
+
+# Add x-axis and y-axis
+ax.plot(df_Vietnam['Date'],
+        df_Vietnam['Confirmed'],
+        color=&quot;red&quot;, label = 'Confirmed Cases of Vietnam')
+
+ax.plot(df_Vietnam['Date'],
+        df_Vietnam['Deaths'],
+        '-.',
+        color=&quot;black&quot;, label = 'Death Case of Vietnam')
+
+ax.plot(df_Vietnam['Date'],
+        df_Vietnam['Active'],
+        '-.',
+        color=&quot;blue&quot;, label = 'Active Cases of Vietnam')
+
+ax.plot(df_Vietnam['Date'],
+        df_Vietnam['Recovered'],
+        '--',
+        color=&quot;green&quot;, label = 'Recovered Cases of Vietnam')
+
+# Set title and labels for axes
+ax.set(xlabel=&quot;Date&quot;,
+       ylabel=&quot;Cases&quot;,
+       title=&quot;COVID-19 cases of Vietnam&quot;)
+
+# Rotate tick marks on x-axis
+plt.setp(ax.get_xticklabels(), rotation=45)
+plt.legend(loc=&quot;upper left&quot;)
+plt.grid(alpha=0.3,which='both')
+</code></pre>
+<p><img src="./index_86_0.png" alt="png"></p>
+<pre><code class="language-python">
+</code></pre>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/jupyter-notebook/">Jupyter Notebook</a>
+  
+  <a class="badge badge-light" href="/tag/machine-learning/">Machine Learning</a>
+  
+  <a class="badge badge-light" href="/tag/data-visualization/">Data Visualization</a>
+  
+  <a class="badge badge-light" href="/tag/covid-19/">Covid-19</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/covid-19/&amp;text=Download%20v%c3%a0%20tr%e1%bb%b1c%20quan%20h%c3%b3a%20d%e1%bb%af%20li%e1%bb%87u%20Covid-19%20t%e1%bb%ab%20John%20Hopkins%20database%20%28s%e1%bb%ad%20d%e1%bb%a5ng%20Python%20code%29" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/covid-19/&amp;t=Download%20v%c3%a0%20tr%e1%bb%b1c%20quan%20h%c3%b3a%20d%e1%bb%af%20li%e1%bb%87u%20Covid-19%20t%e1%bb%ab%20John%20Hopkins%20database%20%28s%e1%bb%ad%20d%e1%bb%a5ng%20Python%20code%29" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Download%20v%c3%a0%20tr%e1%bb%b1c%20quan%20h%c3%b3a%20d%e1%bb%af%20li%e1%bb%87u%20Covid-19%20t%e1%bb%ab%20John%20Hopkins%20database%20%28s%e1%bb%ad%20d%e1%bb%a5ng%20Python%20code%29&amp;body=/post/covid-19/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/covid-19/&amp;title=Download%20v%c3%a0%20tr%e1%bb%b1c%20quan%20h%c3%b3a%20d%e1%bb%af%20li%e1%bb%87u%20Covid-19%20t%e1%bb%ab%20John%20Hopkins%20database%20%28s%e1%bb%ad%20d%e1%bb%a5ng%20Python%20code%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Download%20v%c3%a0%20tr%e1%bb%b1c%20quan%20h%c3%b3a%20d%e1%bb%af%20li%e1%bb%87u%20Covid-19%20t%e1%bb%ab%20John%20Hopkins%20database%20%28s%e1%bb%ad%20d%e1%bb%a5ng%20Python%20code%29%20/post/covid-19/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/covid-19/&amp;title=Download%20v%c3%a0%20tr%e1%bb%b1c%20quan%20h%c3%b3a%20d%e1%bb%af%20li%e1%bb%87u%20Covid-19%20t%e1%bb%ab%20John%20Hopkins%20database%20%28s%e1%bb%ad%20d%e1%bb%a5ng%20Python%20code%29" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/cuong-sai/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="Cuong Sai">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Cuong Sai</a></h5>
+        <h6 class="card-subtitle">PhD student</h6>
+        <p class="card-text">My research interests include Industrial AI (Intelligent predictive maintenance), Machine and Deep learning, Time series forecasting, Intelligent machinery fault diagnosis, Prognostics and health management, Error metrics / forecast evaluation.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://web.facebook.com/csdatascience" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?hl=en&amp;user=qhiD3RUAAAAJ" target="_blank" rel="noopener">
+        <i class="fab fa-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/svcuong" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+  
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "cuongsai" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/jupyter/">Thử sử dụng jupyter notebook để viết posts cho blog. Machine Learning Project Template với Python</a></li>
+      
+      <li><a href="/post/ensemble-learning/">Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code)</a></li>
+      
+      <li><a href="/post/remove-outliers/">Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python</a></li>
+      
+      <li><a href="/publication/soict2019/">PdM&#39;:&#39; A predictive maintenance modeling tool implemented as R-package and web-application</a></li>
+      
+      <li><a href="/publication/citds2019/">Data-Driven Framework for Predictive Maintenance in Industry 4.0 Concept</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+ 
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://cuongsai.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    © 2020 Cuong Sai. All Rights Reserved
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a>
+    for
+    <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

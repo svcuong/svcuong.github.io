@@ -855,7 +855,7 @@ coins &lt;- read_json(json, simplifyVector = TRUE)</code></pre>
 ## 10       Binance Coin, binance-coin, BNB 1839</code></pre>
 <p>Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên <code>CoinMarketCap</code>:</p>
 <pre class="r"><code>dim(coins)[1]</code></pre>
-<pre><code>## [1] 4861</code></pre>
+<pre><code>## [1] 4869</code></pre>
 <p>Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng <code>coins</code> đầu tiên có rank từ 2 đến 11:</p>
 <pre class="r"><code># Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:11]
 coinslug &lt;- coins$slug[2:11]
