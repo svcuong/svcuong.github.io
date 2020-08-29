@@ -43,7 +43,21 @@
 &lt;p&gt;Dữ liệu Covid-19 được đại học &lt;code&gt;John Hopkins&lt;/code&gt; thu thập và cập nhật hàng ngày tại đây 
 &lt;a href=&#34;https://github.com/CSSEGISandData/COVID-19&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;John Hopkins database&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Trong bài này để hiểu hơn về đại dịch này tôi sẽ hướng dẫn các bạn cách download dữ liệu Covid-19 từ 
-&lt;a href=&#34;https://github.com/CSSEGISandData/COVID-19&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;John Hopkins database&lt;/a&gt; và thực hành các thao tác chuẩn bị dữ liệu (làm sạch và biến đổi) với thư viện &lt;code&gt;pandas&lt;/code&gt; và trực quan hóa dữ liệu với thư viện &lt;code&gt;maplotlib&lt;/code&gt; sử dụng ngôn ngữ Python.&lt;/p&gt;
+&lt;a href=&#34;https://github.com/CSSEGISandData/COVID-19&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;John Hopkins database&lt;/a&gt; và thực hành các thao tác chuẩn bị dữ liệu (làm sạch và biến đổi) với thư viện &lt;code&gt;pandas&lt;/code&gt; và trực quan hóa dữ liệu với thư viện &lt;code&gt;maplotlib&lt;/code&gt; sử dụng ngôn ngữ Python. Sau khi đọc xong bài này các bạn sẽ nắm được:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cách download dữ liệu Covid-19 từ &lt;code&gt;Jonh Hopkins&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cách làm sạch và biến đổi dữ liệu dạng &lt;code&gt;data frame&lt;/code&gt; với thư viện &lt;code&gt;pandas&lt;/code&gt;: xử lý dữ liệu bị thiếu, gộp các dataframes, chuyển đổi dữ liệu từ dạng &lt;code&gt;wide format&lt;/code&gt; sang dạng &lt;code&gt;long fromat&lt;/code&gt;, subset,&amp;hellip;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cách trực quan hóa dữ liệu &lt;code&gt;Covid-19&lt;/code&gt; sử dụng thư viện &lt;code&gt;matplotlib&lt;/code&gt;: Pie chart, Bar chart, Line chart, Multi-Line Chart, xử lý dữ liệu &lt;code&gt;date&lt;/code&gt; trong vẽ biểu đồ,&amp;hellip;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Từ đó các bạn có thể phát triển các kỹ thuật trên thành các &lt;code&gt;Data visualization Dashboards&lt;/code&gt; hoặc là web tương tác để &lt;code&gt;tracking&lt;/code&gt; tình hình &lt;code&gt;Covid-19&lt;/code&gt; trên toàn thế giới tương tự như 
+&lt;a href=&#34;https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;John Hopkins University Dashboard&lt;/a&gt;, 
+&lt;a href=&#34;https://covid19.who.int/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;WHO COVID-19 Dashboard&lt;/a&gt;,&amp;hellip;&lt;/p&gt;
 &lt;h3 id=&#34;nội-dung-chính-của-bài-bao-gồm&#34;&gt;Nội dung chính của bài bao gồm:&lt;/h3&gt;
 &lt;p&gt;
 &lt;a href=&#34;#prepare-data&#34;&gt;1. Download &amp;amp; chuẩn bị dữ liệu Covid-19 sử dụng thư viện pandas&lt;/a&gt;&lt;/p&gt;
@@ -89,9 +103,9 @@ None
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;class &#39;pandas.core.frame.DataFrame&#39;&amp;gt;
 RangeIndex: 266 entries, 0 to 265
-Columns: 222 entries, Province/State to 8/26/20
-dtypes: float64(2), int64(218), object(2)
-memory usage: 461.5+ KB
+Columns: 223 entries, Province/State to 8/27/20
+dtypes: float64(2), int64(219), object(2)
+memory usage: 463.5+ KB
 None
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(df_recvd.info())
@@ -218,7 +232,7 @@ print(&#39;Ngày hiện tại là:&#39;,a.index[-1])
 &lt;pre&gt;&lt;code&gt;Ngày bắt đầu là: 2020-01-22 00:00:00
 Ngày hiện tại là: 2020-08-27 00:00:00
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Kiểm tra &lt;code&gt;missing values&lt;/code&gt; trong tập dữ liệu:&lt;/p&gt;
+&lt;p&gt;Kiểm tra &lt;code&gt;missing values (NaN)&lt;/code&gt; trong tập dữ liệu:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;final_df.isna().sum()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;Province/State    40515
@@ -247,10 +261,10 @@ print(NAN)
 7       Recovered    7.142857
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ta thấy cột &lt;code&gt;Province/State&lt;/code&gt; có gần &lt;code&gt;69.55%&lt;/code&gt; dữ liệu bị thiếu và cột &lt;code&gt;Recovered&lt;/code&gt; có &lt;code&gt;7,14%&lt;/code&gt;. Vì vậy chúng ta cần xử lý các giá trị thiếu này:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Thay thế na thành 0 cho cột Recovered
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Thay thế nan thành 0 cho cột Recovered
 final_df[&#39;Recovered&#39;] = final_df[&#39;Recovered&#39;].fillna(0)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Thay thế na thành Unknown cho cột Province/State
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Thay thế nan thành Unknown cho cột Province/State
 final_df[&amp;quot;Province/State&amp;quot;]= final_df[&amp;quot;Province/State&amp;quot;].fillna(&#39;Unknown&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Kiểm tra xem trong dữ liệu còn &lt;code&gt;missing values&lt;/code&gt; không:&lt;/p&gt;
@@ -312,22 +326,23 @@ print(final_df.head(5))
 3       0          0       0  
 4       0          0       0  
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;data-visualization&#34;&gt;2. Trực quan hóa dữ liệu&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;2.1 Tổng quan tình hình Covid -19 trên toàn thế giới tính tới thời điểm đang viết bài này:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Kiểm tra tổng số nước trên toàn thế giới trong tập dữ liệu:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;len(final_df[&#39;Country/Region&#39;].unique())
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;188
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Tình hình Covid -19 trên toàn thế giới tính tới thời điểm đang viết bài này:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Tổng các cases trên toàn thế giới:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df = pd.DataFrame(pd.to_numeric(final_df[[&#39;Confirmed&#39;, &#39;Deaths&#39;, &#39;Recovered&#39;, &#39;Active&#39;]].sum()),dtype=np.float64).transpose()
 df[&#39;Last date&#39;] = max(final_df[&#39;Date&#39;])
 print(df)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;      Confirmed      Deaths    Recovered       Active  Last date
-0  1.468017e+09  66417411.0  782699851.0  618899989.0 2020-08-27
+0  1.467912e+09  66453862.0  782699851.0  618758286.0 2020-08-27
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Tạo &lt;code&gt;Pie chart&lt;/code&gt; so sánh các cases trên toàn thế giới:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;labels = [&#39;Confirmed&#39;, &#39;Deaths&#39;, &#39;Recovered&#39;, &#39;Active&#39;]
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cases = [&#39;Confirmed&#39;, &#39;Deaths&#39;, &#39;Recovered&#39;, &#39;Active&#39;]
 colors = [&#39;gold&#39;, &#39;yellowgreen&#39;, &#39;lightcoral&#39;, &#39;lightskyblue&#39;]
 explode = (0.1, 0, 0, 0)  # explode 1st slice
 sizes = sum(df.loc[:, &#39;Confirmed&#39;:&#39;Active&#39;].values)
@@ -335,14 +350,18 @@ explode = (0.1, 0, 0, 0)  # explode 1st slice
 
 # Plot
 f = plt.figure(figsize=(8,8))
-plt.pie(sizes, explode=explode, labels=labels, colors=colors,
-autopct=&#39;%1.1f%%&#39;, shadow=True, startangle=140)
+plt.pie(sizes, explode=explode, 
+        textprops=dict(size=15,color=&#39;black&#39;),
+        labels=cases, 
+        colors=colors,
+        autopct=&#39;%1.1f%%&#39;, 
+        shadow=True, 
+        startangle=140)
 plt.axis(&#39;equal&#39;)
 plt.show()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;./index_53_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;data-visualization&#34;&gt;2. Trực quan hóa dữ liệu&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;2.1 Top 10 nước có số trường hợp (confirmed, deaths, recovered and active cases) lớn nhất&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./index_54_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.2 Top 10 nước có số trường hợp (confirmed, deaths, recovered and active cases) lớn nhất&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Tính tổng các &lt;code&gt;cases&lt;/code&gt; của từng nước tính đến thười điểm hiện tại:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df_countries = final_df.copy().drop([&#39;Lat&#39;,&#39;Long&#39;,&#39;Province/State&#39;, &#39;Date&#39;],axis =1)
 df_countries = df_countries.groupby([&amp;quot;Country/Region&amp;quot;]).sum()
@@ -394,7 +413,7 @@ plt.title(&amp;quot;Top 10 Countries (Active Cases)&amp;quot;,fontsize=20)
 plt.grid(alpha=0.3,which=&#39;both&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;./index_65_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2.1 Mức độ phát triển của Covid-19 theo thời gian trên toàn thế giới&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.3 Mức độ phát triển của Covid-19 theo thời gian trên toàn thế giới&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Tính tổng các &lt;code&gt;cases&lt;/code&gt; trên toàn thế giới theo thời gian&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df_world = final_df.groupby([&amp;quot;Date&amp;quot;])[[&amp;quot;Confirmed&amp;quot;,&amp;quot;Active&amp;quot;,&amp;quot;Recovered&amp;quot;,&amp;quot;Deaths&amp;quot;]].sum().reset_index()
 df_world.set_index(&#39;Date&#39;,inplace=True)
@@ -461,7 +480,7 @@ plt.grid(alpha=0.3,which=&#39;both&#39;)
 fig, ax = plt.subplots(figsize=(10, 6))
 
 # Add x-axis and y-axis
-ax.plot(df_world.index.values,
+ax.bar(df_world.index.values,
         df_world[&#39;Active&#39;],
         color= &#39;green&#39;)
 
@@ -475,7 +494,7 @@ plt.setp(ax.get_xticklabels(), rotation=45)
 plt.grid(alpha=0.3,which=&#39;both&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;./index_76_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;hiển-thị-tất-cả-các-cases-trên-thế-giới-theo-thời-gian&#34;&gt;Hiển thị tất cả các cases trên thế giới theo thời gian&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;2.4 Hiển thị tất cả các cases trên thế giới theo thời gian&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Create figure and plot space
 fig, ax = plt.subplots(figsize=(12, 6))
 
@@ -509,9 +528,11 @@ plt.legend(loc=&amp;quot;upper left&amp;quot;)
 plt.grid(alpha=0.3,which=&#39;both&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;./index_78_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Tổng số lượng các quốc gia trên thế giới xuất hiện dịch bệnh Covid-19 theo thời gian&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;case_nums_country = df_confd.groupby(&amp;quot;Country/Region&amp;quot;).sum().drop([&#39;Lat&#39;,&#39;Long&#39;],axis =1).apply(lambda x: x[x &amp;gt; 0].count(), axis =0)
+&lt;p&gt;&lt;strong&gt;2.5 Tổng số lượng các quốc gia trên thế giới xuất hiện dịch bệnh Covid-19 theo thời gian&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Tính tổng số lượng các nước xuất hiện dịch Covid-19 theo thời gian
+case_nums_country = df_confd.groupby(&amp;quot;Country/Region&amp;quot;).sum().drop([&#39;Lat&#39;,&#39;Long&#39;],axis =1).apply(lambda x: x[x &amp;gt; 0].count(), axis =0)
 d = [datetime.strptime(date,&#39;%m/%d/%y&#39;).strftime(&amp;quot;%d %b&amp;quot;) for date in case_nums_country.index]
+
 f = plt.figure(figsize=(10,5))
 f.add_subplot(111)
 marker_style = dict(c=&amp;quot;crimson&amp;quot;,linewidth=1, linestyle=&#39;-&#39;, marker=&#39;o&#39;,markersize=4, markerfacecolor=&#39;blue&#39;)
@@ -521,7 +542,7 @@ plt.xlabel(&amp;quot;Dates&amp;quot;,fontsize=10)
 plt.grid(alpha = 0.3)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;./index_80_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2.3 So sánh sự phát triển của COVID-19 theo thời gian giữa các nước&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.6 So sánh sự phát triển của COVID-19 theo thời gian giữa các nước&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;So sánh Việt Nam, Mỹ, Nga:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;df_Vietnam = final_df[final_df[&#39;Country/Region&#39;] == &#39;Vietnam&#39;]
 df_Russia = final_df[final_df[&#39;Country/Region&#39;] == &#39;Russia&#39;]
@@ -571,7 +592,7 @@ plt.legend(loc=&amp;quot;upper left&amp;quot;)
 plt.grid(alpha=0.3,which=&#39;both&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;./index_84_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Việt nam có tổng số các &lt;code&gt;cases&lt;/code&gt; nhỏ hơn rất nhiều so với Russia và Mỹ nến nếu biểu thị vào cùng 1 biểu đồ thì sẽ rất khó nhìn. Do vậy tôi biểu diễn Việt Nam riêng:&lt;/p&gt;
+&lt;p&gt;Việt nam có tổng số các &lt;code&gt;cases&lt;/code&gt; nhỏ hơn rất nhiều so với Russia và Mỹ nên nếu biểu thị vào cùng 1 biểu đồ thì sẽ rất khó nhìn. Do vậy tôi biểu diễn Việt Nam riêng:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig, ax = plt.subplots(figsize=(12, 6))
 
 # Add x-axis and y-axis
