@@ -3,12 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/courses/data-science-with-python/</loc>
+    <loc>/books/data-science-with-python/</loc>
     <lastmod>2019-09-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/courses/data-science-with-r/</loc>
+    <loc>/books/data-science-with-r/</loc>
     <lastmod>2019-09-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -268,7 +268,7 @@
   </url>
   
   <url>
-    <loc>/courses/</loc>
+    <loc>/books/</loc>
     <lastmod>2019-09-09T00:00:00+00:00</lastmod>
   </url>
   
