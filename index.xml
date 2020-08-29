@@ -63,7 +63,7 @@
 &lt;a href=&#34;#prepare-data&#34;&gt;1. Download &amp;amp; chuẩn bị dữ liệu Covid-19 sử dụng thư viện pandas&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;
 &lt;a href=&#34;#data-visualization&#34;&gt;2. Trực quan hóa dữ liệu Covid-19 sử dụng thư viện matploblib&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;prepare-data&#34;&gt;1. Download và chuẩ bị dữ liệu&lt;/h2&gt;
+&lt;h2 id=&#34;prepare-data&#34;&gt;1. Download và chuẩn bị dữ liệu&lt;/h2&gt;
 &lt;p&gt;Trước hết để thực hành chúng ta cần nạp các thư viện cần thiết trên &lt;code&gt;Python&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pandas as pd
 import matplotlib.pyplot as plt
@@ -94,18 +94,18 @@ df_recvd = pd.read_csv(url_recvd)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;class &#39;pandas.core.frame.DataFrame&#39;&amp;gt;
 RangeIndex: 266 entries, 0 to 265
-Columns: 223 entries, Province/State to 8/27/20
-dtypes: float64(2), int64(219), object(2)
-memory usage: 463.5+ KB
+Columns: 224 entries, Province/State to 8/28/20
+dtypes: float64(2), int64(220), object(2)
+memory usage: 465.6+ KB
 None
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(df_death.info())
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;class &#39;pandas.core.frame.DataFrame&#39;&amp;gt;
 RangeIndex: 266 entries, 0 to 265
-Columns: 223 entries, Province/State to 8/27/20
-dtypes: float64(2), int64(219), object(2)
-memory usage: 463.5+ KB
+Columns: 224 entries, Province/State to 8/28/20
+dtypes: float64(2), int64(220), object(2)
+memory usage: 465.6+ KB
 None
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(df_recvd.info())
@@ -127,21 +127,21 @@ None
 3            NaN        Andorra  42.50630   1.521800        0        0   
 4            NaN         Angola -11.20270  17.873900        0        0   
 
-   1/24/20  1/25/20  1/26/20  1/27/20  ...  8/18/20  8/19/20  8/20/20  \
-0        0        0        0        0  ...    37599    37599    37856   
-1        0        0        0        0  ...     7654     7812     7967   
-2        0        0        0        0  ...    39444    39847    40258   
-3        0        0        0        0  ...     1005     1024     1024   
-4        0        0        0        0  ...     1966     2015     2044   
+   1/24/20  1/25/20  1/26/20  1/27/20  ...  8/19/20  8/20/20  8/21/20  \
+0        0        0        0        0  ...    37599    37856    37894   
+1        0        0        0        0  ...     7812     7967     8119   
+2        0        0        0        0  ...    39847    40258    40667   
+3        0        0        0        0  ...     1024     1024     1045   
+4        0        0        0        0  ...     2015     2044     2068   
 
-   8/21/20  8/22/20  8/23/20  8/24/20  8/25/20  8/26/20  8/27/20  
-0    37894    37953    37999    38054    38070    38113    38129  
-1     8119     8275     8427     8605     8759     8927     9083  
-2    40667    41068    41460    41858    42228    42619    43016  
-3     1045     1045     1045     1060     1060     1098     1098  
-4     2068     2134     2171     2222     2283     2332     2415  
+   8/22/20  8/23/20  8/24/20  8/25/20  8/26/20  8/27/20  8/28/20  
+0    37953    37999    38054    38070    38113    38129    38140  
+1     8275     8427     8605     8759     8927     9083     9195  
+2    41068    41460    41858    42228    42619    43016    43403  
+3     1045     1045     1060     1060     1098     1098     1124  
+4     2134     2171     2222     2283     2332     2415     2471  
 
-[5 rows x 223 columns]
+[5 rows x 224 columns]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Trích xuất thông tin về ngày từ tập dữ liệu:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;dates = df_confd.columns[4:]
@@ -150,9 +150,9 @@ print(dates)
 &lt;pre&gt;&lt;code&gt;Index([&#39;1/22/20&#39;, &#39;1/23/20&#39;, &#39;1/24/20&#39;, &#39;1/25/20&#39;, &#39;1/26/20&#39;, &#39;1/27/20&#39;,
        &#39;1/28/20&#39;, &#39;1/29/20&#39;, &#39;1/30/20&#39;, &#39;1/31/20&#39;,
        ...
-       &#39;8/18/20&#39;, &#39;8/19/20&#39;, &#39;8/20/20&#39;, &#39;8/21/20&#39;, &#39;8/22/20&#39;, &#39;8/23/20&#39;,
-       &#39;8/24/20&#39;, &#39;8/25/20&#39;, &#39;8/26/20&#39;, &#39;8/27/20&#39;],
-      dtype=&#39;object&#39;, length=219)
+       &#39;8/19/20&#39;, &#39;8/20/20&#39;, &#39;8/21/20&#39;, &#39;8/22/20&#39;, &#39;8/23/20&#39;, &#39;8/24/20&#39;,
+       &#39;8/25/20&#39;, &#39;8/26/20&#39;, &#39;8/27/20&#39;, &#39;8/28/20&#39;],
+      dtype=&#39;object&#39;, length=220)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Các tập dữ liệu này được lưu ở dạng &lt;code&gt;wide format&lt;/code&gt; do đó chúng ta cần chuyển chúng dạng &lt;code&gt;long fromat&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;dates = df_confd.columns[4:]
@@ -222,7 +222,7 @@ final_df = pd.merge(left=final_df, right=long_df_recvd, how=&#39;left&#39;,
 &lt;p&gt;Kiểm tra kích thước của bảng dữ liệu thu được:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(final_df.shape)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;(58254, 8)
+&lt;pre&gt;&lt;code&gt;(58520, 8)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Kiểm tra khoảng thời gian của dữ liệu được thu thập:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;a = final_df.Date.value_counts().sort_index()
@@ -230,7 +230,7 @@ print(&#39;Ngày bắt đầu là:&#39;,a.index[0])
 print(&#39;Ngày hiện tại là:&#39;,a.index[-1])
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;Ngày bắt đầu là: 2020-01-22 00:00:00
-Ngày hiện tại là: 2020-08-27 00:00:00
+Ngày hiện tại là: 2020-08-28 00:00:00
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Kiểm tra &lt;code&gt;missing values (NaN)&lt;/code&gt; trong tập dữ liệu:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;final_df.isna().sum()
@@ -339,7 +339,7 @@ df[&#39;Last date&#39;] = max(final_df[&#39;Date&#39;])
 print(df)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;      Confirmed      Deaths    Recovered       Active  Last date
-0  1.467912e+09  66453862.0  782699851.0  618758286.0 2020-08-27
+0  1.492646e+09  67290986.0  798778726.0  626576735.0 2020-08-28
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Tạo &lt;code&gt;Pie chart&lt;/code&gt; so sánh các cases trên toàn thế giới:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cases = [&#39;Confirmed&#39;, &#39;Deaths&#39;, &#39;Recovered&#39;, &#39;Active&#39;]
@@ -596,6 +596,8 @@ plt.grid(alpha=0.3,which=&#39;both&#39;)
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig, ax = plt.subplots(figsize=(12, 6))
 
 # Add x-axis and y-axis
+
+
 ax.plot(df_Vietnam[&#39;Date&#39;],
         df_Vietnam[&#39;Confirmed&#39;],
         color=&amp;quot;red&amp;quot;, label = &#39;Confirmed Cases of Vietnam&#39;)
@@ -625,7 +627,21 @@ plt.setp(ax.get_xticklabels(), rotation=45)
 plt.legend(loc=&amp;quot;upper left&amp;quot;)
 plt.grid(alpha=0.3,which=&#39;both&#39;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;./index_86_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&amp;lt;ipython-input-67-1d2b5c8b8fbb&amp;gt; in &amp;lt;module&amp;gt;
+      4 
+      5 
+----&amp;gt; 6 ax.plot(df_Vietnam[&#39;Date&#39;],
+      7         df_Vietnam[&#39;Confirmed&#39;],
+      8         color=&amp;quot;red&amp;quot;, label = &#39;Confirmed Cases of Vietnam&#39;)
+
+
+NameError: name &#39;df_Vietnam&#39; is not defined
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./index_86_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
 &lt;/code&gt;&lt;/pre&gt;
 </description>

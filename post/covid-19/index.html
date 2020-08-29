@@ -762,7 +762,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    11 min read
+    12 min read
   </span>
   
 
@@ -839,7 +839,7 @@
 <a href="#prepare-data">1. Download &amp; chuẩn bị dữ liệu Covid-19 sử dụng thư viện pandas</a></p>
 <p>
 <a href="#data-visualization">2. Trực quan hóa dữ liệu Covid-19 sử dụng thư viện matploblib</a></p>
-<h2 id="prepare-data">1. Download và chuẩ bị dữ liệu</h2>
+<h2 id="prepare-data">1. Download và chuẩn bị dữ liệu</h2>
 <p>Trước hết để thực hành chúng ta cần nạp các thư viện cần thiết trên <code>Python</code>:</p>
 <pre><code class="language-python">import pandas as pd
 import matplotlib.pyplot as plt
@@ -870,18 +870,18 @@ df_recvd = pd.read_csv(url_recvd)
 </code></pre>
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 266 entries, 0 to 265
-Columns: 223 entries, Province/State to 8/27/20
-dtypes: float64(2), int64(219), object(2)
-memory usage: 463.5+ KB
+Columns: 224 entries, Province/State to 8/28/20
+dtypes: float64(2), int64(220), object(2)
+memory usage: 465.6+ KB
 None
 </code></pre>
 <pre><code class="language-python">print(df_death.info())
 </code></pre>
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 266 entries, 0 to 265
-Columns: 223 entries, Province/State to 8/27/20
-dtypes: float64(2), int64(219), object(2)
-memory usage: 463.5+ KB
+Columns: 224 entries, Province/State to 8/28/20
+dtypes: float64(2), int64(220), object(2)
+memory usage: 465.6+ KB
 None
 </code></pre>
 <pre><code class="language-python">print(df_recvd.info())
@@ -903,21 +903,21 @@ None
 3            NaN        Andorra  42.50630   1.521800        0        0   
 4            NaN         Angola -11.20270  17.873900        0        0   
 
-   1/24/20  1/25/20  1/26/20  1/27/20  ...  8/18/20  8/19/20  8/20/20  \
-0        0        0        0        0  ...    37599    37599    37856   
-1        0        0        0        0  ...     7654     7812     7967   
-2        0        0        0        0  ...    39444    39847    40258   
-3        0        0        0        0  ...     1005     1024     1024   
-4        0        0        0        0  ...     1966     2015     2044   
+   1/24/20  1/25/20  1/26/20  1/27/20  ...  8/19/20  8/20/20  8/21/20  \
+0        0        0        0        0  ...    37599    37856    37894   
+1        0        0        0        0  ...     7812     7967     8119   
+2        0        0        0        0  ...    39847    40258    40667   
+3        0        0        0        0  ...     1024     1024     1045   
+4        0        0        0        0  ...     2015     2044     2068   
 
-   8/21/20  8/22/20  8/23/20  8/24/20  8/25/20  8/26/20  8/27/20  
-0    37894    37953    37999    38054    38070    38113    38129  
-1     8119     8275     8427     8605     8759     8927     9083  
-2    40667    41068    41460    41858    42228    42619    43016  
-3     1045     1045     1045     1060     1060     1098     1098  
-4     2068     2134     2171     2222     2283     2332     2415  
+   8/22/20  8/23/20  8/24/20  8/25/20  8/26/20  8/27/20  8/28/20  
+0    37953    37999    38054    38070    38113    38129    38140  
+1     8275     8427     8605     8759     8927     9083     9195  
+2    41068    41460    41858    42228    42619    43016    43403  
+3     1045     1045     1060     1060     1098     1098     1124  
+4     2134     2171     2222     2283     2332     2415     2471  
 
-[5 rows x 223 columns]
+[5 rows x 224 columns]
 </code></pre>
 <p>Trích xuất thông tin về ngày từ tập dữ liệu:</p>
 <pre><code class="language-python">dates = df_confd.columns[4:]
@@ -926,9 +926,9 @@ print(dates)
 <pre><code>Index(['1/22/20', '1/23/20', '1/24/20', '1/25/20', '1/26/20', '1/27/20',
        '1/28/20', '1/29/20', '1/30/20', '1/31/20',
        ...
-       '8/18/20', '8/19/20', '8/20/20', '8/21/20', '8/22/20', '8/23/20',
-       '8/24/20', '8/25/20', '8/26/20', '8/27/20'],
-      dtype='object', length=219)
+       '8/19/20', '8/20/20', '8/21/20', '8/22/20', '8/23/20', '8/24/20',
+       '8/25/20', '8/26/20', '8/27/20', '8/28/20'],
+      dtype='object', length=220)
 </code></pre>
 <p>Các tập dữ liệu này được lưu ở dạng <code>wide format</code> do đó chúng ta cần chuyển chúng dạng <code>long fromat</code>:</p>
 <pre><code class="language-python">dates = df_confd.columns[4:]
@@ -998,7 +998,7 @@ final_df = pd.merge(left=final_df, right=long_df_recvd, how='left',
 <p>Kiểm tra kích thước của bảng dữ liệu thu được:</p>
 <pre><code class="language-python">print(final_df.shape)
 </code></pre>
-<pre><code>(58254, 8)
+<pre><code>(58520, 8)
 </code></pre>
 <p>Kiểm tra khoảng thời gian của dữ liệu được thu thập:</p>
 <pre><code class="language-python">a = final_df.Date.value_counts().sort_index()
@@ -1006,7 +1006,7 @@ print('Ngày bắt đầu là:',a.index[0])
 print('Ngày hiện tại là:',a.index[-1])
 </code></pre>
 <pre><code>Ngày bắt đầu là: 2020-01-22 00:00:00
-Ngày hiện tại là: 2020-08-27 00:00:00
+Ngày hiện tại là: 2020-08-28 00:00:00
 </code></pre>
 <p>Kiểm tra <code>missing values (NaN)</code> trong tập dữ liệu:</p>
 <pre><code class="language-python">final_df.isna().sum()
@@ -1115,7 +1115,7 @@ df['Last date'] = max(final_df['Date'])
 print(df)
 </code></pre>
 <pre><code>      Confirmed      Deaths    Recovered       Active  Last date
-0  1.467912e+09  66453862.0  782699851.0  618758286.0 2020-08-27
+0  1.492646e+09  67290986.0  798778726.0  626576735.0 2020-08-28
 </code></pre>
 <p>Tạo <code>Pie chart</code> so sánh các cases trên toàn thế giới:</p>
 <pre><code class="language-python">cases = ['Confirmed', 'Deaths', 'Recovered', 'Active']
@@ -1372,6 +1372,8 @@ plt.grid(alpha=0.3,which='both')
 <pre><code class="language-python">fig, ax = plt.subplots(figsize=(12, 6))
 
 # Add x-axis and y-axis
+
+
 ax.plot(df_Vietnam['Date'],
         df_Vietnam['Confirmed'],
         color=&quot;red&quot;, label = 'Confirmed Cases of Vietnam')
@@ -1401,7 +1403,21 @@ plt.setp(ax.get_xticklabels(), rotation=45)
 plt.legend(loc=&quot;upper left&quot;)
 plt.grid(alpha=0.3,which='both')
 </code></pre>
-<p><img src="./index_86_0.png" alt="png"></p>
+<pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-67-1d2b5c8b8fbb&gt; in &lt;module&gt;
+      4 
+      5 
+----&gt; 6 ax.plot(df_Vietnam['Date'],
+      7         df_Vietnam['Confirmed'],
+      8         color=&quot;red&quot;, label = 'Confirmed Cases of Vietnam')
+
+
+NameError: name 'df_Vietnam' is not defined
+</code></pre>
+<p><img src="./index_86_1.png" alt="png"></p>
 <pre><code class="language-python">
 </code></pre>
 
