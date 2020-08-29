@@ -627,21 +627,7 @@ plt.setp(ax.get_xticklabels(), rotation=45)
 plt.legend(loc=&amp;quot;upper left&amp;quot;)
 plt.grid(alpha=0.3,which=&#39;both&#39;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;---------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&amp;lt;ipython-input-67-1d2b5c8b8fbb&amp;gt; in &amp;lt;module&amp;gt;
-      4 
-      5 
-----&amp;gt; 6 ax.plot(df_Vietnam[&#39;Date&#39;],
-      7         df_Vietnam[&#39;Confirmed&#39;],
-      8         color=&amp;quot;red&amp;quot;, label = &#39;Confirmed Cases of Vietnam&#39;)
-
-
-NameError: name &#39;df_Vietnam&#39; is not defined
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;./index_86_1.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./index_86_0.png&#34; alt=&#34;png&#34;&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
 &lt;/code&gt;&lt;/pre&gt;
 </description>
