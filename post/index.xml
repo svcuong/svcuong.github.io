@@ -5,7 +5,7 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Thu, 27 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Sat, 29 Aug 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
       <title>Posts</title>
@@ -13,10 +13,424 @@
     </image>
     
     <item>
+      <title>Biến đổi và trực quan hóa dữ liệu Covid-19 từ John Hopkins database với R</title>
+      <link>/post/covid-19-r/</link>
+      <pubDate>Sat, 29 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/covid-19-r/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;code&gt;Covid-19&lt;/code&gt; là một đại dịch bệnh truyền nhiễm với tác nhân là virus &lt;code&gt;SARS-CoV-2&lt;/code&gt;, hiện đang ảnh hưởng và gây thiệt hại nặng nề trên phạm vi toàn cầu. Kể từ khi đại dịch &lt;code&gt;Covid-19&lt;/code&gt; bắt đầu xuất hiện ở Vũ Hán - Trung Quốc đến nay, cái tên trường Đại học &lt;code&gt;Jonhs Hopkins&lt;/code&gt; (Mỹ) được nhắc đi nhắc lại hằng ngày trên các phương tiện truyền thông và là một trong những cụm từ được trích dẫn nhiều nhất. Lý do đó là Đại học &lt;code&gt;Johns Hopkins&lt;/code&gt; đã phát triển một trong những hệ thống theo dõi dữ liệu &lt;code&gt;COVID-19&lt;/code&gt; bền bỉ và đáng tin cậy nhất trên thế giới cho đến nay.&lt;/p&gt;
+&lt;p&gt;Ở bài trước tôi đã giới thiệu cách download và trực quan hóa dữ liệu &lt;code&gt;Covid-19&lt;/code&gt; từ &lt;a href=&#34;https://github.com/CSSEGISandData/COVID-19&#34;&gt;John Hopkins database&lt;/a&gt; sử dụng ngôn ngữ &lt;code&gt;Python&lt;/code&gt;, cụ thể là sử dụng thư viện &lt;code&gt;pandas&lt;/code&gt; để làm sạch và biến đổi dữ liệu và &lt;code&gt;maplotlib&lt;/code&gt; để trực quan hóa dữ liệu. Ở bài này để chứng minh &lt;code&gt;R&lt;/code&gt; là ngôn ngữ nổi trội trong biến đổi và trực quan hóa dữ liệu, tôi cũng thực hiện công việc tương tự như với &lt;code&gt;Python&lt;/code&gt;. Cụ thể là sử thư viện &lt;code&gt;dplyr&lt;/code&gt; và &lt;code&gt;ggplot2&lt;/code&gt; trong hệ sinh thái &lt;code&gt;tidyverse&lt;/code&gt; kết hợp với toán tử &lt;code&gt;pipes&lt;/code&gt; khiến cho việc làm sạch, biến đổi và trực quan hóa dữ liệu trở nên vô cùng đơn giản - chỉ bằng vài dòng &lt;code&gt;code&lt;/code&gt;. Để so sánh sự khác biệt các bạn có thể đọc lại bài trước về &lt;code&gt;Python&lt;/code&gt; tại &lt;a href=&#34;https://svcuong.github.io/post/covid-19-python/&#34;&gt;đây&lt;/a&gt;. Để biết thêm về toán tử pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt; cũng như cách dùng các &lt;code&gt;pipes&lt;/code&gt; khác trong &lt;code&gt;R&lt;/code&gt; các bạn có thể đọc tại &lt;a href=&#34;&#34;&gt;đây&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nội dung chính của bài bao gồm:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#sec1&#34;&gt;1. Download &amp;amp; chuẩn bị dữ liệu Covid-19 sử dụng thư viện dplyr&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#sec2&#34;&gt;2. Trực quan hóa dữ liệu Covid-19 sử dụng thư viện ggplot2&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;sec1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1. Download và chuẩn bị dữ liệu&lt;/h2&gt;
+&lt;p&gt;Nạp gói &lt;code&gt;tidyverse&lt;/code&gt; vào phiên làm việc của &lt;code&gt;R&lt;/code&gt; để thực hành:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Download 3 tập dữ liệu từ &lt;a href=&#34;https://github.com/CSSEGISandData/COVID-19&#34;&gt;John Hopkins database&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Confirmed:&lt;/code&gt; (Số trường hợp mới phát hiện)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Deaths:&lt;/code&gt; (Số trường hợp tử vong)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Recovered:&lt;/code&gt; (Số trường hợp hồi phục)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;url_confd = &amp;#39;https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv&amp;#39;
+url_death = &amp;#39;https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv&amp;#39;
+url_recvd = &amp;#39;https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv&amp;#39;
+
+df_confd_raw = read.csv(url_confd)
+df_death_raw = read.csv(url_death)
+df_recvd_raw = read.csv(url_recvd)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Các tập dữ liệu này được lưu ở dạng &lt;code&gt;wide format&lt;/code&gt; do đó chúng ta cần chuyển chúng dạng &lt;code&gt;long fromat&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Chuyển tập dữ liệu df_confd từ wide format sang long fromat
+df_confd &amp;lt;- df_confd_raw %&amp;gt;% gather(key=&amp;quot;Date&amp;quot;, value=&amp;quot;Confirmed&amp;quot;, -c(Country.Region, Province.State, Lat, Long)) %&amp;gt;% group_by(Country.Region, Date) %&amp;gt;% summarize(Confirmed=sum(Confirmed))
+
+# Chuyển tập dữ liệu df_death từ wide format sang long fromat
+df_death &amp;lt;- df_death_raw %&amp;gt;% gather(key=&amp;quot;Date&amp;quot;, value=&amp;quot;Deaths&amp;quot;, -c(Country.Region, Province.State, Lat, Long)) %&amp;gt;% group_by(Country.Region, Date) %&amp;gt;% summarize(Deaths=sum(Deaths))
+
+
+# Chuyển tập dữ liệu df_recvd từ wide format sang long fromat
+df_recvd &amp;lt;- df_recvd_raw %&amp;gt;% gather(key=&amp;quot;Date&amp;quot;, value=&amp;quot;Recovered&amp;quot;, -c(Country.Region, Province.State, Lat, Long)) %&amp;gt;% group_by(Country.Region, Date) %&amp;gt;% summarize(Recovered=sum(Recovered))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra dữ liệu sau khi đã chuyển:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(df_confd)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 3
+## # Groups:   Country.Region [1]
+##   Country.Region Date     Confirmed
+##   &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;        &amp;lt;int&amp;gt;
+## 1 Afghanistan    X1.22.20         0
+## 2 Afghanistan    X1.23.20         0
+## 3 Afghanistan    X1.24.20         0
+## 4 Afghanistan    X1.25.20         0
+## 5 Afghanistan    X1.26.20         0
+## 6 Afghanistan    X1.27.20         0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(df_death)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 3
+## # Groups:   Country.Region [1]
+##   Country.Region Date     Deaths
+##   &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;     &amp;lt;int&amp;gt;
+## 1 Afghanistan    X1.22.20      0
+## 2 Afghanistan    X1.23.20      0
+## 3 Afghanistan    X1.24.20      0
+## 4 Afghanistan    X1.25.20      0
+## 5 Afghanistan    X1.26.20      0
+## 6 Afghanistan    X1.27.20      0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(df_recvd)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 3
+## # Groups:   Country.Region [1]
+##   Country.Region Date     Recovered
+##   &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;        &amp;lt;int&amp;gt;
+## 1 Afghanistan    X1.22.20         0
+## 2 Afghanistan    X1.23.20         0
+## 3 Afghanistan    X1.24.20         0
+## 4 Afghanistan    X1.25.20         0
+## 5 Afghanistan    X1.26.20         0
+## 6 Afghanistan    X1.27.20         0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Gộp 3 tập dữ liệu này thành 1 &lt;code&gt;dataframe&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;final_df &amp;lt;- full_join(df_confd, df_death) %&amp;gt;% full_join(df_recvd)
+head(final_df)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 5
+## # Groups:   Country.Region [1]
+##   Country.Region Date     Confirmed Deaths Recovered
+##   &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;        &amp;lt;int&amp;gt;  &amp;lt;int&amp;gt;     &amp;lt;int&amp;gt;
+## 1 Afghanistan    X1.22.20         0      0         0
+## 2 Afghanistan    X1.23.20         0      0         0
+## 3 Afghanistan    X1.24.20         0      0         0
+## 4 Afghanistan    X1.25.20         0      0         0
+## 5 Afghanistan    X1.26.20         0      0         0
+## 6 Afghanistan    X1.27.20         0      0         0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Chuyển cột dữ liệu &lt;code&gt;Date&lt;/code&gt; về định dạng &lt;code&gt;date&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;final_df$Date &amp;lt;- final_df$Date %&amp;gt;% sub(&amp;quot;X&amp;quot;, &amp;quot;&amp;quot;,.)%&amp;gt;% as.Date(&amp;quot;%m.%d.%y&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra &lt;code&gt;dataframe&lt;/code&gt; thu được:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(final_df)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 5
+## # Groups:   Country.Region [1]
+##   Country.Region Date       Confirmed Deaths Recovered
+##   &amp;lt;chr&amp;gt;          &amp;lt;date&amp;gt;         &amp;lt;int&amp;gt;  &amp;lt;int&amp;gt;     &amp;lt;int&amp;gt;
+## 1 Afghanistan    2020-01-22         0      0         0
+## 2 Afghanistan    2020-01-23         0      0         0
+## 3 Afghanistan    2020-01-24         0      0         0
+## 4 Afghanistan    2020-01-25         0      0         0
+## 5 Afghanistan    2020-01-26         0      0         0
+## 6 Afghanistan    2020-01-27         0      0         0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra kích thước của bảng dữ liệu thu được:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(final_df)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 41548     5&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra khoảng thời gian của dữ liệu được thu thập:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;print(paste(&amp;#39;First date:&amp;#39;, min(final_df$Date)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;First date: 2020-01-22&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;print(paste(&amp;#39;Current date:&amp;#39;, max(final_df$Date)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Current date: 2020-08-29&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra &lt;code&gt;missing values (NaN)&lt;/code&gt; trong tập dữ liệu:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;colSums(is.na(final_df))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Country.Region           Date      Confirmed         Deaths      Recovered 
+##              0              0              0              0              0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sec2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2. Trực quan hóa dữ liệu với &lt;code&gt;ggplot2&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;2.1 Tổng quan tình hình &lt;code&gt;Covid -19&lt;/code&gt; trên toàn thế giới tính tới thời điểm đang viết bài này:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Kiểm tra tổng số nước trên toàn thế giới trong tập dữ liệu:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;length(unique(final_df$Country.Region))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 188&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tổng các &lt;code&gt;cases&lt;/code&gt; trên toàn thế giới:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Tính tổng các cases
+df &amp;lt;- final_df[,3:5] %&amp;gt;% summarise_all(funs(sum))
+# Thêm cột Active
+df$Active &amp;lt;- df$Confirmed -df$Deaths - df$Recovered
+df&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 4
+##    Confirmed   Deaths Recovered    Active
+##        &amp;lt;int&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;int&amp;gt;     &amp;lt;int&amp;gt;
+## 1 1517642903 68133485 824551027 624958391&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Tạo data frame các cacses để vẽ pie chart
+df1 &amp;lt;- data.frame(Cases = colnames(df), n = as.vector(unlist(df)))
+
+# Tạo pie chart
+ggplot(df1, aes (x=&amp;quot;&amp;quot;, y = n, fill = factor(Cases))) + 
+  geom_col(position = &amp;#39;stack&amp;#39;, width = 1) +
+  geom_text(aes(label = paste(round(n / sum(n) * 100, 1), &amp;quot;%&amp;quot;), x = 1.3),
+            position = position_stack(vjust = 0.5)) +
+  theme_void() +
+  labs(fill = &amp;quot;Cases&amp;quot;,
+       x = NULL,
+       y = NULL,
+       title = &amp;quot;Pie Chart of Covid-19 cases in the world&amp;quot;) +
+  coord_polar(&amp;quot;y&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.2 Top 10 nước có số &lt;code&gt;cases&lt;/code&gt; lớn nhất&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Tính tổng các &lt;code&gt;cases&lt;/code&gt; của từng nước tính đến thời điểm hiện tại:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_countries &amp;lt;- final_df %&amp;gt;% select(-Date) %&amp;gt;% group_by(Country.Region) %&amp;gt;% summarise_all(funs(sum))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Top 10 nước có &lt;code&gt;confirmed cases&lt;/code&gt; lớn nhất:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Lọc top 10 nước theo Confirmed Cases
+confirmed &amp;lt;- df_countries %&amp;gt;% arrange(desc(Confirmed)) %&amp;gt;% slice(1:10)
+confirmed$Country.Region &amp;lt;- factor(confirmed$Country.Region, levels=unique(confirmed$Country.Region))
+# Vẽ barplot
+ggplot(confirmed, aes(x=Confirmed, y=Country.Region, fill= Country.Region))+
+  geom_bar(stat=&amp;#39;identity&amp;#39;)+
+  ggtitle(&amp;quot;Top 10 Countries (Confirmed cases)&amp;quot;) +
+  theme_bw()+
+  theme(legend.position=&amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Top 10 nước có &lt;code&gt;Death cases&lt;/code&gt; lớn nhất:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Lọc top 10 nước theo Confirmed Cases
+deaths&amp;lt;- df_countries %&amp;gt;% arrange(desc(Deaths)) %&amp;gt;% slice(1:10)
+
+deaths$Country.Region &amp;lt;- factor(deaths$Country.Region, levels=unique(deaths$Country.Region))
+ggplot(deaths, aes(x=Deaths, y=Country.Region, fill= Country.Region))+
+  geom_bar(stat=&amp;#39;identity&amp;#39;)+
+  ggtitle(&amp;quot;Top 10 Countries (Deaths)&amp;quot;) +
+  theme_bw()+
+  theme(legend.position=&amp;quot;none&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-18-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Top 10 nước có &lt;code&gt;Recovered Cases&lt;/code&gt; lớn nhất:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Lọc top 10 nước theo Confirmed Cases
+recovered &amp;lt;- df_countries %&amp;gt;% arrange(desc(Recovered)) %&amp;gt;% slice(1:10)
+recovered$Country.Region &amp;lt;- factor(recovered$Country.Region, levels=unique(recovered$Country.Region))
+ggplot(recovered, aes(x=Recovered, y=Country.Region, fill= Country.Region))+
+  geom_bar(stat=&amp;#39;identity&amp;#39;)+
+  ggtitle(&amp;quot;Top 10 Countries (Recovered Cases)&amp;quot;) +
+  theme_bw()+
+  theme(legend.position=&amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.3 Mức độ phát triển của Covid-19 theo thời gian trên toàn thế giới&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Tính tổng các &lt;code&gt;cases&lt;/code&gt; trên toàn thế giới theo thời gian&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;world &amp;lt;- final_df %&amp;gt;% group_by(Date) %&amp;gt;% summarize(Confirmed=sum(Confirmed), Deaths=sum(Deaths), Recovered=sum(Recovered))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Mức độ phát triển của &lt;code&gt;Confirmed cases&lt;/code&gt; trên toàn thế giới theo thời gian:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(world, aes(x=Date, y=Confirmed)) + geom_bar(stat=&amp;quot;identity&amp;quot;, width=0.2, color = &amp;quot;blue&amp;quot;) +
+  theme_bw() +
+  labs(title = &amp;quot;Confirmed Cases In Each Days&amp;quot;, x= &amp;quot;Date&amp;quot;, y= &amp;quot;Confirmed cases&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Mức độ phát triển của &lt;code&gt;Deaths&lt;/code&gt; trên toàn thế giới theo thời gian:`&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(world, aes(x=Date, y=Deaths)) + geom_bar(stat=&amp;quot;identity&amp;quot;, width=0.2, color = &amp;quot;green&amp;quot;) +
+  theme_bw() +
+  labs(title = &amp;quot;Deaths In Each Day&amp;quot;, x= &amp;quot;Date&amp;quot;, y= &amp;quot;Death cases&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-22-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Mức độ phát triển của &lt;code&gt;Recovered cases&lt;/code&gt; trên toàn thế giới theo thời gian:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(world, aes(x=Date, y=Recovered)) + geom_bar(stat=&amp;quot;identity&amp;quot;, width=0.2, color = &amp;quot;purple&amp;quot;) +
+  theme_bw() +
+  labs(title = &amp;quot;Recovered cases In Each Day&amp;quot;, x= &amp;quot;Date&amp;quot;, y= &amp;quot;Recovered cases&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.4 Hiển thị tất cả các cases trên thế giới theo thời gian&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;world %&amp;gt;% gather(&amp;quot;Cases&amp;quot;, &amp;quot;value&amp;quot;, -Date) %&amp;gt;%
+ggplot(aes(x=Date, y=value, colour=Cases)) + geom_bar(stat=&amp;quot;identity&amp;quot;, width=0.2, fill=&amp;quot;white&amp;quot;) +
+  labs(title = &amp;quot;Covid-19 Global Cases&amp;quot;, x= &amp;quot;Date&amp;quot;, y= &amp;quot;Daily cases&amp;quot;)+
+  theme_bw()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-24-1.png&#34; width=&#34;864&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;world %&amp;gt;% gather(&amp;quot;Cases&amp;quot;, &amp;quot;value&amp;quot;, -Date) %&amp;gt;%
+ggplot(aes(x=Date, y=value, colour=Cases)) + geom_line(, size = 1) +
+  labs(title = &amp;quot;Covid-19 Global Cases&amp;quot;, x= &amp;quot;Date&amp;quot;, y= &amp;quot;Daily cases&amp;quot;)+
+  theme_bw()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-25-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.5 So sánh sự phát triển của COVID-19 theo thời gian giữa các nước&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So sánh Việt Nam, Mỹ, Nga:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;final_df %&amp;gt;% filter(Country.Region == &amp;quot;Vietnam&amp;quot;) %&amp;gt;% gather(&amp;quot;Cases&amp;quot;, &amp;quot;value&amp;quot;, -Country.Region, -Date) %&amp;gt;%
+ggplot(aes(x=Date, y=value, colour=Cases)) + geom_line(, size = 1) +
+  labs(title = &amp;quot;COVID-19 cases of Vietnam&amp;quot;, x= &amp;quot;Date&amp;quot;, y= &amp;quot;Daily cases&amp;quot;)+
+  theme_bw()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-26-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;final_df %&amp;gt;% filter(Country.Region == &amp;quot;US&amp;quot;) %&amp;gt;% gather(&amp;quot;Cases&amp;quot;, &amp;quot;value&amp;quot;, -Country.Region, -Date) %&amp;gt;%
+ggplot(aes(x=Date, y=value, colour=Cases)) + geom_line(, size = 1) +
+  labs(title = &amp;quot;COVID-19 cases of US&amp;quot;, x= &amp;quot;Date&amp;quot;, y= &amp;quot;Daily cases&amp;quot;)+
+  theme_bw()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;final_df %&amp;gt;% filter(Country.Region == &amp;quot;Russia&amp;quot;) %&amp;gt;% gather(&amp;quot;Cases&amp;quot;, &amp;quot;value&amp;quot;, -Country.Region, -Date) %&amp;gt;%
+ggplot(aes(x=Date, y=value, colour=Cases)) + geom_line(, size = 1) +
+  labs(title = &amp;quot;COVID-19 cases of Russia&amp;quot;, x= &amp;quot;Date&amp;quot;, y= &amp;quot;Daily cases&amp;quot;)+
+  theme_bw()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-28-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Do thực hiện công việc tương tự như &lt;code&gt;Python&lt;/code&gt; nhưng mà nhanh quá, nên tôi thử tạo thêm bản đồ phân bố dịch này nữa:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Chuẩn bị dữ liệu
+country &amp;lt;- final_df %&amp;gt;% group_by(Country.Region) %&amp;gt;% mutate(Cumconfirmed=cumsum(Confirmed))
+
+world &amp;lt;- country %&amp;gt;% group_by(Date) %&amp;gt;% summarize(Confirmed=sum(Confirmed), Cumconfirmed=sum(Cumconfirmed), Deaths=sum(Deaths), Recovered=sum(Recovered)) &lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## Map
+countrytotal &amp;lt;- country %&amp;gt;% group_by(Country.Region) %&amp;gt;% summarize(Cumconfirmed=sum(Confirmed), Cumdeaths=sum(Deaths), Cumrecovered=sum(Recovered))
+# Basemap from package tmap
+library(tmap)
+data(World)
+
+# Combine basemap data với covid data
+list &amp;lt;- which(!countrytotal$Country.Region %in% World$name)
+countrytotal$country &amp;lt;- as.character(countrytotal$Country.Region)
+countrytotal$country[list] &amp;lt;-
+  c(&amp;quot;Andorra&amp;quot;, &amp;quot;Antigua and Barbuda&amp;quot;, &amp;quot;Bahrain&amp;quot;,
+    &amp;quot;Barbados&amp;quot;, &amp;quot;Bosnia and Herz.&amp;quot;, &amp;quot;Myanmar&amp;quot;,
+    &amp;quot;Cape Verde&amp;quot;, &amp;quot;Central African Rep.&amp;quot;, &amp;quot;Congo&amp;quot;,
+    &amp;quot;Dem. Rep. Congo&amp;quot;, &amp;quot;Czech Rep.&amp;quot;, &amp;quot;Diamond Princess&amp;quot;,
+    &amp;quot;Dominica&amp;quot;, &amp;quot;Dominican Rep.&amp;quot;, &amp;quot;Eq. Guinea&amp;quot;,
+    &amp;quot;Swaziland&amp;quot;, &amp;quot;Grenada&amp;quot;, &amp;quot;Holy See&amp;quot;,
+    &amp;quot;Korea&amp;quot;, &amp;quot;Lao PDR&amp;quot;, &amp;quot;Liechtenstein&amp;quot;,
+    &amp;quot;Maldives&amp;quot;, &amp;quot;Malta&amp;quot;, &amp;quot;Mauritius&amp;quot;,
+    &amp;quot;Monaco&amp;quot;, &amp;quot;MS Zaandam&amp;quot;, &amp;quot;Macedonia&amp;quot;,
+    &amp;quot;Saint Kitts and Nevis&amp;quot;, &amp;quot;Saint Lucia&amp;quot;, &amp;quot;Saint Vincent and the Grenadines&amp;quot;,
+    &amp;quot;San Marino&amp;quot;, &amp;quot;Sao Tome and Principe&amp;quot;, &amp;quot;Seychelles&amp;quot;,
+    &amp;quot;Singapore&amp;quot;, &amp;quot;S. Sudan&amp;quot;, &amp;quot;Taiwan&amp;quot;,
+    &amp;quot;United States&amp;quot;, &amp;quot;Palestine&amp;quot;, &amp;quot;W. Sahara&amp;quot;)
+World$country &amp;lt;- World$name
+worldmap &amp;lt;- left_join(World, countrytotal, by=&amp;quot;country&amp;quot;)
+worldmap$cumconfirmed[is.na(worldmap$Cumconfirmed)] &amp;lt;- 0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Map
+ggplot(data = worldmap) + geom_sf(aes(fill=Cumconfirmed), color=&amp;quot;black&amp;quot;) +
+  ggtitle(&amp;quot;World Map of Confirmed Covid Cases&amp;quot;,
+          subtitle=&amp;quot;Total Cases on  August  29, 2020&amp;quot;) +
+  theme_bw()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/covid-19-r/index_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cách sử dụng các toán tử pipes trong R</title>
+      <link>/post/pipes/</link>
+      <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/pipes/</guid>
+      <description>
+
+
+&lt;p&gt;Sự ra đời của các toán tử &lt;code&gt;pipes&lt;/code&gt; trong package &lt;a href=&#34;https://magrittr.tidyverse.org/reference/index.html&#34;&gt;magrittr&lt;/a&gt;
+đã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ &lt;code&gt;R&lt;/code&gt;. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết &lt;code&gt;code&lt;/code&gt; cũng giúp làm cho &lt;code&gt;code&lt;/code&gt; dễ đọc và dễ bảo trì hơn.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Pipes&lt;/code&gt; là một công cụ mạnh trong việc thực thi chuỗi các thao tác với dữ liệu. Ở rất nhiều &lt;code&gt;posts&lt;/code&gt; trước liên quan đến &lt;code&gt;R&lt;/code&gt; tôi đã sử dụng chúng, tuy nhiên không giải thích cụ thể cách dùng. Ở bài này tôi &lt;code&gt;note&lt;/code&gt; lại cách dùng của 4 toán tử &lt;code&gt;pipes&lt;/code&gt; trong &lt;code&gt;R&lt;/code&gt; cho bạn nào cần:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;%&amp;gt;%&lt;/code&gt; : Forward-pipe operator&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;%&amp;lt;&amp;gt;%&lt;/code&gt; : Compound assignment pipe-operator&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;%T&amp;gt;%&lt;/code&gt; : Tee Operator&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;%$%&lt;/code&gt; : Exposition pipe-operator&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Mục đích của việc sử dụng các toán tử &lt;code&gt;pipes&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Tránh gọi lồng các hàm&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Giảm việc tạo và sử dụng các biến trung gian&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Tổ chức tập hợp các câu lệnh thành một chuỗi thống nhất, dễ hiểu.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Nạp các thư viện cần thiết vào phiên làm việc của R để thực hành:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(magrittr)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;Chú ý&lt;/code&gt;: Khi nạp gói &lt;code&gt;tidyverse&lt;/code&gt; toán tử pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt; sẽ được &lt;code&gt;load&lt;/code&gt; tự động, vì vậy nếu chỉ dùng &lt;code&gt;%&amp;gt;%&lt;/code&gt; thì bạn không cẩn nạp gói &lt;code&gt;magrittr&lt;/code&gt;. Để dùng các &lt;code&gt;pipes&lt;/code&gt; khác thì chúng ta cần nạp thêm gói &lt;code&gt;magrittr&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Để ví dụ tôi sẽ sử dụng tập dữ liệu &lt;code&gt;mcarts&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(mtcars)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;toán-tử-forward-pipe-operator&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1. Toán tử &lt;code&gt;%&amp;gt;%&lt;/code&gt; (forward-pipe operator)&lt;/h2&gt;
+&lt;p&gt;Đây là &lt;code&gt;pipe&lt;/code&gt; được sử dụng nhiều nhất trong R, hầu như mỗi công việc thực hiện trên R tôi đều sử dụng nó rất nhiều lần.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt;:&lt;/strong&gt; chuyển toàn bộ vế bên trái (có thể là kết quả của hàm đi trước) thành dữ liệu đầu vào cho hàm bên phải tạo thành một dòng chảy dữ liệu từ trái qua phải.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;a &amp;lt;- filter(mtcars, carb &amp;gt; 1)
+b &amp;lt;- group_by(a, cyl)
+c &amp;lt;- summarise(b, Avg_mpg = mean(mpg))
+d &amp;lt;- arrange(c, desc(Avg_mpg))
+print(d)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 2
+##     cyl Avg_mpg
+##   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1     4    25.9
+## 2     6    19.7
+## 3     8    15.1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sử dụng toán tử &lt;code&gt;%&amp;gt;%&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;%
+        filter(carb &amp;gt; 1) %&amp;gt;%
+        group_by(cyl) %&amp;gt;%
+        summarise(Avg_mpg = mean(mpg)) %&amp;gt;%
+        arrange(desc(Avg_mpg))  &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 2
+##     cyl Avg_mpg
+##   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1     4    25.9
+## 2     6    19.7
+## 3     8    15.1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sử dụng &lt;code&gt;%&amp;gt;%&lt;/code&gt; để vẽ đồ thị:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;%
+        filter(carb &amp;gt; 1) %&amp;gt;%
+        qplot(x = wt, y = mpg, data = .)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;toán-tử-compound-assignment-pipe-operator&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2. Toán tử &lt;code&gt;%&amp;lt;&amp;gt;%&lt;/code&gt; (compound assignment pipe-operator)&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%&amp;lt;&amp;gt;%&lt;/code&gt;:&lt;/strong&gt; Thực hiện nhiệm vụ tương tự như với toán tử &lt;code&gt;%&amp;gt;%&lt;/code&gt;, tuy nhiên kết quả cuối cùng của dòng chảy dữ liệu được gán lại vào đối tượng ban đầu của dòng chảy.&lt;/p&gt;
+&lt;p&gt;Ví dụ:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars &amp;lt;- mtcars %&amp;gt;% 
+  transform(cyl = cyl * 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tương đương với:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;lt;&amp;gt;% transform(cyl = cyl * 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;toán-tử-t-tee-operator&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;3. Toán tử &lt;code&gt;%T%&lt;/code&gt; (Tee Operator)&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%T&amp;gt;%&lt;/code&gt;:&lt;/strong&gt; Dòng chảy dữ liệu trong toán tử này có thể được hình dung tương tự như ống nước hình chữ T. Dữ liệu đầu vào của 1 hàm A đi trước sẽ được truyền cho 2 nhánh tương ứng với quy trình B1 (là 1 hàm) và quy trình B2.&lt;/p&gt;
+&lt;p&gt;ứng dụng phổ biến nhất của T pipe là để vẽ 2 đồ thị khác nhau cho cùng 1 gói dữ liệu, như thí dụ sau :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
+    matrix(ncol = 2) %T&amp;gt;%
+    plot %&amp;gt;%
+    colSums&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## [1]  -4.308008 -21.737654&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tương đương với:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
+    matrix(ncol = 2) %&amp;gt;%
+    { plot(.); . } %&amp;gt;%
+    colSums&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.3559842 -9.8003861&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hoặc viết theo cách truyền thống:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;m &amp;lt;- matrix(rnorm(200), ncol = 2)
+plot(m)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;colSums(m)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -3.126777 11.576542&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;%
+        filter(carb &amp;gt; 1) %&amp;gt;%
+        extract(, 1:4) %T&amp;gt;%
+        plot() %&amp;gt;%
+        summary()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :16.00   Min.   : 75.7   Min.   : 52.0  
+##  1st Qu.:15.20   1st Qu.:24.00   1st Qu.:146.7   1st Qu.:110.0  
+##  Median :17.80   Median :32.00   Median :275.8   Median :175.0  
+##  Mean   :18.62   Mean   :26.56   Mean   :257.7   Mean   :163.7  
+##  3rd Qu.:21.00   3rd Qu.:32.00   3rd Qu.:351.0   3rd Qu.:205.0  
+##  Max.   :30.40   Max.   :32.00   Max.   :472.0   Max.   :335.0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;toán-tử-exposition-pipe-operator&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;4. Toán tử &lt;code&gt;%$%&lt;/code&gt; (exposition pipe-operator)&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%$%&lt;/code&gt;:&lt;/strong&gt; Toán tử cho phép trích xuất đích danh một đối tượng trong kết quả của hàm đi trước để sử dụng như dữ liệu đầu vào cho hàm đi sau.&lt;/p&gt;
+&lt;p&gt;Ví dụ tính độ tương quan giữa hai biến &lt;code&gt;disp&lt;/code&gt; và &lt;code&gt;mpg&lt;/code&gt; trong tập dữ liệu &lt;code&gt;mtcars&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %$%
+  cor(disp, mpg)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.8475514&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Thuận tiện khi sử dụng tên của thuộc tính khi vẽ đồ thị:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data.frame(z = rnorm(100)) %$%
+    ts.plot(z)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Tương tự với with():&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;with(data.frame(z = rnorm(100)),
+     ts.plot(z))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Một ví dụ khác:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;npk %$% aov(yield ~ N * P * K) %&amp;gt;% summary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##             Df Sum Sq Mean Sq F value Pr(&amp;gt;F)  
+## N            1  189.3  189.28   6.161 0.0245 *
+## P            1    8.4    8.40   0.273 0.6082  
+## K            1   95.2   95.20   3.099 0.0975 .
+## N:P          1   21.3   21.28   0.693 0.4175  
+## N:K          1   33.1   33.14   1.078 0.3145  
+## P:K          1    0.5    0.48   0.016 0.9019  
+## N:P:K        1   37.0   37.00   1.204 0.2887  
+## Residuals   16  491.6   30.72                 
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Download và trực quan hóa dữ liệu Covid-19 từ John Hopkins database (sử dụng Python code)</title>
-      <link>/post/covid-19/</link>
+      <link>/post/covid-19-python/</link>
       <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/covid-19/</guid>
+      <guid>/post/covid-19-python/</guid>
       <description>&lt;p&gt;&lt;code&gt;Covid-19&lt;/code&gt; là một đại dịch bệnh truyền nhiễm với tác nhân là virus &lt;code&gt;SARS-CoV-2&lt;/code&gt;, hiện đang ảnh hưởng và gây thiệt hại nặng nề trên phạm vi toàn cầu. Kể từ khi đại dịch &lt;code&gt;Covid-19&lt;/code&gt; bắt đầu xuất hiện ở Vũ Hán - Trung Quốc đến nay, cái tên trường Đại học Jonhs Hopkins (Mỹ) được nhắc đi nhắc lại hằng ngày trên các phương tiện truyền thông và là một trong những cụm từ được trích dẫn nhiều nhất. Lý do đó là Đại học Johns Hopkins đã phát triển một trong những hệ thống theo dõi dữ liệu COVID-19 bền bỉ và đáng tin cậy nhất trên thế giới cho đến nay.&lt;/p&gt;
 &lt;p&gt;Dữ liệu Covid-19 được đại học &lt;code&gt;John Hopkins&lt;/code&gt; thu thập và cập nhật hàng ngày tại đây 
 &lt;a href=&#34;https://github.com/CSSEGISandData/COVID-19&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;John Hopkins database&lt;/a&gt;.&lt;/p&gt;

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pipes | Khoa Học Dữ Liệu</title>
+    <link>/tag/pipes/</link>
+      <atom:link href="/tag/pipes/index.xml" rel="self" type="application/rss+xml" />
+    <description>Pipes</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Fri, 28 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
+      <title>Pipes</title>
+      <link>/tag/pipes/</link>
+    </image>
+    
+    <item>
+      <title>Cách sử dụng các toán tử pipes trong R</title>
+      <link>/post/pipes/</link>
+      <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/pipes/</guid>
+      <description>
+
+
+&lt;p&gt;Sự ra đời của các toán tử &lt;code&gt;pipes&lt;/code&gt; trong package &lt;a href=&#34;https://magrittr.tidyverse.org/reference/index.html&#34;&gt;magrittr&lt;/a&gt;
+đã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ &lt;code&gt;R&lt;/code&gt;. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết &lt;code&gt;code&lt;/code&gt; cũng giúp làm cho &lt;code&gt;code&lt;/code&gt; dễ đọc và dễ bảo trì hơn.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Pipes&lt;/code&gt; là một công cụ mạnh trong việc thực thi chuỗi các thao tác với dữ liệu. Ở rất nhiều &lt;code&gt;posts&lt;/code&gt; trước liên quan đến &lt;code&gt;R&lt;/code&gt; tôi đã sử dụng chúng, tuy nhiên không giải thích cụ thể cách dùng. Ở bài này tôi &lt;code&gt;note&lt;/code&gt; lại cách dùng của 4 toán tử &lt;code&gt;pipes&lt;/code&gt; trong &lt;code&gt;R&lt;/code&gt; cho bạn nào cần:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;%&amp;gt;%&lt;/code&gt; : Forward-pipe operator&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;%&amp;lt;&amp;gt;%&lt;/code&gt; : Compound assignment pipe-operator&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;%T&amp;gt;%&lt;/code&gt; : Tee Operator&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;%$%&lt;/code&gt; : Exposition pipe-operator&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Mục đích của việc sử dụng các toán tử &lt;code&gt;pipes&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Tránh gọi lồng các hàm&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Giảm việc tạo và sử dụng các biến trung gian&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Tổ chức tập hợp các câu lệnh thành một chuỗi thống nhất, dễ hiểu.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Nạp các thư viện cần thiết vào phiên làm việc của R để thực hành:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(magrittr)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;Chú ý&lt;/code&gt;: Khi nạp gói &lt;code&gt;tidyverse&lt;/code&gt; toán tử pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt; sẽ được &lt;code&gt;load&lt;/code&gt; tự động, vì vậy nếu chỉ dùng &lt;code&gt;%&amp;gt;%&lt;/code&gt; thì bạn không cẩn nạp gói &lt;code&gt;magrittr&lt;/code&gt;. Để dùng các &lt;code&gt;pipes&lt;/code&gt; khác thì chúng ta cần nạp thêm gói &lt;code&gt;magrittr&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Để ví dụ tôi sẽ sử dụng tập dữ liệu &lt;code&gt;mcarts&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(mtcars)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;toán-tử-forward-pipe-operator&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1. Toán tử &lt;code&gt;%&amp;gt;%&lt;/code&gt; (forward-pipe operator)&lt;/h2&gt;
+&lt;p&gt;Đây là &lt;code&gt;pipe&lt;/code&gt; được sử dụng nhiều nhất trong R, hầu như mỗi công việc thực hiện trên R tôi đều sử dụng nó rất nhiều lần.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt;:&lt;/strong&gt; chuyển toàn bộ vế bên trái (có thể là kết quả của hàm đi trước) thành dữ liệu đầu vào cho hàm bên phải tạo thành một dòng chảy dữ liệu từ trái qua phải.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;a &amp;lt;- filter(mtcars, carb &amp;gt; 1)
+b &amp;lt;- group_by(a, cyl)
+c &amp;lt;- summarise(b, Avg_mpg = mean(mpg))
+d &amp;lt;- arrange(c, desc(Avg_mpg))
+print(d)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 2
+##     cyl Avg_mpg
+##   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1     4    25.9
+## 2     6    19.7
+## 3     8    15.1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sử dụng toán tử &lt;code&gt;%&amp;gt;%&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;%
+        filter(carb &amp;gt; 1) %&amp;gt;%
+        group_by(cyl) %&amp;gt;%
+        summarise(Avg_mpg = mean(mpg)) %&amp;gt;%
+        arrange(desc(Avg_mpg))  &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 2
+##     cyl Avg_mpg
+##   &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1     4    25.9
+## 2     6    19.7
+## 3     8    15.1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sử dụng &lt;code&gt;%&amp;gt;%&lt;/code&gt; để vẽ đồ thị:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;%
+        filter(carb &amp;gt; 1) %&amp;gt;%
+        qplot(x = wt, y = mpg, data = .)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;toán-tử-compound-assignment-pipe-operator&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2. Toán tử &lt;code&gt;%&amp;lt;&amp;gt;%&lt;/code&gt; (compound assignment pipe-operator)&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%&amp;lt;&amp;gt;%&lt;/code&gt;:&lt;/strong&gt; Thực hiện nhiệm vụ tương tự như với toán tử &lt;code&gt;%&amp;gt;%&lt;/code&gt;, tuy nhiên kết quả cuối cùng của dòng chảy dữ liệu được gán lại vào đối tượng ban đầu của dòng chảy.&lt;/p&gt;
+&lt;p&gt;Ví dụ:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars &amp;lt;- mtcars %&amp;gt;% 
+  transform(cyl = cyl * 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tương đương với:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;lt;&amp;gt;% transform(cyl = cyl * 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;toán-tử-t-tee-operator&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;3. Toán tử &lt;code&gt;%T%&lt;/code&gt; (Tee Operator)&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%T&amp;gt;%&lt;/code&gt;:&lt;/strong&gt; Dòng chảy dữ liệu trong toán tử này có thể được hình dung tương tự như ống nước hình chữ T. Dữ liệu đầu vào của 1 hàm A đi trước sẽ được truyền cho 2 nhánh tương ứng với quy trình B1 (là 1 hàm) và quy trình B2.&lt;/p&gt;
+&lt;p&gt;ứng dụng phổ biến nhất của T pipe là để vẽ 2 đồ thị khác nhau cho cùng 1 gói dữ liệu, như thí dụ sau :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
+    matrix(ncol = 2) %T&amp;gt;%
+    plot %&amp;gt;%
+    colSums&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## [1]  -4.308008 -21.737654&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tương đương với:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
+    matrix(ncol = 2) %&amp;gt;%
+    { plot(.); . } %&amp;gt;%
+    colSums&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.3559842 -9.8003861&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hoặc viết theo cách truyền thống:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;m &amp;lt;- matrix(rnorm(200), ncol = 2)
+plot(m)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;colSums(m)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -3.126777 11.576542&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;%
+        filter(carb &amp;gt; 1) %&amp;gt;%
+        extract(, 1:4) %T&amp;gt;%
+        plot() %&amp;gt;%
+        summary()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :16.00   Min.   : 75.7   Min.   : 52.0  
+##  1st Qu.:15.20   1st Qu.:24.00   1st Qu.:146.7   1st Qu.:110.0  
+##  Median :17.80   Median :32.00   Median :275.8   Median :175.0  
+##  Mean   :18.62   Mean   :26.56   Mean   :257.7   Mean   :163.7  
+##  3rd Qu.:21.00   3rd Qu.:32.00   3rd Qu.:351.0   3rd Qu.:205.0  
+##  Max.   :30.40   Max.   :32.00   Max.   :472.0   Max.   :335.0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;toán-tử-exposition-pipe-operator&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;4. Toán tử &lt;code&gt;%$%&lt;/code&gt; (exposition pipe-operator)&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%$%&lt;/code&gt;:&lt;/strong&gt; Toán tử cho phép trích xuất đích danh một đối tượng trong kết quả của hàm đi trước để sử dụng như dữ liệu đầu vào cho hàm đi sau.&lt;/p&gt;
+&lt;p&gt;Ví dụ tính độ tương quan giữa hai biến &lt;code&gt;disp&lt;/code&gt; và &lt;code&gt;mpg&lt;/code&gt; trong tập dữ liệu &lt;code&gt;mtcars&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %$%
+  cor(disp, mpg)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.8475514&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Thuận tiện khi sử dụng tên của thuộc tính khi vẽ đồ thị:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data.frame(z = rnorm(100)) %$%
+    ts.plot(z)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Tương tự với with():&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;with(data.frame(z = rnorm(100)),
+     ts.plot(z))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Một ví dụ khác:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;npk %$% aov(yield ~ N * P * K) %&amp;gt;% summary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##             Df Sum Sq Mean Sq F value Pr(&amp;gt;F)  
+## N            1  189.3  189.28   6.161 0.0245 *
+## P            1    8.4    8.40   0.273 0.6082  
+## K            1   95.2   95.20   3.099 0.0975 .
+## N:P          1   21.3   21.28   0.693 0.4175  
+## N:K          1   33.1   33.14   1.078 0.3145  
+## P:K          1    0.5    0.48   0.016 0.9019  
+## N:P:K        1   37.0   37.00   1.204 0.2887  
+## Residuals   16  491.6   30.72                 
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

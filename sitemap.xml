@@ -28,17 +28,62 @@
   </url>
   
   <url>
-    <loc>/authors/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
+    <loc>/post/covid-19-r/</loc>
+    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
   </url>
   
   <url>
     <loc>/tag/covid-19/</loc>
+    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/data-visualization/</loc>
+    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/r/</loc>
+    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/r-markdown/</loc>
+    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/pipes/</loc>
+    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/data-manipulation/</loc>
+    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/pipes/</loc>
+    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/</loc>
     <lastmod>2020-08-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -48,12 +93,7 @@
   </url>
   
   <url>
-    <loc>/tag/data-visualization/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/covid-19/</loc>
+    <loc>/post/covid-19-python/</loc>
     <lastmod>2020-08-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -68,17 +108,7 @@
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/category/python/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-08-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -99,11 +129,6 @@
   
   <url>
     <loc>/tag/prediction-realization-diagram/</loc>
-    <lastmod>2020-08-26T14:16:28+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/r/</loc>
     <lastmod>2020-08-26T14:16:28+04:00</lastmod>
   </url>
   
@@ -165,11 +190,6 @@
   <url>
     <loc>/post/remove-outliers/</loc>
     <lastmod>2020-08-20T15:43:27+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/data-manipulation/</loc>
-    <lastmod>2020-08-19T06:55:30+04:00</lastmod>
   </url>
   
   <url>
@@ -424,11 +444,6 @@
   
   <url>
     <loc>/tag/plot/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/r-markdown/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url>
   
