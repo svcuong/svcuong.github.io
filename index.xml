@@ -43,7 +43,7 @@
 
 
 &lt;p&gt;&lt;code&gt;Covid-19&lt;/code&gt; là một đại dịch bệnh truyền nhiễm với tác nhân là virus &lt;code&gt;SARS-CoV-2&lt;/code&gt;, hiện đang ảnh hưởng và gây thiệt hại nặng nề trên phạm vi toàn cầu. Kể từ khi đại dịch &lt;code&gt;Covid-19&lt;/code&gt; bắt đầu xuất hiện ở Vũ Hán - Trung Quốc đến nay, cái tên trường Đại học &lt;code&gt;Jonhs Hopkins&lt;/code&gt; (Mỹ) được nhắc đi nhắc lại hằng ngày trên các phương tiện truyền thông và là một trong những cụm từ được trích dẫn nhiều nhất. Lý do đó là Đại học &lt;code&gt;Johns Hopkins&lt;/code&gt; đã phát triển một trong những hệ thống theo dõi dữ liệu &lt;code&gt;COVID-19&lt;/code&gt; bền bỉ và đáng tin cậy nhất trên thế giới cho đến nay.&lt;/p&gt;
-&lt;p&gt;Ở bài trước tôi đã giới thiệu cách download và trực quan hóa dữ liệu &lt;code&gt;Covid-19&lt;/code&gt; từ &lt;a href=&#34;https://github.com/CSSEGISandData/COVID-19&#34;&gt;John Hopkins database&lt;/a&gt; sử dụng ngôn ngữ &lt;code&gt;Python&lt;/code&gt;, cụ thể là sử dụng thư viện &lt;code&gt;pandas&lt;/code&gt; để làm sạch và biến đổi dữ liệu và &lt;code&gt;maplotlib&lt;/code&gt; để trực quan hóa dữ liệu. Ở bài này để chứng minh &lt;code&gt;R&lt;/code&gt; là ngôn ngữ nổi trội trong biến đổi và trực quan hóa dữ liệu, tôi cũng thực hiện công việc tương tự như với &lt;code&gt;Python&lt;/code&gt;. Cụ thể là sử thư viện &lt;code&gt;dplyr&lt;/code&gt; và &lt;code&gt;ggplot2&lt;/code&gt; trong hệ sinh thái &lt;code&gt;tidyverse&lt;/code&gt; kết hợp với toán tử &lt;code&gt;pipes&lt;/code&gt; khiến cho việc làm sạch, biến đổi và trực quan hóa dữ liệu trở nên vô cùng đơn giản - chỉ bằng vài dòng &lt;code&gt;code&lt;/code&gt;. Để so sánh sự khác biệt các bạn có thể đọc lại bài trước về &lt;code&gt;Python&lt;/code&gt; tại &lt;a href=&#34;https://svcuong.github.io/post/covid-19-python/&#34;&gt;đây&lt;/a&gt;. Để biết thêm về toán tử pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt; cũng như cách dùng các &lt;code&gt;pipes&lt;/code&gt; khác trong &lt;code&gt;R&lt;/code&gt; các bạn có thể đọc tại &lt;a href=&#34;https://svcuong.github.io/post/pipes/&#34;&gt;đây&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ở bài trước tôi đã giới thiệu cách download và trực quan hóa dữ liệu &lt;code&gt;Covid-19&lt;/code&gt; từ &lt;a href=&#34;https://github.com/CSSEGISandData/COVID-19&#34;&gt;John Hopkins database&lt;/a&gt; sử dụng ngôn ngữ &lt;code&gt;Python&lt;/code&gt;, cụ thể là sử dụng thư viện &lt;code&gt;pandas&lt;/code&gt; để làm sạch và biến đổi dữ liệu và &lt;code&gt;maplotlib&lt;/code&gt; để trực quan hóa dữ liệu. Ở bài này để chứng minh &lt;code&gt;R&lt;/code&gt; là ngôn ngữ nổi trội trong biến đổi và trực quan hóa dữ liệu, tôi cũng thực hiện công việc tương tự như với &lt;code&gt;Python&lt;/code&gt;. Cụ thể là sử dụng thư viện &lt;code&gt;dplyr&lt;/code&gt; và &lt;code&gt;ggplot2&lt;/code&gt; trong hệ sinh thái &lt;code&gt;tidyverse&lt;/code&gt; kết hợp với toán tử &lt;code&gt;pipes&lt;/code&gt; khiến cho việc làm sạch, biến đổi và trực quan hóa dữ liệu trở nên vô cùng đơn giản - chỉ bằng vài dòng &lt;code&gt;code&lt;/code&gt;. Để so sánh sự khác biệt các bạn có thể đọc lại bài trước về &lt;code&gt;Python&lt;/code&gt; tại &lt;a href=&#34;https://svcuong.github.io/post/covid-19-python/&#34;&gt;đây&lt;/a&gt;. Để biết thêm về toán tử pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt; cũng như cách dùng các &lt;code&gt;pipes&lt;/code&gt; khác trong &lt;code&gt;R&lt;/code&gt; các bạn có thể đọc tại &lt;a href=&#34;https://svcuong.github.io/post/pipes/&#34;&gt;đây&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Nội dung chính của bài bao gồm:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;#sec1&#34;&gt;1. Download &amp;amp; chuẩn bị dữ liệu Covid-19 sử dụng thư viện dplyr&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;#sec2&#34;&gt;2. Trực quan hóa dữ liệu Covid-19 sử dụng thư viện ggplot2&lt;/a&gt;&lt;/p&gt;
@@ -341,6 +341,7 @@ library(magrittr)&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;1. Toán tử &lt;code&gt;%&amp;gt;%&lt;/code&gt; (forward-pipe operator)&lt;/h2&gt;
 &lt;p&gt;Đây là &lt;code&gt;pipe&lt;/code&gt; được sử dụng nhiều nhất trong R, hầu như mỗi công việc thực hiện trên R tôi đều sử dụng nó rất nhiều lần.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt;:&lt;/strong&gt; chuyển toàn bộ vế bên trái (có thể là kết quả của hàm đi trước) thành dữ liệu đầu vào cho hàm bên phải tạo thành một dòng chảy dữ liệu từ trái qua phải.&lt;/p&gt;
+&lt;p&gt;Sử dụng phương pháp truyền thống:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;a &amp;lt;- filter(mtcars, carb &amp;gt; 1)
 b &amp;lt;- group_by(a, cyl)
 c &amp;lt;- summarise(b, Avg_mpg = mean(mpg))
@@ -382,26 +383,26 @@ print(d)&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;toán-tử-t-tee-operator&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;3. Toán tử &lt;code&gt;%T%&lt;/code&gt; (Tee Operator)&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%T&amp;gt;%&lt;/code&gt;:&lt;/strong&gt; Dòng chảy dữ liệu trong toán tử này có thể được hình dung tương tự như ống nước hình chữ T. Dữ liệu đầu vào của 1 hàm A đi trước sẽ được truyền cho 2 nhánh tương ứng với quy trình B1 (là 1 hàm) và quy trình B2.&lt;/p&gt;
-&lt;p&gt;ứng dụng phổ biến nhất của T pipe là để vẽ 2 đồ thị khác nhau cho cùng 1 gói dữ liệu, như thí dụ sau :&lt;/p&gt;
+&lt;p&gt;Ứng dụng phổ biến nhất của T pipe là để vẽ 2 đồ thị khác nhau cho cùng 1 gói dữ liệu, như thí dụ sau:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
     matrix(ncol = 2) %T&amp;gt;%
     plot %&amp;gt;%
     colSums&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## [1]  -4.308008 -21.737654&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.5029305  5.9846123&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Tương đương với:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
     matrix(ncol = 2) %&amp;gt;%
     { plot(.); . } %&amp;gt;%
     colSums&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## [1] -0.3559842 -9.8003861&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -0.5756372  2.3496160&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Hoặc viết theo cách truyền thống:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;m &amp;lt;- matrix(rnorm(200), ncol = 2)
 plot(m)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;colSums(m)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] -3.126777 11.576542&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -15.597649  -1.201351&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;%
         filter(carb &amp;gt; 1) %&amp;gt;%
         extract(, 1:4) %T&amp;gt;%

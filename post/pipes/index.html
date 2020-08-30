@@ -823,6 +823,7 @@ library(magrittr)</code></pre>
 <h2>1. Toán tử <code>%&gt;%</code> (forward-pipe operator)</h2>
 <p>Đây là <code>pipe</code> được sử dụng nhiều nhất trong R, hầu như mỗi công việc thực hiện trên R tôi đều sử dụng nó rất nhiều lần.</p>
 <p><strong>Nguyên lý của pipe <code>%&gt;%</code>:</strong> chuyển toàn bộ vế bên trái (có thể là kết quả của hàm đi trước) thành dữ liệu đầu vào cho hàm bên phải tạo thành một dòng chảy dữ liệu từ trái qua phải.</p>
+<p>Sử dụng phương pháp truyền thống:</p>
 <pre class="r"><code>a &lt;- filter(mtcars, carb &gt; 1)
 b &lt;- group_by(a, cyl)
 c &lt;- summarise(b, Avg_mpg = mean(mpg))
@@ -864,26 +865,26 @@ print(d)</code></pre>
 <div id="toán-tử-t-tee-operator" class="section level2">
 <h2>3. Toán tử <code>%T%</code> (Tee Operator)</h2>
 <p><strong>Nguyên lý của pipe <code>%T&gt;%</code>:</strong> Dòng chảy dữ liệu trong toán tử này có thể được hình dung tương tự như ống nước hình chữ T. Dữ liệu đầu vào của 1 hàm A đi trước sẽ được truyền cho 2 nhánh tương ứng với quy trình B1 (là 1 hàm) và quy trình B2.</p>
-<p>ứng dụng phổ biến nhất của T pipe là để vẽ 2 đồ thị khác nhau cho cùng 1 gói dữ liệu, như thí dụ sau :</p>
+<p>Ứng dụng phổ biến nhất của T pipe là để vẽ 2 đồ thị khác nhau cho cùng 1 gói dữ liệu, như thí dụ sau:</p>
 <pre class="r"><code>rnorm(200) %&gt;%
     matrix(ncol = 2) %T&gt;%
     plot %&gt;%
     colSums</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<pre><code>## [1]  -4.308008 -21.737654</code></pre>
+<pre><code>## [1] -0.5029305  5.9846123</code></pre>
 <p>Tương đương với:</p>
 <pre class="r"><code>rnorm(200) %&gt;%
     matrix(ncol = 2) %&gt;%
     { plot(.); . } %&gt;%
     colSums</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<pre><code>## [1] -0.3559842 -9.8003861</code></pre>
+<pre><code>## [1] -0.5756372  2.3496160</code></pre>
 <p>Hoặc viết theo cách truyền thống:</p>
 <pre class="r"><code>m &lt;- matrix(rnorm(200), ncol = 2)
 plot(m)</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <pre class="r"><code>colSums(m)</code></pre>
-<pre><code>## [1] -3.126777 11.576542</code></pre>
+<pre><code>## [1] -15.597649  -1.201351</code></pre>
 <pre class="r"><code>mtcars %&gt;%
         filter(carb &gt; 1) %&gt;%
         extract(, 1:4) %T&gt;%
