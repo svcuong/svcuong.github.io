@@ -542,22 +542,20 @@ thuộc:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(reticulate)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Để kiểm tra môi trường Python có trong máy, các bạn dùng câu lệnh sau:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda_list()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##           name
-## 1    Anaconda3
-## 2           TF
-## 3      rstudio
-## 4 r-reticulate
-## 5     r-tf-gpu
-##                                                                          python
-## 1                                       C:\\Users\\svcuo\\Anaconda3\\python.exe
-## 2                             C:\\Users\\svcuo\\Anaconda3\\envs\\TF\\python.exe
-## 3                        C:\\Users\\svcuo\\Anaconda3\\envs\\rstudio\\python.exe
-## 4 C:\\Users\\svcuo\\AppData\\Local\\r-miniconda\\envs\\r-reticulate\\python.exe
-## 5     C:\\Users\\svcuo\\AppData\\Local\\r-miniconda\\envs\\r-tf-gpu\\python.exe&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        name                                  python
+## 1 Anaconda3 C:\\Users\\svcuo\\Anaconda3\\python.exe&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dùng hàm &lt;code&gt;use_python()&lt;/code&gt; cho phép bạn chỉ định rõ phiên bản Python cần thiết:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;use_python(&amp;quot;C:/Users/svcuo/Anaconda3/python.exe&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Sử dụng hàm &lt;code&gt;use_virtualenv()&lt;/code&gt; và &lt;code&gt;use_condaenv()&lt;/code&gt; cho phép bạn chỉ định phiên bản Python của bạn làm việc trong môi trường virtual hay là Conda:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;use_virtualenv(&amp;quot;myenv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;py_config()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## python:         C:/Users/svcuo/Anaconda3/python.exe
+## libpython:      C:/Users/svcuo/Anaconda3/python37.dll
+## pythonhome:     C:/Users/svcuo/Anaconda3
+## version:        3.7.4 (default, Aug  9 2019, 18:34:13) [MSC v.1915 64 bit (AMD64)]
+## Architecture:   64bit
+## numpy:          C:/Users/svcuo/Anaconda3/Lib/site-packages/numpy
+## numpy_version:  1.16.5&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ta có thể cài đặt bất kỳ python library nào trong R bằng cách dùng hàm &lt;code&gt;py_install()&lt;/code&gt; như sau:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;py_install(&amp;quot;pandas&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;hr /&gt;
@@ -629,7 +627,7 @@ par(mfrow=c(1,4))
 for(i in 1:4) {
 boxplot(x[,i], main=names[i])
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Thực hiện data visualization trong R với &lt;code&gt;ggplot2&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R
 library(ggplot2)
@@ -639,7 +637,7 @@ ggplot(data = py$data,aes(x = preg)) +
   ggtitle(&amp;quot;Pregnancies Data Distribution&amp;quot;) + ylab(&amp;quot;class Counts&amp;quot;) +
   theme_gray() +
   theme_update(plot.title = element_text(hjust = 0.5))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;Tham khảo:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;sub&gt;&lt;a href=&#34;https://rstudio.github.io/reticulate/&#34;&gt;R Interface to Python&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;

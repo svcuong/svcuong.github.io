@@ -30,7 +30,8 @@
   
     
   
-  <meta name="description" content="Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn.">
+  <meta name="description" content="https://rpubs.com/lengockhanhi/300713
+Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/pipes/">
@@ -290,11 +291,12 @@
   <meta property="og:site_name" content="Khoa Học Dữ Liệu">
   <meta property="og:url" content="/post/pipes/">
   <meta property="og:title" content="Cách sử dụng các toán tử pipes trong R | Khoa Học Dữ Liệu">
-  <meta property="og:description" content="Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn."><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
+  <meta property="og:description" content="https://rpubs.com/lengockhanhi/300713
+Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn."><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
   <meta property="twitter:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-08-28T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2020-08-30T00:00:00&#43;00:00">
     
     <meta property="article:modified_time" content="2020-08-30T08:21:58&#43;04:00">
   
@@ -324,7 +326,7 @@
   },
   "headline": "Cách sử dụng các toán tử pipes trong R",
   
-  "datePublished": "2020-08-28T00:00:00Z",
+  "datePublished": "2020-08-30T00:00:00Z",
   "dateModified": "2020-08-30T08:21:58+04:00",
   
   "author": {
@@ -340,7 +342,7 @@
       "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
     }
   },
-  "description": "Sự ra đời của các toán tử pipes trong package magrittr\rđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn."
+  "description": "https://rpubs.com/lengockhanhi/300713\nSự ra đời của các toán tử pipes trong package magrittr\rđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn."
 }
 </script>
 
@@ -743,7 +745,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    5 min read
+    3 min read
   </span>
   
 
@@ -791,9 +793,10 @@
       
 
 
+<p><a href="https://rpubs.com/lengockhanhi/300713" class="uri">https://rpubs.com/lengockhanhi/300713</a></p>
 <p>Sự ra đời của các toán tử <code>pipes</code> trong package <a href="https://magrittr.tidyverse.org/reference/index.html">magrittr</a>
 đã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ <code>R</code>. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết <code>code</code> cũng giúp làm cho <code>code</code> dễ đọc và dễ bảo trì hơn.</p>
-<p><code>Pipes</code> là một công cụ mạnh trong việc thực thi chuỗi các thao tác với dữ liệu. Ở rất nhiều <code>posts</code> trước liên quan đến <code>R</code> tôi đã sử dụng chúng, tuy nhiên không giải thích cụ thể cách dùng. Ở bài này tôi <code>note</code> lại cách dùng của 4 toán tử <code>pipes</code> trong <code>R</code> cho bạn nào cần:</p>
+<p>Ở bài này tôi <code>note</code> lại cách dùng của 4 toán tử <code>pipes</code> cho bạn nào cần:</p>
 <ul>
 <li><p><code>%&gt;%</code> : Forward-pipe operator</p></li>
 <li><p><code>%&lt;&gt;%</code> : Compound assignment pipe-operator</p></li>
@@ -809,111 +812,60 @@
 <p>Nạp các thư viện cần thiết vào phiên làm việc của R để thực hành:</p>
 <pre class="r"><code>library(tidyverse)
 library(magrittr)</code></pre>
-<p><code>Chú ý</code>: Khi nạp gói <code>tidyverse</code> toán tử pipe <code>%&gt;%</code> sẽ được <code>load</code> tự động, vì vậy nếu chỉ dùng <code>%&gt;%</code> thì bạn không cẩn nạp gói <code>magrittr</code>. Để dùng các <code>pipes</code> khác thì chúng ta cần nạp thêm gói <code>magrittr</code>.</p>
-<p>Để ví dụ tôi sẽ sử dụng tập dữ liệu <code>mcarts</code>:</p>
-<pre class="r"><code>head(mtcars)</code></pre>
-<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
 <div id="toán-tử-forward-pipe-operator" class="section level2">
 <h2>1. Toán tử <code>%&gt;%</code> (forward-pipe operator)</h2>
 <p>Đây là <code>pipe</code> được sử dụng nhiều nhất trong R, hầu như mỗi công việc thực hiện trên R tôi đều sử dụng nó rất nhiều lần.</p>
 <p><strong>Nguyên lý của pipe <code>%&gt;%</code>:</strong> chuyển toàn bộ vế bên trái (có thể là kết quả của hàm đi trước) thành dữ liệu đầu vào cho hàm bên phải tạo thành một dòng chảy dữ liệu từ trái qua phải.</p>
-<p>Sử dụng phương pháp truyền thống:</p>
-<pre class="r"><code>a &lt;- filter(mtcars, carb &gt; 1)
-b &lt;- group_by(a, cyl)
-c &lt;- summarise(b, Avg_mpg = mean(mpg))
-d &lt;- arrange(c, desc(Avg_mpg))
-print(d)</code></pre>
-<pre><code>## # A tibble: 3 x 2
-##     cyl Avg_mpg
-##   &lt;dbl&gt;   &lt;dbl&gt;
-## 1     4    25.9
-## 2     6    19.7
-## 3     8    15.1</code></pre>
-<p>Sử dụng toán tử <code>%&gt;%</code>:</p>
-<pre class="r"><code>mtcars %&gt;%
-        filter(carb &gt; 1) %&gt;%
-        group_by(cyl) %&gt;%
-        summarise(Avg_mpg = mean(mpg)) %&gt;%
-        arrange(desc(Avg_mpg))  </code></pre>
-<pre><code>## # A tibble: 3 x 2
-##     cyl Avg_mpg
-##   &lt;dbl&gt;   &lt;dbl&gt;
-## 1     4    25.9
-## 2     6    19.7
-## 3     8    15.1</code></pre>
-<p>Sử dụng <code>%&gt;%</code> để vẽ đồ thị:</p>
-<pre class="r"><code>mtcars %&gt;%
-        filter(carb &gt; 1) %&gt;%
-        qplot(x = wt, y = mpg, data = .)</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="toán-tử-compound-assignment-pipe-operator" class="section level2">
 <h2>2. Toán tử <code>%&lt;&gt;%</code> (compound assignment pipe-operator)</h2>
-<p><strong>Nguyên lý của pipe <code>%&lt;&gt;%</code>:</strong> Thực hiện nhiệm vụ tương tự như với toán tử <code>%&gt;%</code>, tuy nhiên kết quả cuối cùng của dòng chảy dữ liệu được gán lại vào đối tượng ban đầu của dòng chảy.</p>
-<p>Ví dụ:</p>
-<pre class="r"><code>mtcars &lt;- mtcars %&gt;% 
-  transform(cyl = cyl * 2)</code></pre>
-<p>Tương đương với:</p>
-<pre class="r"><code>mtcars %&lt;&gt;% transform(cyl = cyl * 2)</code></pre>
+<p><strong>Nguyên lý của pipe <code>%&lt;</code>:</strong> Thực hiện nhiệm vụ tương tự như với toán tử <code>%&gt;%</code>, tuy nhiên kết quả cuối cùng của dòng chảy dữ liệu được gán lại vào đối tượng ban đầu của dòng chảy.</p>
 </div>
 <div id="toán-tử-t-tee-operator" class="section level2">
 <h2>3. Toán tử <code>%T%</code> (Tee Operator)</h2>
 <p><strong>Nguyên lý của pipe <code>%T&gt;%</code>:</strong> Dòng chảy dữ liệu trong toán tử này có thể được hình dung tương tự như ống nước hình chữ T. Dữ liệu đầu vào của 1 hàm A đi trước sẽ được truyền cho 2 nhánh tương ứng với quy trình B1 (là 1 hàm) và quy trình B2.</p>
-<p>Ứng dụng phổ biến nhất của T pipe là để vẽ 2 đồ thị khác nhau cho cùng 1 gói dữ liệu, như thí dụ sau:</p>
+<p>ứng dụng phổ biến nhất của T pipe là để vẽ 2 đồ thị khác nhau cho cùng 1 gói dữ liệu, như thí dụ sau :</p>
 <pre class="r"><code>rnorm(200) %&gt;%
     matrix(ncol = 2) %T&gt;%
     plot %&gt;%
     colSums</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<pre><code>## [1] -0.5029305  5.9846123</code></pre>
+<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre><code>## [1] 21.029206 -3.719555</code></pre>
 <p>Tương đương với:</p>
 <pre class="r"><code>rnorm(200) %&gt;%
     matrix(ncol = 2) %&gt;%
     { plot(.); . } %&gt;%
     colSums</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<pre><code>## [1] -0.5756372  2.3496160</code></pre>
+<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre><code>## [1]  5.017393 16.330574</code></pre>
 <p>Hoặc viết theo cách truyền thống:</p>
 <pre class="r"><code>m &lt;- matrix(rnorm(200), ncol = 2)
 plot(m)</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>colSums(m)</code></pre>
-<pre><code>## [1] -15.597649  -1.201351</code></pre>
-<pre class="r"><code>mtcars %&gt;%
-        filter(carb &gt; 1) %&gt;%
-        extract(, 1:4) %T&gt;%
-        plot() %&gt;%
-        summary()</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<pre><code>##       mpg             cyl             disp             hp       
-##  Min.   :10.40   Min.   :16.00   Min.   : 75.7   Min.   : 52.0  
-##  1st Qu.:15.20   1st Qu.:24.00   1st Qu.:146.7   1st Qu.:110.0  
-##  Median :17.80   Median :32.00   Median :275.8   Median :175.0  
-##  Mean   :18.62   Mean   :26.56   Mean   :257.7   Mean   :163.7  
-##  3rd Qu.:21.00   3rd Qu.:32.00   3rd Qu.:351.0   3rd Qu.:205.0  
-##  Max.   :30.40   Max.   :32.00   Max.   :472.0   Max.   :335.0</code></pre>
+<pre><code>## [1] 2.710390 5.836089</code></pre>
 </div>
 <div id="toán-tử-exposition-pipe-operator" class="section level2">
 <h2>4. Toán tử <code>%$%</code> (exposition pipe-operator)</h2>
-<p><strong>Nguyên lý của pipe <code>%$%</code>:</strong> Toán tử cho phép trích xuất đích danh một đối tượng trong kết quả của hàm đi trước để sử dụng như dữ liệu đầu vào cho hàm đi sau.</p>
-<p>Ví dụ tính độ tương quan giữa hai biến <code>disp</code> và <code>mpg</code> trong tập dữ liệu <code>mtcars</code>:</p>
-<pre class="r"><code>mtcars %$%
-  cor(disp, mpg)</code></pre>
-<pre><code>## [1] -0.8475514</code></pre>
+<p><strong>Nguyên lý của pipe <code>%$%</code>:</strong> Toán tử cho phép trích xuất đích danh một đối tượng trong kết quả của hàm đi trước để sử dụng như dữ liệu đầu vào cho hàm đi sau. Như vậy nó có tính định hướng 1 chiều nhưng chuyên biệt.</p>
+<p>Ví dụ:</p>
+<pre class="r"><code>library(magrittr)
+iris %&gt;%
+    subset(Sepal.Length &gt; mean(Sepal.Length)) %$%
+    cor(Sepal.Length, Sepal.Width)</code></pre>
+<pre><code>## [1] 0.3361992</code></pre>
+<p>Tương đương với việc sử dụng hàm with():</p>
+<pre class="r"><code>with(subset(iris, Sepal.Length &gt; mean(Sepal.Length)),
+     cor(Sepal.Length, Sepal.Width))</code></pre>
+<pre><code>## [1] 0.3361992</code></pre>
 <p>Thuận tiện khi sử dụng tên của thuộc tính khi vẽ đồ thị:</p>
 <pre class="r"><code>data.frame(z = rnorm(100)) %$%
     ts.plot(z)</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Tương tự với with():</p>
 <pre class="r"><code>with(data.frame(z = rnorm(100)),
      ts.plot(z))</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Một ví dụ khác:</p>
 <pre class="r"><code>npk %$% aov(yield ~ N * P * K) %&gt;% summary</code></pre>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
@@ -927,6 +879,7 @@ plot(m)</code></pre>
 ## Residuals   16  491.6   30.72                 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Sử dụng <code>.</code> trong công thức đã không thể được</p>
 </div>
 
     </div>

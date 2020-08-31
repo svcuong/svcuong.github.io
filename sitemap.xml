@@ -28,43 +28,43 @@
   </url>
   
   <url>
-    <loc>/post/covid-19-r/</loc>
-    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
+    <loc>/tag/anaconda/</loc>
+    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
   </url>
   
   <url>
-    <loc>/tag/covid-19/</loc>
-    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
+    <loc>/post/r-jupyter/r-jupyter/</loc>
+    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
   </url>
   
   <url>
-    <loc>/tag/data-visualization/</loc>
-    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+    <loc>/tag/jupyter-notebook/</loc>
+    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
   </url>
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/python/</loc>
+    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
   </url>
   
   <url>
     <loc>/category/r/</loc>
-    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/r-markdown/</loc>
-    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
   </url>
   
   <url>
@@ -78,8 +78,28 @@
   </url>
   
   <url>
+    <loc>/tag/data-visualization/</loc>
+    <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tag/pipes/</loc>
     <lastmod>2020-08-30T08:21:58+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/covid-19-r/</loc>
+    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/covid-19/</loc>
+    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/r-markdown/</loc>
+    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -98,17 +118,7 @@
   </url>
   
   <url>
-    <loc>/tag/jupyter-notebook/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tag/machine-learning/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/python/</loc>
     <lastmod>2020-08-27T00:00:00+00:00</lastmod>
   </url>
   

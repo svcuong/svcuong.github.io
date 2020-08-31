@@ -5,12 +5,63 @@
     <link>/category/python/</link>
       <atom:link href="/category/python/index.xml" rel="self" type="application/rss+xml" />
     <description>Python</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Thu, 27 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Mon, 31 Aug 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
       <title>Python</title>
       <link>/category/python/</link>
     </image>
+    
+    <item>
+      <title>Cách thêm và sử dụng R trong Jupyter Notebook</title>
+      <link>/post/r-jupyter/r-jupyter/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/r-jupyter/r-jupyter/</guid>
+      <description>
+
+
+&lt;p&gt;Để cài đặt và sử dụng &lt;code&gt;R&lt;/code&gt; + &lt;code&gt;r-essentials packages&lt;/code&gt; trong Jupyter Notebook có 2 cách sau:&lt;/p&gt;
+&lt;div id=&#34;cách-1-dùng-anaconda-navigation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Cách 1: Dùng Anaconda Navigation&lt;/h2&gt;
+&lt;p&gt;Bước 1. Mở Anaconda &lt;code&gt;Navigator&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/r-jupyter1.PNG&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Bước 2. Chọn &lt;code&gt;Envirments&lt;/code&gt; để tạo môi trường Anaconda mới. Click &lt;code&gt;Create&lt;/code&gt; và tích chọn &lt;code&gt;r&lt;/code&gt; cũng như phiên bản &lt;code&gt;Python&lt;/code&gt; cần thiết:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/r-jupyter2.PNG&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Bước 3. Mở &lt;code&gt;Jupyter Notebook&lt;/code&gt; trong môi trường mới tạo có chứa &lt;code&gt;R package&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/r-jupyter3.png&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cách-2-sử-dụng-anaconda-prompt&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Cách 2: Sử dụng Anaconda &lt;code&gt;Prompt&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Bước 1. Mở Anaconda &lt;code&gt;Prompt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/r-python3.png&#34; /&gt;
+Bước 2. Tạo và &lt;code&gt;active&lt;/code&gt; môi trường anaconda mới bằng lệnh sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda create -n ENV_NAME
+conda activate ENV_NAME&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 3. Cài &lt;code&gt;r-irkernel&lt;/code&gt; cho môi trường anaconda mới tạo bằng lệnh sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda install -c r r-irkernel&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 4. Mở Jupyter Notebook trong môi trường anaconda chứa R mới khởi tạo bằng lệnh:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;jupyter notebook&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sau khi đã mở &lt;code&gt;Jupyter Notebook&lt;/code&gt; trong môi trường Anaconda mới tạo có chứa &lt;code&gt;R&lt;/code&gt;, để tạo một &lt;code&gt;notebook&lt;/code&gt; mới cho ngôn ngữ &lt;code&gt;R&lt;/code&gt;, chọn &lt;code&gt;New&lt;/code&gt; rồi chọn &lt;code&gt;R&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/r-jupyter4.PNG&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tips-cho-cài-r-packages-trong-môi-trường-anaconda&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Tips cho cài &lt;code&gt;R packages&lt;/code&gt; trong môi trường Anaconda:&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Active&lt;/code&gt; môi trường Anaconda có chứa R từ &lt;code&gt;Anaconda Prompt&lt;/code&gt; và gõ lệnh cài &lt;code&gt;R package&lt;/code&gt; như sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda install r-NAME_PACKAGE&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ví dụ cài gói &lt;code&gt;ggplot2&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda install r-ggplo2`&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nếu không cài được thì chúng ta có thể:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Launching R&lt;/code&gt; trực tiếp trong &lt;code&gt;Anaconda Prompt&lt;/code&gt; và dùng lệnh &lt;code&gt;install.packages(&#34;NAME_PACKAGE&#34;)&lt;/code&gt; để cài đặt package như khi sử dụng R.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Hoặc dùng cách sau:&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;conda install conda-build
+conda skeleton cran &amp;lt;something_on_cran&amp;gt;
+conda build r-&amp;lt;something_on_cran_lowercased&amp;gt;
+conda install -c local r-&amp;lt;something_on_cran_lowercased&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Download và trực quan hóa dữ liệu Covid-19 từ John Hopkins database (sử dụng Python code)</title>
@@ -1633,22 +1684,20 @@ thuộc:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(reticulate)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Để kiểm tra môi trường Python có trong máy, các bạn dùng câu lệnh sau:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda_list()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##           name
-## 1    Anaconda3
-## 2           TF
-## 3      rstudio
-## 4 r-reticulate
-## 5     r-tf-gpu
-##                                                                          python
-## 1                                       C:\\Users\\svcuo\\Anaconda3\\python.exe
-## 2                             C:\\Users\\svcuo\\Anaconda3\\envs\\TF\\python.exe
-## 3                        C:\\Users\\svcuo\\Anaconda3\\envs\\rstudio\\python.exe
-## 4 C:\\Users\\svcuo\\AppData\\Local\\r-miniconda\\envs\\r-reticulate\\python.exe
-## 5     C:\\Users\\svcuo\\AppData\\Local\\r-miniconda\\envs\\r-tf-gpu\\python.exe&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        name                                  python
+## 1 Anaconda3 C:\\Users\\svcuo\\Anaconda3\\python.exe&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dùng hàm &lt;code&gt;use_python()&lt;/code&gt; cho phép bạn chỉ định rõ phiên bản Python cần thiết:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;use_python(&amp;quot;C:/Users/svcuo/Anaconda3/python.exe&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Sử dụng hàm &lt;code&gt;use_virtualenv()&lt;/code&gt; và &lt;code&gt;use_condaenv()&lt;/code&gt; cho phép bạn chỉ định phiên bản Python của bạn làm việc trong môi trường virtual hay là Conda:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;use_virtualenv(&amp;quot;myenv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;py_config()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## python:         C:/Users/svcuo/Anaconda3/python.exe
+## libpython:      C:/Users/svcuo/Anaconda3/python37.dll
+## pythonhome:     C:/Users/svcuo/Anaconda3
+## version:        3.7.4 (default, Aug  9 2019, 18:34:13) [MSC v.1915 64 bit (AMD64)]
+## Architecture:   64bit
+## numpy:          C:/Users/svcuo/Anaconda3/Lib/site-packages/numpy
+## numpy_version:  1.16.5&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ta có thể cài đặt bất kỳ python library nào trong R bằng cách dùng hàm &lt;code&gt;py_install()&lt;/code&gt; như sau:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;py_install(&amp;quot;pandas&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;hr /&gt;
@@ -1720,7 +1769,7 @@ par(mfrow=c(1,4))
 for(i in 1:4) {
 boxplot(x[,i], main=names[i])
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Thực hiện data visualization trong R với &lt;code&gt;ggplot2&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R
 library(ggplot2)
@@ -1730,7 +1779,7 @@ ggplot(data = py$data,aes(x = preg)) +
   ggtitle(&amp;quot;Pregnancies Data Distribution&amp;quot;) + ylab(&amp;quot;class Counts&amp;quot;) +
   theme_gray() +
   theme_update(plot.title = element_text(hjust = 0.5))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;Tham khảo:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;sub&gt;&lt;a href=&#34;https://rstudio.github.io/reticulate/&#34;&gt;R Interface to Python&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;

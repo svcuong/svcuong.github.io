@@ -5,12 +5,63 @@
     <link>/tag/jupyter-notebook/</link>
       <atom:link href="/tag/jupyter-notebook/index.xml" rel="self" type="application/rss+xml" />
     <description>Jupyter Notebook</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Thu, 27 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Mon, 31 Aug 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
       <title>Jupyter Notebook</title>
       <link>/tag/jupyter-notebook/</link>
     </image>
+    
+    <item>
+      <title>Cách thêm và sử dụng R trong Jupyter Notebook</title>
+      <link>/post/r-jupyter/r-jupyter/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/r-jupyter/r-jupyter/</guid>
+      <description>
+
+
+&lt;p&gt;Để cài đặt và sử dụng &lt;code&gt;R&lt;/code&gt; + &lt;code&gt;r-essentials packages&lt;/code&gt; trong Jupyter Notebook có 2 cách sau:&lt;/p&gt;
+&lt;div id=&#34;cách-1-dùng-anaconda-navigation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Cách 1: Dùng Anaconda Navigation&lt;/h2&gt;
+&lt;p&gt;Bước 1. Mở Anaconda &lt;code&gt;Navigator&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/r-jupyter1.PNG&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Bước 2. Chọn &lt;code&gt;Envirments&lt;/code&gt; để tạo môi trường Anaconda mới. Click &lt;code&gt;Create&lt;/code&gt; và tích chọn &lt;code&gt;r&lt;/code&gt; cũng như phiên bản &lt;code&gt;Python&lt;/code&gt; cần thiết:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/r-jupyter2.PNG&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Bước 3. Mở &lt;code&gt;Jupyter Notebook&lt;/code&gt; trong môi trường mới tạo có chứa &lt;code&gt;R package&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/r-jupyter3.png&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cách-2-sử-dụng-anaconda-prompt&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Cách 2: Sử dụng Anaconda &lt;code&gt;Prompt&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Bước 1. Mở Anaconda &lt;code&gt;Prompt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/r-python3.png&#34; /&gt;
+Bước 2. Tạo và &lt;code&gt;active&lt;/code&gt; môi trường anaconda mới bằng lệnh sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda create -n ENV_NAME
+conda activate ENV_NAME&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 3. Cài &lt;code&gt;r-irkernel&lt;/code&gt; cho môi trường anaconda mới tạo bằng lệnh sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda install -c r r-irkernel&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước 4. Mở Jupyter Notebook trong môi trường anaconda chứa R mới khởi tạo bằng lệnh:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;jupyter notebook&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sau khi đã mở &lt;code&gt;Jupyter Notebook&lt;/code&gt; trong môi trường Anaconda mới tạo có chứa &lt;code&gt;R&lt;/code&gt;, để tạo một &lt;code&gt;notebook&lt;/code&gt; mới cho ngôn ngữ &lt;code&gt;R&lt;/code&gt;, chọn &lt;code&gt;New&lt;/code&gt; rồi chọn &lt;code&gt;R&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/r-jupyter4.PNG&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tips-cho-cài-r-packages-trong-môi-trường-anaconda&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Tips cho cài &lt;code&gt;R packages&lt;/code&gt; trong môi trường Anaconda:&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Active&lt;/code&gt; môi trường Anaconda có chứa R từ &lt;code&gt;Anaconda Prompt&lt;/code&gt; và gõ lệnh cài &lt;code&gt;R package&lt;/code&gt; như sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda install r-NAME_PACKAGE&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ví dụ cài gói &lt;code&gt;ggplot2&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda install r-ggplo2`&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nếu không cài được thì chúng ta có thể:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Launching R&lt;/code&gt; trực tiếp trong &lt;code&gt;Anaconda Prompt&lt;/code&gt; và dùng lệnh &lt;code&gt;install.packages(&#34;NAME_PACKAGE&#34;)&lt;/code&gt; để cài đặt package như khi sử dụng R.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Hoặc dùng cách sau:&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;conda install conda-build
+conda skeleton cran &amp;lt;something_on_cran&amp;gt;
+conda build r-&amp;lt;something_on_cran_lowercased&amp;gt;
+conda install -c local r-&amp;lt;something_on_cran_lowercased&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Download và trực quan hóa dữ liệu Covid-19 từ John Hopkins database (sử dụng Python code)</title>

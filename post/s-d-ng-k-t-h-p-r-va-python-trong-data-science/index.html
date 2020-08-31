@@ -822,22 +822,20 @@ thuộc:</p>
 <pre class="r"><code>library(reticulate)</code></pre>
 <p>Để kiểm tra môi trường Python có trong máy, các bạn dùng câu lệnh sau:</p>
 <pre class="r"><code>conda_list()</code></pre>
-<pre><code>##           name
-## 1    Anaconda3
-## 2           TF
-## 3      rstudio
-## 4 r-reticulate
-## 5     r-tf-gpu
-##                                                                          python
-## 1                                       C:\\Users\\svcuo\\Anaconda3\\python.exe
-## 2                             C:\\Users\\svcuo\\Anaconda3\\envs\\TF\\python.exe
-## 3                        C:\\Users\\svcuo\\Anaconda3\\envs\\rstudio\\python.exe
-## 4 C:\\Users\\svcuo\\AppData\\Local\\r-miniconda\\envs\\r-reticulate\\python.exe
-## 5     C:\\Users\\svcuo\\AppData\\Local\\r-miniconda\\envs\\r-tf-gpu\\python.exe</code></pre>
+<pre><code>##        name                                  python
+## 1 Anaconda3 C:\\Users\\svcuo\\Anaconda3\\python.exe</code></pre>
 <p>Dùng hàm <code>use_python()</code> cho phép bạn chỉ định rõ phiên bản Python cần thiết:</p>
 <pre class="r"><code>use_python(&quot;C:/Users/svcuo/Anaconda3/python.exe&quot;)</code></pre>
 <p>Sử dụng hàm <code>use_virtualenv()</code> và <code>use_condaenv()</code> cho phép bạn chỉ định phiên bản Python của bạn làm việc trong môi trường virtual hay là Conda:</p>
 <pre class="r"><code>use_virtualenv(&quot;myenv&quot;)</code></pre>
+<pre class="r"><code>py_config()</code></pre>
+<pre><code>## python:         C:/Users/svcuo/Anaconda3/python.exe
+## libpython:      C:/Users/svcuo/Anaconda3/python37.dll
+## pythonhome:     C:/Users/svcuo/Anaconda3
+## version:        3.7.4 (default, Aug  9 2019, 18:34:13) [MSC v.1915 64 bit (AMD64)]
+## Architecture:   64bit
+## numpy:          C:/Users/svcuo/Anaconda3/Lib/site-packages/numpy
+## numpy_version:  1.16.5</code></pre>
 <p>Ta có thể cài đặt bất kỳ python library nào trong R bằng cách dùng hàm <code>py_install()</code> như sau:</p>
 <pre class="r"><code>py_install(&quot;pandas&quot;)</code></pre>
 <hr />
@@ -909,7 +907,7 @@ par(mfrow=c(1,4))
 for(i in 1:4) {
 boxplot(x[,i], main=names[i])
 }</code></pre>
-<p><img src="/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Thực hiện data visualization trong R với <code>ggplot2</code>:</p>
 <pre class="r"><code># R
 library(ggplot2)
@@ -919,7 +917,7 @@ ggplot(data = py$data,aes(x = preg)) +
   ggtitle(&quot;Pregnancies Data Distribution&quot;) + ylab(&quot;class Counts&quot;) +
   theme_gray() +
   theme_update(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="/post/2020-08-18-ket-hop-r-va-python_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <hr />
 <p><strong>Tham khảo:</strong></p>
 <p><sub><a href="https://rstudio.github.io/reticulate/">R Interface to Python</a></sup></p>
@@ -1188,11 +1186,11 @@ ggplot(data = py$data,aes(x = preg)) +
       
       <li><a href="/post/crypto/">Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap</a></li>
       
+      <li><a href="/post/r-jupyter/r-jupyter/">Cách thêm và sử dụng R trong Jupyter Notebook</a></li>
+      
       <li><a href="/post/data-manipulation/">So sánh dplyr và pandas cho data manipulation</a></li>
       
       <li><a href="/post/pipes/">Cách sử dụng các toán tử pipes trong R</a></li>
-      
-      <li><a href="/post/covid-19-python/">Download và trực quan hóa dữ liệu Covid-19 từ John Hopkins database (sử dụng Python code)</a></li>
       
     </ul>
   </div>
