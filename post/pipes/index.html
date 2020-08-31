@@ -743,7 +743,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    5 min read
+    4 min read
   </span>
   
 
@@ -809,6 +809,7 @@
 <p>Nạp các thư viện cần thiết vào phiên làm việc của R để thực hành:</p>
 <pre class="r"><code>library(tidyverse)
 library(magrittr)</code></pre>
+<p><code>Chú ý</code>: Khi nạp gói <code>tidyverse</code> thì pipe <code>%&gt;%</code> được nạp tự động, tuy nhiên để dùng các toán từ khác thì chúng ta cần nạp thêm cả gói <code>magrittr</code>.</p>
 <div id="toán-tử-forward-pipe-operator" class="section level2">
 <h2>1. Toán tử <code>%&gt;%</code> (forward-pipe operator)</h2>
 <p>Đây là <code>pipe</code> được sử dụng nhiều nhất trong R, hầu như mỗi công việc thực hiện trên R tôi đều sử dụng nó rất nhiều lần.</p>
@@ -880,20 +881,20 @@ diamonds</code></pre>
     plot %&gt;%
     colSums</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<pre><code>## [1]  5.055193 -1.983104</code></pre>
+<pre><code>## [1]  18.50063 -16.36514</code></pre>
 <p>Tương đương với:</p>
 <pre class="r"><code>rnorm(200) %&gt;%
     matrix(ncol = 2) %&gt;%
     { plot(.); . } %&gt;%
     colSums</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre><code>## [1]  -0.1677445 -15.5813019</code></pre>
+<pre><code>## [1]  -2.381452 -16.977761</code></pre>
 <p>Hoặc viết theo cách truyền thống:</p>
 <pre class="r"><code>m &lt;- matrix(rnorm(200), ncol = 2)
 plot(m)</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre class="r"><code>colSums(m)</code></pre>
-<pre><code>## [1] -6.649292  7.829778</code></pre>
+<pre><code>## [1] -4.1285323  0.6322695</code></pre>
 </div>
 <div id="toán-tử-exposition-pipe-operator" class="section level2">
 <h2>4. Toán tử <code>%$%</code> (exposition pipe-operator)</h2>
@@ -907,27 +908,6 @@ plot(m)</code></pre>
 <pre class="r"><code>with(subset(iris, Sepal.Length &gt; mean(Sepal.Length)),
      cor(Sepal.Length, Sepal.Width))</code></pre>
 <pre><code>## [1] 0.3361992</code></pre>
-<p>Thuận tiện khi sử dụng tên của thuộc tính khi vẽ đồ thị:</p>
-<pre class="r"><code>data.frame(z = rnorm(100)) %$%
-    ts.plot(z)</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<p>Tương tự với with():</p>
-<pre class="r"><code>with(data.frame(z = rnorm(100)),
-     ts.plot(z))</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p>Một ví dụ khác:</p>
-<pre class="r"><code>npk %$% aov(yield ~ N * P * K) %&gt;% summary</code></pre>
-<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
-## N            1  189.3  189.28   6.161 0.0245 *
-## P            1    8.4    8.40   0.273 0.6082  
-## K            1   95.2   95.20   3.099 0.0975 .
-## N:P          1   21.3   21.28   0.693 0.4175  
-## N:K          1   33.1   33.14   1.078 0.3145  
-## P:K          1    0.5    0.48   0.016 0.9019  
-## N:P:K        1   37.0   37.00   1.204 0.2887  
-## Residuals   16  491.6   30.72                 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
 
     </div>

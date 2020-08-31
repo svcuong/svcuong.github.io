@@ -38,6 +38,7 @@
 &lt;p&gt;Nạp các thư viện cần thiết vào phiên làm việc của R để thực hành:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
 library(magrittr)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;Chú ý&lt;/code&gt;: Khi nạp gói &lt;code&gt;tidyverse&lt;/code&gt; thì pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt; được nạp tự động, tuy nhiên để dùng các toán từ khác thì chúng ta cần nạp thêm cả gói &lt;code&gt;magrittr&lt;/code&gt;.&lt;/p&gt;
 &lt;div id=&#34;toán-tử-forward-pipe-operator&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;1. Toán tử &lt;code&gt;%&amp;gt;%&lt;/code&gt; (forward-pipe operator)&lt;/h2&gt;
 &lt;p&gt;Đây là &lt;code&gt;pipe&lt;/code&gt; được sử dụng nhiều nhất trong R, hầu như mỗi công việc thực hiện trên R tôi đều sử dụng nó rất nhiều lần.&lt;/p&gt;
@@ -109,20 +110,20 @@ diamonds&lt;/code&gt;&lt;/pre&gt;
     plot %&amp;gt;%
     colSums&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## [1]  5.055193 -1.983104&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1]  18.50063 -16.36514&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Tương đương với:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
     matrix(ncol = 2) %&amp;gt;%
     { plot(.); . } %&amp;gt;%
     colSums&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## [1]  -0.1677445 -15.5813019&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1]  -2.381452 -16.977761&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Hoặc viết theo cách truyền thống:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;m &amp;lt;- matrix(rnorm(200), ncol = 2)
 plot(m)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;colSums(m)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] -6.649292  7.829778&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -4.1285323  0.6322695&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;toán-tử-exposition-pipe-operator&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;4. Toán tử &lt;code&gt;%$%&lt;/code&gt; (exposition pipe-operator)&lt;/h2&gt;
@@ -136,27 +137,6 @@ plot(m)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;with(subset(iris, Sepal.Length &amp;gt; mean(Sepal.Length)),
      cor(Sepal.Length, Sepal.Width))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 0.3361992&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Thuận tiện khi sử dụng tên của thuộc tính khi vẽ đồ thị:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data.frame(z = rnorm(100)) %$%
-    ts.plot(z)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Tương tự với with():&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;with(data.frame(z = rnorm(100)),
-     ts.plot(z))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Một ví dụ khác:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;npk %$% aov(yield ~ N * P * K) %&amp;gt;% summary&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##             Df Sum Sq Mean Sq F value Pr(&amp;gt;F)  
-## N            1  189.3  189.28   6.161 0.0245 *
-## P            1    8.4    8.40   0.273 0.6082  
-## K            1   95.2   95.20   3.099 0.0975 .
-## N:P          1   21.3   21.28   0.693 0.4175  
-## N:K          1   33.1   33.14   1.078 0.3145  
-## P:K          1    0.5    0.48   0.016 0.9019  
-## N:P:K        1   37.0   37.00   1.204 0.2887  
-## Residuals   16  491.6   30.72                 
-## ---
-## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
     </item>
