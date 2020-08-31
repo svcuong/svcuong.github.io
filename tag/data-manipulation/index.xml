@@ -42,41 +42,93 @@ library(magrittr)&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;1. Toán tử &lt;code&gt;%&amp;gt;%&lt;/code&gt; (forward-pipe operator)&lt;/h2&gt;
 &lt;p&gt;Đây là &lt;code&gt;pipe&lt;/code&gt; được sử dụng nhiều nhất trong R, hầu như mỗi công việc thực hiện trên R tôi đều sử dụng nó rất nhiều lần.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt;:&lt;/strong&gt; chuyển toàn bộ vế bên trái (có thể là kết quả của hàm đi trước) thành dữ liệu đầu vào cho hàm bên phải tạo thành một dòng chảy dữ liệu từ trái qua phải.&lt;/p&gt;
+&lt;p&gt;Ví dụ với tập dữ liệu &lt;code&gt;diamonds&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(diamonds)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 10
+##   carat cut       color clarity depth table price     x     y     z
+##   &amp;lt;dbl&amp;gt; &amp;lt;ord&amp;gt;     &amp;lt;ord&amp;gt; &amp;lt;ord&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+## 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+## 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+## 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+## 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+## 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+## 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;diamonds %&amp;gt;%
+  filter(color == &amp;quot;I&amp;quot;) %&amp;gt;%
+  group_by(cut) %&amp;gt;%
+  summarize(price = mean(price))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 2
+##   cut       price
+##   &amp;lt;ord&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1 Fair      4685.
+## 2 Good      5079.
+## 3 Very Good 5256.
+## 4 Premium   5946.
+## 5 Ideal     4452.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tương đương với cách truyền thống như sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;diamonds_1 &amp;lt;- filter(diamonds, color == &amp;quot;I&amp;quot;)
+diamonds_2 &amp;lt;- group_by(diamonds_1, cut)
+(diamonds_3 &amp;lt;- summarize(diamonds_2, price = mean(price)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 2
+##   cut       price
+##   &amp;lt;ord&amp;gt;     &amp;lt;dbl&amp;gt;
+## 1 Fair      4685.
+## 2 Good      5079.
+## 3 Very Good 5256.
+## 4 Premium   5946.
+## 5 Ideal     4452.&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;toán-tử-compound-assignment-pipe-operator&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;2. Toán tử &lt;code&gt;%&amp;lt;&amp;gt;%&lt;/code&gt; (compound assignment pipe-operator)&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%&amp;lt;&lt;/code&gt;:&lt;/strong&gt; Thực hiện nhiệm vụ tương tự như với toán tử &lt;code&gt;%&amp;gt;%&lt;/code&gt;, tuy nhiên kết quả cuối cùng của dòng chảy dữ liệu được gán lại vào đối tượng ban đầu của dòng chảy.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%&amp;lt;&amp;gt;%:&lt;/code&gt;&lt;/strong&gt; Thực hiện nhiệm vụ tương tự như với toán tử &lt;code&gt;%&amp;gt;%&lt;/code&gt;, tuy nhiên kết quả cuối cùng của dòng chảy dữ liệu được gán lại vào đối tượng ban đầu của dòng chảy.&lt;/p&gt;
+&lt;p&gt;Ví dụ:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;diamonds %&amp;lt;&amp;gt;%
+  filter(color == &amp;quot;I&amp;quot;) %&amp;gt;% select(carat, cut, color)
+diamonds&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5,422 x 3
+##    carat cut       color
+##    &amp;lt;dbl&amp;gt; &amp;lt;ord&amp;gt;     &amp;lt;ord&amp;gt;
+##  1 0.290 Premium   I    
+##  2 0.24  Very Good I    
+##  3 0.3   Ideal     I    
+##  4 0.3   Good      I    
+##  5 0.24  Premium   I    
+##  6 0.33  Ideal     I    
+##  7 0.33  Ideal     I    
+##  8 0.32  Ideal     I    
+##  9 0.3   Ideal     I    
+## 10 0.3   Very Good I    
+## # ... with 5,412 more rows&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;toán-tử-t-tee-operator&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;3. Toán tử &lt;code&gt;%T%&lt;/code&gt; (Tee Operator)&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%T&amp;gt;%&lt;/code&gt;:&lt;/strong&gt; Dòng chảy dữ liệu trong toán tử này có thể được hình dung tương tự như ống nước hình chữ T. Dữ liệu đầu vào của 1 hàm A đi trước sẽ được truyền cho 2 nhánh tương ứng với quy trình B1 (là 1 hàm) và quy trình B2.&lt;/p&gt;
-&lt;p&gt;ứng dụng phổ biến nhất của T pipe là để vẽ 2 đồ thị khác nhau cho cùng 1 gói dữ liệu, như thí dụ sau :&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%T&amp;gt;%&lt;/code&gt;:&lt;/strong&gt; Dòng chảy dữ liệu trong toán tử này có thể được hình dung tương tự như ống nước hình chữ T. Dữ liệu đầu vào của 1 hàm đi trước sẽ được truyền cho 2 nhánh tương ứng cho hai hàm phía sau&lt;/p&gt;
+&lt;p&gt;Ví dụ:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
     matrix(ncol = 2) %T&amp;gt;%
     plot %&amp;gt;%
     colSums&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## [1]   1.146212 -18.457340&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## [1]  5.055193 -1.983104&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Tương đương với:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
     matrix(ncol = 2) %&amp;gt;%
     { plot(.); . } %&amp;gt;%
     colSums&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## [1] -2.160638 32.148344&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## [1]  -0.1677445 -15.5813019&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Hoặc viết theo cách truyền thống:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;m &amp;lt;- matrix(rnorm(200), ncol = 2)
 plot(m)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;colSums(m)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] -4.845406  6.637779&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -6.649292  7.829778&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;toán-tử-exposition-pipe-operator&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;4. Toán tử &lt;code&gt;%$%&lt;/code&gt; (exposition pipe-operator)&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%$%&lt;/code&gt;:&lt;/strong&gt; Toán tử cho phép trích xuất đích danh một đối tượng trong kết quả của hàm đi trước để sử dụng như dữ liệu đầu vào cho hàm đi sau. Như vậy nó có tính định hướng 1 chiều nhưng chuyên biệt.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nguyên lý của pipe &lt;code&gt;%$%&lt;/code&gt;:&lt;/strong&gt; Toán tử cho phép trích xuất đích danh một đối tượng trong kết quả của hàm đi trước để sử dụng như dữ liệu đầu vào cho hàm đi sau.&lt;/p&gt;
 &lt;p&gt;Ví dụ:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(magrittr)
-iris %&amp;gt;%
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;%
     subset(Sepal.Length &amp;gt; mean(Sepal.Length)) %$%
     cor(Sepal.Length, Sepal.Width)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 0.3361992&lt;/code&gt;&lt;/pre&gt;
@@ -87,11 +139,11 @@ iris %&amp;gt;%
 &lt;p&gt;Thuận tiện khi sử dụng tên của thuộc tính khi vẽ đồ thị:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data.frame(z = rnorm(100)) %$%
     ts.plot(z)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Tương tự với with():&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;with(data.frame(z = rnorm(100)),
      ts.plot(z))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Một ví dụ khác:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;npk %$% aov(yield ~ N * P * K) %&amp;gt;% summary&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##             Df Sum Sq Mean Sq F value Pr(&amp;gt;F)  
@@ -105,7 +157,6 @@ iris %&amp;gt;%
 ## Residuals   16  491.6   30.72                 
 ## ---
 ## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Sử dụng &lt;code&gt;.&lt;/code&gt; trong công thức đã không thể được&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

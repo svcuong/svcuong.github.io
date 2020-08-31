@@ -743,7 +743,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    3 min read
+    5 min read
   </span>
   
 
@@ -813,41 +813,93 @@ library(magrittr)</code></pre>
 <h2>1. Toán tử <code>%&gt;%</code> (forward-pipe operator)</h2>
 <p>Đây là <code>pipe</code> được sử dụng nhiều nhất trong R, hầu như mỗi công việc thực hiện trên R tôi đều sử dụng nó rất nhiều lần.</p>
 <p><strong>Nguyên lý của pipe <code>%&gt;%</code>:</strong> chuyển toàn bộ vế bên trái (có thể là kết quả của hàm đi trước) thành dữ liệu đầu vào cho hàm bên phải tạo thành một dòng chảy dữ liệu từ trái qua phải.</p>
+<p>Ví dụ với tập dữ liệu <code>diamonds</code>:</p>
+<pre class="r"><code>head(diamonds)</code></pre>
+<pre><code>## # A tibble: 6 x 10
+##   carat cut       color clarity depth table price     x     y     z
+##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.23  Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+## 2 0.21  Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+## 3 0.23  Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+## 4 0.290 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+## 5 0.31  Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+## 6 0.24  Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+<pre class="r"><code>diamonds %&gt;%
+  filter(color == &quot;I&quot;) %&gt;%
+  group_by(cut) %&gt;%
+  summarize(price = mean(price))</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   cut       price
+##   &lt;ord&gt;     &lt;dbl&gt;
+## 1 Fair      4685.
+## 2 Good      5079.
+## 3 Very Good 5256.
+## 4 Premium   5946.
+## 5 Ideal     4452.</code></pre>
+<p>Tương đương với cách truyền thống như sau:</p>
+<pre class="r"><code>diamonds_1 &lt;- filter(diamonds, color == &quot;I&quot;)
+diamonds_2 &lt;- group_by(diamonds_1, cut)
+(diamonds_3 &lt;- summarize(diamonds_2, price = mean(price)))</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   cut       price
+##   &lt;ord&gt;     &lt;dbl&gt;
+## 1 Fair      4685.
+## 2 Good      5079.
+## 3 Very Good 5256.
+## 4 Premium   5946.
+## 5 Ideal     4452.</code></pre>
 </div>
 <div id="toán-tử-compound-assignment-pipe-operator" class="section level2">
 <h2>2. Toán tử <code>%&lt;&gt;%</code> (compound assignment pipe-operator)</h2>
-<p><strong>Nguyên lý của pipe <code>%&lt;</code>:</strong> Thực hiện nhiệm vụ tương tự như với toán tử <code>%&gt;%</code>, tuy nhiên kết quả cuối cùng của dòng chảy dữ liệu được gán lại vào đối tượng ban đầu của dòng chảy.</p>
+<p><strong>Nguyên lý của pipe <code>%&lt;&gt;%:</code></strong> Thực hiện nhiệm vụ tương tự như với toán tử <code>%&gt;%</code>, tuy nhiên kết quả cuối cùng của dòng chảy dữ liệu được gán lại vào đối tượng ban đầu của dòng chảy.</p>
+<p>Ví dụ:</p>
+<pre class="r"><code>diamonds %&lt;&gt;%
+  filter(color == &quot;I&quot;) %&gt;% select(carat, cut, color)
+diamonds</code></pre>
+<pre><code>## # A tibble: 5,422 x 3
+##    carat cut       color
+##    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt;
+##  1 0.290 Premium   I    
+##  2 0.24  Very Good I    
+##  3 0.3   Ideal     I    
+##  4 0.3   Good      I    
+##  5 0.24  Premium   I    
+##  6 0.33  Ideal     I    
+##  7 0.33  Ideal     I    
+##  8 0.32  Ideal     I    
+##  9 0.3   Ideal     I    
+## 10 0.3   Very Good I    
+## # ... with 5,412 more rows</code></pre>
 </div>
 <div id="toán-tử-t-tee-operator" class="section level2">
 <h2>3. Toán tử <code>%T%</code> (Tee Operator)</h2>
-<p><strong>Nguyên lý của pipe <code>%T&gt;%</code>:</strong> Dòng chảy dữ liệu trong toán tử này có thể được hình dung tương tự như ống nước hình chữ T. Dữ liệu đầu vào của 1 hàm A đi trước sẽ được truyền cho 2 nhánh tương ứng với quy trình B1 (là 1 hàm) và quy trình B2.</p>
-<p>ứng dụng phổ biến nhất của T pipe là để vẽ 2 đồ thị khác nhau cho cùng 1 gói dữ liệu, như thí dụ sau :</p>
+<p><strong>Nguyên lý của pipe <code>%T&gt;%</code>:</strong> Dòng chảy dữ liệu trong toán tử này có thể được hình dung tương tự như ống nước hình chữ T. Dữ liệu đầu vào của 1 hàm đi trước sẽ được truyền cho 2 nhánh tương ứng cho hai hàm phía sau</p>
+<p>Ví dụ:</p>
 <pre class="r"><code>rnorm(200) %&gt;%
     matrix(ncol = 2) %T&gt;%
     plot %&gt;%
     colSums</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre><code>## [1]   1.146212 -18.457340</code></pre>
+<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre><code>## [1]  5.055193 -1.983104</code></pre>
 <p>Tương đương với:</p>
 <pre class="r"><code>rnorm(200) %&gt;%
     matrix(ncol = 2) %&gt;%
     { plot(.); . } %&gt;%
     colSums</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre><code>## [1] -2.160638 32.148344</code></pre>
+<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre><code>## [1]  -0.1677445 -15.5813019</code></pre>
 <p>Hoặc viết theo cách truyền thống:</p>
 <pre class="r"><code>m &lt;- matrix(rnorm(200), ncol = 2)
 plot(m)</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre class="r"><code>colSums(m)</code></pre>
-<pre><code>## [1] -4.845406  6.637779</code></pre>
+<pre><code>## [1] -6.649292  7.829778</code></pre>
 </div>
 <div id="toán-tử-exposition-pipe-operator" class="section level2">
 <h2>4. Toán tử <code>%$%</code> (exposition pipe-operator)</h2>
-<p><strong>Nguyên lý của pipe <code>%$%</code>:</strong> Toán tử cho phép trích xuất đích danh một đối tượng trong kết quả của hàm đi trước để sử dụng như dữ liệu đầu vào cho hàm đi sau. Như vậy nó có tính định hướng 1 chiều nhưng chuyên biệt.</p>
+<p><strong>Nguyên lý của pipe <code>%$%</code>:</strong> Toán tử cho phép trích xuất đích danh một đối tượng trong kết quả của hàm đi trước để sử dụng như dữ liệu đầu vào cho hàm đi sau.</p>
 <p>Ví dụ:</p>
-<pre class="r"><code>library(magrittr)
-iris %&gt;%
+<pre class="r"><code>iris %&gt;%
     subset(Sepal.Length &gt; mean(Sepal.Length)) %$%
     cor(Sepal.Length, Sepal.Width)</code></pre>
 <pre><code>## [1] 0.3361992</code></pre>
@@ -858,11 +910,11 @@ iris %&gt;%
 <p>Thuận tiện khi sử dụng tên của thuộc tính khi vẽ đồ thị:</p>
 <pre class="r"><code>data.frame(z = rnorm(100)) %$%
     ts.plot(z)</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Tương tự với with():</p>
 <pre class="r"><code>with(data.frame(z = rnorm(100)),
      ts.plot(z))</code></pre>
-<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Một ví dụ khác:</p>
 <pre class="r"><code>npk %$% aov(yield ~ N * P * K) %&gt;% summary</code></pre>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
@@ -876,7 +928,6 @@ iris %&gt;%
 ## Residuals   16  491.6   30.72                 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Sử dụng <code>.</code> trong công thức đã không thể được</p>
 </div>
 
     </div>
