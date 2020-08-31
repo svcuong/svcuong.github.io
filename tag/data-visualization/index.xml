@@ -20,7 +20,6 @@
       <description>
 
 
-&lt;p&gt;&lt;a href=&#34;https://rpubs.com/lengockhanhi/300713&#34; class=&#34;uri&#34;&gt;https://rpubs.com/lengockhanhi/300713&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Sự ra đời của các toán tử &lt;code&gt;pipes&lt;/code&gt; trong package &lt;a href=&#34;https://magrittr.tidyverse.org/reference/index.html&#34;&gt;magrittr&lt;/a&gt;
 đã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ &lt;code&gt;R&lt;/code&gt;. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết &lt;code&gt;code&lt;/code&gt; cũng giúp làm cho &lt;code&gt;code&lt;/code&gt; dễ đọc và dễ bảo trì hơn.&lt;/p&gt;
 &lt;p&gt;Ở bài này tôi &lt;code&gt;note&lt;/code&gt; lại cách dùng của 4 toán tử &lt;code&gt;pipes&lt;/code&gt; cho bạn nào cần:&lt;/p&gt;
@@ -57,20 +56,20 @@ library(magrittr)&lt;/code&gt;&lt;/pre&gt;
     plot %&amp;gt;%
     colSums&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 21.029206 -3.719555&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1]   1.146212 -18.457340&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Tương đương với:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
     matrix(ncol = 2) %&amp;gt;%
     { plot(.); . } %&amp;gt;%
     colSums&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## [1]  5.017393 16.330574&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -2.160638 32.148344&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Hoặc viết theo cách truyền thống:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;m &amp;lt;- matrix(rnorm(200), ncol = 2)
 plot(m)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;colSums(m)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 2.710390 5.836089&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] -4.845406  6.637779&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;toán-tử-exposition-pipe-operator&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;4. Toán tử &lt;code&gt;%$%&lt;/code&gt; (exposition pipe-operator)&lt;/h2&gt;

@@ -30,8 +30,7 @@
   
     
   
-  <meta name="description" content="https://rpubs.com/lengockhanhi/300713
-Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn.">
+  <meta name="description" content="Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/pipes/">
@@ -291,8 +290,7 @@ Sự ra đời của các toán tử pipes trong package magrittrđã tạ
   <meta property="og:site_name" content="Khoa Học Dữ Liệu">
   <meta property="og:url" content="/post/pipes/">
   <meta property="og:title" content="Cách sử dụng các toán tử pipes trong R | Khoa Học Dữ Liệu">
-  <meta property="og:description" content="https://rpubs.com/lengockhanhi/300713
-Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn."><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
+  <meta property="og:description" content="Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn."><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
   <meta property="twitter:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG"><meta property="og:locale" content="en-us">
   
     
@@ -342,7 +340,7 @@ Sự ra đời của các toán tử pipes trong package magrittrđã tạ
       "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
     }
   },
-  "description": "https://rpubs.com/lengockhanhi/300713\nSự ra đời của các toán tử pipes trong package magrittr\rđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn."
+  "description": "Sự ra đời của các toán tử pipes trong package magrittr\rđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn."
 }
 </script>
 
@@ -793,7 +791,6 @@ Sự ra đời của các toán tử pipes trong package magrittrđã tạ
       
 
 
-<p><a href="https://rpubs.com/lengockhanhi/300713" class="uri">https://rpubs.com/lengockhanhi/300713</a></p>
 <p>Sự ra đời của các toán tử <code>pipes</code> trong package <a href="https://magrittr.tidyverse.org/reference/index.html">magrittr</a>
 đã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ <code>R</code>. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết <code>code</code> cũng giúp làm cho <code>code</code> dễ đọc và dễ bảo trì hơn.</p>
 <p>Ở bài này tôi <code>note</code> lại cách dùng của 4 toán tử <code>pipes</code> cho bạn nào cần:</p>
@@ -830,20 +827,20 @@ library(magrittr)</code></pre>
     plot %&gt;%
     colSums</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre><code>## [1] 21.029206 -3.719555</code></pre>
+<pre><code>## [1]   1.146212 -18.457340</code></pre>
 <p>Tương đương với:</p>
 <pre class="r"><code>rnorm(200) %&gt;%
     matrix(ncol = 2) %&gt;%
     { plot(.); . } %&gt;%
     colSums</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre><code>## [1]  5.017393 16.330574</code></pre>
+<pre><code>## [1] -2.160638 32.148344</code></pre>
 <p>Hoặc viết theo cách truyền thống:</p>
 <pre class="r"><code>m &lt;- matrix(rnorm(200), ncol = 2)
 plot(m)</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>colSums(m)</code></pre>
-<pre><code>## [1] 2.710390 5.836089</code></pre>
+<pre><code>## [1] -4.845406  6.637779</code></pre>
 </div>
 <div id="toán-tử-exposition-pipe-operator" class="section level2">
 <h2>4. Toán tử <code>%$%</code> (exposition pipe-operator)</h2>
