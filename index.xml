@@ -47,7 +47,7 @@
 &lt;h2&gt;Cách 1: Dùng Anaconda Navigation&lt;/h2&gt;
 &lt;p&gt;Bước 1. Mở Anaconda &lt;code&gt;Navigator&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/img/r-jupyter1.PNG&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Bước 2. Chọn &lt;code&gt;Envirments&lt;/code&gt; để tạo môi trường Anaconda mới. Click &lt;code&gt;Create&lt;/code&gt; và tích chọn &lt;code&gt;r&lt;/code&gt; cũng như phiên bản &lt;code&gt;Python&lt;/code&gt; cần thiết:&lt;/p&gt;
+&lt;p&gt;Bước 2. Chọn &lt;code&gt;Environments&lt;/code&gt; để tạo môi trường Anaconda mới. Click &lt;code&gt;Create&lt;/code&gt; và tích chọn &lt;code&gt;r&lt;/code&gt; cũng như phiên bản &lt;code&gt;Python&lt;/code&gt; cần thiết:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/img/r-jupyter2.PNG&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Bước 3. Mở &lt;code&gt;Jupyter Notebook&lt;/code&gt; trong môi trường mới tạo có chứa &lt;code&gt;R package&lt;/code&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/img/r-jupyter3.png&#34; /&gt;&lt;/p&gt;
@@ -71,7 +71,7 @@ conda activate ENV_NAME&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;Active&lt;/code&gt; môi trường Anaconda có chứa R từ &lt;code&gt;Anaconda Prompt&lt;/code&gt; và gõ lệnh cài &lt;code&gt;R package&lt;/code&gt; như sau:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda install r-NAME_PACKAGE&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ví dụ cài gói &lt;code&gt;ggplot2&lt;/code&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda install r-ggplo2`&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda install r-ggplot2&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Nếu không cài được thì chúng ta có thể:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;Launching R&lt;/code&gt; trực tiếp trong &lt;code&gt;Anaconda Prompt&lt;/code&gt; và dùng lệnh &lt;code&gt;install.packages(&#34;NAME_PACKAGE&#34;)&lt;/code&gt; để cài đặt package như khi sử dụng R.&lt;/p&gt;&lt;/li&gt;
