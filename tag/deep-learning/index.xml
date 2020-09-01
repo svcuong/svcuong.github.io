@@ -28,7 +28,7 @@
 &lt;div id=&#34;sec1&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;1 Cài đặt&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;1.1 Cài đặt keras và tensorflow trong R&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Để cài đặt Keras và Tensorflow các bạn dùng các lệnh sau trong &lt;code&gt;R&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Để cài đặt Keras và Tensorflow trong R các bạn dùng các lệnh sau:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;keras&amp;quot;)
 install.packages(“tensorflow”)
 library(keras)
@@ -54,7 +54,7 @@ install_keras()&lt;/code&gt;&lt;/pre&gt;
 conda_list()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    name                                               python
 ## 1 r-env C:\\Users\\svcuo\\Anaconda3\\envs\\r-env\\python.exe&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Vậy là đã có môi trường &lt;code&gt;r-env&lt;/code&gt; mới khởi tạo. Để chọn môi trường này sử dụng trong &lt;code&gt;R&lt;/code&gt; chúng ta dúng hàm &lt;code&gt;use_condaenv()&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Vậy là đã có môi trường &lt;code&gt;r-env&lt;/code&gt; mới khởi tạo. Để chọn môi trường này sử dụng trong &lt;code&gt;R&lt;/code&gt; chúng ta sử dụng hàm &lt;code&gt;use_condaenv()&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;use_condaenv(&amp;quot;r-env&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;sec2&#34; class=&#34;section level3&#34;&gt;
@@ -139,10 +139,10 @@ test_labels &amp;lt;- to_categorical(test_labels)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;metrics &amp;lt;- model %&amp;gt;% evaluate(test_images, test_labels)
 metrics&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## $loss
-## [1] 0.06573209
+## [1] 0.07141874
 ## 
 ## $accuracy
-## [1] 0.9799&lt;/code&gt;&lt;/pre&gt;
+## [1] 0.9787&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dự đoán với dữ liệu mới:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model %&amp;gt;% predict_classes(test_images[1:10,])&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] 7 2 1 0 4 1 4 9 5 9&lt;/code&gt;&lt;/pre&gt;
@@ -195,9 +195,7 @@ model.fit(train_images, train_labels, epochs=5, batch_size=128)&lt;/code&gt;&lt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
 test_loss, test_acc = model.evaluate(test_images, test_labels)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;print(&amp;#39;test_acc:&amp;#39;, test_acc)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## test_acc: 0.980400025844574&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;test_images.shape&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## (10000, 784)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## test_acc: 0.9763000011444092&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dự đoán với dữ liệu mới:&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
 model.predict_classes(test_images[:10,:])&lt;/code&gt;&lt;/pre&gt;

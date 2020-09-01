@@ -822,7 +822,7 @@
 <div id="sec1" class="section level3">
 <h3>1 Cài đặt</h3>
 <p><strong>1.1 Cài đặt keras và tensorflow trong R</strong></p>
-<p>Để cài đặt Keras và Tensorflow các bạn dùng các lệnh sau trong <code>R</code>:</p>
+<p>Để cài đặt Keras và Tensorflow trong R các bạn dùng các lệnh sau:</p>
 <pre class="r"><code>install.packages(&quot;keras&quot;)
 install.packages(“tensorflow”)
 library(keras)
@@ -848,7 +848,7 @@ install_keras()</code></pre>
 conda_list()</code></pre>
 <pre><code>##    name                                               python
 ## 1 r-env C:\\Users\\svcuo\\Anaconda3\\envs\\r-env\\python.exe</code></pre>
-<p>Vậy là đã có môi trường <code>r-env</code> mới khởi tạo. Để chọn môi trường này sử dụng trong <code>R</code> chúng ta dúng hàm <code>use_condaenv()</code>:</p>
+<p>Vậy là đã có môi trường <code>r-env</code> mới khởi tạo. Để chọn môi trường này sử dụng trong <code>R</code> chúng ta sử dụng hàm <code>use_condaenv()</code>:</p>
 <pre class="r"><code>use_condaenv(&quot;r-env&quot;)</code></pre>
 </div>
 <div id="sec2" class="section level3">
@@ -933,10 +933,10 @@ test_labels &lt;- to_categorical(test_labels)</code></pre>
 <pre class="r"><code>metrics &lt;- model %&gt;% evaluate(test_images, test_labels)
 metrics</code></pre>
 <pre><code>## $loss
-## [1] 0.06573209
+## [1] 0.07141874
 ## 
 ## $accuracy
-## [1] 0.9799</code></pre>
+## [1] 0.9787</code></pre>
 <p>Dự đoán với dữ liệu mới:</p>
 <pre class="r"><code>model %&gt;% predict_classes(test_images[1:10,])</code></pre>
 <pre><code>##  [1] 7 2 1 0 4 1 4 9 5 9</code></pre>
@@ -989,9 +989,7 @@ model.fit(train_images, train_labels, epochs=5, batch_size=128)</code></pre>
 <pre class="python"><code># Python
 test_loss, test_acc = model.evaluate(test_images, test_labels)</code></pre>
 <pre class="python"><code>print(&#39;test_acc:&#39;, test_acc)</code></pre>
-<pre><code>## test_acc: 0.980400025844574</code></pre>
-<pre class="python"><code>test_images.shape</code></pre>
-<pre><code>## (10000, 784)</code></pre>
+<pre><code>## test_acc: 0.9763000011444092</code></pre>
 <p>Dự đoán với dữ liệu mới:</p>
 <pre class="python"><code># Python
 model.predict_classes(test_images[:10,:])</code></pre>
