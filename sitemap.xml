@@ -73,11 +73,6 @@
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/category/python/</loc>
     <lastmod>2020-09-01T10:32:36+04:00</lastmod>
   </url>
@@ -99,6 +94,11 @@
   
   <url>
     <loc>/tag/tensorflow/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
     <lastmod>2020-09-01T10:32:36+04:00</lastmod>
   </url>
   
