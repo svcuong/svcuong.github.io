@@ -3,42 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/python-tutorials/tutorials/example1/</loc>
+    <loc>/tutorials/python-tutorials/example1/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/r-tutorials/tutorials/example1/</loc>
+    <loc>/tutorials/r-tutorials/example1/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/python-tutorials/tutorials/</loc>
-    <lastmod>2018-09-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/r-tutorials/tutorials/</loc>
-    <lastmod>2018-09-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/books/data-science-with-python/</loc>
-    <lastmod>2019-09-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/books/data-science-with-r/</loc>
-    <lastmod>2019-09-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/python-tutorials/tutorials/example2/</loc>
+    <loc>/tutorials/python-tutorials/example2/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/r-tutorials/tutorials/example2/</loc>
+    <loc>/tutorials/r-tutorials/example2/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
@@ -343,11 +323,6 @@
   </url>
   
   <url>
-    <loc>/books/</loc>
-    <lastmod>2019-09-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/publication/citds2019/</loc>
     <lastmod>2019-08-20T00:00:00+00:00</lastmod>
   </url>
@@ -358,12 +333,7 @@
   </url>
   
   <url>
-    <loc>/python-tutorials/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/r-tutorials/</loc>
+    <loc>/tutorials/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
@@ -420,6 +390,16 @@
   <url>
     <loc>/publication/%D0%BC%D0%BCe%D1%822018/</loc>
     <lastmod>2018-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/python-tutorials/</loc>
+    <lastmod>2018-09-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/r-tutorials/</loc>
+    <lastmod>2018-09-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
