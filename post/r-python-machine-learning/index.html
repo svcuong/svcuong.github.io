@@ -831,7 +831,7 @@ install_keras()</code></pre>
 <p>Để làm việc về khoa học dữ liệu với ngôn ngữ <code>Python</code>, một cách đơn giản nhất là tải về và cài đặt <code>Anaconda</code> - nền tảng (<code>platform</code>) mã nguồn mở về khoa học dữ liệu thông dụng nhất hiện nay hỗ trợ làm việc với <code>Python</code> và <code>R</code>. Nếu chưa biết cách sử dụng <code>R</code> trong <code>Anaconda</code> thì các bạn có thể đọc bài hướng dẫn trước tại <a href="https://svcuong.github.io/post/r-jupyter/r-jupyter/">đây</a>. Download và cài đặt <code>Anaconda</code> tại <a href="https://www.anaconda.com/products/individual">đây</a></p>
 <p><code>Lưu ý:</code> trong khi cài các đặt bạn nhớ là tích vào mục <code>Add Anaconda to my PATH environment variable</code>.</p>
 <p><img src="/img/conda0.PNG" /></p>
-<p>Sau khi đã cài xong <code>Anaconda</code>, các bạn bào <code>Anaconda Prompt</code> để tạo một môi trường mới chứa các thư viện cần thiết như sau:</p>
+<p>Sau khi đã cài xong <code>Anaconda</code>, các bạn vào <code>Anaconda Prompt</code> để tạo một môi trường mới chứa các thư viện cần thiết như sau:</p>
 <pre class="r"><code>conda create -n r-env python=3.7 scikit-learn pandas numpy matplotlib keras tensorflow</code></pre>
 <p><img src="/img/conda1.PNG" /></p>
 <p><em>Câu lệnh trên có nghĩa là:</em></p>
@@ -896,7 +896,7 @@ dim(slice3)</code></pre>
 model &lt;- keras_model_sequential() %&gt;%
   layer_dense(units = 512, activation = &quot;relu&quot;, input_shape = c(28 * 28)) %&gt;%
   layer_dense(units = 10, activation = &quot;softmax&quot;)</code></pre>
-<p>Summary model:</p>
+<p>Model Summary :</p>
 <pre class="r"><code># R code
 summary(model)</code></pre>
 <pre><code>## Model: &quot;sequential&quot;
@@ -933,10 +933,10 @@ test_labels &lt;- to_categorical(test_labels)</code></pre>
 <pre class="r"><code>metrics &lt;- model %&gt;% evaluate(test_images, test_labels)
 metrics</code></pre>
 <pre><code>## $loss
-## [1] 0.07141874
+## [1] 0.06532291
 ## 
 ## $accuracy
-## [1] 0.9787</code></pre>
+## [1] 0.9802</code></pre>
 <p>Dự đoán với dữ liệu mới:</p>
 <pre class="r"><code>model %&gt;% predict_classes(test_images[1:10,])</code></pre>
 <pre><code>##  [1] 7 2 1 0 4 1 4 9 5 9</code></pre>
@@ -989,7 +989,7 @@ model.fit(train_images, train_labels, epochs=5, batch_size=128)</code></pre>
 <pre class="python"><code># Python
 test_loss, test_acc = model.evaluate(test_images, test_labels)</code></pre>
 <pre class="python"><code>print(&#39;test_acc:&#39;, test_acc)</code></pre>
-<pre><code>## test_acc: 0.9763000011444092</code></pre>
+<pre><code>## test_acc: 0.980400025844574</code></pre>
 <p>Dự đoán với dữ liệu mới:</p>
 <pre class="python"><code># Python
 model.predict_classes(test_images[:10,:])</code></pre>

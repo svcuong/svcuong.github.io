@@ -37,7 +37,7 @@ install_keras()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Để làm việc về khoa học dữ liệu với ngôn ngữ &lt;code&gt;Python&lt;/code&gt;, một cách đơn giản nhất là tải về và cài đặt &lt;code&gt;Anaconda&lt;/code&gt; - nền tảng (&lt;code&gt;platform&lt;/code&gt;) mã nguồn mở về khoa học dữ liệu thông dụng nhất hiện nay hỗ trợ làm việc với &lt;code&gt;Python&lt;/code&gt; và &lt;code&gt;R&lt;/code&gt;. Nếu chưa biết cách sử dụng &lt;code&gt;R&lt;/code&gt; trong &lt;code&gt;Anaconda&lt;/code&gt; thì các bạn có thể đọc bài hướng dẫn trước tại &lt;a href=&#34;https://svcuong.github.io/post/r-jupyter/r-jupyter/&#34;&gt;đây&lt;/a&gt;. Download và cài đặt &lt;code&gt;Anaconda&lt;/code&gt; tại &lt;a href=&#34;https://www.anaconda.com/products/individual&#34;&gt;đây&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Lưu ý:&lt;/code&gt; trong khi cài các đặt bạn nhớ là tích vào mục &lt;code&gt;Add Anaconda to my PATH environment variable&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/img/conda0.PNG&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Sau khi đã cài xong &lt;code&gt;Anaconda&lt;/code&gt;, các bạn bào &lt;code&gt;Anaconda Prompt&lt;/code&gt; để tạo một môi trường mới chứa các thư viện cần thiết như sau:&lt;/p&gt;
+&lt;p&gt;Sau khi đã cài xong &lt;code&gt;Anaconda&lt;/code&gt;, các bạn vào &lt;code&gt;Anaconda Prompt&lt;/code&gt; để tạo một môi trường mới chứa các thư viện cần thiết như sau:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda create -n r-env python=3.7 scikit-learn pandas numpy matplotlib keras tensorflow&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/img/conda1.PNG&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Câu lệnh trên có nghĩa là:&lt;/em&gt;&lt;/p&gt;
@@ -102,7 +102,7 @@ dim(slice3)&lt;/code&gt;&lt;/pre&gt;
 model &amp;lt;- keras_model_sequential() %&amp;gt;%
   layer_dense(units = 512, activation = &amp;quot;relu&amp;quot;, input_shape = c(28 * 28)) %&amp;gt;%
   layer_dense(units = 10, activation = &amp;quot;softmax&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Summary model:&lt;/p&gt;
+&lt;p&gt;Model Summary :&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R code
 summary(model)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Model: &amp;quot;sequential&amp;quot;
@@ -139,10 +139,10 @@ test_labels &amp;lt;- to_categorical(test_labels)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;metrics &amp;lt;- model %&amp;gt;% evaluate(test_images, test_labels)
 metrics&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## $loss
-## [1] 0.07141874
+## [1] 0.06532291
 ## 
 ## $accuracy
-## [1] 0.9787&lt;/code&gt;&lt;/pre&gt;
+## [1] 0.9802&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dự đoán với dữ liệu mới:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model %&amp;gt;% predict_classes(test_images[1:10,])&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] 7 2 1 0 4 1 4 9 5 9&lt;/code&gt;&lt;/pre&gt;
@@ -195,7 +195,7 @@ model.fit(train_images, train_labels, epochs=5, batch_size=128)&lt;/code&gt;&lt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
 test_loss, test_acc = model.evaluate(test_images, test_labels)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;print(&amp;#39;test_acc:&amp;#39;, test_acc)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## test_acc: 0.9763000011444092&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## test_acc: 0.980400025844574&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dự đoán với dữ liệu mới:&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
 model.predict_classes(test_images[:10,:])&lt;/code&gt;&lt;/pre&gt;
