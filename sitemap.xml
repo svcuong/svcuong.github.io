@@ -28,12 +28,62 @@
   </url>
   
   <url>
-    <loc>/tag/anaconda/</loc>
-    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
+    <loc>/categories/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>/post/r-python-machine-learning/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/deep-learning/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/keras/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/machine-learning/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/python/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/r/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/r-markdown/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/tensorflow/</loc>
+    <lastmod>2020-09-01T10:32:36+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/anaconda/</loc>
     <lastmod>2020-08-31T22:36:10+04:00</lastmod>
   </url>
   
@@ -44,26 +94,6 @@
   
   <url>
     <loc>/tag/jupyter-notebook/</loc>
-    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/python/</loc>
-    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/r/</loc>
-    <lastmod>2020-08-31T22:36:10+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-08-31T22:36:10+04:00</lastmod>
   </url>
   
@@ -98,11 +128,6 @@
   </url>
   
   <url>
-    <loc>/tag/r-markdown/</loc>
-    <lastmod>2020-08-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/authors/</loc>
     <lastmod>2020-08-27T00:00:00+00:00</lastmod>
   </url>
@@ -114,11 +139,6 @@
   
   <url>
     <loc>/post/covid-19-python/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/machine-learning/</loc>
     <lastmod>2020-08-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -185,11 +205,6 @@
   <url>
     <loc>/tag/ggplot2/</loc>
     <lastmod>2020-08-22T16:50:57+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/deep-learning/</loc>
-    <lastmod>2020-08-20T15:43:27+04:00</lastmod>
   </url>
   
   <url>

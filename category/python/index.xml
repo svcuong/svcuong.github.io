@@ -5,12 +5,207 @@
     <link>/category/python/</link>
       <atom:link href="/category/python/index.xml" rel="self" type="application/rss+xml" />
     <description>Python</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Mon, 31 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Tue, 01 Sep 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
       <title>Python</title>
       <link>/category/python/</link>
     </image>
+    
+    <item>
+      <title>Cách dùng keras và tensorflow trong R. So sánh R interface và Python interface cho keras.</title>
+      <link>/post/r-python-machine-learning/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/post/r-python-machine-learning/</guid>
+      <description>
+
+
+&lt;hr /&gt;
+&lt;p&gt;Nội dung của bài bao gồm:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#sec1&#34;&gt;1. Cài đặt môi trường làm việc để kết hợp R và Python&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#sec2&#34;&gt;2. So sánh R interface và Python interface cho keras với bài toán MNIST nổi tiếng&lt;/a&gt;.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div id=&#34;sec1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;1 Cài đặt&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;1.1 Cài đặt keras và tensorflow trong R&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Để cài đặt Keras và Tensorflow các bạn dùng các lệnh sau trong &lt;code&gt;R&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;keras&amp;quot;)
+install.packages(“tensorflow”)
+library(keras)
+install_keras()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;1.2 Cài đặt keras và tensorflow trong Python (sử dụng anaconda)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Để làm việc về khoa học dữ liệu với ngôn ngữ &lt;code&gt;Python&lt;/code&gt;, một cách đơn giản nhất là tải về và cài đặt &lt;code&gt;Anaconda&lt;/code&gt; - nền tảng (&lt;code&gt;platform&lt;/code&gt;) mã nguồn mở về khoa học dữ liệu thông dụng nhất hiện nay hỗ trợ làm việc với &lt;code&gt;Python&lt;/code&gt; và &lt;code&gt;R&lt;/code&gt;. Nếu chưa biết cách sử dụng &lt;code&gt;R&lt;/code&gt; trong &lt;code&gt;Anaconda&lt;/code&gt; thì các bạn có thể đọc bài hướng dẫn trước tại &lt;a href=&#34;https://svcuong.github.io/post/r-jupyter/r-jupyter/&#34;&gt;đây&lt;/a&gt;. Download và cài đặt &lt;code&gt;Anaconda&lt;/code&gt; tại &lt;a href=&#34;https://www.anaconda.com/products/individual&#34;&gt;đây&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Lưu ý:&lt;/code&gt; trong khi cài các đặt bạn nhớ là tích vào mục &lt;code&gt;Add Anaconda to my PATH environment variable&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/conda0.PNG&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Sau khi đã cài xong &lt;code&gt;Anaconda&lt;/code&gt;, các bạn bào &lt;code&gt;Anaconda Prompt&lt;/code&gt; để tạo một môi trường mới chứa các thư viện cần thiết như sau:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda create -n r-env python=3.7 scikit-learn pandas numpy matplotlib keras tensorflow&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/img/conda1.PNG&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Câu lệnh trên có nghĩa là:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Khởi tạo môi trường anaconda mới với tên &lt;code&gt;r-env&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Cài &lt;code&gt;python&lt;/code&gt; phiên bản 3.7 với các thư viện scikit-learn, pandas, numpy, matplotlib, keras và tensorflow cho môi trường này&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kiểm tra xem môi trường &lt;code&gt;r-env&lt;/code&gt; đã được tạo trong &lt;code&gt;Anaconda&lt;/code&gt; chưa bằng lệnh &lt;code&gt;conda env list&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/conda2.PNG&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.3 Thiết lập môi trường làm việc để sử dụng kết hợp R và Python trong R&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Để sử dụng &lt;code&gt;Python&lt;/code&gt; trong &lt;code&gt;R&lt;/code&gt; chúng ta sử dụng gói &lt;code&gt;reticulate&lt;/code&gt;. Để biết cách kết hợp &lt;code&gt;R&lt;/code&gt; và &lt;code&gt;Python&lt;/code&gt; trong &lt;code&gt;R&lt;/code&gt; các bạn có thể đọc bài trước tại &lt;a href=&#34;https://svcuong.github.io/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/&#34;&gt;đây&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Nạp thư viện &lt;code&gt;reticulate&lt;/code&gt; và sử dụng hàm &lt;code&gt;conda_list()&lt;/code&gt; để kiểm tra danh sách môi trường &lt;code&gt;Anaconda&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(reticulate)
+conda_list()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    name                                               python
+## 1 r-env C:\\Users\\svcuo\\Anaconda3\\envs\\r-env\\python.exe&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Vậy là đã có môi trường &lt;code&gt;r-env&lt;/code&gt; mới khởi tạo. Để chọn môi trường này sử dụng trong &lt;code&gt;R&lt;/code&gt; chúng ta dúng hàm &lt;code&gt;use_condaenv()&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;use_condaenv(&amp;quot;r-env&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sec2&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;2. So sánh R interface và Python interface cho keras với bài toán MNIST nổi tiếng&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Chú ý&lt;/code&gt;: do sử dụng kết hợp &lt;code&gt;R&lt;/code&gt; và &lt;code&gt;Python&lt;/code&gt; trong cùng một &lt;code&gt;R Notebook&lt;/code&gt; nên tôi sẽ chú thích &lt;code&gt;R&lt;/code&gt; với mỗi &lt;code&gt;R code chunk&lt;/code&gt; và &lt;code&gt;Python&lt;/code&gt; với mỗi &lt;code&gt;Python code chunk&lt;/code&gt;.&lt;/p&gt;
+&lt;div id=&#34;sử-dụng-r-interface-cho-keras&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;2.1 Sử dụng R interface cho keras&lt;/h4&gt;
+&lt;p&gt;Nạp tập dữ liệu &lt;code&gt;MNIST&lt;/code&gt; từ &lt;code&gt;keras&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R code
+library(keras)
+mnist &amp;lt;- dataset_mnist()
+train_images &amp;lt;- mnist$train$x
+train_labels &amp;lt;- mnist$train$y
+test_images &amp;lt;- mnist$test$x
+test_labels &amp;lt;- mnist$test$y&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra dữ liệu:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R code
+dim(train_images)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 60000    28    28&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(train_labels)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 60000&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(test_images)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 10000    28    28&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(test_labels)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 10000&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Thử hiển thị 5th digit:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R code
+digit &amp;lt;- train_images[5,,]
+plot(as.raster(digit, max = 255))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/r-python-machine-learning/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;strong&gt;Hướng dẫn thao tác với tensors trong R:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R code
+slice1 &amp;lt;- train_images[10:99,,]
+dim(slice1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 90 28 28&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R code
+slice2 &amp;lt;- train_images[10:99,1:28,1:28]
+dim(slice2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 90 28 28&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;slice3 &amp;lt;- train_images[, 15:28, 15:28]
+dim(slice3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 60000    14    14&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Thiết kế cấu trúc network model:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R code
+model &amp;lt;- keras_model_sequential() %&amp;gt;%
+  layer_dense(units = 512, activation = &amp;quot;relu&amp;quot;, input_shape = c(28 * 28)) %&amp;gt;%
+  layer_dense(units = 10, activation = &amp;quot;softmax&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Summary model:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# R code
+summary(model)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Model: &amp;quot;sequential&amp;quot;
+## ________________________________________________________________________________
+## Layer (type)                        Output Shape                    Param #     
+## ================================================================================
+## dense (Dense)                       (None, 512)                     401920      
+## ________________________________________________________________________________
+## dense_1 (Dense)                     (None, 10)                      5130        
+## ================================================================================
+## Total params: 407,050
+## Trainable params: 407,050
+## Non-trainable params: 0
+## ________________________________________________________________________________&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bước tiếp theo, compile model với &lt;code&gt;loss function, optimizer và metrics&lt;/code&gt; tương ứng:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model %&amp;gt;% compile(
+  optimizer = &amp;quot;rmsprop&amp;quot;,
+  loss = &amp;quot;categorical_crossentropy&amp;quot;,
+  metrics = c(&amp;quot;accuracy&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Chuẩn bị dữ liệu để huấn luyện mô hình:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;train_images &amp;lt;- array_reshape(train_images, c(60000, 28 * 28))
+train_images &amp;lt;- train_images / 255
+test_images &amp;lt;- array_reshape(test_images, c(10000, 28 * 28))
+test_images &amp;lt;- test_images / 255&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;train_labels &amp;lt;- to_categorical(train_labels)
+test_labels &amp;lt;- to_categorical(test_labels)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Huấn luyện mô hình:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model %&amp;gt;% fit(
+  train_images, 
+  train_labels, 
+  epochs = 5, 
+  batch_size = 128)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Đánh giá độ chính xác của mô hình:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;metrics &amp;lt;- model %&amp;gt;% evaluate(test_images, test_labels)
+metrics&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $loss
+## [1] 0.06573209
+## 
+## $accuracy
+## [1] 0.9799&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dự đoán với dữ liệu mới:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model %&amp;gt;% predict_classes(test_images[1:10,])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] 7 2 1 0 4 1 4 9 5 9&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;2.2 Sử dụng Python interface cho keras trong môi trường R&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Nạp tập dữ liệu &lt;code&gt;MNIST&lt;/code&gt; từ &lt;code&gt;keras&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+from keras.datasets import mnist&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Using TensorFlow backend.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;(train_images, train_labels), (test_images, test_labels) = mnist.load_data()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kiểm tra dữ liệu:&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+train_images.shape&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (60000, 28, 28)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+train_labels.shape&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (60000,)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+test_images.shape&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (10000, 28, 28)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+test_labels.shape&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (10000,)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Thiết kế cấu trúc network model:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+from keras import models
+from keras import layers
+
+model = models.Sequential()
+model.add(layers.Dense(512, activation=&amp;#39;relu&amp;#39;, input_shape=(28 * 28,)))
+model.add(layers.Dense(10, activation=&amp;#39;softmax&amp;#39;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Compile model với &lt;code&gt;loss function, optimizer và metrics&lt;/code&gt; tương ứng:&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+model.compile(optimizer=&amp;#39;rmsprop&amp;#39;,
+loss=&amp;#39;categorical_crossentropy&amp;#39;,
+metrics=[&amp;#39;accuracy&amp;#39;])&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Chuẩn bị dữ liệu để huấn luyện mô hình:&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+train_images = train_images.reshape((60000, 28 * 28))
+train_images = train_images.astype(&amp;#39;float32&amp;#39;) / 255
+test_images = test_images.reshape((10000, 28 * 28))
+test_images = test_images.astype(&amp;#39;float32&amp;#39;) / 255&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+from keras.utils import to_categorical
+train_labels = to_categorical(train_labels)
+test_labels = to_categorical(test_labels)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Huấn luyện mô hình:&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+model.fit(train_images, train_labels, epochs=5, batch_size=128)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Đánh giá độ chính xác của mô hình:&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+test_loss, test_acc = model.evaluate(test_images, test_labels)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;print(&amp;#39;test_acc:&amp;#39;, test_acc)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## test_acc: 0.980400025844574&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;test_images.shape&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## (10000, 784)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dự đoán với dữ liệu mới:&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Python
+model.predict_classes(test_images[:10,:])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## array([7, 2, 1, 0, 4, 1, 4, 9, 5, 9], dtype=int64)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Cách thêm và sử dụng R trong Jupyter Notebook</title>
@@ -996,13 +1191,13 @@ hist(data, breaks= 60, main=&amp;quot;Histogram With breaks=60&amp;quot;)
 summary(data)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   11.75   18.63   19.97   20.01   21.35   27.11
+##   13.09   18.68   20.09   20.08   21.44   27.73
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ví dụ sử dụng hàm &lt;code&gt;sample()&lt;/code&gt; để tạo mẫu ngẫu nhiên có lặp lại 10 số nguyên từ 0 đến 9:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
 sample(0:9, replace = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] 9 2 3 7 1 1 3 2 6 5
+&lt;pre&gt;&lt;code&gt;##  [1] 6 1 0 7 0 1 0 1 4 1
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ví dụ sử dụng hàm tính mật độ phân phối chuẩn &lt;code&gt;dnorm()&lt;/code&gt; để ước tính xác xuất của học sinh có điểm là &lt;code&gt;16.5&lt;/code&gt;  biết rằng điểm của học sinh tuân theo phân phối chuẩn với giá trị trung bình là &lt;code&gt;15&lt;/code&gt;, độ lệnh chuẩn là &lt;code&gt;2.5&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
@@ -1059,26 +1254,26 @@ lower_std, upper_std = mean_data - limit_std, mean_data + limit_std
 ouliers_index_std &amp;lt;- which(data &amp;gt; upper_std | data &amp;lt; lower_std)
 print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_std)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 22&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 11&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 ouliers_index_std = [x for x in data if x &amp;lt; lower_std or x &amp;gt; upper_std]
 print(&#39;Number of outliers: %d&#39; % len(ouliers_index_std))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 10
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 12
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
 # R
 data_new_std &amp;lt;- data[-ouliers_index_std]
 print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_std)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4978&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4989&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 data_new_std = [x for x in data if x &amp;gt;= lower_std and x &amp;lt;= upper_std]
 print(&#39;Number of Non-outliers:: %d&#39; % len(data_new_std))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4990
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4988
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;2. Phương pháp &lt;code&gt;IQR&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Tứ phân vị là đại lượng mô tả sự phân bố và sự phân tán của tập dữ liệu. Tứ phân vị có &lt;code&gt;3&lt;/code&gt; giá trị, đó là tứ phân vị thứ nhất &lt;code&gt;Q1&lt;/code&gt; (25th), thứ hai &lt;code&gt;Q2&lt;/code&gt; (50th) hay &lt;code&gt;median&lt;/code&gt;, và thứ ba &lt;code&gt;Q3&lt;/code&gt; (75th). Ba giá trị này chia một tập hợp dữ liệu (đã sắp xếp dữ liệu theo trật từ từ bé đến lớn) thành &lt;code&gt;4&lt;/code&gt; phần có số lượng quan sát đều nhau. Tứ phân vị được xác định như sau:&lt;/p&gt;
@@ -1123,26 +1318,26 @@ lower_iqr, upper_iqr = q25 - limit_iqr, q75 + limit_iqr
 ouliers_index_iqr &amp;lt;- which(data &amp;gt; upper_iqr | data &amp;lt; lower_iqr)
 print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_iqr)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 53&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 37&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 ouliers_index_iqr = [x for x in data if x &amp;lt; lower_iqr or x &amp;gt; upper_iqr]
 print(&#39;Number of outliers: %d&#39; % len(ouliers_index_iqr))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 24
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 28
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
 # R
 data_new_iqr &amp;lt;- data[-ouliers_index_iqr]
 print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_iqr)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4947&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4963&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 data_new_iqr = [x for x in data if x &amp;gt;= lower_iqr and x &amp;lt;= upper_iqr]
 print(&#39;Non-outlier observations: %d&#39; % len(data_new_iqr))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4976
+&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4972
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;3. Xây dựng hàm tự động xác định và loại bỏ &lt;code&gt;outliers&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Chúng ta có thể tạo một hàm trên R dựa vào các bước ở trên để tự động xác định và xóa outliers như sau:&lt;/p&gt;
@@ -1196,15 +1391,15 @@ find_outliers_iqr &amp;lt;- function(data) {
 &lt;p&gt;Kiểm tra kết quả thực hiện của hai hàm này:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_std &amp;lt;- find_outliers_std(data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 22
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 11
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4947
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4963
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_iqr &amp;lt;- find_outliers_iqr(data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 53
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 37
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4947
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4963
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Đối với Python thì các bạn có thể tạo hàm tương tự sử dụng các bước trên&lt;/p&gt;
 &lt;hr&gt;
@@ -1684,20 +1879,25 @@ thuộc:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(reticulate)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Để kiểm tra môi trường Python có trong máy, các bạn dùng câu lệnh sau:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;conda_list()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##        name                                  python
-## 1 Anaconda3 C:\\Users\\svcuo\\Anaconda3\\python.exe&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    name                                               python
+## 1 r-env C:\\Users\\svcuo\\Anaconda3\\envs\\r-env\\python.exe&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Dùng hàm &lt;code&gt;use_python()&lt;/code&gt; cho phép bạn chỉ định rõ phiên bản Python cần thiết:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;use_python(&amp;quot;C:/Users/svcuo/Anaconda3/python.exe&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Sử dụng hàm &lt;code&gt;use_virtualenv()&lt;/code&gt; và &lt;code&gt;use_condaenv()&lt;/code&gt; cho phép bạn chỉ định phiên bản Python của bạn làm việc trong môi trường virtual hay là Conda:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;use_virtualenv(&amp;quot;myenv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;py_config()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## python:         C:/Users/svcuo/Anaconda3/python.exe
-## libpython:      C:/Users/svcuo/Anaconda3/python37.dll
+## libpython:      C:/Users/svcuo/Anaconda3/python36.dll
 ## pythonhome:     C:/Users/svcuo/Anaconda3
-## version:        3.7.4 (default, Aug  9 2019, 18:34:13) [MSC v.1915 64 bit (AMD64)]
+## version:        3.6.9 |Anaconda, Inc.| (default, Jul 30 2019, 14:00:49) [MSC v.1915 64 bit (AMD64)]
 ## Architecture:   64bit
 ## numpy:          C:/Users/svcuo/Anaconda3/Lib/site-packages/numpy
-## numpy_version:  1.16.5&lt;/code&gt;&lt;/pre&gt;
+## numpy_version:  1.16.5
+## 
+## python versions found: 
+##  C:/Users/svcuo/Anaconda3/python.exe
+##  C:/Users/svcuo/AppData/Local/Programs/Python/Python38-32/python.exe
+##  C:/Users/svcuo/Anaconda3/envs/r-env/python.exe&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ta có thể cài đặt bất kỳ python library nào trong R bằng cách dùng hàm &lt;code&gt;py_install()&lt;/code&gt; như sau:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;py_install(&amp;quot;pandas&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;hr /&gt;

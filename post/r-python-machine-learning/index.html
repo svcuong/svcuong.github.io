@@ -1,0 +1,1484 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Cuong Sai">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Nội dung của bài bao gồm:
+1. Cài đặt môi trường làm việc để kết hợp R và Python.
+2. So sánh R interface và Python interface cho keras với bài toán MNIST nổi tiếng.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/r-python-machine-learning/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128408660-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-128408660-5', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_32x32_fill_lanczos_center_2.PNG">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG">
+
+  <link rel="canonical" href="/post/r-python-machine-learning/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Khoa Học Dữ Liệu">
+  <meta property="og:url" content="/post/r-python-machine-learning/">
+  <meta property="og:title" content="Cách dùng keras và tensorflow trong R. So sánh R interface và Python interface cho keras. | Khoa Học Dữ Liệu">
+  <meta property="og:description" content="Nội dung của bài bao gồm:
+1. Cài đặt môi trường làm việc để kết hợp R và Python.
+2. So sánh R interface và Python interface cho keras với bài toán MNIST nổi tiếng."><meta property="og:image" content="/post/r-python-machine-learning/featured.jpg">
+  <meta property="twitter:image" content="/post/r-python-machine-learning/featured.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-09-01T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-09-01T10:32:36&#43;04:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/r-python-machine-learning/"
+  },
+  "headline": "Cách dùng keras và tensorflow trong R. So sánh R interface và Python interface cho keras.",
+  
+  "image": [
+    "/post/r-python-machine-learning/featured.jpg"
+  ],
+  
+  "datePublished": "2020-09-01T00:00:00Z",
+  "dateModified": "2020-09-01T10:32:36+04:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Cuong Sai"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Khoa Học Dữ Liệu",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
+    }
+  },
+  "description": "Nội dung của bài bao gồm:\n1. Cài đặt môi trường làm việc để kết hợp R và Python.\n2. So sánh R interface và Python interface cho keras với bài toán MNIST nổi tiếng."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script async type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+  <title>Cách dùng keras và tensorflow trong R. So sánh R interface và Python interface cho keras. | Khoa Học Dữ Liệu</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Khoa Học Dữ Liệu</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Khoa Học Dữ Liệu</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>Topics</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/books/"><span>Books</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#gallery"><span>Gallery</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact Me</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+
+
+<div class="article-container pt-3">
+  <h1>Cách dùng keras và tensorflow trong R. So sánh R interface và Python interface cho keras.</h1>
+
+  
+  
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Sep 1, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/r-python-machine-learning/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/python/">Python</a>, <a href="/category/r/">R</a></span>
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 402px;">
+  <div style="position: relative">
+    <img src="/post/r-python-machine-learning/featured_hu0ee1d60e59fed172dd9bd616251548ff_85784_720x0_resize_q90_lanczos.jpg" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<hr />
+<p>Nội dung của bài bao gồm:</p>
+<p><a href="#sec1">1. Cài đặt môi trường làm việc để kết hợp R và Python</a>.</p>
+<p><a href="#sec2">2. So sánh R interface và Python interface cho keras với bài toán MNIST nổi tiếng</a>.</p>
+<hr />
+<div id="sec1" class="section level3">
+<h3>1 Cài đặt</h3>
+<p><strong>1.1 Cài đặt keras và tensorflow trong R</strong></p>
+<p>Để cài đặt Keras và Tensorflow các bạn dùng các lệnh sau trong <code>R</code>:</p>
+<pre class="r"><code>install.packages(&quot;keras&quot;)
+install.packages(“tensorflow”)
+library(keras)
+install_keras()</code></pre>
+<p><strong>1.2 Cài đặt keras và tensorflow trong Python (sử dụng anaconda)</strong></p>
+<p>Để làm việc về khoa học dữ liệu với ngôn ngữ <code>Python</code>, một cách đơn giản nhất là tải về và cài đặt <code>Anaconda</code> - nền tảng (<code>platform</code>) mã nguồn mở về khoa học dữ liệu thông dụng nhất hiện nay hỗ trợ làm việc với <code>Python</code> và <code>R</code>. Nếu chưa biết cách sử dụng <code>R</code> trong <code>Anaconda</code> thì các bạn có thể đọc bài hướng dẫn trước tại <a href="https://svcuong.github.io/post/r-jupyter/r-jupyter/">đây</a>. Download và cài đặt <code>Anaconda</code> tại <a href="https://www.anaconda.com/products/individual">đây</a></p>
+<p><code>Lưu ý:</code> trong khi cài các đặt bạn nhớ là tích vào mục <code>Add Anaconda to my PATH environment variable</code>.</p>
+<p><img src="/img/conda0.PNG" /></p>
+<p>Sau khi đã cài xong <code>Anaconda</code>, các bạn bào <code>Anaconda Prompt</code> để tạo một môi trường mới chứa các thư viện cần thiết như sau:</p>
+<pre class="r"><code>conda create -n r-env python=3.7 scikit-learn pandas numpy matplotlib keras tensorflow</code></pre>
+<p><img src="/img/conda1.PNG" /></p>
+<p><em>Câu lệnh trên có nghĩa là:</em></p>
+<ul>
+<li>Khởi tạo môi trường anaconda mới với tên <code>r-env</code></li>
+<li>Cài <code>python</code> phiên bản 3.7 với các thư viện scikit-learn, pandas, numpy, matplotlib, keras và tensorflow cho môi trường này</li>
+</ul>
+<p>Kiểm tra xem môi trường <code>r-env</code> đã được tạo trong <code>Anaconda</code> chưa bằng lệnh <code>conda env list</code>:</p>
+<p><img src="/img/conda2.PNG" /></p>
+<p><strong>1.3 Thiết lập môi trường làm việc để sử dụng kết hợp R và Python trong R</strong></p>
+<p>Để sử dụng <code>Python</code> trong <code>R</code> chúng ta sử dụng gói <code>reticulate</code>. Để biết cách kết hợp <code>R</code> và <code>Python</code> trong <code>R</code> các bạn có thể đọc bài trước tại <a href="https://svcuong.github.io/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/">đây</a>.</p>
+<p>Nạp thư viện <code>reticulate</code> và sử dụng hàm <code>conda_list()</code> để kiểm tra danh sách môi trường <code>Anaconda</code>:</p>
+<pre class="r"><code>library(reticulate)
+conda_list()</code></pre>
+<pre><code>##    name                                               python
+## 1 r-env C:\\Users\\svcuo\\Anaconda3\\envs\\r-env\\python.exe</code></pre>
+<p>Vậy là đã có môi trường <code>r-env</code> mới khởi tạo. Để chọn môi trường này sử dụng trong <code>R</code> chúng ta dúng hàm <code>use_condaenv()</code>:</p>
+<pre class="r"><code>use_condaenv(&quot;r-env&quot;)</code></pre>
+</div>
+<div id="sec2" class="section level3">
+<h3>2. So sánh R interface và Python interface cho keras với bài toán MNIST nổi tiếng</h3>
+<p><code>Chú ý</code>: do sử dụng kết hợp <code>R</code> và <code>Python</code> trong cùng một <code>R Notebook</code> nên tôi sẽ chú thích <code>R</code> với mỗi <code>R code chunk</code> và <code>Python</code> với mỗi <code>Python code chunk</code>.</p>
+<div id="sử-dụng-r-interface-cho-keras" class="section level4">
+<h4>2.1 Sử dụng R interface cho keras</h4>
+<p>Nạp tập dữ liệu <code>MNIST</code> từ <code>keras</code>:</p>
+<pre class="r"><code># R code
+library(keras)
+mnist &lt;- dataset_mnist()
+train_images &lt;- mnist$train$x
+train_labels &lt;- mnist$train$y
+test_images &lt;- mnist$test$x
+test_labels &lt;- mnist$test$y</code></pre>
+<p>Kiểm tra dữ liệu:</p>
+<pre class="r"><code># R code
+dim(train_images)</code></pre>
+<pre><code>## [1] 60000    28    28</code></pre>
+<pre class="r"><code>dim(train_labels)</code></pre>
+<pre><code>## [1] 60000</code></pre>
+<pre class="r"><code>dim(test_images)</code></pre>
+<pre><code>## [1] 10000    28    28</code></pre>
+<pre class="r"><code>dim(test_labels)</code></pre>
+<pre><code>## [1] 10000</code></pre>
+<p>Thử hiển thị 5th digit:</p>
+<pre class="r"><code># R code
+digit &lt;- train_images[5,,]
+plot(as.raster(digit, max = 255))</code></pre>
+<p><img src="/post/r-python-machine-learning/index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<strong>Hướng dẫn thao tác với tensors trong R:</strong></p>
+<pre class="r"><code># R code
+slice1 &lt;- train_images[10:99,,]
+dim(slice1)</code></pre>
+<pre><code>## [1] 90 28 28</code></pre>
+<pre class="r"><code># R code
+slice2 &lt;- train_images[10:99,1:28,1:28]
+dim(slice2)</code></pre>
+<pre><code>## [1] 90 28 28</code></pre>
+<pre class="r"><code>slice3 &lt;- train_images[, 15:28, 15:28]
+dim(slice3)</code></pre>
+<pre><code>## [1] 60000    14    14</code></pre>
+<p><strong>Thiết kế cấu trúc network model:</strong></p>
+<pre class="r"><code># R code
+model &lt;- keras_model_sequential() %&gt;%
+  layer_dense(units = 512, activation = &quot;relu&quot;, input_shape = c(28 * 28)) %&gt;%
+  layer_dense(units = 10, activation = &quot;softmax&quot;)</code></pre>
+<p>Summary model:</p>
+<pre class="r"><code># R code
+summary(model)</code></pre>
+<pre><code>## Model: &quot;sequential&quot;
+## ________________________________________________________________________________
+## Layer (type)                        Output Shape                    Param #     
+## ================================================================================
+## dense (Dense)                       (None, 512)                     401920      
+## ________________________________________________________________________________
+## dense_1 (Dense)                     (None, 10)                      5130        
+## ================================================================================
+## Total params: 407,050
+## Trainable params: 407,050
+## Non-trainable params: 0
+## ________________________________________________________________________________</code></pre>
+<p>Bước tiếp theo, compile model với <code>loss function, optimizer và metrics</code> tương ứng:</p>
+<pre class="r"><code>model %&gt;% compile(
+  optimizer = &quot;rmsprop&quot;,
+  loss = &quot;categorical_crossentropy&quot;,
+  metrics = c(&quot;accuracy&quot;))</code></pre>
+<p>Chuẩn bị dữ liệu để huấn luyện mô hình:</p>
+<pre class="r"><code>train_images &lt;- array_reshape(train_images, c(60000, 28 * 28))
+train_images &lt;- train_images / 255
+test_images &lt;- array_reshape(test_images, c(10000, 28 * 28))
+test_images &lt;- test_images / 255</code></pre>
+<pre class="r"><code>train_labels &lt;- to_categorical(train_labels)
+test_labels &lt;- to_categorical(test_labels)</code></pre>
+<p>Huấn luyện mô hình:</p>
+<pre class="r"><code>model %&gt;% fit(
+  train_images, 
+  train_labels, 
+  epochs = 5, 
+  batch_size = 128)</code></pre>
+<p>Đánh giá độ chính xác của mô hình:</p>
+<pre class="r"><code>metrics &lt;- model %&gt;% evaluate(test_images, test_labels)
+metrics</code></pre>
+<pre><code>## $loss
+## [1] 0.06573209
+## 
+## $accuracy
+## [1] 0.9799</code></pre>
+<p>Dự đoán với dữ liệu mới:</p>
+<pre class="r"><code>model %&gt;% predict_classes(test_images[1:10,])</code></pre>
+<pre><code>##  [1] 7 2 1 0 4 1 4 9 5 9</code></pre>
+<p><strong>2.2 Sử dụng Python interface cho keras trong môi trường R</strong></p>
+<p>Nạp tập dữ liệu <code>MNIST</code> từ <code>keras</code>:</p>
+<pre class="python"><code># Python
+from keras.datasets import mnist</code></pre>
+<pre><code>## Using TensorFlow backend.</code></pre>
+<pre class="python"><code>(train_images, train_labels), (test_images, test_labels) = mnist.load_data()</code></pre>
+<p>Kiểm tra dữ liệu:</p>
+<pre class="python"><code># Python
+train_images.shape</code></pre>
+<pre><code>## (60000, 28, 28)</code></pre>
+<pre class="python"><code># Python
+train_labels.shape</code></pre>
+<pre><code>## (60000,)</code></pre>
+<pre class="python"><code># Python
+test_images.shape</code></pre>
+<pre><code>## (10000, 28, 28)</code></pre>
+<pre class="python"><code># Python
+test_labels.shape</code></pre>
+<pre><code>## (10000,)</code></pre>
+<p><strong>Thiết kế cấu trúc network model:</strong></p>
+<pre class="python"><code># Python
+from keras import models
+from keras import layers
+
+model = models.Sequential()
+model.add(layers.Dense(512, activation=&#39;relu&#39;, input_shape=(28 * 28,)))
+model.add(layers.Dense(10, activation=&#39;softmax&#39;))</code></pre>
+<p>Compile model với <code>loss function, optimizer và metrics</code> tương ứng:</p>
+<pre class="python"><code># Python
+model.compile(optimizer=&#39;rmsprop&#39;,
+loss=&#39;categorical_crossentropy&#39;,
+metrics=[&#39;accuracy&#39;])</code></pre>
+<p>Chuẩn bị dữ liệu để huấn luyện mô hình:</p>
+<pre class="python"><code># Python
+train_images = train_images.reshape((60000, 28 * 28))
+train_images = train_images.astype(&#39;float32&#39;) / 255
+test_images = test_images.reshape((10000, 28 * 28))
+test_images = test_images.astype(&#39;float32&#39;) / 255</code></pre>
+<pre class="python"><code># Python
+from keras.utils import to_categorical
+train_labels = to_categorical(train_labels)
+test_labels = to_categorical(test_labels)</code></pre>
+<p>Huấn luyện mô hình:</p>
+<pre class="python"><code># Python
+model.fit(train_images, train_labels, epochs=5, batch_size=128)</code></pre>
+<p>Đánh giá độ chính xác của mô hình:</p>
+<pre class="python"><code># Python
+test_loss, test_acc = model.evaluate(test_images, test_labels)</code></pre>
+<pre class="python"><code>print(&#39;test_acc:&#39;, test_acc)</code></pre>
+<pre><code>## test_acc: 0.980400025844574</code></pre>
+<pre class="python"><code>test_images.shape</code></pre>
+<pre><code>## (10000, 784)</code></pre>
+<p>Dự đoán với dữ liệu mới:</p>
+<pre class="python"><code># Python
+model.predict_classes(test_images[:10,:])</code></pre>
+<pre><code>## array([7, 2, 1, 0, 4, 1, 4, 9, 5, 9], dtype=int64)</code></pre>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/r-markdown/">R Markdown</a>
+  
+  <a class="badge badge-light" href="/tag/machine-learning/">Machine Learning</a>
+  
+  <a class="badge badge-light" href="/tag/deep-learning/">Deep Learning</a>
+  
+  <a class="badge badge-light" href="/tag/keras/">Keras</a>
+  
+  <a class="badge badge-light" href="/tag/tensorflow/">Tensorflow</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/r-python-machine-learning/&amp;text=C%c3%a1ch%20d%c3%b9ng%20keras%20v%c3%a0%20tensorflow%20trong%20R.%20So%20s%c3%a1nh%20R%20interface%20v%c3%a0%20Python%20interface%20cho%20keras." target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/r-python-machine-learning/&amp;t=C%c3%a1ch%20d%c3%b9ng%20keras%20v%c3%a0%20tensorflow%20trong%20R.%20So%20s%c3%a1nh%20R%20interface%20v%c3%a0%20Python%20interface%20cho%20keras." target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=C%c3%a1ch%20d%c3%b9ng%20keras%20v%c3%a0%20tensorflow%20trong%20R.%20So%20s%c3%a1nh%20R%20interface%20v%c3%a0%20Python%20interface%20cho%20keras.&amp;body=/post/r-python-machine-learning/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/r-python-machine-learning/&amp;title=C%c3%a1ch%20d%c3%b9ng%20keras%20v%c3%a0%20tensorflow%20trong%20R.%20So%20s%c3%a1nh%20R%20interface%20v%c3%a0%20Python%20interface%20cho%20keras." target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=C%c3%a1ch%20d%c3%b9ng%20keras%20v%c3%a0%20tensorflow%20trong%20R.%20So%20s%c3%a1nh%20R%20interface%20v%c3%a0%20Python%20interface%20cho%20keras.%20/post/r-python-machine-learning/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/r-python-machine-learning/&amp;title=C%c3%a1ch%20d%c3%b9ng%20keras%20v%c3%a0%20tensorflow%20trong%20R.%20So%20s%c3%a1nh%20R%20interface%20v%c3%a0%20Python%20interface%20cho%20keras." target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/cuong-sai/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="Cuong Sai">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Cuong Sai</a></h5>
+        <h6 class="card-subtitle">PhD student</h6>
+        <p class="card-text">My research interests include Industrial AI (Intelligent predictive maintenance), Machine and Deep learning, Time series forecasting, Intelligent machinery fault diagnosis, Prognostics and health management, Error metrics / forecast evaluation.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://web.facebook.com/csdatascience" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?hl=en&amp;user=qhiD3RUAAAAJ" target="_blank" rel="noopener">
+        <i class="fab fa-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/svcuong" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "cuongsai" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/remove-outliers/">Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python</a></li>
+      
+      <li><a href="/publication/soict2019/">PdM&#39;:&#39; A predictive maintenance modeling tool implemented as R-package and web-application</a></li>
+      
+      <li><a href="/publication/citds2019/">Data-Driven Framework for Predictive Maintenance in Industry 4.0 Concept</a></li>
+      
+      <li><a href="/publication/hi-tech2019/">A Data-driven method for remaining useful life prediction of complex multiple-component systems</a></li>
+      
+      <li><a href="/post/covid-19-r/">Biến đổi và trực quan hóa dữ liệu Covid-19 từ John Hopkins database với R</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+ 
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://cuongsai.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    © 2020 Cuong Sai. All Rights Reserved
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a>
+    for
+    <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

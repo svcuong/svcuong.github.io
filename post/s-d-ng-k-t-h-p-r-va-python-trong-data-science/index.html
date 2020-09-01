@@ -822,20 +822,25 @@ thuộc:</p>
 <pre class="r"><code>library(reticulate)</code></pre>
 <p>Để kiểm tra môi trường Python có trong máy, các bạn dùng câu lệnh sau:</p>
 <pre class="r"><code>conda_list()</code></pre>
-<pre><code>##        name                                  python
-## 1 Anaconda3 C:\\Users\\svcuo\\Anaconda3\\python.exe</code></pre>
+<pre><code>##    name                                               python
+## 1 r-env C:\\Users\\svcuo\\Anaconda3\\envs\\r-env\\python.exe</code></pre>
 <p>Dùng hàm <code>use_python()</code> cho phép bạn chỉ định rõ phiên bản Python cần thiết:</p>
 <pre class="r"><code>use_python(&quot;C:/Users/svcuo/Anaconda3/python.exe&quot;)</code></pre>
 <p>Sử dụng hàm <code>use_virtualenv()</code> và <code>use_condaenv()</code> cho phép bạn chỉ định phiên bản Python của bạn làm việc trong môi trường virtual hay là Conda:</p>
 <pre class="r"><code>use_virtualenv(&quot;myenv&quot;)</code></pre>
 <pre class="r"><code>py_config()</code></pre>
 <pre><code>## python:         C:/Users/svcuo/Anaconda3/python.exe
-## libpython:      C:/Users/svcuo/Anaconda3/python37.dll
+## libpython:      C:/Users/svcuo/Anaconda3/python36.dll
 ## pythonhome:     C:/Users/svcuo/Anaconda3
-## version:        3.7.4 (default, Aug  9 2019, 18:34:13) [MSC v.1915 64 bit (AMD64)]
+## version:        3.6.9 |Anaconda, Inc.| (default, Jul 30 2019, 14:00:49) [MSC v.1915 64 bit (AMD64)]
 ## Architecture:   64bit
 ## numpy:          C:/Users/svcuo/Anaconda3/Lib/site-packages/numpy
-## numpy_version:  1.16.5</code></pre>
+## numpy_version:  1.16.5
+## 
+## python versions found: 
+##  C:/Users/svcuo/Anaconda3/python.exe
+##  C:/Users/svcuo/AppData/Local/Programs/Python/Python38-32/python.exe
+##  C:/Users/svcuo/Anaconda3/envs/r-env/python.exe</code></pre>
 <p>Ta có thể cài đặt bất kỳ python library nào trong R bằng cách dùng hàm <code>py_install()</code> như sau:</p>
 <pre class="r"><code>py_install(&quot;pandas&quot;)</code></pre>
 <hr />
@@ -1188,9 +1193,9 @@ ggplot(data = py$data,aes(x = preg)) +
       
       <li><a href="/post/r-jupyter/r-jupyter/">Cách thêm và sử dụng R trong Jupyter Notebook</a></li>
       
-      <li><a href="/post/data-manipulation/">So sánh dplyr và pandas cho data manipulation</a></li>
+      <li><a href="/post/r-python-machine-learning/">Cách dùng keras và tensorflow trong R. So sánh R interface và Python interface cho keras.</a></li>
       
-      <li><a href="/post/pipes/">Cách sử dụng các toán tử pipes trong R</a></li>
+      <li><a href="/post/data-manipulation/">So sánh dplyr và pandas cho data manipulation</a></li>
       
     </ul>
   </div>

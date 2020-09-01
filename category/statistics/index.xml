@@ -59,13 +59,13 @@ hist(data, breaks= 60, main=&amp;quot;Histogram With breaks=60&amp;quot;)
 summary(data)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   11.75   18.63   19.97   20.01   21.35   27.11
+##   13.09   18.68   20.09   20.08   21.44   27.73
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ví dụ sử dụng hàm &lt;code&gt;sample()&lt;/code&gt; để tạo mẫu ngẫu nhiên có lặp lại 10 số nguyên từ 0 đến 9:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
 sample(0:9, replace = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] 9 2 3 7 1 1 3 2 6 5
+&lt;pre&gt;&lt;code&gt;##  [1] 6 1 0 7 0 1 0 1 4 1
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ví dụ sử dụng hàm tính mật độ phân phối chuẩn &lt;code&gt;dnorm()&lt;/code&gt; để ước tính xác xuất của học sinh có điểm là &lt;code&gt;16.5&lt;/code&gt;  biết rằng điểm của học sinh tuân theo phân phối chuẩn với giá trị trung bình là &lt;code&gt;15&lt;/code&gt;, độ lệnh chuẩn là &lt;code&gt;2.5&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
@@ -122,26 +122,26 @@ lower_std, upper_std = mean_data - limit_std, mean_data + limit_std
 ouliers_index_std &amp;lt;- which(data &amp;gt; upper_std | data &amp;lt; lower_std)
 print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_std)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 22&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 11&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 ouliers_index_std = [x for x in data if x &amp;lt; lower_std or x &amp;gt; upper_std]
 print(&#39;Number of outliers: %d&#39; % len(ouliers_index_std))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 10
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 12
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
 # R
 data_new_std &amp;lt;- data[-ouliers_index_std]
 print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_std)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4978&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4989&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 data_new_std = [x for x in data if x &amp;gt;= lower_std and x &amp;lt;= upper_std]
 print(&#39;Number of Non-outliers:: %d&#39; % len(data_new_std))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4990
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4988
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;2. Phương pháp &lt;code&gt;IQR&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Tứ phân vị là đại lượng mô tả sự phân bố và sự phân tán của tập dữ liệu. Tứ phân vị có &lt;code&gt;3&lt;/code&gt; giá trị, đó là tứ phân vị thứ nhất &lt;code&gt;Q1&lt;/code&gt; (25th), thứ hai &lt;code&gt;Q2&lt;/code&gt; (50th) hay &lt;code&gt;median&lt;/code&gt;, và thứ ba &lt;code&gt;Q3&lt;/code&gt; (75th). Ba giá trị này chia một tập hợp dữ liệu (đã sắp xếp dữ liệu theo trật từ từ bé đến lớn) thành &lt;code&gt;4&lt;/code&gt; phần có số lượng quan sát đều nhau. Tứ phân vị được xác định như sau:&lt;/p&gt;
@@ -186,26 +186,26 @@ lower_iqr, upper_iqr = q25 - limit_iqr, q75 + limit_iqr
 ouliers_index_iqr &amp;lt;- which(data &amp;gt; upper_iqr | data &amp;lt; lower_iqr)
 print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_iqr)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 53&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 37&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 ouliers_index_iqr = [x for x in data if x &amp;lt; lower_iqr or x &amp;gt; upper_iqr]
 print(&#39;Number of outliers: %d&#39; % len(ouliers_index_iqr))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 24
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 28
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
 # R
 data_new_iqr &amp;lt;- data[-ouliers_index_iqr]
 print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_iqr)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4947&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4963&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 data_new_iqr = [x for x in data if x &amp;gt;= lower_iqr and x &amp;lt;= upper_iqr]
 print(&#39;Non-outlier observations: %d&#39; % len(data_new_iqr))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4976
+&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4972
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;3. Xây dựng hàm tự động xác định và loại bỏ &lt;code&gt;outliers&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Chúng ta có thể tạo một hàm trên R dựa vào các bước ở trên để tự động xác định và xóa outliers như sau:&lt;/p&gt;
@@ -259,15 +259,15 @@ find_outliers_iqr &amp;lt;- function(data) {
 &lt;p&gt;Kiểm tra kết quả thực hiện của hai hàm này:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_std &amp;lt;- find_outliers_std(data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 22
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 11
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4947
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4963
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_iqr &amp;lt;- find_outliers_iqr(data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 53
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 37
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4947
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4963
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Đối với Python thì các bạn có thể tạo hàm tương tự sử dụng các bước trên&lt;/p&gt;
 &lt;hr&gt;
