@@ -1,0 +1,278 @@
+---
+title: Ý  nghĩa của biểu đồ tán xạ (scatter plot) trong dự đoán và đánh giá chất lượng mô hình dự đoán.
+author: "Cuong Sai"
+date: '2020-08-26'
+slug: scatter-plot
+categories:
+  - R
+tags:
+  - Forecasting
+  - Scatter Plot
+  - Data Visualization
+  - P-value
+  - Forecast evaluation
+  - Prediction-Realization Diagram
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-08-26T14:16:28+04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+
+___________________________
+Nội dung của bài bao gồm:
+
+[1. Ý nghĩa của biểu đồ tán xạ trong bài toán dự đoán](#sec1). 
+
+[2. Cách vẽ biểu đồ tán xạ trong R](#sec2). 
+
+[3. Dùng biểu đồ tán xạ để đánh giá chất lượng mô hình dự đoán](#sec3). 
+
+__________________________
+## 1. Ý nghĩa của biểu đồ tán xạ {#sec1}
+
+Biểu đồ tán xạ (`scatter plot`) là một dạng biểu đồ được dùng rất phổ biến trong khoa học với mục đích đánh giá mối tương quan giữa hai biến. Trong bài toán đự đoán (`forecasting`), sử dụng `scatter plot` cho phép chúng ta đánh giá được mức độ tương quan giữa các thuộc tính với nhau cũng như với các biến đầu ra của mô hình cần dự đoán, điều này cho phép lựa chọn được những chiến lược phù hợp trong quá trình chuẩn bị dữ liệu và xây dựng mô hình dự đoán.
+
+Có nhiều cách phân chia sự tương quan giữa hai biến số. Nhưng một cách tổng quát nhất thì chúng ta có thể chia làm 2 loại chính là có tương quan và không tương quan (giữa hai biến số không có mối tương quan nào với nhau).
+
+Trong tương quan thì có thể có các trường hợp sau đây:
+
+- *Tương quan thuận (tương quan dương):* Là mối tương quan trong đó sự gia tăng của biến số này dẫn đến sự gia tăng của biến số kia. Tương quan thuận được phân ra thành *tương quan thuận mạnh* và *tương quan thuận yếu*.
+
+- *Tương quan nghịch (tương quan âm):* Là mối tương quan trong đó sự gia tăng của biến số này sẽ làm giảm giá trị của biến số kia. Tương quan ngịch được phân ra thành *tương quan nghịch mạnh* và *tương quan nghịch yếu*.
+
+- *Tương quan phức tạp*: Là trường hợp mà hai biến có tương quan với nhau, tuy nhiên mối quan hệ giữa chúng không thể xác định một cách rõ ràng
+
+
+![](/img/scatter-plot.jpg)
+
+Độ tương quan (`correlation`) giữa hai biến `x` và `y` được tính bằng công thức sau:
+
+
+$$
+r = \frac{\sum(x_t - \bar{x})(y_t - \bar{y})}{\sqrt{\sum(x_t - \bar{x})^2\sum(y_t - \bar{y})^2}}
+$$
+
+Giá trị của `r` luôn nằm trong khoảng -1 đến 1, với giá trị âm (`negative`) thể hiện độ tương quan nghịch và giá trị dương (`positive`) thể hiện độ tương quan thuận. Ví dụ về mức độ tương quan khác nhau theo giá trị `r` thể hiện ở hình dưới:
+
+![[Nguồn ảnh: Rob J Hyndman. Forecasting: Principles and Practice](https://otexts.com/fpp2/scatterplots.html)](/img/corr.PNG)
+
+## 2. Cách vẽ biểu đồ tán xạ trong R{#sec2}
+
+Để thực hành tôi sử dụng bộ dữ liệu `mtcars` bao gồm thông tin về độ tiêu thụ nhiên liệu và 10 đặc tính khác nhau của 32 loại xe hơi. Ví dụ một số thuộc tính từ tập dữ liệu: 
+
+- `mpg:` tiêu thụ nhiên liệu (dặm/gallon), 
+- `cyl:` số xy lanh, 
+- `hp:` công suất, 
+- `drat:` tỷ số xoắn
+- ...
+
+Nạp dữ liệu vào phiên làm việc của R và kiểm tra 1 số hàng đầu tiên của tập dữ liệu:
+```{r}
+dataset <- mtcars
+head(dataset)
+```
+
+Thử tính giá trị của `r` thủ công bằng công thức ở trên:
+```{r}
+x <- dataset$wt
+y <- dataset$mpg
+mean_x <- mean(dataset$wt)
+mean_y <- mean(dataset$mpg)
+r <- sum((x-mean_x)*(y-mean_y))/sqrt(sum((x-mean_x)^2)*sum((y-mean_y)^2))
+r
+```
+
+Kiểm tra xem kết quả tính `r` có đúng không bằng hàm `cor()`:
+
+```{r}
+cor(dataset$wt, dataset$mpg)
+```
+
+
+**2.1 Vẽ scatter plot Sử dụng `R base` funtions**
+
+Vẽ biểu độ tán xạ giữa hai thuộc tính `wt` và `mpg`:
+```{r}
+plot(dataset$wt, dataset$mpg, col = "blue", 
+     main = "Scatter Plot for mtcars dataset", 
+     xlab="Car Weight ", ylab="Miles Per Gallon")
+# Thêm fit lines (regression line)
+abline(lm(dataset$mpg~dataset$wt), col="red")
+```
+
+
+
+
+Cách vẽ biểu đồ Scatter Matrix sử dụng hàm `pairs()`:
+
+```{r}
+pairs(dataset[,1:4], pch = 19, col = "blue")
+```
+
+**2.2 Vẽ scatter plot sử dụng `ggplot2` và các gói được phát triển trên cơ sở `ggplot2`**
+
+Vẽ biểu độ tán xạ giữa hai thuộc tính `wt` và `mpg` sử dụng `ggplot2`
+
+```{r}
+library(ggplot2)
+ggplot(dataset, aes(x = wt, y = mpg)) +geom_point() +
+  geom_smooth(method='lm', formula= y~x) #   Thêm regression line
+```
+
+
+Vẽ scatter plot cho hai biến `wt` và `mpg` theo groups của thuộc tính `cyl`:
+```{r}
+dataset$cyl <- as.factor(dataset$cyl)
+ggplot(dataset, aes(x = wt, y = mpg)) +
+    geom_point(aes(color = cyl))
+```
+
+
+Thêm correlation coefficients `R` và `p-values` vào `scatter ggplot` sử dụng gói `ggpubr`:
+```{r, warning=FALSE, message=FALSE}
+library(ggpubr)
+sp <- ggscatter(dataset, x = "wt", y = "mpg",
+   color = "cyl", palette = "jco",
+   add = "reg.line", conf.int = TRUE)
+sp + stat_cor(aes(color = cyl), label.x = 3)
+```
+
+**Giải thích ý nghĩa của trị số `P-value`:** 
+
+Để hiểu về trị sô `p-value` chúng ta cần phải hiểu về qui trình kiểm định thống kê.
+
+Qui trình kiểm định thống kê (`test of significance`):
+
+*Bước 1:* Phát biểu ` giả thuyết vô hiệu (null hypothesis - $H_0$)`
+
+*Bước 2:* Thu thập dữ liệu (D)
+
+*Bước 3:* Tính xác xuất của D nếu $H_0$ là đúng 
+$$P= P_r(D|H_0)$$
+
+Trị số `p` chính là xác suất của dữ liệu xảy ra nếu giả thuyết vô hiệu là đúng (probability of observinf the data if the null hypothesis is true). Một kết quả được coi là có ý nghĩa thống kê nếu `p < 0.05`.
+
+`Lưu ý`: trị số `p` không có nghĩa là xác xuất của một giả thuyết - $P(H_0)$. Ví dụ `p = 0.08` **không** có nghĩa là $P(H_0) = 0.08$
+
+Trong trường hợp của chúng ta thì giả thuyết vô hiệu chính là không có tương quan giữa hai biến.
+
+**Cách vẽ biểu đồ Scatter Matrix sử dụng gói `GGally`:**
+
+```{r, warning=FALSE, message=FALSE}
+library(GGally)
+ggpairs(dataset[,1:5], title="A scatterplot matrix") 
+```
+
+
+
+
+## 3. Dùng biểu đồ tán xạ để đánh giá chất lượng mô hình dự đoán {#sec3}
+
+Trong thực thế thì không tồn tại mô hình dự đoán với độ chính xác tuyệt đối, mọi mô hình luôn cho sai số dự báo (`forecast error`): $E = y - y'$ thể hiện độ chênh lệnh giữa giá trị thực và giá trị dự đoán. Để đánh giá độ chính xác của một mô hình dự đoán người ta thường dùng một số thước đo như là:
+
+*Trung bình sai số tuyệt đồi (Mean absolute error)*
+
+$$MAE = \frac{\sum_{i=1}^{n}(|e_i|)}{n}$$
+
+Trong đó,  $e_i = y_i - \hat{y_i}$
+
+*Trung bình sai số tương đối (Mean absolute percent error)*
+
+$$MAPE = \frac{\sum_{i=1}^{n}\frac{|e_i|}{y_i}}{n}$$
+
+*Trung bình bình phương sai số (Mean squared error)*
+
+$$MSE = \frac{\sum_{i=1}^{n}e_i^2}{n}$$
+
+*Căn bậc hai trung bình bình phương (Root mean squared error)*
+
+$$\sqrt{MSE = \frac{\sum_{i=1}^{n}e_i^2}{n}}$$
+
+...
+
+Tuy nhiên việc sử dụng chỉ những thước đo này là chưa đủ và đôi khi có thể dẫn đến đánh giá sai chất lượng mô hình dự đoán. Để biết tại sao là chưa đủ các bạn có thể đọc một số công bố khoa học của chúng tôi như là:
+
+[1. Forcast Evaluation Framework ](https://forvis.github.io/)
+
+[2. Data Schemas for Forecasting](https://forvis.github.io/our-publications/1.pdf)
+
+[3. Data Formats and Visual Tools for Forecast Evaluation](https://vixra.org/pdf/1903.0354v1.pdf)
+
+[4. Measuring forecasting accuracy: The case of judgmental adjustments to SKU-level demand forecasts](https://forvis.github.io/our-publications/5.pdf)
+
+Trong phạm vi post này tôi sẽ giới thiệu với các bạn cách đánh giá chất lượng của các mô hình dự đoán bằng cách sử dụng `scatter plot`.
+
+ Để đánh giá chất lượng mô hình dự đoán bằng `scatter plot` chúng ta cần tạo một `scatter plot` với trục `Oy` là giá trị thực (`y`) và trục `Ox` là giá trị dự đoán (`y'`). Tập hợp các điểm mà tại đó giá trị dự đoán bằng với giá trị thực $y = y'$  (hay $E = 0$) tạo thành một đường thẳng gọi là `perfect forecast line`. Vì vậy mỗi giá trị dự đoán tương ứng với giá trị thực sẽ có tọa độ là: $y_i' = y_i + e_i$
+
+![](/img/error.PNG)
+
+Tập hợp các cặp điểm (`yy'`) còn lại (không nằm trên đường `perfect forecast`) sẽ tạo thành một đám mây phân tán xạ dọc theo đường `perfect forecast`. Mức độ tán xạ (độ lệnh) của các điểm so với đường `perfect forecast` cho phép chúng ta đánh giá được độ chính xác của mô hình dự đoán. Biểu đố tán xạ trong trường hợp này được gọi là `Prediction-Realization Diagram (PRD)`.
+
+![](/img/prd.PNG)
+
+Trong PRD, nếu phần lớn các điểm phân bố dọc theo đường `perfect forecast` và có rất ít hoặc không có các điểm phân tán cách xa đường này thì mô hình dự đoán đó có chất lượng tốt. Trường hợp ngược lại có nghĩa là mô hình có chất lượng kém. 
+
+
+Để minh họa tôi sẽ sử dụng `PRD` để so sánh các mô hình dự đoán khác nhau được sử dụng trong cuộc thi dự đoán thế giới [M3 forecasting competition](https://forecasters.org/resources/time-series-data/m3-competition/). Trong cuộc thi này, `22` mô hình được sử dụng để test với `3003` tập dữ liệu chuỗi thời gian khác nhau. 
+
+
+Dữ liệu này đã được tôi xử lý và lưu trong gói `forvision` nằm trong [Forecast evaluation framework](https://forvis.github.io/) được chúng tôi thực hiện vào năm 2018. Để biết thêm thông tin các bạn có thể đọc ở `website` của dự án tại [đây](https://forvis.github.io/).
+
+
+Để tải gói `forvision` về cài đặt trong R các bạn dùng lệnh sau:
+
+```{r, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("forvis/forvision", build_vignettes = TRUE)
+```
+
+Nạp gói `forvision` và xuất dữ liệu để thực hành:
+```{r}
+library(forvision)
+m3_dataset <- createAFTS(m3_yearly_ts, m3_yearly_fc)
+```
+
+Kiểm tra tập dữ liệu:
+
+```{r}
+head(m3_dataset)
+```
+
+Vẽ scatter plot (`PRD`) để so sánh chất lượng các mô hình khác nhau:
+```{r, fig.height=6, fig.width=10}
+m3_dataset$method_id <- as.factor(m3_dataset$method_id)
+# Plot
+gp <- ggplot() +
+  geom_point(data = m3_dataset, ggplot2::aes(x = forecast, y= value,colour = method_id,shape = method_id)) +
+  scale_shape_manual(values=1:nlevels(m3_dataset$method_id))+
+  geom_line(data = m3_dataset, ggplot2::aes(x = value, y=value, linetype = "perfect forecast")) +
+  ggtitle("Prediction-Realization Diagram") +
+  guides(linetype = ggplot2::guide_legend(""))
+gp
+```
+
+Chỉ so sánh 4 mô hình `c("ARARMA", "DAMPEN", "ForcX", "WINTER")` với nhau:
+```{r}
+m3_dataset <-  dplyr::filter(m3_dataset[1:2000,], method_id %in% c("ARARMA", "DAMPEN", "ForcX", "WINTER"))
+m3_dataset$method_id <- as.factor(m3_dataset$method_id)
+# Plot
+gp <- ggplot()+
+  geom_point(data = m3_dataset, ggplot2::aes(x = forecast, y= value,colour = method_id, shape = method_id)) +
+  scale_shape_manual(values=1:nlevels(m3_dataset$method_id))+
+  geom_line(data = m3_dataset, ggplot2::aes(x = value, y=value, linetype = "perfect forecast"), size = 1) +
+  ggtitle("Prediction-Realization Diagram") +
+  guides(linetype = ggplot2::guide_legend(""))
+gp
+```
+

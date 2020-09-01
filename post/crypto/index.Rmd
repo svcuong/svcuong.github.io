@@ -1,0 +1,193 @@
+---
+title: Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap
+author: "Cuong Sai"
+date: '2020-08-22'
+categories: R
+featured: true
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: false
+lastmod: '2020-08-22T18:45:46+04:00'
+projects: []
+slug: crypto
+subtitle: ''
+summary: ''
+tags:
+- Data Science
+- Data Visualization
+authors: []
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+
+**Web scraping** là công việc trích xuất dữ liệu từ một trang web. Trong thực tế đôi khi bạn cần thu thập 1 số lượng lớn thông tin từ một số trang web như là giá cổ phiếu, chi tiết sản phẩm, số liệu thống kê thể thao, thông tin liên hệ của công ty,...để phục vụ cho nhiều mục đích khác nhau. Tuy nhiên, việc lấy các thông tin này một cách thủ công thì cần rất nhiều thời gian. Lúc này web scraping chính là cách giúp chúng ta trích xuất dữ liệu từ các trang web một cách tự động. Kỹ thuật này chủ yếu tập trung vào việc chuyển đổi dữ liệu phi cấu trúc (HTML) trên web thành dữ liệu có cấu trúc (cơ sở dữ liệu, bảng tính,...)
+
+**CoinMarketCap**  là một trang web chuyên cung cấp dữ liệu về các loại tiền điện tử đang được lưu hành trên thế giới. Nếu bạn là người đã hoặc đang tìm hiểu, đầu tư vào các đồng `coins` thì không thể nào bỏ qua trang web cung cấp thông tin về tiền điện tử lớn nhất thế giới này. Với `CoinMarketCap` bạn có thể xem rất nhiều lọai thông tin ví dụ như: biến động giá cả các đồng `coin`, trữ lượng, khối lượng giao dịch theo từng khoảng thời gian, tỷ giá, xem trang web chính thức hoặc các hoạt động trên mạng xã hội của các đồng `coins`.
+
+
+Trong bài này  tôi sẽ giới thiệu với các bạn cách sử dụng gói `rvest` trong `R` để `scrape` dữ liệu lịch sử thị trường các loại tiền điện tử từ `CoinMarketCap`. Sau đó dùng gói `ggplot2` để trực quan hóa dữ liệu nhằm mục đích so sánh biến động giá cả của các đồng coins với nhau trong khoảng thời gian nhất định.
+
+
+**Gói rvest** cũng giống như thư viện `BeautifulSoup` trên `Python`, là một thư viện `R` để trích xuất dữ liệu từ các tập tin `HTML`.
+
+**Lưu ý khi scape một trang web:**
+
+- Không nên tạo quá nhiều `request` đến trang web trong 1 thời điểm, vì nó có thể gây ra sập trang web (có thể bị liệt vào tấn công từ chối dịch vụ  `DDoS`)
+- Trang web có thể sẽ thường xuyên thay đổi giao diện, bố cục (`HTML`) nên bạn cần thường xuyên cập nhật `code` của mình
+
+Nạp các thư viện cần dùng vào phiên làm việc của `R` để thực hành:
+
+```{r, warning=FALSE, message=FALSE}
+library(jsonlite) # Thư viện cho phép đọc json files
+library(rvest) # thư viện để scape web
+library(viridis) # Thay đổi bảng màu mặc định ggplot2
+library(tidyverse) # Hệ sinh thái các gói hỗ trợ biến đổi (dplyr) và trực quan hóa dữ liệu (ggplot2)
+```
+
+
+Nếu chưa cài các thư viện trên thì các bạn dùng lệnh `install.packages(.)` để cài đặt với tham số đầu vào là tên các thư viện cần cài đặt. Ví dụ:
+
+```{r, eval=FALSE}
+install.packages("rvest")
+```
+
+Đầu tiên chúng ta đọc `json` file từ trang `CoinMarketCap` để biết thông tin về các loại `coins`:
+
+```{r}
+json <- "https://s2.coinmarketcap.com/generated/search/quick_search.json"
+coins <- read_json(json, simplifyVector = TRUE)
+```
+
+Hiển thị bảng thông tin 10 đồng `coins` đầu tiên theo `rank`:
+```{r}
+head(coins,10)
+```
+
+Kiểm tra tổng số lượng đồng tiền kỹ thuật số đang lưu hành trên `CoinMarketCap`:
+```{r}
+dim(coins)[1]
+```
+
+
+Để ví dụ, trong bài này tôi sẽ so sánh thông tin 10 đồng `coins` đầu tiên có rank từ 2 đến 11:
+```{r}
+# Lấy thông tin về tên, symbol và slug của 10 đồng coins có rank = [2:11]
+coinslug <- coins$slug[2:11]
+coinname <- coins$name[2:11]
+coinsymbol <- coins$symbol[2:11]
+```
+
+
+**Tạo hàm để get dữ liệu coins.** Khi ta vào mục `historical data` (như hình bên dưới) để xem thông tin của từng loại `coin` trên trang `CoinMarketCap`, ta thấy trong đường `link` có `3` thông tin quan trọng đó là:
+
+- `slug`: Slug của loại coin đó (như đường link trong hình dưới là `bitcoin`)
+- `start`: Ngày bắt đầu của khoảng thời gian ta muốn xem thông tin
+- `end`: ngày kết thúc của khoảng thời gian ta muốn xem thông tin
+
+![`Screenshot` từ trang [CoinMarketCap](https://coinmarketcap.com/currencies/bitcoin/historical-data/?start=20200722&end=20200822)](/post/2020-08-21-crypto.vn_files/bitcoin.PNG)
+
+Vì vậy ta sẽ viết hàm để `get` dữ liệu dựa vào `3` thông tin trên như sau:
+```{r}
+# Tạo hàm get dữ liệu coin
+get_data_coin <- function(coin, start_date, end_date){
+  # coin: slug của coin
+  # start_date: Ngày bắt đầu lấy dữ liệu
+  # end_date: Ngày kết thúc lấy dữ liệu
+  # Tạo đường link từ 3 thông tin đầu vào
+  historyurl <- paste0("https://coinmarketcap.com/currencies/",
+                      coin,
+                      "/historical-data/?start=",
+                      start_date,
+                      "&end=",
+                      end_date)
+  
+  # Đọc dữ liệu từ web
+  url <-read_html(historyurl)
+  data <- data.frame(html_table(url)[[3]])
+  data$Slug <- coin
+  return(data)
+}
+```
+
+
+Ví dụ sử dụng hàm `get_data_coin()` vừa tạo để lấy dữ liệu lịch sử của `10` loại coins trên từ ngày `21/08/2019` dến ngày `21/08/2020`:
+```{r}
+# Nhập ngày bắt đầu và và kết thúc trong khoảng thời gian muốn xem theo định đạng "Năm-Tháng-Ngày"
+start_date = 20190821
+end_date = 20200821
+# Tạo list trống để lưu dữ liệu coins
+results_data <- list()
+
+# Lưu dữ liệu từng loại coin trong danh sách 10 coins ở trên vào list trống
+for (i in (1:length(coinslug))){
+  results_data[[i]] <- get_data_coin(coin = coinslug[i], start_date = start_date, end_date = end_date)
+}
+
+# Gộp data.frame của từng loại coin trong list vào thành 1 bảng
+results_data <- do.call(rbind, results_data)
+```
+Để kiểm tra dữ liệu thu được, ta hiển thị `10` hàng dữ liệu đầu tiên trong bẳng bằng lệnh `head()`:
+```{r}
+head(results_data, 10)
+```
+
+Thêm thông tin gồm `name` và `symbol` của từng `coin` vào bảng dữ liệu:
+```{r}
+coinnames <- data.frame(
+        Name = as.character(coinname),
+        Symbol = as.character(coinsymbol),
+        Slug = as.character(coinslug))
+df <- full_join(coinnames, results_data, by = "Slug")
+```
+
+Để kiểm tra bảng dữ liệu mới thu được, ta hiển thị `10` hàng dữ liệu đầu tiên trong bảng:
+```{r}
+head(df, 10)
+```
+
+
+
+Ta thấy cột `Date` ở dạng `character` nên cần chuyển về dạng `date` như sau:
+```{r}
+df$Date <- lubridate::mdy(unlist(df$Date))
+head(df, 10)
+```
+
+
+Dùng thư viện `ggplot2` để trực quan hóa và so sánh biến động giá cả của các loại `coins` trong khoảng thời gian từ ngày `21/08/2019` dến ngày `21/08/2020`:
+
+
+```{r, fig.width=12, fig.height=5}
+# Chỉ so sánh thông tìn các cột Open, High, Low, Close
+df <- df[,1:8]
+
+# Chuyển bẳng dữ liệu từ dạng bảng rộng về dài
+library(tidyr)
+df$Name<- factor(df$Name)
+df_tall <- df%>% gather(key = s, value = value, -Name, -Symbol, -Slug, -Date)
+df_tall$s <- factor(df_tall$s, levels=unique(as.character(df_tall$s)))
+
+# Vẽ biểu đồ so sánh thông tin
+ggplot(df_tall, aes(x = Date, y = value, color = Name)) +
+geom_line(size = 0.75) +
+xlab("Time")+
+facet_wrap(~s, ncol = 2, scales = "free_y")+
+theme_bw()
+```
+Khi đã có dữ liệu rồi tiếp theo chúng ta có thể xây dựng các mô hình dự báo để đự đoán giá các loại `coins` 
+
+**Chú thích:**
+
+- `Open`: Giá mở cửa
+- `Close`: Giá đóng cửa
+- `High`: Mức giá cao nhất
+- `Low`: Mức giá thấp nhất
+
+`4` bộ phận này cấu thành nên một `nến` giao dịch đại diện cho sự lên xuống của giá trị một loại tài sản trong một khoảng thời gian cố định. Điểm `“open”` của nến đại diện cho mức giá của loại tài sản khi bắt đầu khoảng thời gian giao dịch, trong khi `“close”` là mức giá khi kết thúc thời gian giao dịch. Còn `“high”` và `“low”` lần lượt là các mức giá cao nhất và thấp nhất đạt được trong phiên giao dịch.
+
+![Các bộ phận của một nến giao dịch, với nến `tăng` (màu xanh) và nếu `giảm` (màu đỏ)](/post/2020-08-21-crypto.vn_files/Candlestick-Anatomy.jpg)
+ 

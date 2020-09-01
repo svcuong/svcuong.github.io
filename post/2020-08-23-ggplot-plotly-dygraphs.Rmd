@@ -1,0 +1,85 @@
+---
+title: Data visualization với ggplot2. Chuyển đổi từ ggplot2 objects sang biểu đồ tương tác plotly
+author: [Cuong Sai]
+date: '2020-08-22'
+slug: ggplot-plotly
+categories: [R]
+tags: [Data Visualization, ggplot2]
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-08-22T16:50:57+04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+Nạp các thư viện cần thiết vào phiên làm việc của R
+
+```{r, message=FALSE, warning=FALSE}
+library(rvest)
+library(ggplot2)
+library(plotly)
+library(dygraphs)
+library(tidyverse)
+```
+
+
+`Get` dữ liệu `bitcoin` từ trang `CoinMarketcap` để thực hiện data visualization:
+
+```{r}
+# Get history data of bitcoin 28/04/2013 - 23/08/2020
+url <-read_html("https://coinmarketcap.com/currencies/bitcoin/historical-data/?start=20130428&end=20200823")
+data <- url %>% html_table()
+df <- data[[3]]
+df <- as_tibble(df)
+colnames(df) <- c("date", "open", "high", "low", "close", "volume", "market_cap")
+
+# Chuyển cột date từ dạng strings về 'date'
+df$date <- lubridate::mdy(df$date) 
+
+# bỏ dấu ',' trong các giá trị của dữ liệu 
+df$close <-  gsub(",", "", df$close)
+
+# Chuyển dữ liệu cột close về dạng numeric
+df$close <- as.numeric(df$close)
+```
+
+
+Kiểm tra bảng dữ liệu thu được:
+```{r}
+df
+```
+
+
+Cách `scrape` một trang web bằng R và `get` dữ liệu lịch sử thị trường tiền điện tử các bạn có thể đọc ở bài trước của tôi tại [đây](https://svcuong.github.io/post/crypto/).
+
+Data visualization với `ggplot2`:
+
+```{r}
+# Plot using ggplot2
+pp <- ggplot(data = df, aes(x = date, y = close)) 
+pp <- pp + geom_line(colour = "blue") 
+pp <- pp + labs(title = "Historical data for Bitcoin",
+     subtitle = "Accessing Bitcoin Data",
+     caption = "sources: Bitcoin (BTC); https://coinmarketcap.com",
+     x = "Date",
+     y = "Close")
+pp <- pp + theme_bw()
+pp
+```
+
+Để chuyển `ggplot2 object` về dạng biểu đồ tương tác `plotly` ta dùng hàm `ggplotly()` trong thư viện `plotly`:
+
+```{r}
+ggplotly(pp)
+```
+
+
+
+

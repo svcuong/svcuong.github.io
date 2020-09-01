@@ -1,0 +1,218 @@
+---
+title: Sử dụng kết hợp R và Python trong data science
+author: admin
+date: '2018-04-18'
+slug: s-d-ng-k-t-h-p-r-và-python-trong-data-science
+categories:
+  - Python
+  - R
+tags:
+  - Data Science
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2018-04-18T08:40:38+04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+Một câu hỏi thường hay đặt ra bởi nhiều nhà khoa học dữ liệu, đặc biệt là những người mới trong lĩnh vực này đó là: Python hay R tốt hơn cho khoa học dữ liệu? Thực ra còn nhiều ngôn ngữ khác cho khoa học dữ liệu như là: Java, C, Scala, Matlab, Julia,…nhưng Python và R đang dẫn đầu trong phần lớn thế giới khoa học dữ liệu.
+
+R vốn được thiết kế bởi các nhà thống kê và đã trở thành lựa chọn hàng đầu cho những ai bước vào lĩnh vực khoa học dữ liệu. Một trong những thế mạnh chính của R là số lượng khổng lồ các packages chuyên dụng và cộng đồng support vô cùng lớn. Tuy nhiên, độ phổ biến của nó gần đây đã giảm đi một chút.
+
+Trong khi đó, Python là ngôn ngữ đa mục đích có thể sử dụng trong nhiều lĩnh vực khác nhau từ lập trình ứng dụng web đến viết game. Có thể thấy là hiện nay Python đang thách thức ngôi vị lâu đầu của R như là một ngôn ngữ chung cho các nhà khoa học dữ liệu.
+
+Tuy nhiên các doanh nghiệp sẽ không ưu tiên ngôn ngữ nào khi xem xét các kỹ năng của một nhà khoa học dữ liệu, vì vậy các bạn phải biết cách linh hoạt trong việc sử dụng các ngôn ngữ này làm công cụ cho khoa học dữ liệu làm sao hiệu quả nhất.
+
+Cả R và Python đều có sử dụng để giải quyết các bài toán tương tự nhau trong khoa học dữ liệu. Cả hai đều có những packages hoặc libraries để giải quyết những vấn đề trong phân tích dữ liệu như tiền xủ lý, ứng dụng machine learning cho dữ liệu. Cả hai đều là lựa chọn tốt cho nghiên cứu khả lặp - một kỹ năng đòi hỏi trong rất nhiều lĩnh vực khác nhau. Tuy nhiên hai ngôn ngữ này lại có những tính năng tuyệt vời và điểm mạnh riêng vì vậy chúng ta nên kết hợp chúng để tận dụng những lợi thế của nhau, chỗ nào tiện và mạnh cái gì thì dùng cái đó. Hình dưới đây mô tả tóm tắt những điểm nổi trội của hai ngôn ngữ này:
+
+![](/img/r-python.png)
+
+Ở post này tôi sẽ giới thiệu với các bạn cách kết hợp hai ngôn ngữ này trong môi trường R bằng cách sử dụng package [reticulate](https://rstudio.github.io/reticulate/).
+
+Trước hết để tiến hành làm việc với Python và R chúng ta cần cài đặt chúng:
+
+- **Python:** Nếu bạn muốn đơn giản hóa việc tạo môi trường khi thực hiện các dự án bằng Python, đặc biệt liên quan đến các lĩnh vực khoa học dữ liệu, AI, Data, … Anaconda sẽ là lựa chọn bạn nên cân nhắc. Bạn có thể tải và cài Anaconda tại [đây](https://www.anaconda.com/products/individual#macos)
+- **R:** Để làm việc với R các bạn cần tải R và Rstudio. Tải và cài phiên bản R mới nhất tại [đây](https://cran.r-project.org/bin/windows/base/). Tải và cài đặt RStudion tại [đây](https://rstudio.com/products/rstudio/download/)
+
+Để kết hợp R và Python trong môi trường R chúng ta cần cài R package `reticulate` bằng câu lệnh sau:
+
+```{r, eval=FALSE}
+install.packages("reticulate")
+```
+Tuy nhiên cách cài đặt như các bạn vừa thực hiện ở trên là không khuyến khích. Nguyên nhân là một
+số gói của R để sử dụng được còn phụ thuộc vào một hoặc một số gói khác. Do vậy an toàn nhất là cài
+đặt với lựa chọn `dependencies = TRUE` với hàm ý rằng chúng ta sẽ cài đặt luôn tất cả các gói phụ
+thuộc:
+
+```{r, eval=FALSE}
+install.packages("reticulate", dependencies = TRUE)
+```
+
+Package `reticulate` gồm các công cụ hỗ trợ tương tác giữa R và Python. Cụ thể package này giải quyết được những việc sau:
+
+- Gọi Python từ R bằng những phương pháp khác nhau: từ R Markdown, từ mã nguồn Python, import các Python modules, và sử dụng tương tác trực tiếp trên R session.
+- Chuyển đổi các đối tượng R và Python với nhau (ví dụ giữa các data frames R và Pandas, giữa các R matrices và NumPy arrays)
+- Liên kết linh hoạt giữa các phiên bản Python khác nhau bao gồm cả virtual environments và Conda environments.
+
+____________________________________________________
+**Kêt hợp R và Python**
+
+Để có thể dùng Python trong môi trường R chúng ta cần nạp thư thư viện `reticulate` theo câu lệnh sau: 
+
+```{r, warning=FALSE}
+library(reticulate)
+```
+
+Để kiểm tra môi trường Python có trong máy, các bạn dùng câu lệnh sau:
+
+```{r, warning=FALSE}
+conda_list()
+```
+
+Dùng hàm `use_python()` cho phép bạn chỉ định rõ phiên bản Python cần thiết:
+```{r}
+use_python("C:/Users/svcuo/Anaconda3/python.exe")
+```
+
+Sử dụng hàm `use_virtualenv()` và `use_condaenv()` cho phép bạn chỉ định phiên bản Python của bạn làm việc trong môi trường virtual hay là Conda:
+
+```{r}
+use_virtualenv("myenv")
+```
+
+```{r}
+py_config()
+```
+
+Ta có thể cài đặt bất kỳ python library nào trong R bằng cách dùng hàm `py_install()` như sau:
+```{r, eval=FALSE}
+py_install("pandas")
+```
+
+_______________________
+**Các cách sử dụng kết hợp Python và R trong môi trường R**
+
+**1. Import các python modules**
+
+Sử dụng hàm `import()` cho phép bạn có thể gọi mọi python library và sử dụng trong R:
+
+```{r, eval=FALSE}
+os <- import("os")
+os$listdir(".")
+```
+```{r, eval=FALSE}
+ [1] ".RData"       ".Rhistory"    ".Rproj.user"  "assets"       "config"      
+ [6] "config.toml"  "content"      "index.Rmd"    "myblog.Rproj" "public"      
+[11] "resources"    "static"       "themes"     
+```
+
+**2. Sourcing Python scripts**
+
+Bạn có thể nạp bất kỳ một Python scripts nào vào R sử dụng hàm `source_python()`. Ví dụ bạn có một Python script tên là `flights.py` có dạng:
+
+```{python, eval=FALSE}
+import pandas as pd
+
+def read_flights(file):
+  flights = pd.read_csv(file)
+  flights = flights[flights['dest'] == "ORD"]
+  flights = flights[['carrier', 'dep_delay', 'arr_delay']]
+  flights = flights.dropna()
+  return flights
+```
+
+Và các bạn có thể nạp và thực thi nó trên R như sau:
+
+```{r, eval = FALSE}
+source_python("RPython/flights.py")
+flights <- read_flights("flights.csv")
+
+library(ggplot2)
+ggplot(flights, aes(carrier, arr_delay)) + geom_point() + geom_jitter()
+```
+
+**3. Python REPL**
+
+Hàm `repl_python()` cho phép các bạn có thể làm việc trực tiếp với Python trên R session. Các đối tượng được tạo ra từ Python REPL có thể được truy cập từ R bằng cách sử dụng *py$object*. Ví dụ:
+
+![](/img/python-repl.png)
+
+Dùng lệnh `exit` để thoát python REPL
+
+**Chú ý:** Trong Python code có thể sử dụng mọi đối tượng được tạo ra từ R bằng các sử dụng đối tượng `r.object` (ví dụ `r.flights`).
+
+
+**4. Sử dụng python trong R markdown**
+
+Package `reticulate` hỗ trợ Python engine cho R Markdown với những thuộc tính sau:
+
+- Chạy Python code chunks tích hợp trong R session( cho phép trao đổi các đối tượng với nhau)
+- Hiển thị Python output, bao gồm cả output từ matplotlib
+- Truy cập tới các đối tượng được tạo ra từ Python chunks và ngược lại từ R chunks (sử dụng `py$object` và `r.object`)
+
+**Chúng ta hãy cùng xem ví dụ kết hợp R và Python đơn giản sau:**
+
+Nạp dữ liệu vào Python:
+
+```{python}
+# Python
+import pandas as pd
+dataset_url = 'https://raw.githubusercontent.com/svcuong/Datasets/master/pima-indians-diabetes.data.csv'
+
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = pd.read_csv(dataset_url, names = names)
+print(data.head())
+```
+
+
+
+
+Sau đó chuyển dữ liệu và thao tác với dữ liệu bằng R:
+```{r}
+# R
+table(py$data$preg)
+```
+
+
+Thực hiện data visualization trong R vơi base function `boxplot()`:
+
+
+```{r}
+# R
+x <- py$data[,1:8]
+y <- py$data[,9]
+
+# Boxplot for first 4 attribute
+names = c('preg', 'plas', 'pres', 'skin')
+par(mfrow=c(1,4))
+for(i in 1:4) {
+boxplot(x[,i], main=names[i])
+}
+```
+
+Thực hiện data visualization trong R với `ggplot2`:
+
+```{r}
+# R
+library(ggplot2)
+py$data$class <- factor(py$data$class)
+ggplot(data = py$data,aes(x = preg)) +
+  geom_histogram(binwidth = 0.5,aes(fill = class),position = "dodge") +
+  ggtitle("Pregnancies Data Distribution") + ylab("class Counts") +
+  theme_gray() +
+  theme_update(plot.title = element_text(hjust = 0.5))
+```
+
+
+
+
+____________________________
+**Tham khảo:**
+
+
+<sub>[R Interface to Python](https://rstudio.github.io/reticulate/)</sup>

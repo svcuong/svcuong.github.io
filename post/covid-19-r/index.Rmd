@@ -1,0 +1,346 @@
+---
+title: "Biến đổi và trực quan hóa dữ liệu Covid-19 từ John Hopkins database với R"
+author: "Cuong Sai"
+date: 2020-08-29
+categories: ["R"]
+tags: ["R Markdown", "Covid-19", "Data Visualization"]
+featured: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE, warning = FALSE, message = FALSE)
+```
+
+
+`Covid-19` là một đại dịch bệnh truyền nhiễm với tác nhân là virus `SARS-CoV-2`, hiện đang ảnh hưởng và gây thiệt hại nặng nề trên phạm vi toàn cầu. Kể từ khi đại dịch `Covid-19` bắt đầu xuất hiện ở Vũ Hán - Trung Quốc đến nay, cái tên trường Đại học `Jonhs Hopkins` (Mỹ) được nhắc đi nhắc lại hằng ngày trên các phương tiện truyền thông và là một trong những cụm từ được trích dẫn nhiều nhất. Lý do đó là Đại học `Johns Hopkins` đã phát triển một trong những hệ thống theo dõi dữ liệu `COVID-19` bền bỉ và đáng tin cậy nhất trên thế giới cho đến nay.
+
+Ở bài trước tôi đã giới thiệu cách download và trực quan hóa dữ liệu `Covid-19` từ [John Hopkins database](https://github.com/CSSEGISandData/COVID-19) sử dụng ngôn ngữ `Python`, cụ thể là sử dụng thư viện `pandas` để làm sạch và biến đổi dữ liệu và `maplotlib` để trực quan hóa dữ liệu. Ở bài này để chứng minh `R` là ngôn ngữ nổi trội trong biến đổi và trực quan hóa dữ liệu, tôi cũng thực hiện công việc tương tự như với `Python`. Cụ thể là sử dụng thư viện `dplyr` và `ggplot2` trong hệ sinh thái `tidyverse` kết hợp với toán tử `pipes` khiến cho việc làm sạch, biến đổi và trực quan hóa dữ liệu trở nên vô cùng đơn giản - chỉ bằng vài dòng `code`. Để so sánh sự khác biệt các bạn có thể đọc lại bài trước về `Python` tại [đây](https://svcuong.github.io/post/covid-19-python/). Để biết thêm về toán tử pipe `%>%` cũng như cách dùng các `pipes` khác trong `R` các bạn có thể đọc tại [đây](https://svcuong.github.io/post/pipes/).
+
+
+**Nội dung chính của bài bao gồm:**
+
+[1. Download & chuẩn bị dữ liệu Covid-19 sử dụng thư viện dplyr](#sec1)
+
+[2. Trực quan hóa dữ liệu Covid-19 sử dụng thư viện ggplot2](#sec2)
+
+
+## 1. Download và chuẩn bị dữ liệu {#sec1}
+
+
+Nạp gói `tidyverse` vào phiên làm việc của `R` để thực hành:
+
+```{r}
+library(tidyverse)
+```
+
+
+Download 3 tập dữ liệu từ [John Hopkins database](https://github.com/CSSEGISandData/COVID-19):
+
+- `Confirmed:` (Số trường hợp mới phát hiện)
+
+- `Deaths:` (Số trường hợp tử vong)
+
+- `Recovered:` (Số trường hợp hồi phục)
+```{r}
+url_confd = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
+url_death = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv'
+url_recvd = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv'
+
+df_confd_raw = read.csv(url_confd)
+df_death_raw = read.csv(url_death)
+df_recvd_raw = read.csv(url_recvd)
+```
+
+
+
+Các tập dữ liệu này được lưu ở dạng `wide format` do đó chúng ta cần chuyển chúng dạng `long fromat`:
+
+```{r}
+# Chuyển tập dữ liệu df_confd từ wide format sang long fromat
+df_confd <- df_confd_raw %>% gather(key="Date", value="Confirmed", -c(Country.Region, Province.State, Lat, Long)) %>% group_by(Country.Region, Date) %>% summarize(Confirmed=sum(Confirmed))
+
+# Chuyển tập dữ liệu df_death từ wide format sang long fromat
+df_death <- df_death_raw %>% gather(key="Date", value="Deaths", -c(Country.Region, Province.State, Lat, Long)) %>% group_by(Country.Region, Date) %>% summarize(Deaths=sum(Deaths))
+
+
+# Chuyển tập dữ liệu df_recvd từ wide format sang long fromat
+df_recvd <- df_recvd_raw %>% gather(key="Date", value="Recovered", -c(Country.Region, Province.State, Lat, Long)) %>% group_by(Country.Region, Date) %>% summarize(Recovered=sum(Recovered))
+```
+
+Kiểm tra dữ liệu sau khi đã chuyển:
+
+```{r}
+head(df_confd)
+```
+```{r}
+head(df_death)
+```
+
+```{r}
+head(df_recvd)
+```
+
+Gộp 3 tập dữ liệu này thành 1 `dataframe`:
+
+```{r}
+final_df <- full_join(df_confd, df_death) %>% full_join(df_recvd)
+head(final_df)
+```
+
+Chuyển cột dữ liệu `Date` về định dạng `date`:
+
+```{r}
+final_df$Date <- final_df$Date %>% sub("X", "",.)%>% as.Date("%m.%d.%y")
+```
+
+Kiểm tra `dataframe` thu được:
+
+```{r}
+head(final_df)
+```
+
+
+Kiểm tra kích thước của bảng dữ liệu thu được:
+
+```{r}
+dim(final_df)
+```
+
+
+Kiểm tra khoảng thời gian của dữ liệu được thu thập:
+```{r}
+print(paste('First date:', min(final_df$Date)))
+print(paste('Current date:', max(final_df$Date)))
+```
+
+
+Kiểm tra `missing values (NaN)` trong tập dữ liệu:
+```{r}
+colSums(is.na(final_df))
+```
+
+
+
+## 2. Trực quan hóa dữ liệu với `ggplot2` {#sec2}
+
+
+**2.1 Tổng quan tình hình `Covid -19` trên toàn thế giới tính tới thời điểm đang viết bài này:**
+
+Kiểm tra tổng số nước trên toàn thế giới trong tập dữ liệu:
+```{r}
+length(unique(final_df$Country.Region))
+```
+
+Tổng các `cases` trên toàn thế giới:
+
+```{r}
+# Tính tổng các cases
+df <- final_df[,3:5] %>% summarise_all(funs(sum))
+# Thêm cột Active
+df$Active <- df$Confirmed -df$Deaths - df$Recovered
+df
+```
+
+
+
+```{r, fig.width=6, fig.height=6}
+# Tạo data frame các cacses để vẽ pie chart
+df1 <- data.frame(Cases = colnames(df), n = as.vector(unlist(df)))
+
+# Tạo pie chart
+ggplot(df1, aes (x="", y = n, fill = factor(Cases))) + 
+  geom_col(position = 'stack', width = 1) +
+  geom_text(aes(label = paste(round(n / sum(n) * 100, 1), "%"), x = 1.3),
+            position = position_stack(vjust = 0.5)) +
+  theme_void() +
+  labs(fill = "Cases",
+       x = NULL,
+       y = NULL,
+       title = "Pie Chart of Covid-19 cases in the world") +
+  coord_polar("y")
+```
+
+
+**2.2 Top 10 nước có số `cases` lớn nhất**
+
+Tính tổng các `cases` của từng nước tính đến thời điểm hiện tại:
+
+```{r}
+df_countries <- final_df %>% select(-Date) %>% group_by(Country.Region) %>% summarise_all(funs(sum))
+```
+
+Top 10 nước có `confirmed cases` lớn nhất:
+
+
+```{r, fig.width= 8, fig.height=5}
+# Lọc top 10 nước theo Confirmed Cases
+confirmed <- df_countries %>% arrange(desc(Confirmed)) %>% slice(1:10)
+confirmed$Country.Region <- factor(confirmed$Country.Region, levels=unique(confirmed$Country.Region))
+# Vẽ barplot
+ggplot(confirmed, aes(x=Confirmed, y=Country.Region, fill= Country.Region))+
+  geom_bar(stat='identity')+
+  ggtitle("Top 10 Countries (Confirmed cases)") +
+  theme_bw()+
+  theme(legend.position="none")
+```
+
+
+Top 10 nước có `Death cases` lớn nhất:
+
+```{r, fig.width= 8, fig.height=5}
+# Lọc top 10 nước theo Confirmed Cases
+deaths<- df_countries %>% arrange(desc(Deaths)) %>% slice(1:10)
+
+deaths$Country.Region <- factor(deaths$Country.Region, levels=unique(deaths$Country.Region))
+ggplot(deaths, aes(x=Deaths, y=Country.Region, fill= Country.Region))+
+  geom_bar(stat='identity')+
+  ggtitle("Top 10 Countries (Deaths)") +
+  theme_bw()+
+  theme(legend.position="none") 
+```
+
+Top 10 nước có `Recovered Cases` lớn nhất:
+
+
+```{r, fig.width= 8, fig.height=5}
+# Lọc top 10 nước theo Confirmed Cases
+recovered <- df_countries %>% arrange(desc(Recovered)) %>% slice(1:10)
+recovered$Country.Region <- factor(recovered$Country.Region, levels=unique(recovered$Country.Region))
+ggplot(recovered, aes(x=Recovered, y=Country.Region, fill= Country.Region))+
+  geom_bar(stat='identity')+
+  ggtitle("Top 10 Countries (Recovered Cases)") +
+  theme_bw()+
+  theme(legend.position="none")
+```
+
+
+
+
+**2.3 Mức độ phát triển của Covid-19 theo thời gian trên toàn thế giới**
+
+
+Tính tổng các `cases` trên toàn thế giới theo thời gian
+```{r}
+world <- final_df %>% group_by(Date) %>% summarize(Confirmed=sum(Confirmed), Deaths=sum(Deaths), Recovered=sum(Recovered))
+```
+
+Mức độ phát triển của `Confirmed cases` trên toàn thế giới theo thời gian:
+
+```{r, fig.width= 8, fig.height=5}
+ggplot(world, aes(x=Date, y=Confirmed)) + geom_bar(stat="identity", width=0.2, color = "blue") +
+  theme_bw() +
+  labs(title = "Confirmed Cases In Each Days", x= "Date", y= "Confirmed cases") 
+```
+
+Mức độ phát triển của `Deaths` trên toàn thế giới theo thời gian:`
+
+```{r, fig.width= 8, fig.height=5}
+ggplot(world, aes(x=Date, y=Deaths)) + geom_bar(stat="identity", width=0.2, color = "green") +
+  theme_bw() +
+  labs(title = "Deaths In Each Day", x= "Date", y= "Death cases") 
+```
+
+Mức độ phát triển của `Recovered cases` trên toàn thế giới theo thời gian:
+
+```{r, fig.width= 8, fig.height=5}
+ggplot(world, aes(x=Date, y=Recovered)) + geom_bar(stat="identity", width=0.2, color = "purple") +
+  theme_bw() +
+  labs(title = "Recovered cases In Each Day", x= "Date", y= "Recovered cases") 
+```
+
+**2.4 Hiển thị tất cả các cases trên thế giới theo thời gian**
+
+```{r, fig.width= 9, fig.height=5}
+world %>% gather("Cases", "value", -Date) %>%
+ggplot(aes(x=Date, y=value, colour=Cases)) + geom_bar(stat="identity", width=0.2, fill="white") +
+  labs(title = "Covid-19 Global Cases", x= "Date", y= "Daily cases")+
+  theme_bw()
+```
+
+
+
+
+```{r, fig.width= 8, fig.height=4}
+world %>% gather("Cases", "value", -Date) %>%
+ggplot(aes(x=Date, y=value, colour=Cases)) + geom_line(, size = 1) +
+  labs(title = "Covid-19 Global Cases", x= "Date", y= "Daily cases")+
+  theme_bw()
+```
+
+
+
+**2.5 So sánh sự phát triển của COVID-19 theo thời gian giữa các nước**
+
+
+So sánh Việt Nam, Mỹ, Nga:
+
+```{r, fig.width= 8, fig.height=4}
+final_df %>% filter(Country.Region == "Vietnam") %>% gather("Cases", "value", -Country.Region, -Date) %>%
+ggplot(aes(x=Date, y=value, colour=Cases)) + geom_line(, size = 1) +
+  labs(title = "COVID-19 cases of Vietnam", x= "Date", y= "Daily cases")+
+  theme_bw()
+```
+```{r, fig.width= 8, fig.height=4}
+final_df %>% filter(Country.Region == "US") %>% gather("Cases", "value", -Country.Region, -Date) %>%
+ggplot(aes(x=Date, y=value, colour=Cases)) + geom_line(, size = 1) +
+  labs(title = "COVID-19 cases of US", x= "Date", y= "Daily cases")+
+  theme_bw()
+```
+
+
+
+```{r, fig.width= 8, fig.height=4}
+final_df %>% filter(Country.Region == "Russia") %>% gather("Cases", "value", -Country.Region, -Date) %>%
+ggplot(aes(x=Date, y=value, colour=Cases)) + geom_line(, size = 1) +
+  labs(title = "COVID-19 cases of Russia", x= "Date", y= "Daily cases")+
+  theme_bw()
+```
+
+
+Do thực hiện công việc tương tự như `Python` nhưng mà nhanh quá, nên tôi thử tạo thêm bản đồ phân bố dịch này nữa:
+
+```{r}
+# Chuẩn bị dữ liệu
+country <- final_df %>% group_by(Country.Region) %>% mutate(Cumconfirmed=cumsum(Confirmed))
+
+world <- country %>% group_by(Date) %>% summarize(Confirmed=sum(Confirmed), Cumconfirmed=sum(Cumconfirmed), Deaths=sum(Deaths), Recovered=sum(Recovered)) 
+```
+
+```{r}
+## Map
+countrytotal <- country %>% group_by(Country.Region) %>% summarize(Cumconfirmed=sum(Confirmed), Cumdeaths=sum(Deaths), Cumrecovered=sum(Recovered))
+# Basemap from package tmap
+library(tmap)
+data(World)
+
+# Combine basemap data với covid data
+list <- which(!countrytotal$Country.Region %in% World$name)
+countrytotal$country <- as.character(countrytotal$Country.Region)
+countrytotal$country[list] <-
+  c("Andorra", "Antigua and Barbuda", "Bahrain",
+    "Barbados", "Bosnia and Herz.", "Myanmar",
+    "Cape Verde", "Central African Rep.", "Congo",
+    "Dem. Rep. Congo", "Czech Rep.", "Diamond Princess",
+    "Dominica", "Dominican Rep.", "Eq. Guinea",
+    "Swaziland", "Grenada", "Holy See",
+    "Korea", "Lao PDR", "Liechtenstein",
+    "Maldives", "Malta", "Mauritius",
+    "Monaco", "MS Zaandam", "Macedonia",
+    "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines",
+    "San Marino", "Sao Tome and Principe", "Seychelles",
+    "Singapore", "S. Sudan", "Taiwan",
+    "United States", "Palestine", "W. Sahara")
+World$country <- World$name
+worldmap <- left_join(World, countrytotal, by="country")
+worldmap$cumconfirmed[is.na(worldmap$Cumconfirmed)] <- 0
+```
+
+```{r}
+# Map
+ggplot(data = worldmap) + geom_sf(aes(fill=Cumconfirmed), color="black") +
+  ggtitle("World Map of Confirmed Covid Cases",
+          subtitle="Total Cases on  August  29, 2020") +
+  theme_bw()
+```
+
+

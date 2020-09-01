@@ -1,0 +1,238 @@
+---
+title: So sánh dplyr và pandas cho data manipulation
+author: admin
+date: '2020-08-19'
+slug: data-manipulation
+categories: [R, Python]
+tags: [Data Wrangling, Data Manipulation]
+subtitle: ''
+summary: 'So sánh các thao tác biến đổi dữ liệu với thư viện `dplyr` trong R và `pandas` trong Python'
+authors: []
+lastmod: '2020-08-19T06:55:30+04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+![](./dplyr-vs-pandas.png)
+
+Package `dplyr` là một trong những thành phần rất quan trọng trong hệ sinh thái `tidyverse` của [Hadley Wickham](http://hadley.nz/) - tác giả của các thư viện nổi tiếng trên R như ggplot2, readr, tidyr,...`dplyr` cung cấp các công cụ biến đổi giúp cho việc thao tác với dữ liệu trên R dễ dàng và thuận tiện hơn bao giờ hết. Kết hợp với toán tử `%>%`, nhiều người cho rằng dplyr đã tạo ra `concept` mới cho R.
+
+
+Để thực hiện các công việc liên quan đến data manipulation chúng ta có thể sử dụng các hàm thuộc gói `base` trong R, tuy nhiêu cú phát của nhiều hàm `base` là không nhất quán và khó nhớ, đặc biệt là cho một nhóm công việc đặc biệt tốn thời gian như là data manipulation. Gói hay còn thường được gọi là hệ sinh thái `tidyverse` ra đời nhằm đáp ứng các nhu cầu ngày càng tăng của việc biến đổi và làm sạch dữ liệu (data cleaning), nó bao gồm tập hợp của những gói mạnh nhất chuyên cho công việc làm sạch và biến đổi dữ liệu. Ưu điểm của việc sử dụng `tidyverse` phải kể đến các lí do sau:
+
+- Dễ hiểu và có cú pháp nhất quán.
+- Hợp nhất và hỗ trợ `ggplot2` - một gói chuyên cho data visualization.
+- Có thể phân tích, quản lí cơ sở dữ liệu ngoài (external databases) mà không cần biết sâu các chi tiết và kiến thức của các ngôn ngữ truy vấn cơ sở dữ liệu (database query languages) khác như `SQL`.
+
+
+Nạp gói `tidyverse` vào phiên làm việc trên R để thực hiện công việc data manipulation:
+```{r, warning=FALSE, message=FALSE}
+# R
+library(tidyverse)
+```
+
+`Tidyverse` là một hộp công cụ lớn chứa nhiều package nhỏ (trong đó có `dplyr`) bên trong và các mảnh nhỏ này kết nối với nhau một cách tiện ích để vận hành một quy trình phân tích dữ liệu hoàn chỉnh. Hiện nay `tidyverse` chứa 27 packages bao gồm:
+```{r}
+# R
+tidyverse_packages()
+```
+
+Trong post này chúng ta hãy cùng so sánh các thao tác data manipulation thường dùng trong data science bằng cách sử dụng R (với `dplyr`) và sử dụng Python (với `pandas`):
+
+- `filter:` Lọc dữ liệu với các điều kiện của biến (thuộc tính)
+- `select:` Chọn thuộc tính hay là tập hợp các thuộc tính
+- `arrange:` Sắp xếp dữ liệu theo thứ t
+- `mutate` : Tạo thuộc tính mới cho data frameự
+- `summarise:` Thống kê mô tả theo phân nhóm
+
+
+Nạp thư viện `reticulate`:
+```{r, warning=FALSE}
+# R
+library(reticulate)
+```
+
+`reticulate` cho phép chúng ta sử dụng kết hợp R và Python trong môi trường R. Cụ thể về cách sử dụng thư viện này để kết hợp R và Python tôi đã giới thiệu ở post trước, các bạn có thể đọc ở [đây](https://svcuong.github.io/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/)
+
+Nạp thư viện `pandas` trong môi trường R:
+
+```{python}
+# Python
+import pandas as pd
+```
+
+**Chú ý**: Những R code chunks tôi sẽ comment `R` và Python là `Python`.
+
+Cũng giống như `dplyr` trong R, về cơ bản `Pandas` là một thư viện mã nguồn mở, được cộng đồng đánh giá là high-performance, nó hỗ trợ đắc lực trong thao tác với dữ liệu và giúp cho việc xử lý dữ liệu, tính toán sẽ dễ dàng hơn rất nhiều cách truyền thống trong Python. 
+
+Load dữ liệu để demo:
+```{r}
+# R
+# Nạp R built-in dataset mtcars
+data(mtcars)
+# Chuyển dữ dữ liệu về dạng tibble(hay còn gọi là data_frame) - đây là 1 
+# kiểu cấu trúc dữ liệu mới trong R nhằm đáp ứng nhu cầu về tốc độ tính toán
+# khi xử lí dữ liệu có kích thước lớn
+data_r <- as_tibble(mtcars)
+data_r
+```
+
+
+_____________________________________
+
+**So sánh `dplyr` và `pandas`**
+
+**1. Filter dữ liệu theo điều kiện của thuộc tính**
+
+
+```{r}
+# R
+filter(data_r, cyl >=6 & am == 1)
+```
+
+
+```{python}
+# Python
+# chuyển dữ liệu từ R cho Python:
+data_py = r.data_r
+data_py[(data_py['cyl'] >=6) & (data_py['am'] == 1)]
+```
+
+```{r}
+# R
+data_r %>% filter(am != 0)
+```
+
+```{python}
+# Python
+data_py[data_py['am'] != 0]
+```
+
+```{r}
+# R
+data_r %>% group_by(cyl) %>% filter(sum(hp) > 2000)
+```
+
+```{python}
+# Python
+data_py.groupby('cyl').filter(lambda x: sum(x['hp']) > 2000)
+```
+
+**2. Select thuộc tính**
+
+```{r}
+# R
+head(select(data_r, cyl, hp, wt), 5)
+```
+
+```{python}
+# Python
+data_py[['cyl', 'hp', 'wt']].head(5)
+```
+
+
+```{r}
+# R
+head(select(data_r, -mpg), 5)
+```
+
+```{python}
+# Python
+data_py.drop('mpg', 1).head(5)
+```
+
+**3.Sắp Xếp dữ liệu theo thứ tự**
+
+```{r}
+# R
+# Sắp xếp dữ liệu theo giá trị tăng dần của cột cyl
+arrange(data_r, cyl)
+```
+
+```{python}
+# Python
+data_py.sort_values('cyl').head(10)
+```
+
+
+```{r}
+# R
+# Sắp xếp dữ liệu theo giá trị giảm dần của cột cyl
+arrange(data_r, desc(cyl))
+```
+
+```{python}
+# Python
+data_py.sort_values('cyl', ascending=False).head(10)
+```
+
+**4. Tạo thuộc tính mới**
+
+```{r}
+# R
+# Tạo và thêm biến mới có tên cyl2
+mutate(data_r, cyl2 = mean(cyl))
+```
+
+```{python}
+# Python
+import numpy as np
+data_py.assign(cyl2 = lambda x: np.mean(x.cyl)).head(10)
+```
+
+**5. Thống kê mô tả theo phân nhóm**
+
+```{r}
+# R
+data_r %>% 
+  group_by(cyl, am) %>% 
+  summarise(mean_cyl = mean(cyl),
+            sum_cyl = sum(cyl),
+            count_cyl = n())
+```
+
+```{python}
+# Python
+data_py.groupby(['cyl', 'am'])['cyl'].agg(['mean', 'sum', 'count'])
+```
+
+**6. Tóm tắt**
+
+Dưới đây là tóm tắt so sánh một số thao tác với dữ liệu hay dùng nhất trong Python và R
+
+**Querying, Filtering, Sampling**
+
+|R  |Python|
+|---|----|
+|dim(df)|df.shape|
+|head(df) |	df.head()|
+|slice(df, 1:10)|	df.iloc[:9]|
+|filter(df, col1 == 1, col2 ==1) |	df.query(‘col1 == 1 & col2 == 1’)|
+|df[df$col1 == 1 & df$col2 == 1] |	df[(df.col1 == 1) & (df.col2 == 1)]|
+|select(df, col1, col2) |	df[[‘col1’, ‘col2’]]|
+|select(df, col1:col3)	| df.loc[:, ‘col1’:‘col3’]|
+|select(df, -(col1:col3))|	df.drop(cols_to_drop, axis=1)|
+|distinct(select(df, col1))|	df[[‘col1’]].drop_duplicates()|
+|distinct(select(df, col1, col2))|	df[[‘col1’, ‘col2’]].drop_duplicates()|
+|sample_n(df, 10)|	df.sample(n=10)|
+|sample_frac(df, 0.01)|	df.sample(frac=0.01)|
+
+**Sorting**
+
+|R|Python|
+|---|---|
+|arrange(df, col1, col2)|	df.sort_values([‘col1’, ‘col2’])
+|arrange(df, desc(col1)) |	df.sort_values(‘col1’, ascending=False)
+
+**Grouping and Summarizing**
+
+|R|Python|
+|---|---|
+|summary(df)|	df.describe()|
+|gdf <- group_by(df, col1)|	gdf = df.groupby(‘col1’)|
+|summarise(gdf, avg=mean(col1, na.rm=TRUE))	|df.groupby(‘col1’).agg({‘col1’: ‘mean’})|
+|summarise(gdf, total=sum(col1))|	df.groupby(‘col1’).sum()|

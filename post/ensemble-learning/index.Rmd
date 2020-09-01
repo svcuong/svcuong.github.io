@@ -1,0 +1,342 @@
+---
+title: "Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code)"
+author: 
+
+date: '2020-08-23'
+categories: R
+featured: true
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: false
+lastmod: '2020-08-23T18:45:46+04:00'
+projects: []
+slug: ensemble-learning
+subtitle: ''
+summary: ''
+tags:
+- Machine Learning
+- Ensemble Learning
+- Data Visualization
+authors: []
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+
+Trong `machine learning` tồn tại định lý *"không có bữa trưa miễn phí"* (`No free lunch theorem`), tức là không tồn tại một thuật toán mà luôn tốt cho mọi ứng dụng và mọi tập dữ liệu, vì các thuật toán `machiner learning` thường dựa trên một tập các tham số (`hyperparameters`) hoặc một giả thiết nhất định nào  đó về phân bố dữ liệu. Vì vậy để tìm được những thuật toán phù hợp cho tập `dataset` của mình có thể các bạn sẽ cần nhiều thời gian để `test` các thuật toán khác nhau.  Rồi từ đó thực hiện hiệu chỉnh các tham số  (`tuning hyperparameters`) của thuật toán để thu được độ chính xác cao nhất.
+
+Một cách khác có thể sử dụng để tăng độ chính xác trên tập `dataset` của bạn là kết hợp (`combine`) một số mô hình với nhau. Phương pháp này gọi là `esemble learning`. Ý tưởng của việc `combine` các mô hình khác nhau xuất phát từ một suy nghĩ hợp lý là: các mô hình khác nhau có khả năng khác nhau, có thể thực hiện tốt nhất các loại công việc khác nhau (`subtasks`), khi kết hợp các mô hình này với nhau một cách hợp lý thì sẽ tạo thành một mô hình kết hợp  (`combined model`) mạnh có khả năng cải thiện hiệu suât tổng thể (`overall performance`) so với việc chỉ dùng các mô hình một cách đơn lẻ.
+
+
+Các phương pháp `Ensemble Learning` được chia thành 3 loại sau đây:
+
+- `Bagging` (đóng bao)
+- `Boosting` (tăng cường)
+- `Stacking` (Xếp chồng)
+
+
+Trong post này, trước hết tôi sẽ giới thiệu 3 kỹ thuật `ensemble learning` kể trên, sau đó là cách sử dụng thư viện `caret` và `caretEnsemble` trong `R` để triển khai chúng và áp dụng vào bài toán cụ thể.
+
+Để cài đặt 2 thư viện này ta dùng lệnh `install.packages(.)` với tham số đầu vào là tên thư viện muốn cài:
+
+```{r, eval=FALSE}
+install.packages("caret")
+intall.packages("caretEnsemble")
+```
+
+
+
+**Đôi nét về thư viện caret**:  Ngôn ngữ `R` khác biệt bởi số lượng rất lớn các `packages` chuyên dụng khác nhau cho phép xây dựng các mô hình dự đoán. Tuy nhiên đây cũng chính là khuyết điểm, khi có quá nhiều các gói triển khai `machine learning algorithms`  dưới dạng các 
+hàm `rải rác` đòi hỏi ta cần nhiều thời gian để tìm kiếm và nắm vững những đặc trưng về cú pháp  cũng như cách sử dụng của từng hàm. Để giải quyết vấn đề này [Max Kuhn](https://www.linkedin.com/in/max-kuhn-864a9110) đã xây dựng một giao diện phổ quát cho phép truy cập và sử dụng các `machine learning algorithms` từ cái gói khác nhau được triển khai trên ngôn ngữ `R`. Kết quả chính là package [caret](https://cran.r-project.org/web/packages/caret/caret.pdf) (viết tắt từ Classification and Regression Training), được công bố đầu tiên vào năm 2008 tại tạp chí phần mềm thống kê [Journal of Statistical Software](https://www.jstatsoft.org/article/view/v028i05). Gói `caret` giúp chúng ta tiết kiệm được rất nhiều thời gian trong quá trình phân tích và xây dựng các `models`. Dưới đây là một số 
+đặc trưng cơ bản của gói `caret`:
+
+- Sử dụng cú pháp lệnh chung (phổ quát) không phụ thuộc vào cú pháp của các hàm gốc (các hàm triển khai các machine learningalgorithms)
+
+- Tự động tìm kiếm những giá trị tối ưu cho các `hyperparameters` của mô hình (`tuning parameters`)
+
+- Có khả năng tổ chức tính toán song song để tăng đáng kể tốc độ quá trình huấn luyện mô hình
+
+- Sử dụng `Caret` cho phép giải quyết hầu hết các nhiệm vụ trong `machine learning` từ tiền xủ lý cho đến đánh giá mô hình
+
+**1. Phân biệt 3 kỹ thuật  boosting, baggig và statcking**
+
+**Bagging** xây dựng một lượng lớn các `models` (thường là `cùng loại`) trên những `subsamples` khác nhau từ tập `training dataset` một cách song song nhằm đưa ra dự đoán tốt hơn. 
+
+**Boosting** xây dựng một lượng lớn các `models` (thường là `cùng loại`).  Tuy nhiên quá trình huấn luyện trong phương pháp này diễn ra tuần tự theo chuỗi (sequence). Trong chuỗi này mỗi `model` sau sẽ học cách sửa những `errors` của `model` trước (hay nói cách khác là dữ liệu mà `model` trước dự đoán sai). 
+
+
+![[Nguồn ảnh](https://www.datacamp.com/community/tutorials/adaboost-classifier-python)](/img/boosting-bagging.png)
+
+
+**Stacking** xây dựng một số `models` (thường là `khác loại`) và  một mô hình `supervisor model`, mô hình này sẽ học cách kết hợp kết quả dự báo của một số mô hình một cách tốt nhất.
+
+![[Nguồn ảnh](https://www.geeksforgeeks.org/stacking-in-machine-learning/)](/img/stacking.png)
+
+**2. Thực hành**
+
+Nạp các thư viện cần dùng vào phiên làm việc của `R` để thực hành:
+
+```{r, warning=FALSE, message=FALSE}
+library(caret)
+library(caretEnsemble) 
+```
+
+
+Kiểm tra số lượng các machine learning algorithms trong R được hỗ trợ bởi `caret`:
+```{r}
+carets <- getModelInfo()
+carets.names <- names(carets)
+length(carets.names)
+```
+
+
+**2.1 Dữ liệu để thực hành**
+
+Để thực hành tôi lựa chọn bài toán phân loại nhị phân (`binary classification`) với tập dữ liệu `ionoshene`. Trong bài toán này chúng ta cần dự đoán xem cao tần trả vể từ năng lượng của các hạt trong khí quyển có cấu trúc hay là không. Để tìm hiểu thêm về bài toán này các bạn có thể đọc ở [đây](http://archive.ics.uci.edu/ml/index.php).
+
+Load dữ liệu từ gói `mlbench`:
+
+```{r}
+# Load the dataset
+library(mlbench)
+data(Ionosphere)
+dataset <- Ionosphere
+```
+
+**2.1.1 Thống kê mô tả (descriptive statistics)**
+
+Kiểm tra kích thước tập dữ liệu:
+
+```{r}
+dim(dataset)
+```
+
+
+Kiểm tra cấu trúc của tập dữ liệu:
+```{r}
+str(dataset)
+```
+
+Hiển thị `5`  hàng dữ liệu đầu tiên:
+
+```{r}
+head(dataset, 5)
+```
+
+Kiểm tra `missing values` trong dữ liệu:
+
+```{r}
+sum(is.na(dataset))
+```
+
+Kiểm tra phân phối của từng thuộc tính:
+
+```{r}
+summary(dataset)
+```
+
+Thuộc tính thứ `V2` chỉ có 1 giá trị là `0` nên có thể loại bỏ:
+
+```{r}
+dataset$V2 <- NULL
+```
+
+
+Chuyển thuộc tính `V1` từ `factor` sang `numeric`:
+
+```{r}
+dataset$V1 <- as.numeric(as.character(dataset$V1))
+```
+
+
+Kiểm tra mức độ tương quan (`correlation`) giữa các thuộc tính (do số lượng thuộc tính lớn nên tôi chỉ hiển thị tương quan giữa 6 thuộc tính đầu làm mẫu):
+
+```{r}
+cor(dataset[,1:6])
+```
+
+**2.1.2 Trực quan hóa dữ liệu (`data visualization`)**
+
+Do số lượng thuộc tính nhiều nên tôi chỉ thực hiện `data visualization` đối 12 thuộc tính đầu của tập dữ liệu.
+
+`Histogram` cho 12 thuộc tính đầu:
+
+```{r}
+par(mfrow=c(3,4))
+for(i in 1:12) { 
+  hist(dataset[,i], main=names(dataset)[i], breaks = 30)
+}
+```
+
+
+`Boxplot` cho 12 thuộc tính đầu:
+
+```{r}
+boxplot(dataset[, 1:12], col = "orange", main = "Features Boxplot")
+```
+
+Trong bước này nếu phát hiện  trong các thuộc tính có nhiều giá trị ngoại lai (`outliers`) thì các bạn  có thể đọc post trước của tôi về cách loại bỏ `outliers` trong dữ liệu cho `machine learning` bằng các phương pháp thống kê tại [đây](https://svcuong.github.io/post/remove-outliers/).
+
+**2.1.3 Tiền xử lý dữ liệu (`data preprocessing`)**
+
+Xác định và Loại bỏ các thuộc tính tương quan với nhau cao (>0.75)
+
+```{r}
+# Tìm các thuộc tính tương quan với nhau cao
+cor_coefficient <- 0.75
+correlations <- cor(dataset[,1:13])
+highlyCorrelated <- findCorrelation(correlations, cutoff=cor_coefficient)
+length(highlyCorrelated)
+```
+Ở đây không có các thuộc tính tương quan cao với nhau, tuy nhiên nếu có thì các bạn có thể loại bỏ chúng như sau:
+
+```{r, eval=FALSE}
+datasetFeatures <- dataset[,-highlyCorrelated]
+dim(datasetFeatures)
+```
+
+Chuẩn hóa giá trị của các thuộc tính (`data normalization`) về khoảng `[0,1]`:
+
+```{r}
+preProcValues <- preProcess(dataset, method = c("range"))
+data_processed <- predict(preProcValues, dataset)
+```
+
+Vậy là dữ liệu của chúng ta đã sẵn sàng để `test` các thuật toán `ensemble learning` rồi.
+
+**2.2. Thuật toán Boosting**
+
+Trong phạm vi post này tôi sẽ test hai thuật toán `boosting` khá phổ biến là: `C5.0` và `Stochastic Gradient Boosting`
+
+Dưới đây là ví dụ huấn luyện hai mô hình này trên `R` với các tham số mặc định:
+
+```{r, warning=FALSE, message=FALSE}
+seed <- 10
+# tạo một đối tượng control cho cross-validation
+control <- trainControl(method="repeatedcv", number=10, repeats=3)
+# Trong đó
+# method = 'repeatedcv': sử dụng cross-validation với các tham số sau:
+# number = 10 có nhĩa là quá trình cross-validation cần chia dữ liệu gốc thành 10 phần bằng nhau
+# repeats = 3 có nhĩa là quá trình cross-validation sẽ hoàn thành sau 3 lần
+
+# C5.0
+set.seed(seed)
+fit.c50 <- train(Class~., data=dataset, method="C5.0", metric = "Accuracy", trControl=control)
+
+# Stochastic Gradient Boosting
+set.seed(seed)
+fit.gbm <- train(Class~., data=dataset, method="gbm", metric = "Accuracy", trControl=control, verbose=FALSE)
+```
+
+So sánh kết quả hai mô hình:
+
+```{r}
+boosting_results <- resamples(list(c5.0=fit.c50, gbm=fit.gbm))
+summary(boosting_results)
+dotplot(boosting_results)
+```
+
+Từ kết quả so sánh ta thấy thuật toán `C5.0` cho kết quả chính xác hơn so với `Stochastic Gradient Boosting` trong bài toán này (với độ chính xác là `94.68%`)
+
+**2.3 Thuật toán Bagging**
+
+Chúng ta cùng test hai thuật toán thuộc kỹ thuật `Bagging` là: `Bagged CART` và `Random Forest`
+
+Dưới đây là ví dụ huấn luyện hai mô hình này trên `R` với các tham số mặc định:
+
+```{r}
+control <- trainControl(method="repeatedcv", number=10, repeats=3)
+
+# Bagged CART
+set.seed(seed)
+fit.treebag <- train(Class~., data=dataset, method="treebag", metric = "Accuracy", trControl=control)
+
+# Random Forest
+set.seed(seed)
+fit.rf <- train(Class~., data=dataset, method="rf", metric = "Accuracy", trControl=control)
+```
+
+So sánh kết quả hai mô hình:
+```{r}
+bagging_results <- resamples(list(treebag=fit.treebag, rf=fit.rf))
+summary(bagging_results)
+dotplot(bagging_results)
+```
+
+Từ kết quả so sánh ta thấy thuật toán `Random Forest` cho kết quả chính xác hơn so với `CART` trong bài toán này (với độ chính xác là `93.44%`). Tuy nhiên cả hai thuật toán `Bagging` đều có độ chính xác nhỏ hơn so với 2 thuật toán `Boosting` trước.
+
+**2.4. Thuật toán Stacking**
+
+Để kết hợp các mô hình `machine learning` khác nhau trong `R` chúng ta sử dụng thư viện **caretEnsemble**. Với danh sách các `caret models`, hàm `caretStack()` của gói này có thể sự dụng để chỉ định mô hình bậc cao hơn, từ đó sẽ học cách tìm sự kết hợp tốt nhất những `sub-models` với nhau.
+
+Ở ví dụ này, tôi sẽ sử dụng 5 `sub-models` sau cho tập dữ liệu `ionosphere`:
+
+- Linear Discriminate Analysis (`LDA`)
+
+- Classification and Regression Trees (`CART`)
+
+- Logistic Regression (`GLM`)
+
+- k-Nearest Neighbors (`kNN`)
+
+- Support Vector Machine with a Radial Basis Kernel Function (`SVM`)
+
+Dưới đây là ví dụ huấn luyện 5 mô hình này trên `R` với các tham số mặc định:
+
+```{r, warning=FALSE, message=FALSE}
+control <- trainControl(method="repeatedcv", number=10, repeats=3, savePredictions=TRUE, classProbs=TRUE)
+algorithmList <- c('lda', 'rpart', 'glm', 'knn', 'svmRadial')
+set.seed(seed)
+models <- caretList(Class~., data=dataset, trControl=control, methodList=algorithmList)
+```
+
+So sánh kết quả các mô hình:
+```{r}
+results <- resamples(models)
+summary(results)
+dotplot(results)
+```
+
+Ta thấy trong các mô hình này thì `SVM` cho kết quả chính xác nhất (`94.78%`). 
+
+Giờ chúng ta hãy thử dùng kỹ thuật `stacking` để xem có thể cải thiện được độ chính xác không.
+
+**`Lưu ý`:** Khi các bạn muốn kết hợp các mô hình với nhau sử dụng kỹ thuật `stacking`, thì các bạn cần kiểm chứng rằng kết quả dự báo từ các mô hình này tương quan với  nhau thấp. Nếu kết quả dự báo  của các `sub-models` tương quan cao với nhau (> 0.75) thì có nghĩa là chúng sẽ cho kết quả dự báo tương tự nhau, điều này sẽ làm giảm hiệu quả khi ta kết hợp các mô hình này với nhau.
+
+Kiểm tra độ tương quan giữa các `sub-models`:
+
+```{r fig.height=10, fig.width=10}
+modelCor(results)
+splom(results)
+```
+
+
+Nhìn vào kết quả ta có thể thấy các `su-models` cho kết quả dự báo tương quan với nhau thấp theo từng cặp. Cặp tương quan với nhau nhất là `SVM` và `kNN` với độ tương quan `0.549`, cũng vẫn nhỏ hơn mức quy địn là cao (`>0.75`).
+
+Nào chúng ta hãy thử kết hợp `predictions` của các `sub-models` sử dụng mô hình `gml`:
+
+```{r}
+stackControl <- trainControl(method="repeatedcv", number=10, repeats=3, savePredictions=TRUE, classProbs=TRUE)
+set.seed(seed)
+stack.glm <- caretStack(models, method="glm", metric="Accuracy", trControl=stackControl)
+print(stack.glm)
+```
+
+Độ chính xác cải thiện lên `95.44%` so với chỉ sử dụng `SVM model` là `94.78%`, tuy nhiên cũng chưa có độ chênh lệnh nhiều.
+
+Tiếp theo tôi thử thử kết hợp `predictions` của các `sub-models` sử dụng mô hình `random forest`:
+
+```{r}
+set.seed(seed)
+stack.rf <- caretStack(models, method="rf", metric="Accuracy", trControl=stackControl)
+print(stack.rf)
+```
+
+Độ chính xác cũng cải thiện hơn so với chỉ dùng `svm model` (`96.23%`).
+
+**Tham khảo:**
+[How to Build an Ensemble Of Machine Learning Algorithms in R](https://machinelearningmastery.com/machine-learning-ensembles-with-r/)

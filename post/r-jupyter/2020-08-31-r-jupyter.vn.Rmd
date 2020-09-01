@@ -1,0 +1,99 @@
+---
+title: Cách thêm và sử dụng R trong Jupyter Notebook
+author: Cuong
+date: '2020-08-31'
+slug: r-jupyter
+categories:
+  - R
+  - Python
+tags:
+  - Jupyter Notebook
+  - Anaconda
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-08-31T22:36:10+04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+Để cài đặt và sử dụng `R` + `r-essentials packages` trong Jupyter Notebook có 2 cách sau:
+
+
+## Cách 1: Dùng Anaconda Navigation
+
+
+Bước 1. Mở Anaconda `Navigator`
+
+![](/img/r-jupyter1.PNG)
+
+Bước 2.  Chọn `Environments` để tạo môi trường Anaconda mới. Click `Create` và tích chọn `r` cũng như phiên bản `Python` cần thiết:
+
+
+![](/img/r-jupyter2.PNG)
+
+Bước 3. Mở  `Jupyter Notebook` trong môi trường mới tạo có chứa `R package`:
+
+![](/img/r-jupyter3.png)
+
+## Cách 2: Sử dụng Anaconda `Prompt`
+
+Bước 1. Mở Anaconda `Prompt`
+
+![](/img/r-python3.png)
+Bước 2. Tạo và `active` môi trường anaconda mới bằng lệnh sau:
+
+```r
+conda create -n ENV_NAME
+conda activate ENV_NAME
+```
+
+Bước 3. Cài `r-irkernel` cho môi trường anaconda mới tạo bằng lệnh sau:
+
+```r
+conda install -c r r-irkernel
+```
+
+Bước 4. Mở Jupyter Notebook trong môi trường anaconda chứa R mới khởi tạo bằng lệnh:
+
+```r
+jupyter notebook
+```
+
+Sau khi đã mở `Jupyter Notebook` trong môi trường Anaconda mới tạo có chứa `R`, để tạo một `notebook` mới cho ngôn ngữ `R`, chọn `New` rồi chọn `R`:
+
+![](/img/r-jupyter4.PNG)
+
+## Tips cho cài `R packages` trong môi trường Anaconda:
+
+`Active` môi trường Anaconda có chứa R từ `Anaconda Prompt` và gõ lệnh cài `R package` như sau:
+
+```r
+conda install r-NAME_PACKAGE
+```
+
+Ví dụ cài gói `ggplot2`
+
+```r
+conda install r-ggplot2
+```
+
+Nếu không cài được thì chúng ta có thể:
+
+1. `Launching R` trực tiếp trong `Anaconda Prompt` và dùng lệnh `install.packages("NAME_PACKAGE")` để cài đặt package như khi sử dụng R.
+
+2. Hoặc dùng cách sau:
+
+```
+conda install conda-build
+conda skeleton cran <something_on_cran>
+conda build r-<something_on_cran_lowercased>
+conda install -c local r-<something_on_cran_lowercased>
+```
+
+

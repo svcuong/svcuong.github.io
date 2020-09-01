@@ -1,0 +1,151 @@
+---
+title: Cách sử dụng các toán tử pipes trong R
+author: Cuong Sai
+date: '2020-08-30'
+slug: pipes
+categories:
+  - R
+tags:
+  - Data Manipulation
+  - Data Visualization
+  - Pipes
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-08-30T08:21:58+04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval= TRUE, warning = FALSE, message = FALSE)
+```
+
+Sự ra đời của các toán tử `pipes` trong package [magrittr](https://magrittr.tidyverse.org/reference/index.html)
+đã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ `R`. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết `code` cũng giúp làm cho `code` dễ đọc và dễ bảo trì hơn. 
+
+Ở bài này tôi `note` lại cách dùng của 4 toán tử `pipes` cho bạn nào cần: 
+
+- `%>%` : Forward-pipe operator
+
+- `%<>%` : Compound assignment pipe-operator
+
+- `%T>%` :  Tee Operator
+
+- `%$%` : Exposition pipe-operator
+
+Mục đích của việc sử dụng các toán tử `pipes`:
+
+- Tránh gọi lồng các hàm
+
+- Giảm việc tạo và sử dụng các biến trung gian
+
+- Tổ chức  tập hợp các câu lệnh thành một chuỗi thống nhất, dễ hiểu.
+
+
+Nạp các thư viện cần thiết vào phiên làm việc của R để thực hành:
+
+```{r}
+library(tidyverse)
+library(magrittr)
+```
+
+`Chú ý`: Khi nạp gói `tidyverse` thì pipe `%>%` được nạp tự động, tuy nhiên để dùng các toán từ khác thì chúng ta cần nạp thêm cả gói `magrittr`. 
+
+## 1. Toán tử `%>%` (forward-pipe operator)
+
+Đây là `pipe` được sử dụng nhiều nhất trong R, hầu như mỗi công việc thực hiện trên R tôi đều sử dụng nó rất nhiều lần.
+
+**Nguyên lý của pipe `%>%`:** chuyển toàn bộ vế bên trái (có thể là kết quả của hàm đi trước)  thành dữ liệu đầu vào cho hàm bên phải tạo thành một dòng chảy dữ liệu từ trái qua phải. 
+
+Ví dụ với tập dữ liệu `diamonds`:
+
+```{r}
+head(diamonds)
+```
+```{r}
+diamonds %>%
+  filter(color == "I") %>%
+  group_by(cut) %>%
+  summarize(price = mean(price))
+```
+
+Tương đương với cách truyền thống như sau:
+```{r}
+diamonds_1 <- filter(diamonds, color == "I")
+diamonds_2 <- group_by(diamonds_1, cut)
+(diamonds_3 <- summarize(diamonds_2, price = mean(price)))
+```
+
+
+
+## 2. Toán tử `%<>%` (compound assignment pipe-operator)
+
+**Nguyên lý của pipe `%<>%: `** Thực hiện nhiệm vụ tương tự như với toán tử  `%>%`, tuy nhiên kết quả cuối cùng của dòng chảy dữ liệu được gán lại vào đối tượng ban đầu của dòng chảy.
+
+
+Ví dụ:
+
+```{r}
+diamonds %<>%
+  filter(color == "I") %>% select(carat, cut, color)
+diamonds
+```
+
+## 3. Toán tử `%T%` (Tee Operator)
+
+**Nguyên lý của pipe `%T>%`:** Dòng chảy dữ liệu trong toán tử này có thể được hình dung tương tự như ống nước hình chữ T. Dữ liệu đầu vào của 1 hàm đi trước sẽ được truyền cho 2 nhánh tương ứng cho hai hàm phía sau
+
+
+Ví dụ:
+
+```{r}
+rnorm(200) %>%
+    matrix(ncol = 2) %T>%
+    plot %>%
+    colSums
+```
+
+Tương đương với:
+
+```{r}
+rnorm(200) %>%
+    matrix(ncol = 2) %>%
+    { plot(.); . } %>%
+    colSums
+```
+
+Hoặc viết theo cách truyền thống:
+
+```{r}
+m <- matrix(rnorm(200), ncol = 2)
+plot(m)
+colSums(m)
+```
+
+## 4. Toán tử `%$%` (exposition pipe-operator)
+
+**Nguyên lý của pipe `%$% `:** Toán tử cho phép trích xuất đích danh một đối tượng trong kết quả của hàm đi trước để sử dụng như dữ liệu đầu vào cho hàm đi sau. 
+
+Ví dụ:
+
+```{r}
+iris %>%
+    subset(Sepal.Length > mean(Sepal.Length)) %$%
+    cor(Sepal.Length, Sepal.Width)
+```
+
+Tương đương với việc sử dụng hàm with():
+
+```{r}
+with(subset(iris, Sepal.Length > mean(Sepal.Length)),
+     cor(Sepal.Length, Sepal.Width))
+```
