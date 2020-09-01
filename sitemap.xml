@@ -13,12 +13,22 @@
   </url>
   
   <url>
+    <loc>/tutorials/statistics/example1/</loc>
+    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tutorials/python-tutorials/example2/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
   <url>
     <loc>/tutorials/r-tutorials/example2/</loc>
+    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/statistics/example2/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
@@ -399,6 +409,11 @@
   
   <url>
     <loc>/tutorials/r-tutorials/</loc>
+    <lastmod>2018-09-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/statistics/</loc>
     <lastmod>2018-09-09T00:00:00+00:00</lastmod>
   </url>
   
