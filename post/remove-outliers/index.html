@@ -41,7 +41,7 @@
   
   
   
-  <meta name="theme-color" content="#2962ff">
+  <meta name="theme-color" content="#4caf50">
   
 
   
@@ -287,9 +287,9 @@
   
   <meta property="twitter:card" content="summary">
   
-  <meta property="og:site_name" content="Khoa Học Dữ Liệu">
+  <meta property="og:site_name" content="Cuong Sai">
   <meta property="og:url" content="/post/remove-outliers/">
-  <meta property="og:title" content="Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python | Khoa Học Dữ Liệu">
+  <meta property="og:title" content="Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python | Cuong Sai">
   <meta property="og:description" content="Xác định và loại bỏ ouliers trong dữ liệu là một bước vô cùng quan trọng giúp tăng cao độ chính xác cho các mô hình dự đoán"><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
   <meta property="twitter:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG"><meta property="og:locale" content="en-us">
   
@@ -334,7 +334,7 @@
   
   "publisher": {
     "@type": "Organization",
-    "name": "Khoa Học Dữ Liệu",
+    "name": "Cuong Sai",
     "logo": {
       "@type": "ImageObject",
       "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
@@ -369,7 +369,7 @@
       src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
 
-  <title>Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python | Khoa Học Dữ Liệu</title>
+  <title>Sử dụng thống kê để xác định và loại bỏ dữ liệu ngoại lai cho machine learning trong R và Python | Cuong Sai</title>
 
 </head>
 
@@ -426,7 +426,7 @@
 
     
     <div class="d-none d-lg-inline-flex">
-      <a class="navbar-brand" href="/">Khoa Học Dữ Liệu</a>
+      <a class="navbar-brand" href="/">Cuong Sai</a>
     </div>
     
 
@@ -439,7 +439,7 @@
 
     
     <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-      <a class="navbar-brand" href="/">Khoa Học Dữ Liệu</a>
+      <a class="navbar-brand" href="/">Cuong Sai</a>
     </div>
     
 
@@ -471,6 +471,36 @@
 
         <li class="nav-item">
           <a class="nav-link " href="/"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/about-me/"><span>About</span></a>
         </li>
 
         
@@ -555,7 +585,7 @@
             
               <a class="dropdown-item" href="/#featured"><span>Featured Publications</span></a>
             
-              <a class="dropdown-item" href="/#projects"><span>My Projects</span></a>
+              <a class="dropdown-item" href="/#projects"><span>Projects</span></a>
             
               <a class="dropdown-item" href="/#conference"><span>Conferences</span></a>
             
@@ -578,43 +608,6 @@
               <a class="dropdown-item" href="/tutorials/statistics"><span>Statistics</span></a>
             
           </div>
-        </li>
-
-        
-        
-
-        
-
-        
-        
-        
-          
-        
-
-        
-
-        
-        
-        
-        
-
-        
-          
-            
-            
-          
-          
-            
-            
-            
-              
-            
-            
-          
-        
-
-        <li class="nav-item">
-          <a class="nav-link " href="/#gallery"><span>Gallery</span></a>
         </li>
 
         
@@ -832,20 +825,20 @@ data = 2* randn(5000) + 20
 <pre><code class="language-r"># R
 hist(data, breaks= 60, main=&quot;Histogram With breaks=60&quot;)
 </code></pre>
-<p><img src="2020-08-19-remove-outliers.vn_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/post/2020-08-19-remove-outliers.vn_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Nhân tiện đây tôi cũng xin giới thiệu một số hàm hỗ trợ cho các tính toán thống kê trong R như: <code>summary()</code>, <code>sample()</code>, <code>dnorm()</code>, <code>pnorm()</code>, <code>qnorm()</code>, <code>dunif()</code>, <code>punif()</code>, <code>qunif()</code>, <code>runif()</code>, <code>mean()</code>, <code>sd()</code>, <code>cov()</code>, <code>cor()</code>,&hellip;</p>
 <p>Hàm <code>summay()</code> cho phép thực hiện thống kê mô tả (<code>descriptive statistics</code>) để cung cấp cho chúng ta một số thông tin thống kê cơ bản về một biến số:</p>
 <pre><code class="language-r"># R
 summary(data)
 </code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   12.39   18.68   20.01   20.01   21.39   27.94
+##   12.88   18.71   20.01   20.05   21.40   27.48
 </code></pre>
 <p>Ví dụ sử dụng hàm <code>sample()</code> để tạo mẫu ngẫu nhiên có lặp lại 10 số nguyên từ 0 đến 9:</p>
 <pre><code class="language-r"># R
 sample(0:9, replace = TRUE)
 </code></pre>
-<pre><code>##  [1] 5 0 1 5 8 9 7 8 2 1
+<pre><code>##  [1] 0 9 4 1 2 0 0 8 6 5
 </code></pre>
 <p>Ví dụ sử dụng hàm tính mật độ phân phối chuẩn <code>dnorm()</code> để ước tính xác xuất của học sinh có điểm là <code>16.5</code>  biết rằng điểm của học sinh tuân theo phân phối chuẩn với giá trị trung bình là <code>15</code>, độ lệnh chuẩn là <code>2.5</code>:</p>
 <pre><code class="language-r"># R
@@ -902,26 +895,26 @@ lower_std, upper_std = mean_data - limit_std, mean_data + limit_std
 ouliers_index_std &lt;- which(data &gt; upper_std | data &lt; lower_std)
 print(paste(&quot;Number of outliers:&quot;, length(ouliers_index_std)))
 </code></pre>
-<pre><code>## [1] &quot;Number of outliers: 18&quot;
+<pre><code>## [1] &quot;Number of outliers: 13&quot;
 </code></pre>
 <pre><code class="language-python"># Python
 ouliers_index_std = [x for x in data if x &lt; lower_std or x &gt; upper_std]
 print('Number of outliers: %d' % len(ouliers_index_std))
 </code></pre>
-<pre><code>## Number of outliers: 15
+<pre><code>## Number of outliers: 18
 </code></pre>
 <pre><code class="language-r"># Loại bỏ outliers
 # R
 data_new_std &lt;- data[-ouliers_index_std]
 print(paste(&quot;Number of Non-outliers:&quot;, length(data_new_std)))
 </code></pre>
-<pre><code>## [1] &quot;Number of Non-outliers: 4982&quot;
+<pre><code>## [1] &quot;Number of Non-outliers: 4987&quot;
 </code></pre>
 <pre><code class="language-python"># Python
 data_new_std = [x for x in data if x &gt;= lower_std and x &lt;= upper_std]
 print('Number of Non-outliers:: %d' % len(data_new_std))
 </code></pre>
-<pre><code>## Number of Non-outliers:: 4985
+<pre><code>## Number of Non-outliers:: 4982
 </code></pre>
 <p><strong>2. Phương pháp <code>IQR</code></strong></p>
 <p>Tứ phân vị là đại lượng mô tả sự phân bố và sự phân tán của tập dữ liệu. Tứ phân vị có <code>3</code> giá trị, đó là tứ phân vị thứ nhất <code>Q1</code> (25th), thứ hai <code>Q2</code> (50th) hay <code>median</code>, và thứ ba <code>Q3</code> (75th). Ba giá trị này chia một tập hợp dữ liệu (đã sắp xếp dữ liệu theo trật từ từ bé đến lớn) thành <code>4</code> phần có số lượng quan sát đều nhau. Tứ phân vị được xác định như sau:</p>
@@ -934,7 +927,7 @@ print('Number of Non-outliers:: %d' % len(data_new_std))
 
 <a href="https://medium.com/@dhwajraj/learning-python-regression-analysis-part-7-handling-outliers-in-data-d36ee9e2130b" target="_blank" rel="noopener">Nguồn ảnh</a></p>
 <p><code>IQR</code> là sự khác biệt giữa tứ phân vị thứ nhất <code>Q1</code> và tứ phân vị thứ ba <code>Q3</code>:</p>
-<p>$$IQR = Q_3 - Q_1$$</p>
+<p><code>$$IQR = Q_3 - Q_1$$</code></p>
 <p>Giá trị <code>IQR</code> có thể sử dụng để xác định <code>outliers</code> bằng cách thiết lập các giá trị biên <code>Upper/Lower</code> giống với phương pháp <code>STD</code> như sau:  Nếu chúng ta trừ đi <code>kxIQR</code> từ tứ phân vị đầu tiên <code>Q1</code>, bất kỳ giá trị dữ liệu nào nhỏ hơn con số này được coi là giá trị outliers. Tương tự như vậy, nếu chúng ta thêm <code>kxIQR</code> đến tứ phân vị thứ ba <code>Q3</code>, bất kỳ giá trị dữ liệu nào lớn hơn con số này được coi là outliers. Giá trị <code>k</code>  thường được chọn là <code>1.5</code>. Trong trường hợp xác định các <code>extreme outliers</code> có thể dùng giá trị <code>k = 3</code>.</p>
 <p><strong>Các bước xác định <code>outliers</code> bằng phương pháp <code>IQR</code>:</strong></p>
 <p>Bước 1: Tính <code>IQR</code></p>
@@ -966,26 +959,26 @@ lower_iqr, upper_iqr = q25 - limit_iqr, q75 + limit_iqr
 ouliers_index_iqr &lt;- which(data &gt; upper_iqr | data &lt; lower_iqr)
 print(paste(&quot;Number of outliers:&quot;, length(ouliers_index_iqr)))
 </code></pre>
-<pre><code>## [1] &quot;Number of outliers: 35&quot;
+<pre><code>## [1] &quot;Number of outliers: 33&quot;
 </code></pre>
 <pre><code class="language-python"># Python
 ouliers_index_iqr = [x for x in data if x &lt; lower_iqr or x &gt; upper_iqr]
 print('Number of outliers: %d' % len(ouliers_index_iqr))
 </code></pre>
-<pre><code>## Number of outliers: 39
+<pre><code>## Number of outliers: 38
 </code></pre>
 <pre><code class="language-r"># Loại bỏ outliers
 # R
 data_new_iqr &lt;- data[-ouliers_index_iqr]
 print(paste(&quot;Number of Non-outliers:&quot;, length(data_new_iqr)))
 </code></pre>
-<pre><code>## [1] &quot;Number of Non-outliers: 4965&quot;
+<pre><code>## [1] &quot;Number of Non-outliers: 4967&quot;
 </code></pre>
 <pre><code class="language-python"># Python
 data_new_iqr = [x for x in data if x &gt;= lower_iqr and x &lt;= upper_iqr]
 print('Non-outlier observations: %d' % len(data_new_iqr))
 </code></pre>
-<pre><code>## Non-outlier observations: 4961
+<pre><code>## Non-outlier observations: 4962
 </code></pre>
 <p><strong>3. Xây dựng hàm tự động xác định và loại bỏ <code>outliers</code></strong></p>
 <p>Chúng ta có thể tạo một hàm trên R dựa vào các bước ở trên để tự động xác định và xóa outliers như sau:</p>
@@ -1039,15 +1032,15 @@ find_outliers_iqr &lt;- function(data) {
 <p>Kiểm tra kết quả thực hiện của hai hàm này:</p>
 <pre><code class="language-r">new_data_std &lt;- find_outliers_std(data)
 </code></pre>
-<pre><code>## Number of outliers: 18
+<pre><code>## Number of outliers: 13
 </code></pre>
-<pre><code>## Number of Non-outliers: 4965
+<pre><code>## Number of Non-outliers: 4967
 </code></pre>
 <pre><code class="language-r">new_data_iqr &lt;- find_outliers_iqr(data)
 </code></pre>
-<pre><code>## Number of outliers: 35
+<pre><code>## Number of outliers: 33
 </code></pre>
-<pre><code>## Number of Non-outliers: 4965
+<pre><code>## Number of Non-outliers: 4967
 </code></pre>
 <p>Đối với Python thì các bạn có thể tạo hàm tương tự sử dụng các bước trên</p>
 <hr>

@@ -33,12 +33,12 @@
   </url>
   
   <url>
-    <loc>/talk/example/</loc>
+    <loc>/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>/talk/example/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url>
   
@@ -510,6 +510,10 @@
   <url>
     <loc>/tag/regression/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about-me/</loc>
   </url>
   
   <url>
