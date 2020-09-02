@@ -253,17 +253,7 @@
   </url>
   
   <url>
-    <loc>/tag/iot/</loc>
-    <lastmod>2020-06-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/author/maxim-shcherbakov/</loc>
-    <lastmod>2020-06-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/predictive-maintenance/</loc>
     <lastmod>2020-06-08T00:00:00+00:00</lastmod>
   </url>
   
@@ -298,11 +288,6 @@
   </url>
   
   <url>
-    <loc>/tag/time-series-forecasting/</loc>
-    <lastmod>2020-03-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/publication/hi-tech2020/</loc>
     <lastmod>2020-03-05T00:00:00+00:00</lastmod>
   </url>
@@ -314,11 +299,6 @@
   
   <url>
     <loc>/publication/swsys2020/</loc>
-    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/industry-4.0/</loc>
     <lastmod>2019-12-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -345,6 +325,16 @@
   <url>
     <loc>/tutorials/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/iot/</loc>
+    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/predictive-maintenance/</loc>
+    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -418,16 +408,6 @@
   </url>
   
   <url>
-    <loc>/tag/augmented-reality/</loc>
-    <lastmod>2018-08-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/multiple-source-analysis/</loc>
-    <lastmod>2018-08-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/publication/dcnn2018/</loc>
     <lastmod>2018-08-24T00:00:00+00:00</lastmod>
   </url>
@@ -444,11 +424,6 @@
   
   <url>
     <loc>/publication/swsys2018/</loc>
-    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/source-themes/</loc>
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
   </url>
   
