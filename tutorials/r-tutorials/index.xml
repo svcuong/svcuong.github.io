@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Khoa học dữ liệu với R | Cuong Sai</title>
+    <title>Khoa học dữ liệu với R | CUONG SAI</title>
     <link>/tutorials/r-tutorials/</link>
       <atom:link href="/tutorials/r-tutorials/index.xml" rel="self" type="application/rss+xml" />
     <description>Khoa học dữ liệu với R</description>
