@@ -358,21 +358,6 @@
   </url>
   
   <url>
-    <loc>/tutorials/r-tutorials/data-visualization/rmarkdown/</loc>
-    <lastmod>2018-09-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/r-tutorials/</loc>
-    <lastmod>2018-09-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/</loc>
-    <lastmod>2018-09-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tutorials/r-tutorials/data-visualization/</loc>
     <lastmod>2018-09-09T00:00:00+04:00</lastmod>
   </url>
@@ -393,7 +378,12 @@
   </url>
   
   <url>
-    <loc>/tutorials/r-tutorials/data-visualization/example/</loc>
+    <loc>/tutorials/r-tutorials/</loc>
+    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/</loc>
     <lastmod>2018-09-09T00:00:00+04:00</lastmod>
   </url>
   
