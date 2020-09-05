@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Visualization | CUONG SAI</title>
+    <link>/category/data-visualization/</link>
+      <atom:link href="/category/data-visualization/index.xml" rel="self" type="application/rss+xml" />
+    <description>Data Visualization</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>vi-en</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Fri, 04 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
+      <title>Data Visualization</title>
+      <link>/category/data-visualization/</link>
+    </image>
+    
+    <item>
+      <title>line-graph</title>
+      <link>/tutorials/r-tutorials/ggplot2/line-graph/</link>
+      <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/tutorials/r-tutorials/ggplot2/line-graph/</guid>
+      <description>
+
+
+
+</description>
+    </item>
+    
+  </channel>
+</rss>

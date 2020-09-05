@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deep Learning | CUONG SAI</title>
+    <link>/tutorials/r-tutorials/deep-learning/</link>
+      <atom:link href="/tutorials/r-tutorials/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Deep Learning</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>vi-en</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Sun, 09 Sep 2018 00:00:00 +0400</lastBuildDate>
+    <image>
+      <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
+      <title>Deep Learning</title>
+      <link>/tutorials/r-tutorials/deep-learning/</link>
+    </image>
+    
+  </channel>
+</rss>

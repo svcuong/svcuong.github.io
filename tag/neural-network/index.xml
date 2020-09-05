@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neural Network | CUONG SAI</title>
+    <link>/tag/neural-network/</link>
+      <atom:link href="/tag/neural-network/index.xml" rel="self" type="application/rss+xml" />
+    <description>Neural Network</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>vi-en</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Thu, 03 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
+      <title>Neural Network</title>
+      <link>/tag/neural-network/</link>
+    </image>
+    
+    <item>
+      <title>Mở đầu về Deep Learning. Lý thuyết Neural Network</title>
+      <link>/post/deep-learning/intro-deep-learning/</link>
+      <pubDate>Thu, 03 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/post/deep-learning/intro-deep-learning/</guid>
+      <description>
+
+
+&lt;div id=&#34;giới-thiệu-về-deep-learning&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1. Giới thiệu về Deep Learning&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Deep Learning&lt;/strong&gt; (học sâu) được biết đến như là một ngành nhỏ của Machine Learning, hiện đang là một trong những cách tiếp cận phổ biến nhất để tạo ra các hệ thống trí tuệ nhân tạo, ví dụ như nhận hệ thống nhận dạng giọng nói, xử lý ngôn ngữ tự nhiên, thị giác máy tính, v.v. Những thành tựu đạt được của Deep Learning những năm gần đây đã đóng góp đáng kể vào sự phát triển của trí tuệ nhân tạo (Artificial Intelligence, AI). Để hiểu thêm về sự khác nhau giữa các khái niệm AI, Machine Learning và Deep Learning, cũng như mối quan hệ của các lĩnh vực này với khoa học dữ liệu các bạn có thể đọc lại bài mở đầu về khoa học dữ liệu tại &lt;a href=&#34;https://svcuong.github.io/post/2020-08-17-khai-niem-co-ban/&#34;&gt;đây&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Deep Learning&lt;/strong&gt; là cụm từ để chỉ các mạng nơ ron nhân tạo (artificial neural network) với nhiều các lớp ẩn (hidden layer). Rất nhiều những ý tưởng cơ bản của deep learning được đặt nền móng từ những năm 80-90 của thế kỷ trước, tuy nhiên deep learning chỉ đột phá và được ứng dụng rộng rãi từ năm 2012 trở lại đây. Một trong những ý tưởng quan trọng trong lĩnh vực Deep Learning phải kể đến như là mạng nơ-ron tích chập (Convolutional Neural Networks, CNN) để giải quyết bài toán nhận diện mẫu/quy luật (pattern recognition) và thuật toán lan truyền ngược (Backpropagation) đã nổi tiếng từ năm 1989. Hay như mạng Long Short-Term Memory (LSTM) - là cơ sở của Deep Learning cho dự báo dữ liệu chuỗi thời gian, được đề xuất vào năm 1997, và vẫn hầu như không thay đổi gì từ đó đến nay. Như vậy tại sao deep learning lại bắt đầu được ứng dụng từ năm 2012? Điều gì đã thay đổi sau hai mươi năm?&lt;/p&gt;
+&lt;p&gt;Có nhiều nhân tố dẫn đến sự bùng nổ này, tuy nhiên có thể khái quát gọn lại thành 3 yếu tố chính sau:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Cải tiến về Hardware:&lt;/strong&gt; Tốc độ xử lý của máy tính trong giai đoạn từ 1990 đến 2010 tăng nhanh hơn gấp &lt;a href=&#34;https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438&#34;&gt;5000&lt;/a&gt; lần. Kết quả là bây giờ với một chiêc laptop cá nhân các bạn cũng có thể thể huấn luyện những mô hình deep learning phức tạp, điều này 25 năm trước tưởng chừng như là không thể. Đặc biệt khi NVidia thiết kế thành công kiến trúc CUDA vào năm 2006, lúc đó họ thậm chí còn chưa thể hình dung ra rằng hiệu quả từ kiến trúc này to lớn như thế nào. 10 năm sau, dòng GPU chuyên biệt hỗ trợ Deep Learning của NVidia chính thức ra mắt – &lt;a href=&#34;https://www.nvidia.com/en-us/data-center/volta-gpu-architecture/&#34;&gt;Volta&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. Dữ liệu:&lt;/strong&gt; Đôi khi AI được coi như là cuộc các mạng công nghiệp mới. Nếu nói deep learning là động cơ hơi nước thì dữ liệu chính là than: nhiên liệu để nuôi dưỡng các hệ thống thông minh nhân tạo. Nếu không có dữ liệu thì chúng ta không thể phát triển bất kỳ một hệ thống AI nào. Chẳng thế mà trong giới khoa học dữ liệu nhiều người coi dữ liệu mới chính là nhiên liệu của các ngành công nghiệp trong thế kỹ 21, và ví nếu như dầu mỏ là nguồn nhiên liệu &lt;code&gt;vàng&lt;/code&gt;, thì dữ liệu xứng đáng là nguồn nhiên liệu &lt;code&gt;kim cương&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. Thành tựu về thuật toán:&lt;/strong&gt; Ngoài máy móc và dữ liệu, đến cuối những năm 2000 chúng ta không có phương pháp hiệu quả để huấn luyện mạng deep neural networks. Kết quả là neural networks vẫn chỉ là những mạng không &lt;code&gt;sâu&lt;/code&gt; với 1 hoặc 2 layer để học biểu diễn (representation learning) từ dữ liệu. Vì vậy trong thời gian này chúng hầu như bị lãng quên và bị thay thế bởi các thuật toán machine learning cổ điển như là Support Vector Machine và Random Forest để giải quyết các bài toán khác nhau. Vấn đề chính nằm ở việc lan truyền gradient qua gói các layer. Tín hiệu lan truyền ngược sử dụng để huấn luyện mạng nơ-ron bị yếu dần theo chiều tăng của số lượng các layer.&lt;/p&gt;
+&lt;p&gt;Bối cảnh thay đổi vào những năm 2009-2010 khi xuất hiện các cải tiến về algorithms đơn giản nhưng cực kỳ hiệu quả, cho phép cải thiện bài toán lan truyền gradient:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Cải thiện hàm kích hoạt (activation function), ví dụ như sự ra đời của hàm &lt;code&gt;ReLU&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(ReLU(x) = max(x,0)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Kỹ thuật dropout&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Cải thiện phương pháp tối ưu, như là RMSProp và Adam.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Chỉ khi đó các cải tiến này mới cho phép sử dụng mô hình với 10 layers hay nhiều hơn, và bắt đầu sự phát triển của Deep Learning. Cuối cùng vào những năm 2014, 2015 và 2016 đã были открыты еще более совершенные способы
+распространения градиента, такие как пакетная нормализация, обходные связи
+и отделимые свертки. В настоящее время мы можем обучать с нуля модели с тысячами слоев в глубину&lt;/p&gt;
+&lt;p&gt;Một trong số nguyên nhân thành công của các mạng neuron sâu, là network có thể tự động trích xuất các thuộc tính đặc trưng cần thiết để giải quyết bài toán từ dữ liệu. Ở các phương pháp Machine Learning (máy học) truyền thống thuộc tính được trích xuất bởi các những người có trình độ chuyên môn - bài toán feature enginerring . Ngoài ra khi xử lý số lượng lớn dữ liệu thì mạng neron sẽ giải quyết nhiệm vụ trích xuất thuộc tính tốt hơn con người. (Minh họa ở hình dưới)&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/img/ml-dl.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Machine Learning vs Deep Learning&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Ở hình trên liên quan đến lĩnh vực nghiên cứu của tôi - xử lý dữ liệu đa cảm biến) - mỗi cảm biến được coi là một thuộc tính. Ở các lĩnh vực khác thì thuộc tính sẽ là các biến khác ví dụ như&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;lý-thuyết-neural-network&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2. Lý thuyết Neural Network&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=orgXajB6z58&amp;amp;t=3132s&#34; class=&#34;uri&#34;&gt;https://www.youtube.com/watch?v=orgXajB6z58&amp;amp;t=3132s&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=40mnpYTPpJg&amp;amp;t=6262s&#34; class=&#34;uri&#34;&gt;https://www.youtube.com/watch?v=40mnpYTPpJg&amp;amp;t=6262s&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;lý-thuyết-neural-network-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2. Lý thuyết Neural Network&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;2.1 Một chút về Biology&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Từ thế kỷ 19, các nhà khoa học đã quan tâm nhiều đến hoạt động của hệ thần kinh. Ở mỗi nơ-ron có phần thân (soma) chứa nhân, các tín hiệu đầu vào qua sợi nhánh (dendrites) và các tín hiệu đầu ra qua sợi trục (axon) kết nối với các nơ-ron khác. Hiểu đơn giản mỗi nơ-ron nhận dữ liệu đầu vào qua sợi nhánh và truyền dữ liệu đầu ra qua sợi trục, đến các sợi nhánh của các nơ-ron khác.&lt;/p&gt;
+&lt;p&gt;ấy cảm hứng từ sự hoạt động của các nơ-ron trong hệ thần kinh.&lt;/p&gt;
+&lt;p&gt;Các mô hình mạng neural trong trí tuệ nhân tạo thường được gọi là các mạng neural nhân tạo; chúng thực chất là các mô hình toán học đơn giản định nghĩa một hàm &lt;span class=&#34;math inline&#34;&gt;\(f: X -&amp;gt; Y\)&lt;/span&gt;. Từ mạng được sử dụng vì hàm này phân rã được thành các thành phần đơn giản hơn kết nối với nhau.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.2 Nơ-ron nhân tạo&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/nn.jpg&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(x_i = X_1, X_2,..., X_p\)&lt;/span&gt;: các đầu vào (có thể là tín hiệu từ bên ngoài hoặc từ các nơron khác)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(w\)&lt;/span&gt;: các trọng số tương ứng với đầu vào. Giá trị đầu vào sẽ tăng (trạng thái kích thích &lt;span class=&#34;math inline&#34;&gt;\(w_i &amp;gt; 0\)&lt;/span&gt;) hoặc giảm (trạng thái kiềm chế &lt;span class=&#34;math inline&#34;&gt;\(w_i &amp;lt; 0\)&lt;/span&gt;) bằng cách nhân chúng với các trọng số &lt;span class=&#34;math inline&#34;&gt;\(w\)&lt;/span&gt; tương ứng&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(I\)&lt;/span&gt;: Tổ hợp tuyến tính của tất cả các đầu vào. Giải thích tổ hợp tuyến tính: Giả sử &lt;span class=&#34;math inline&#34;&gt;\(s = {v_1,...,v_n}\)&lt;/span&gt; là một tập hữu hạn các vectơ, một tổ hợp tuyên tính của S là một tổng các vector nhân bởi các hệ số theo dạng: &lt;span class=&#34;math display&#34;&gt;\[a_1v_1+...+a_nv_n\]&lt;/span&gt; với các số &lt;span class=&#34;math inline&#34;&gt;\(a_1,...,a_n\)&lt;/span&gt; nằm trong trường F của không gian vector chứa &lt;span class=&#34;math inline&#34;&gt;\(v_1,...,v_n\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Hàm kích hoạt (&lt;code&gt;activation function&lt;/code&gt;) &lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt; biến đổi tổng (tổ hợp tuyến tính) thành tín hiệu đầu ra của một nút.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Tín hiệu đầu ra V sẽ truyền vào các neuron khác hoặc là đầu ra của mạng neuron&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tổ hợp tuyến tính giữa các giá trị input x và bộ trọng số w
+,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.3 Hàm kích hoạt&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Nếu không có chắc năng kích hoạt &lt;em&gt;phi tuyến tính&lt;/em&gt;, cho dù nó có bao nhiêu layer, mạng nowrron cũng sẽ hoạt động giống như là chỉ có 1 layer vậy, bởi vì việc tổng hợp các layer này sẽ cung cấp cho bạn một hàm tuyến tính khác.&lt;/p&gt;
+&lt;p&gt;Chúng ta cùng xem đầu ra của một nơ-ron:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Y = I + bias = \sum{w_i*x_i} + bias\]&lt;/span&gt;
+Giá trị của Y có thể bất kỳ trong khoảng từ &lt;span class=&#34;math inline&#34;&gt;\(-\infty\)&lt;/span&gt; đến &lt;span class=&#34;math inline&#34;&gt;\(+\infty\)&lt;/span&gt;. Vì vậy nơ-ron không biết r&lt;/p&gt;
+&lt;p&gt;Vì vậy cần sử dụng hàm kích hoạt - với nhiệm vụ chính là xác định giá trị đầu ra của nơ-ron phụ thuộc vào kết quả tổng trọng của các đầu vào và giá trị ngưỡng&lt;/p&gt;
+&lt;p&gt;Sigmoid function (Logistic Function)
+&lt;span class=&#34;math display&#34;&gt;\[f = \frac{e^x}{1+e^x}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.4 Mạng truyền thẳng (Feed-forward neural network)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Dòng dữ liệu từ đơn vị đầu vào đến đơn vị đầu ra chỉ được truyền thẳng. Việc xử lý dữ liệu có thể mở rộng ra nhiều lớp, nhưng không có các liên kết phản
+hồi. Nghĩa là, các liên kết mở rộng từ các đơn vị đầu ra tới các đơn vị đầu vào
+trong cùng một lớp hay các lớp trước đó là không cho phép.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src=&#34;/img/sensors-17-01344-g001.png&#34; /&gt;
+Nguồn ảnh: &lt;a href=&#34;https://www.mdpi.com/1424-8220/17/6/1344&#34;&gt;sensors&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Số lượng hidden layer có thể 1,2, …n&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.5 Mạng hồi quy (Recurrent neural network)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.5 Lựa chọn mô hình ANN&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Đầu vào: X1 X2 X3&lt;/p&gt;
+&lt;p&gt;Đầu ra: Y&lt;/p&gt;
+&lt;p&gt;Mô hình Y = f(X)&lt;/p&gt;
+&lt;p&gt;Huấn luyện mô hình mạng nơ-ron bản chất là quá trình đi tìm các giá trị của các trọng số &lt;span class=&#34;math inline&#34;&gt;\(W\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;cho chúng ta chỉ giá trị trọng số, tất cả các tham số khác đều là ph nhesnuw tham số mà cần d…của các nhà phân tích:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;số lượng neurons đầu vò&lt;/li&gt;
+&lt;li&gt;Số lượng layers&lt;/li&gt;
+&lt;li&gt;Số neuron ở mỗi layer&lt;/li&gt;
+&lt;li&gt;Hàm kích hoạt cho mỗi neuron&lt;/li&gt;
+&lt;li&gt;TRỌNG SỐ của mỗi kết nối&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f = \frac{e^x}{1+e^x}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/nn1.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Nếu giá trị đầu ra thực tế là 2 thì chúng ta thu được &lt;code&gt;error&lt;/code&gt; = 2-0.487 = 1.53. Có lẽ chúng ta cần phải huấn luyện mạng neuron này thêm (hiệu chỉnh các trọng số w màu xanh).&lt;/p&gt;
+&lt;p&gt;Quá trình huấn luyện thực tế là như thế: đầu tiên tham số ngẫu nhiên rồi…: Các trọng số (weights) được update liên tục nhờ thuật toán lan truyền ngược (backpropagation algorithm) như mô tả ở hình bên dưới:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/backpropagation.jpg&#34; /&gt;
+Nguồn ảnh: &lt;a href=&#34;https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438&#34;&gt;François Chollet. Deep Learning with Python&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Khởi tạo ngẫu nhiên bộ các trọng số &lt;span class=&#34;math inline&#34;&gt;\(w\)&lt;/span&gt; và thu được được &lt;span class=&#34;math display&#34;&gt;\[\hat{Y} = (\hat{Y}_1,\hat{Y}_2,...,\hat{Y}_n)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Sau đó tiến hành thay đổi các trọng số &lt;span class=&#34;math inline&#34;&gt;\(W\)&lt;/span&gt; làm sao để hàm mất mát đạt giá trị nhỏ nhất:
+&lt;span class=&#34;math display&#34;&gt;\[E = \sum(Y_i - \hat{Y}_i)^2\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cùng-xem-mạng-neuron-làm-việc-như-thế-nào&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;3. Cùng xem mạng neuron làm việc như thế nào&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Dữ liệu
+x1 &amp;lt;- c(0, 0, 1, 1)
+x2 &amp;lt;- c(0, 1, 0, 1)
+y &amp;lt;- c(1, 0, 0, 1)
+z &amp;lt;- cbind(x1, x2, y)
+z&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##      x1 x2 y
+## [1,]  0  0 1
+## [2,]  0  1 0
+## [3,]  1  0 0
+## [4,]  1  1 1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(neuralnet)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(10)
+nn &amp;lt;- neuralnet(y ~ x1 + x2, data = z, hidden = 2, linear.output = F)
+# F type of activation function  - defaul logo
+res.z &amp;lt;- compute(nn, z[,1:2])
+
+y.pred &amp;lt;- rep(-9999, 4)
+y.pred[res.z$net.result[1:4] &amp;gt; 0.8] &amp;lt;- 1
+y.pred[res.z$net.result[1:4] &amp;gt; 0.2] &amp;lt;- 0
+sum(y.pred != y)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(nn, rep = &amp;quot;best&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/deep-learning/2020-09-03-intro-deep-learning.vn_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(20)
+nn &amp;lt;- neuralnet(y ~ x1 + x2, data = z, hidden = 2, linear.output = F)
+# F type of activation function  - defaul logo
+res.z &amp;lt;- compute(nn, z[,1:2])
+
+y.pred &amp;lt;- rep(-9999, 4)
+y.pred[res.z$net.result[1:4] &amp;gt; 0.8] &amp;lt;- 1
+y.pred[res.z$net.result[1:4] &amp;gt; 0.2] &amp;lt;- 0
+sum(y.pred != y)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 3&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;tóm-tắt-nội-dung-bài&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;4. Tóm tắt nội dung bài:&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

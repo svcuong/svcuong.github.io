@@ -1,44 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Khoa học dữ liệu với Python | CUONG SAI</title>
+    <title>Python Tutorials | CUONG SAI</title>
     <link>/tutorials/python-tutorials/</link>
       <atom:link href="/tutorials/python-tutorials/index.xml" rel="self" type="application/rss+xml" />
-    <description>Khoa học dữ liệu với Python</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>vi-en</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Sun, 09 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <description>Python Tutorials</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>vi-en</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright>
     <image>
-      <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
-      <title>Khoa học dữ liệu với Python</title>
+      <url>/media/python.jpeg</url>
+      <title>Python Tutorials</title>
       <link>/tutorials/python-tutorials/</link>
     </image>
-    
-    <item>
-      <title>Example Page 1</title>
-      <link>/tutorials/python-tutorials/example1/</link>
-      <pubDate>Sun, 05 May 2019 00:00:00 +0100</pubDate>
-      <guid>/tutorials/python-tutorials/example1/</guid>
-      <description>&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for &amp;hellip;&lt;/p&gt;
-&lt;h2 id=&#34;tip-1&#34;&gt;Tip 1&lt;/h2&gt;
-&lt;p&gt;Ví dụ tip 1&lt;/p&gt;
-&lt;h2 id=&#34;tip-2&#34;&gt;Tip 2&lt;/h2&gt;
-&lt;p&gt;Ví dụ tip 2&lt;/p&gt;
-&lt;h2 id=&#34;tip-3&#34;&gt;Tip 3&lt;/h2&gt;
-&lt;p&gt;Ví dụ tip 3&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Example Page 2</title>
-      <link>/tutorials/python-tutorials/example2/</link>
-      <pubDate>Sun, 05 May 2019 00:00:00 +0100</pubDate>
-      <guid>/tutorials/python-tutorials/example2/</guid>
-      <description>&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for &amp;hellip;&lt;/p&gt;
-&lt;h2 id=&#34;tip-4&#34;&gt;Tip 4&lt;/h2&gt;
-&lt;p&gt;Ví dụ tip 4&amp;hellip;&lt;/p&gt;
-&lt;h2 id=&#34;tip-5&#34;&gt;Tip 5&lt;/h2&gt;
-&lt;p&gt;Ví dụ tip 5&amp;hellip;&lt;/p&gt;
-</description>
-    </item>
     
   </channel>
 </rss>

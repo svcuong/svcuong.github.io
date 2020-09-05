@@ -3,36 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/tutorials/python-tutorials/example1/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/r-tutorials/example1/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/statistics/example1/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/python-tutorials/example2/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/r-tutorials/example2/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/statistics/example2/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url>
@@ -323,11 +293,6 @@
   </url>
   
   <url>
-    <loc>/tutorials/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tag/iot/</loc>
     <lastmod>2019-03-20T00:00:00+00:00</lastmod>
   </url>
@@ -393,7 +358,7 @@
   </url>
   
   <url>
-    <loc>/tutorials/python-tutorials/</loc>
+    <loc>/tutorials/r-tutorials/data-visualization/rmarkdown/</loc>
     <lastmod>2018-09-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -403,8 +368,33 @@
   </url>
   
   <url>
-    <loc>/tutorials/statistics/</loc>
+    <loc>/tutorials/</loc>
     <lastmod>2018-09-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/r-tutorials/data-visualization/</loc>
+    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/r-tutorials/data-wrangling/</loc>
+    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/r-tutorials/deep-learning/</loc>
+    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/r-tutorials/machine-learning/</loc>
+    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/r-tutorials/data-visualization/example/</loc>
+    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
   </url>
   
   <url>
@@ -486,7 +476,15 @@
   </url>
   
   <url>
+    <loc>/tutorials/python-tutorials/</loc>
+  </url>
+  
+  <url>
     <loc>/author/quyen-vo/</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials/statistics/</loc>
   </url>
   
 </urlset>
