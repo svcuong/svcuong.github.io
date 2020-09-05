@@ -358,36 +358,6 @@
   </url>
   
   <url>
-    <loc>/tutorials/r-tutorials/data-visualization/</loc>
-    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/r-tutorials/data-wrangling/</loc>
-    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/r-tutorials/deep-learning/</loc>
-    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/r-tutorials/machine-learning/</loc>
-    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/r-tutorials/</loc>
-    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tutorials/</loc>
-    <lastmod>2018-09-09T00:00:00+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/publication/dcnn2018/</loc>
     <lastmod>2018-08-24T00:00:00+00:00</lastmod>
   </url>
@@ -466,15 +436,23 @@
   </url>
   
   <url>
-    <loc>/tutorials/python-tutorials/</loc>
-  </url>
-  
-  <url>
     <loc>/author/quyen-vo/</loc>
   </url>
   
   <url>
+    <loc>/tutorials/python-tutorials/</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials/r-tutorials/</loc>
+  </url>
+  
+  <url>
     <loc>/tutorials/statistics/</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials/</loc>
   </url>
   
 </urlset>

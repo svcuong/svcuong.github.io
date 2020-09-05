@@ -5,12 +5,44 @@
     <link>/tutorials/</link>
       <atom:link href="/tutorials/index.xml" rel="self" type="application/rss+xml" />
     <description>Tutorials</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>vi-en</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Sun, 09 Sep 2018 00:00:00 +0400</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>vi-en</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright>
     <image>
       <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
       <title>Tutorials</title>
       <link>/tutorials/</link>
     </image>
+    
+    <item>
+      <title>R Tutorials</title>
+      <link>/tutorials/python-tutorials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/tutorials/python-tutorials/</guid>
+      <description>&lt;h2 id=&#34;1-data-wrangling&#34;&gt;&lt;a href=&#34;&#34;&gt;1. Data Wrangling&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Đang cập nhật&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;2-data-visualization&#34;&gt;&lt;a href=&#34;&#34;&gt;2. Data Visualization&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Đang cập nhật&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;3-machine-learning&#34;&gt;&lt;a href=&#34;&#34;&gt;3. Machine Learning&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Đang cập nhật&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;4-deep-learning&#34;&gt;&lt;a href=&#34;&#34;&gt;4. Deep Learning&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Đang cập nhật&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R Tutorials</title>
+      <link>/tutorials/r-tutorials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/tutorials/r-tutorials/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R Tutorials</title>
+      <link>/tutorials/statistics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/tutorials/statistics/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
