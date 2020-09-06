@@ -1,0 +1,1333 @@
+<!DOCTYPE html><html lang="vi-en" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Cuong Sai">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Khái niệm Data Science, Artificial Intelligence, Machine Learning, Deep Learning">
+
+  
+  <link rel="alternate" hreflang="vi-en" href="/blog/mo-%C4%91au-ve-khoa-hoc-du-lieu.-so-sanh-cac-khai-niem-khai-niem-artificial-intelligence-machine-learning-va-deep-learning/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#06805E">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128408660-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-128408660-5', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_32x32_fill_lanczos_center_2.PNG">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG">
+
+  <link rel="canonical" href="/blog/mo-%C4%91au-ve-khoa-hoc-du-lieu.-so-sanh-cac-khai-niem-khai-niem-artificial-intelligence-machine-learning-va-deep-learning/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="CUONG SAI">
+  <meta property="og:url" content="/blog/mo-%C4%91au-ve-khoa-hoc-du-lieu.-so-sanh-cac-khai-niem-khai-niem-artificial-intelligence-machine-learning-va-deep-learning/">
+  <meta property="og:title" content="Mở đầu về khoa học dữ liệu. So sánh các khái niệm khái niệm Artificial Intelligence, Machine Learning và Deep Learning | CUONG SAI">
+  <meta property="og:description" content="Khái niệm Data Science, Artificial Intelligence, Machine Learning, Deep Learning"><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
+  <meta property="twitter:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG"><meta property="og:locale" content="vi-en">
+  
+    
+      <meta property="article:published_time" content="2017-08-17T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2017-08-17T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/blog/mo-%C4%91au-ve-khoa-hoc-du-lieu.-so-sanh-cac-khai-niem-khai-niem-artificial-intelligence-machine-learning-va-deep-learning/"
+  },
+  "headline": "Mở đầu về khoa học dữ liệu. So sánh các khái niệm khái niệm Artificial Intelligence, Machine Learning và Deep Learning",
+  
+  "datePublished": "2017-08-17T00:00:00Z",
+  "dateModified": "2017-08-17T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Cuong Sai"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "CUONG SAI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
+    }
+  },
+  "description": "Khái niệm Data Science, Artificial Intelligence, Machine Learning, Deep Learning"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script async type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+  <title>Mở đầu về khoa học dữ liệu. So sánh các khái niệm khái niệm Artificial Intelligence, Machine Learning và Deep Learning | CUONG SAI</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">CUONG SAI</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">CUONG SAI</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/"><span>HOME</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/about-me/"><span>ABOUT</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post/"><span>BLOG</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>TOPICS</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>RESEARCH</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/publication/"><span>All Publications</span></a>
+            
+              <a class="dropdown-item" href="/#publications"><span>Recent Publications</span></a>
+            
+              <a class="dropdown-item" href="/#featured"><span>Featured Publications</span></a>
+            
+              <a class="dropdown-item" href="/#projects"><span>Projects</span></a>
+            
+              <a class="dropdown-item" href="/#conference"><span>Conferences</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>TUTORIALS</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/tutorials/r-tutorials/"><span>R</span></a>
+            
+              <a class="dropdown-item" href="/tutorials/python-tutorials/"><span>Python</span></a>
+            
+              <a class="dropdown-item" href="/tutorials/statistics/"><span>Statistics</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>CONTACT</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/archive/"><span>ARCHIVE</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Mở đầu về khoa học dữ liệu. So sánh các khái niệm khái niệm Artificial Intelligence, Machine Learning và Deep Learning</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span ><a href="/author/cuong-sai/">Cuong Sai</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Aug 17, 2017
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    8 min read
+  </span>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/blog/mo-%C4%91au-ve-khoa-hoc-du-lieu.-so-sanh-cac-khai-niem-khai-niem-artificial-intelligence-machine-learning-va-deep-learning/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>Khoa học dữ liệu (<code>data science</code>, DS) là một trong những ngành đang có nhu cầu tuyển dụng cao ở thời điểm hiện tại cũng như trong tương lai xa. Nhà khoa học dữ liệu (data scientist) được 
+<a href="https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century" target="_blank" rel="noopener">Harvard Business Review</a> đánh giá là “công việc hấp dẫn nhất thế kỷ 21”.</p>
+<p>Vậy DS là gì? Trong thực tế một định nghĩa chính xác về DS không tồn tại, đây là một khái niệm liên ngành và rất rộng. DS là một lĩnh vực về các quá trình và các hệ thống trích rút tri thức hoặc hiểu biết dữ liệu ở các dạng khác nhau với biên độ rộng của các ngành như: Toán học, khoa học thống kê, khoa học thông tin, khoa học máy tính và lĩnh vực chuyên môn cụ thể. Bao gồm xử lý tín hiệu, lý thuyết xác suất thống kê, học máy, khai phá dữ liệu, cơ sở dữ liệu, kỹ thuật thông tin, nhận dạng mẫu, trực quan dữ liệu, các phân tích dự đoán, lý thuyết quyết định, kho dữ liệu, nén dữ liệu, lập trình máy tính, trí tuệ nhân tạo và siêu máy tính. Có thể nói &ldquo;Một nhà khoa học dữ liệu là người giỏi hơn về thống kê so với những kỹ sư phát triển phần mềm và giỏi hơn về lập trình so với những nhà thống kê học.&rdquo;  Về bản chất có thể hiểu khoa học dữ liệu là ngành giúp chúng ta tạo ra giá trị từ dữ liệu với hai nhiệm vụ chính:</p>
+<ul>
+<li>Thu thập  và xử lý dữ liệu để tìm ra những insights có giá trị.</li>
+<li>Giải thích, trình bày những insights đó cho các bên có liên quan để chuyển hóa isights thành hành động.</li>
+</ul>
+<p>Xuât phát từ tên gọi DS ta có hai thành phần cấu thành là <em>data</em> và <em>science</em>:</p>
+<ul>
+<li>
+<p><strong>Data:</strong> Là thành phần thứ nhất của cụm từ data science, thiếu nó thì tất cả các quá trình tiếp theo đều không thể thực hiện. Sau khi đã có đầy đủ dữ liệu cần thiết, trước khi sử dụng, công việc đầu tiên bạn cần làm là làm sạch và biến đổi dữ liệu - bước quan trọng nhất trong phân tích dữ liệu, nó chiếm đến 80% tổng số thời gian thực hiện phân tích.</p>
+</li>
+<li>
+<p><strong>Science:</strong> Chúng ta đã có dữ liệu vậy bây giờ làm gì với chúng? Đó là phân tích, trích rút các quy luật có ích và làm sao có để có thể sử dụng chúng một cách hiệu quả. Ở đây các lĩnh vực sẽ giúp chúng ta như là thống kê, máy học, học sâu, tối ưu. Máy học giúp chúng ta tìm ra các quy luật trong dữ liệu để có thể dự báo thông tin cần thiết với đối tượng mói sau đó.</p>
+</li>
+</ul>
+<p>DS và trí tuệ nhân tạo (<code>Artificial Intelligence</code>, AI) thường bị đánh tráo khái niệm. Để phân biệt chính xác khái niệm về hai công nghệ này cũng như các khái niệm trong AI, các bạn hãy cùng tham khảo bài viết nhé! Cuối bài tôi sẽ giới thiệu 1 số ngôn ngữ lập trình cho khoa học dữ liệu.</p>
+<hr>
+<p><strong>1 Phân biệt các khái niệm Data Scinece, Artificial Intelligence, machine learning và deep learning</strong></p>
+<p>Thực ra các lĩnh vực này đều có sự liên quan, chồng chéo đan xen với nhau. <code>AI</code> là một trong các công cụ cho DS. <code>DS</code> sử dụng <code>AI</code> trong các hoạt động của mình, tuy nhiên chắc chắn nó không bao hàm AI. Hay nói cách khác trong DS có sự đóng góp bởi một số khía cạnh của AI nhưng lại không phản ánh tất cả về <code>AI</code>. Hình dưới đây mô tả mối quan hệ của các khái niệm này:</p>
+<p><img src="/post/2020-08-17-khai-niem-co-ban_files/1_-XKVI5SAEpffNR7BusdvNQ.png" alt="">
+
+<a href="https://medium.com/ai-in-plain-english/data-science-vs-artificial-intelligence-vs-machine-learning-vs-deep-learning-50d3718d51e5" target="_blank" rel="noopener">source: Gmggroup.org</a></p>
+<p><code>AI</code> là một ngành khoa học được sinh ra với mục đích nhằm làm cho máy móc do con người tạo ra có những khả năng của trí tuệ và trí thông  minh của con người - <code>thông minh nhân tạo</code>, tiêu biểu như biết suy nghĩ và lập luận để giải quyết vấn đề, biết giao tiếp do hiểu ngôn ngữ và tiếng nói, biết học và tự thích nghi,&hellip;. Ý tưởng về <code>AI</code> xuất hiện vào những năm 1950 khi một nhóm những người tiên phong trong lĩnh vực khoa học máy tính non trẻ tự đặt ra cho mình câu hỏi, liệu có thể làm cho máy tính biết <code>suy nghĩ</code>? - hệ quả của câu hỏi đó chính là những gì chúng ta đang học trong ngày hôm nay. <code>Machine Learning</code> và <code>Deep Learning</code> chính là phương tiện, công cụ để đạt được mục tiêu của <code>AI</code>.</p>
+<p>Để hiểu về  <code>Machine Learning</code> và <code>Deep Learning</code> trước hết chúng ta hãy cùng tìm hiểu khái niệm  học biểu diễn (<code>representation learning</code>) từ dữ liệu. Trong cuộc sống hàng ngày, hầu hết chúng ta đã quen thuộc với việc mô tả các sự vật, hiện tượng của thế giới bên ngoài qua các khái niệm, các con số, các giác quan,&hellip; Nhưng mô tả đó được gọi là các biểu diễn (<code>representation</code>) của sự vật, hiện tượng. Máy học (<code>machine learning</code>) cũng vậy, mục đích của nó là tìm cách biến đổi dữ liệu đầu vào thành các đầu ra có ý nghĩa. Hay nói một cách khoa học, một mô hình <code>machine learning</code> sẽ ánh xạ dữ liệu từ một không gian biểu diễn vào một không gian biểu diễn khác mà trên đó chúng ta có thể hiểu rõ hơn về dữ liệu ban đầu. Chính vì vậy <code>machine learning</code> được gọi là học biểu diễn (<code>representation learning</code>). Cách học này đã tạo ra một <code>new programming paradigm</code>. Trong lập trình truyền thống, con người nhập các quy tắc <code>rules</code> (program) và dữ liệu để xử lý theo các quy tắc đó để thu được <code>answers</code>. Còn trong <code>Machine learning</code> thì con người sẽ nhập dữ liệu và <code>answers</code> tương ứng với dữ liệu đó, còn ở đầu ra sẽ thu được các <code>rules</code> - các mô hình <code>machine learning</code>. Các mô hình này sau đó có thể sử dụng cho dữ liệu mới để thu được các <code>answers</code>. Trong <code>machine learning</code> hệ thống sẽ được huấn luyện thay vì lập trình rõ ràng. Nhiệm vụ chính của <code>Machine learning</code> chính là tự động tìm các phương pháp biến đổi dữ liệu đầu vào. Các phương pháp này có thể là thay đổi hệ tọa độ, hay là xử dụng các phép chiếu,&hellip;</p>
+<p><img src="/img/ml-dl-1.PNG" alt="Machine Learning - A new programming paradim"></p>
+<p>Cùng một sự vật, hiện tượng có thể có nhiều cách biểu diễn khác nhau. <code>Deep Learning</code> ở đây cũng vậy, nó chính là một ngành nhỏ của <code>Machine Learning</code>: xử dụng cách tiếp cận mởi để tìm kiếm phương thức biểu diễn dữ liệu - bằng cách học liên tiếp các qua các lớp (<code>layers</code>) hay gọi là mạng thần kinh nhân tạo (<code>Neural Network</code>). Chữ <code>Deep</code> trong <code>Deep Learning</code> không có nghĩa là phương pháp này cho phép hiểu sâu hơn, mà chỉ để thể hiện cách biểu diễn dữ liệu qua nhiều lớp. Số lượng các lớp tạo thành một mô hình deep learning được gọi là chiều sâu (<code>depth</code>) của mô hình đó.</p>
+<hr>
+<p><strong>2 Ngôn ngữ lập trình cho khoa học dữ liệu</strong></p>
+<p>Chọn ngôn ngữ nào để bắt đầu sự nghiệp Khoa học dữ liệu sẽ có nhiều thử thách đối với bạn. Có một số ngôn ngữ phục vụ cho ngành này phải kể đến những ngôn ngữ lập trình sau:</p>
+<p><strong>R</strong>: là một trong những platforms mạnh cho học máy, thống kê và phân tích dữ liệu được phát triển và sử dụng bởi các nhà khoa học thống kê và phân tích dữ liệu hàng đầu trên thế giới. Nếu bạn muốn đi sâu vào phân tích dữ liệu và thống kê, thì R là ngôn ngữ dành cho bạn.Ngôn ngữ này đã có sự tăng trưởng vượt bậc khi phân tích dữ liệu và khoa học dữ liệu trở nên phổ biến hơn trong những năm gần đây. Hàng năm, số lượng người dùng R tăng hơn 40% và ngày càng có nhiều cơ quan và tổ chức sử dụng R trong hoạt động phân tích thường nhật Tuy nhiên trong thời rian gần đây độ phổ biến của nó đã giảm đi một chút.</p>
+<p><strong>Python:</strong> là một ngôn ngữ lập trình đa mục đích, khá mạnh và bao gồm các công cụ có thể ứng dụng vào các môi trường yêu cầu hình tượng hoá mà có thể xuất hiện trên các trang web hoặc trên điện thoại.  Python cung cấp hỗ trợ cho một số lượng lớn các thư viện học sâu như Pandas, Matplotlib, Tensorflow, Keras, scikit-learn, v.v. Để bắt đầu với ngành Data Science. Python là một trong những ngôn ngữ lập trình lý tưởng và nó cũng dễ đọc hơn R.</p>
+<p><strong>Java:</strong> Ngôn ngữ lập trình Java gần đây được xếp hạng một trong những ngôn ngữ được yêu thích và đa năng nhất để viết, dựa vào bản khảo sát từ WP Engine. Nó cũng là một ngôn ngữ lập trình đa mục đích, được thiết kế riêng để càng ít phụ thuộc vào việc thực thi càng tốt. Nó có thể được sử dụng để xây dựng mọi thứ, đặc biệt là các nền tảng có thể mở rộng, nền tảng đa luồng (multithread) và có nền tảng người dùng mạnh mẽ. ác framework như Apache Spark, Hadoop và Hive ngày càng phổ biến trong môi trường thương mại, làm cho Java trở thành một trong những ngôn ngữ được các nhà khoa học dữ liệu yêu cầu. Kiến thức về Java sẽ tạo điều kiện cho bạn điều chỉnh và duy trì các nền tảng dữ liệu lớn như Hadoop được viết bằng cùng một ngôn ngữ.</p>
+<p>Ngoài ra còn một số ngôn ngữ khác như là Julia, Scala, &hellip;</p>
+<hr>
+<p><strong>Tham khảo:</strong></p>
+<p><sub>
+<a href="https://medium.com/ai-in-plain-english/data-science-vs-artificial-intelligence-vs-machine-learning-vs-deep-learning-50d3718d51e5" target="_blank" rel="noopener">The differences between Data Science, Artificial Intelligence, Machine Learning, and Deep Learning</a></sup></p>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/blog/mo-%C4%91au-ve-khoa-hoc-du-lieu.-so-sanh-cac-khai-niem-khai-niem-artificial-intelligence-machine-learning-va-deep-learning/&amp;text=M%c6%a1%cc%89%20%c4%91%c3%a2%cc%80u%20v%c3%aa%cc%80%20khoa%20ho%cc%a3c%20d%c6%b0%cc%83%20li%c3%aa%cc%a3u.%20So%20s%c3%a1nh%20c%c3%a1c%20kh%c3%a1i%20ni%e1%bb%87m%20kh%c3%a1i%20ni%e1%bb%87m%20Artificial%20Intelligence,%20Machine%20Learning%20v%c3%a0%20Deep%20Learning" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/blog/mo-%C4%91au-ve-khoa-hoc-du-lieu.-so-sanh-cac-khai-niem-khai-niem-artificial-intelligence-machine-learning-va-deep-learning/&amp;t=M%c6%a1%cc%89%20%c4%91%c3%a2%cc%80u%20v%c3%aa%cc%80%20khoa%20ho%cc%a3c%20d%c6%b0%cc%83%20li%c3%aa%cc%a3u.%20So%20s%c3%a1nh%20c%c3%a1c%20kh%c3%a1i%20ni%e1%bb%87m%20kh%c3%a1i%20ni%e1%bb%87m%20Artificial%20Intelligence,%20Machine%20Learning%20v%c3%a0%20Deep%20Learning" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=M%c6%a1%cc%89%20%c4%91%c3%a2%cc%80u%20v%c3%aa%cc%80%20khoa%20ho%cc%a3c%20d%c6%b0%cc%83%20li%c3%aa%cc%a3u.%20So%20s%c3%a1nh%20c%c3%a1c%20kh%c3%a1i%20ni%e1%bb%87m%20kh%c3%a1i%20ni%e1%bb%87m%20Artificial%20Intelligence,%20Machine%20Learning%20v%c3%a0%20Deep%20Learning&amp;body=/blog/mo-%C4%91au-ve-khoa-hoc-du-lieu.-so-sanh-cac-khai-niem-khai-niem-artificial-intelligence-machine-learning-va-deep-learning/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/blog/mo-%C4%91au-ve-khoa-hoc-du-lieu.-so-sanh-cac-khai-niem-khai-niem-artificial-intelligence-machine-learning-va-deep-learning/&amp;title=M%c6%a1%cc%89%20%c4%91%c3%a2%cc%80u%20v%c3%aa%cc%80%20khoa%20ho%cc%a3c%20d%c6%b0%cc%83%20li%c3%aa%cc%a3u.%20So%20s%c3%a1nh%20c%c3%a1c%20kh%c3%a1i%20ni%e1%bb%87m%20kh%c3%a1i%20ni%e1%bb%87m%20Artificial%20Intelligence,%20Machine%20Learning%20v%c3%a0%20Deep%20Learning" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=M%c6%a1%cc%89%20%c4%91%c3%a2%cc%80u%20v%c3%aa%cc%80%20khoa%20ho%cc%a3c%20d%c6%b0%cc%83%20li%c3%aa%cc%a3u.%20So%20s%c3%a1nh%20c%c3%a1c%20kh%c3%a1i%20ni%e1%bb%87m%20kh%c3%a1i%20ni%e1%bb%87m%20Artificial%20Intelligence,%20Machine%20Learning%20v%c3%a0%20Deep%20Learning%20/blog/mo-%C4%91au-ve-khoa-hoc-du-lieu.-so-sanh-cac-khai-niem-khai-niem-artificial-intelligence-machine-learning-va-deep-learning/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/blog/mo-%C4%91au-ve-khoa-hoc-du-lieu.-so-sanh-cac-khai-niem-khai-niem-artificial-intelligence-machine-learning-va-deep-learning/&amp;title=M%c6%a1%cc%89%20%c4%91%c3%a2%cc%80u%20v%c3%aa%cc%80%20khoa%20ho%cc%a3c%20d%c6%b0%cc%83%20li%c3%aa%cc%a3u.%20So%20s%c3%a1nh%20c%c3%a1c%20kh%c3%a1i%20ni%e1%bb%87m%20kh%c3%a1i%20ni%e1%bb%87m%20Artificial%20Intelligence,%20Machine%20Learning%20v%c3%a0%20Deep%20Learning" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/cuong-sai/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="Cuong Sai">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Cuong Sai</a></h5>
+        <h6 class="card-subtitle">PhD student</h6>
+        <p class="card-text">My research interests include Industrial AI (Intelligent predictive maintenance), Machine and Deep learning, Time series forecasting, Intelligent machinery fault diagnosis, Prognostics and health management, Error metrics / forecast evaluation.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://web.facebook.com/csdatascience" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/forvis" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://orcid.org/0000-0003-0478-8838" target="_blank" rel="noopener">
+        <i class="ai ai-orcid"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/svcuong" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+  
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "cuongsai" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+ 
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://cuongsai.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/license/">LICENSE: CC BY-SA</a>
+    
+    
+  </p>
+  
+
+  <p class="powered-by">
+    © 2020 Cuong Sai. All Rights Reserved
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a>
+    for
+    <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -30,7 +30,7 @@
   
     
   
-  <meta name="description" content="Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn.">
+  <meta name="description" content="Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng như giúp cho code dễ đọc và dễ bảo trì hơn.">
 
   
   <link rel="alternate" hreflang="vi-en" href="/post/pipes/">
@@ -292,7 +292,7 @@
   <meta property="og:site_name" content="CUONG SAI">
   <meta property="og:url" content="/post/pipes/">
   <meta property="og:title" content="Cách sử dụng các toán tử pipes trong R | CUONG SAI">
-  <meta property="og:description" content="Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn."><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
+  <meta property="og:description" content="Sự ra đời của các toán tử pipes trong package magrittrđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng như giúp cho code dễ đọc và dễ bảo trì hơn."><meta property="og:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG">
   <meta property="twitter:image" content="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG"><meta property="og:locale" content="vi-en">
   
     
@@ -342,7 +342,7 @@
       "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
     }
   },
-  "description": "Sự ra đời của các toán tử pipes trong package magrittr\rđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng giúp làm cho code dễ đọc và dễ bảo trì hơn."
+  "description": "Sự ra đời của các toán tử pipes trong package magrittr\rđã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ R. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết code cũng như giúp cho code dễ đọc và dễ bảo trì hơn."
 }
 </script>
 
@@ -652,6 +652,36 @@
         
         
 
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/archive/"><span>ARCHIVE</span></a>
+        </li>
+
+        
+        
+
       
 
         
@@ -796,7 +826,7 @@
 
 
 <p>Sự ra đời của các toán tử <code>pipes</code> trong package <a href="https://magrittr.tidyverse.org/reference/index.html">magrittr</a>
-đã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ <code>R</code>. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết <code>code</code> cũng giúp làm cho <code>code</code> dễ đọc và dễ bảo trì hơn.</p>
+đã tạo ra những thay đổi lớn mang tính cách mạng cho ngôn ngữ <code>R</code>. Biết cách sử dụng linh hoạt các toán tử này chính là chìa khóa để rút ngắn thời gian viết <code>code</code> cũng như giúp cho <code>code</code> dễ đọc và dễ bảo trì hơn.</p>
 <p>Ở bài này tôi <code>note</code> lại cách dùng của 4 toán tử <code>pipes</code> cho bạn nào cần:</p>
 <ul>
 <li><p><code>%&gt;%</code> : Forward-pipe operator</p></li>
@@ -804,13 +834,13 @@
 <li><p><code>%T&gt;%</code> : Tee Operator</p></li>
 <li><p><code>%$%</code> : Exposition pipe-operator</p></li>
 </ul>
-<p>Mục đích của việc sử dụng các toán tử <code>pipes</code>:</p>
+<p>Mục đích của việc sử dụng các toán tử <code>pipes</code> trong R:</p>
 <ul>
 <li><p>Tránh gọi lồng các hàm</p></li>
 <li><p>Giảm việc tạo và sử dụng các biến trung gian</p></li>
 <li><p>Tổ chức tập hợp các câu lệnh thành một chuỗi thống nhất, dễ hiểu.</p></li>
 </ul>
-<p>Nạp các thư viện cần thiết vào phiên làm việc của R để thực hành:</p>
+<p>Nạp các thư viện cần thiết vào phiên làm việc của <code>R</code> để thực hành:</p>
 <pre class="r"><code>library(tidyverse)
 library(magrittr)</code></pre>
 <p><code>Chú ý</code>: Khi nạp gói <code>tidyverse</code> thì pipe <code>%&gt;%</code> được nạp tự động, tuy nhiên để dùng các toán từ khác thì chúng ta cần nạp thêm cả gói <code>magrittr</code>.</p>
@@ -885,20 +915,20 @@ diamonds</code></pre>
     plot %&gt;%
     colSums</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<pre><code>## [1]  18.50063 -16.36514</code></pre>
+<pre><code>## [1] -10.96542 -12.71731</code></pre>
 <p>Tương đương với:</p>
 <pre class="r"><code>rnorm(200) %&gt;%
     matrix(ncol = 2) %&gt;%
     { plot(.); . } %&gt;%
     colSums</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre><code>## [1]  -2.381452 -16.977761</code></pre>
+<pre><code>## [1] -10.652905   2.284913</code></pre>
 <p>Hoặc viết theo cách truyền thống:</p>
 <pre class="r"><code>m &lt;- matrix(rnorm(200), ncol = 2)
 plot(m)</code></pre>
 <p><img src="/post/2020-08-30-pipes.vn_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre class="r"><code>colSums(m)</code></pre>
-<pre><code>## [1] -4.1285323  0.6322695</code></pre>
+<pre><code>## [1] -27.205778  -2.992818</code></pre>
 </div>
 <div id="toán-tử-exposition-pipe-operator" class="section level2">
 <h2>4. Toán tử <code>%$%</code> (exposition pipe-operator)</h2>
