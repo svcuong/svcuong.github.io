@@ -649,28 +649,5 @@ ggplot(data = py$data,aes(x = preg)) +
 </description>
     </item>
     
-    <item>
-      <title>The Forvision Project</title>
-      <link>/project/forvision-project/</link>
-      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
-      <guid>/project/forvision-project/</guid>
-      <description>&lt;p&gt;The project’s aim is to develop effective means for forecast evaluation and visualization. Based on our experience of implementing data science solutions for forecasting, we outline a typical forecast evaluation setup. Especially, we focus on handling rolling-origin forecasts made across many series over multiple horizons when many alternative methods are used.&lt;/p&gt;
-&lt;p&gt;We developed a general framework containing of the following components:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Forecast data formats - simple yet flexible enough data structures designed to store data needed for rolling-origin forecast evaluation.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Exploratory analysis tools needed to make sure that data is of acceptable quality.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Performance measurement tools - techniques and graphs for accuracy and comparison.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Generally, the workflow we propose involves the following steps: 1) data preparation, 2) exploratory analysis, 3) performance measurement using appropriate metrics. The project&amp;rsquo;s website describes this process in more detail 
-&lt;a href=&#34;https://forvis.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
   </channel>
 </rss>

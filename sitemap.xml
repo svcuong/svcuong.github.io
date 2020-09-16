@@ -278,21 +278,6 @@
   </url>
   
   <url>
-    <loc>/publication-type/3/</loc>
-    <lastmod>2019-03-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/andrey-davydenko/</loc>
-    <lastmod>2019-03-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/preprint/</loc>
-    <lastmod>2019-03-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/publication/hi-tech2019/</loc>
     <lastmod>2019-03-08T00:00:00+00:00</lastmod>
   </url>
@@ -305,6 +290,11 @@
   <url>
     <loc>/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/andrey-davydenko/</loc>
+    <lastmod>2018-11-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -335,16 +325,6 @@
   <url>
     <loc>/post/s-d-ng-k-t-h-p-r-va-python-trong-data-science/</loc>
     <lastmod>2018-04-18T08:40:38+04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/forecast-evaluation/</loc>
-    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/forvision-project/</loc>
-    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
