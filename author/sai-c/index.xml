@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sai, C. | CUONG SAI</title>
+    <link>/author/sai-c./</link>
+      <atom:link href="/author/sai-c./index.xml" rel="self" type="application/rss+xml" />
+    <description>Sai, C.</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>vi-en</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright>
+    <image>
+      <url>/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_512x512_fill_lanczos_center_2.PNG</url>
+      <title>Sai, C.</title>
+      <link>/author/sai-c./</link>
+    </image>
+    
+    <item>
+      <title>Data Formats and Visual Tools for Forecast Evaluation in Cyber-Physical System Design [Conference Presentation] CyberPhy-2020, Kazan, Russia.  https://doi.org/10.6084/m9.figshare.12981329</title>
+      <link>/publication/cyberphy-slide/</link>
+      <pubDate>Sat, 05 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/cyberphy-slide/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

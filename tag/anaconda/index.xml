@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Anaconda | CUONG SAI</title>
+    <title>Anaconda | Khoa Học Dữ Liệu</title>
     <link>/tag/anaconda/</link>
       <atom:link href="/tag/anaconda/index.xml" rel="self" type="application/rss+xml" />
     <description>Anaconda</description>
