@@ -5,171 +5,12 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>💬 Blog</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>vi-en</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Thu, 05 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>vi-en</language><copyright>© 2020 Cuong Sai. All Rights Reserved</copyright><lastBuildDate>Tue, 01 Sep 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/big-data-analytics-banner-image-131934029945360761.jpg</url>
       <title>💬 Blog</title>
       <link>/post/</link>
     </image>
-    
-    <item>
-      <title>Spark và sparklyr để làm việc với dữ liệu lớn trong R</title>
-      <link>/post/r-spark/</link>
-      <pubDate>Thu, 05 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>/post/r-spark/</guid>
-      <description>
-
-
-&lt;hr /&gt;
-&lt;p&gt;Nội dung của bài bao gồm:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;#sec1&#34;&gt;1. Mở đầu&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;#sec2&#34;&gt;2. Giới thiệu qua về lý thuyết&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;#sec3&#34;&gt;3. Sử dụng Spark trong môi trường R&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;div id=&#34;sec1&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;1 Mở đầu&lt;/h3&gt;
-&lt;p&gt;Tồn lại rất nhiều những ý kiến và sự nhầm lẫn cho rằng ngôn ngữ R không thích hợp với vài trò là một công cụ hiệu quả để phân tích dữ liệu và phát triển các ứng dụng phân tích dữ liệu. Một trong những sự nhầm lẫn phổ biến nhất đó là &lt;code&gt;&#34;R phức tạp và không thể làm việc với dữ liệu lớn (&lt;/code&gt;Big Data&lt;code&gt;)&#34;&lt;/code&gt;. Điều này hoàn toàn không phải vậy. Trong hệ sinh thái R có rất nhiều các gói (&lt;code&gt;packages&lt;/code&gt;) cho phép người dùng có thể làm việc với cơ sở dữ liệu đầu xa (&lt;code&gt;Remote Database&lt;/code&gt;, RDB) và thực hiện các tính toán song song bằng sự kết hợp với các plarfoms chuyên dụng trong lĩnh vực này. Ở bài này tôi sẽ giới thiếu với các bạn cách kết hợp R với &lt;code&gt;Apacher Spark&lt;/code&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;sec2&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;2 Giới thiệu qua về lý thuyết&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Dữ liệu lớn&lt;/strong&gt; (&lt;code&gt;Big data&lt;/code&gt;) là một thuật ngữ để chỉ các tập dữ liệu kích thước lượng lớn và phức tạp vượt xa khả năng của các công cụ phần mềm thông thường để thu thập, hiển thị, quản lý và xử lý dữ liệu trong một thời gian có thể chấp nhận được. Kích thước dữ liệu lớn là một mục tiêu liên tục thay đổi. Như năm 2012 thì phạm vi một vài tá terabytes tới nhiều petabytes dữ liệu/
-Những tập dữ liệu lớn này có thể bao gồm các dữ liệu có cấu trúc, không có cấu trúc và bán cấu trúc, mỗi tập có thể được khai thác để tìm hiểu &lt;code&gt;insights&lt;/code&gt;. Big Data được mô tả bởi những đặc trưng sau:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Volume&lt;/strong&gt; (Dung lượng): Số lượng dữ liệu được tạo ra và lưu trữ. Kích thước của dữ liệu xác định giá trị và tiềm năng insight- và liệu nó có thể thực sự được coi là dữ liệu lớn hay không.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Variety&lt;/strong&gt; (Tính đa dạng): Các dạng và kiểu của dữ liệu. Dữ liệu được thu thập từ nhiều nguồn khác nhau và các kiểu dữ liệu cũng có rất nhiều cấu trúc khác nhau.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Velocity&lt;/strong&gt; (Vận tốc): Trong trường hợp này nghĩa là tốc độ các dữ liệu được tạo ra và xử lý để đáp ứng các nhu cầu và thách thức trên con đường tăng trưởng và phát triển.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Veracity&lt;/strong&gt; (Tính xác thực): Chất lượng của dữ liệu thu được có thể khác nhau rất nhiều, ảnh hưởng đến sự phân tích chính xác.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Lần đầu tiên, nhu cầu về xử lý một lượng dữ liệu lớn phát sinh khi có sự xuất hiện của &lt;code&gt;Internet&lt;/code&gt;, cụ thể là nhu cầu về индексирования hàng triệu trang web và phát triển các hệ thống tìm kiếm hiệu quả. Vào năm 2003 các nhà nghiên cứu của công ty &lt;code&gt;Google&lt;/code&gt; đã công bố nguyên lý xây dựng hệ thống &lt;a href=&#34;https://ru.wikipedia.org/wiki/Google_File_System&#34;&gt;&lt;code&gt;Google File System&lt;/code&gt; (GFS)&lt;/a&gt;, trong đó dữ liệu được chia nhỏ ra thành các блоки lưu trữ dưới dạng …ở các máy tính khác nhau.&lt;/p&gt;
-&lt;p&gt;Sau đó 1 năm (năm 2004), nhóm các nhà nghiên cứu này lại giới thiệu phương pháp &lt;a href=&#34;https://ru.wikipedia.org/wiki/MapReduce&#34;&gt;MapReduce&lt;/a&gt; để thực hiện các tính toán song song với dữ liệu trong &lt;code&gt;GFS&lt;/code&gt;. Phương pháp này gồm 2 bước. Ở bước thứ nhất (&lt;code&gt;Map&lt;/code&gt;) dữ liệu đầu vào của bài toán được chia nhỏ ra thành cách blocks riên biệt, và chia ra cho các máy tính khác nhau tực hiện xử lý cần thiết. Ở bước thứ 2 (&lt;code&gt;Reduce&lt;/code&gt;) thực hiện liên kết các kết quả xử lý của các blocks và формирование kết quả cuối cùng. Ưu điểm lớn nhất của phương pháp này đó là khả năng xử lý dữ liệu song song với số lượng lớn các máy tính khác nhau, từ đó tăng cao tốc độ tính toán.&lt;/p&gt;
-&lt;p&gt;Không lâu sau đó, sau khi những công bố về ý tưởng &lt;code&gt;GFS&lt;/code&gt; và &lt;code&gt;MapReduce&lt;/code&gt; nhóm các kỹ sư và nhà nghiên cứu của công ty &lt;code&gt;Yahoo&lt;/code&gt; bắt đầu với việc triển khai ứng dụng trong dự án mã nguồn mở của mình mà nổi tiếng cả thế giới với tên gọi Hadoop. Phương án GFS được xây dựng trong platform này được gọi là &lt;code&gt;Hadoop&lt;/code&gt; &lt;a href=&#34;https://ru.wikipedia.org/wiki/Hadoop#HDFS&#34;&gt;&lt;code&gt;Distributed Files System&lt;/code&gt; (HDFS)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Mặc dù platform &lt;code&gt;Hadoop&lt;/code&gt; cho phép rất nhiều các cong ty thực hiện thành công парадигму MapReduce để tính toán song song với dự liệu lớn, nhưng mỗi lần xuất hiện những nhiệm vụ mới thì đòi hỏi phải viết code mới để thực thi map và reduce, điều này неудобно и трудоемко. Để giải quyết vấn đề này vào năm 2008 các kỹ sư của &lt;code&gt;Facebook&lt;/code&gt; đã xây dựng &lt;a href=&#34;https://ru.wikipedia.org/wiki/Apache_Hive&#34;&gt;Apache Hive&lt;/a&gt; - Hệ thống quản lý và điều khiển các базами данных trên cơ sở của Hadoop. Đặc trưng nổi bật của Apache Hive là hỗ trợ SQL - подобных запросов к данным, хранящимся в HDFS (этот новый диалект SQL получил название Hive Query Language, HQL).&lt;/p&gt;
-&lt;p&gt;Vào năm 2009 tại đại học Калифорнийском университете в Беркли был bắt đầu phát triển dự án nghiên cứu Spark với mục đích tăng hiệu quả tính toán song song bằng phương pháp MApREduce và xây dựng platform phổ quát cho những tính toán này/ VÀo năm 2010 Spark được công bố với vai trò là dự án mã nguồn mở, vào năm 2013 chuyển giao cho quỹ (công ty ) Apache Software Foundation&lt;/p&gt;
-&lt;p&gt;Ngày này Apache spark là một trong những plfatform được sử dụng phổ biến nhất để làm việc với dữ liệu lớn và được đặc trưng bởi những tính chất sau:&lt;/p&gt;
-&lt;p&gt;непревзойденное быстродействие, достигаемое за счет выполнения вычислений в оперативной памяти большого количества компьютеров, объединенных в один кластер, а также благодаря эффективным протоколам передачи данных по сети;
-универсальность: Spark поддерживает многие технологии кластерных вычислений и имеет несколько библиотек-надстроек для решения распространенных аналитических задач, включая Spark SQL (SQL-подобные запросы к данным), MLlib (алгоритмы машинного обучения), GraphX (анализ графов) и Spark Streaming (обработка потоковых данных).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;sec3&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;3 Sử dụng Spark trong môi trường R&lt;/h3&gt;
-&lt;p&gt;Gói sparklyr - cung cấp giao diện thuận tiện để làm việc hiệu quả với Spark-кластерами từ môi trường R. Với sự trợ giúp của gói này chúng ta có thể:
-Kết nối với các clusters
-Thực hiện các thao tác cơ bản về biến đổi, lọc …với синтаксиса dplyr
-Xây dựng các mô hình dự đoán sử dụng các thuật toán machien learning, triển khai trong gói MLib cho spark
-Sử dụng spark để tính toán song song với các gói R (ví dụ như rsparkling để làm việc với H2o )&lt;/p&gt;
-&lt;div id=&#34;thiết-lập-môi-trường-thực-hành&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;3.1 Thiết lập môi trường thực hành&lt;/h4&gt;
-&lt;p&gt;because Spark is built in the Scala programming language, which is run by the Java Virtual Machine (JVM), you also need to install Java 8 on your system. It is likely that your system already has Java installed, but you should still check the version and update or downgrade as described in Installing Java. You can use the following R command to check which version is installed on your system:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;system(&amp;quot;java -version&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;java version &amp;quot;1.8.0_241&amp;quot;
-Java(TM) SE Runtime Environment (build 1.8.0_241-b07)
-Java HotSpot(TM) Client VM (build 25.241-b07, mixed mode)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Cài đặt sparklyr:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;sparklyr&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Kiểm tra version của &lt;code&gt;sparklyr&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;packageVersion(&amp;quot;sparklyr&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;#39;1.4.0&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Cài đặt &lt;code&gt;Spark&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(sparklyr)
-spark_install() # Cài đặt mặc định 
-spark_install(&amp;quot;2.4&amp;quot;) # Cài đặt phiên bản cụ thể&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Trước khi cài các bạn có thể kiểm tra:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(sparklyr)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;sparklyr&amp;#39; was built under R version 4.0.3&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;spark_available_versions()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   spark
-## 1   1.6
-## 2   2.0
-## 3   2.1
-## 4   2.2
-## 5   2.3
-## 6   2.4
-## 7   3.0&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Kiểm tra phiên bản đã cài đặt:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;spark_installed_versions()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   spark hadoop                                                              dir
-## 1 2.3.3    2.7 C:\\Users\\svcuo\\AppData\\Local/spark/spark-2.3.3-bin-hadoop2.7
-## 2 2.4.3    2.7 C:\\Users\\svcuo\\AppData\\Local/spark/spark-2.4.3-bin-hadoop2.7&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Finally, to uninstall a specific version of Spark you can run spark_uninstall() by specifying the Spark and Hadoop versions, like so:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;spark_uninstall(version = &amp;quot;1.6.3&amp;quot;, hadoop = &amp;quot;2.6&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;kết-nối-với-spark-trong-r&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;3.2 Kết nối với Spark trong R&lt;/h4&gt;
-&lt;p&gt;To connect to this local cluster, simply run the following:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(sparklyr)
-sc &amp;lt;- spark_connect(master = &amp;quot;local&amp;quot;, version = &amp;quot;2.4.3&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now that you are connected, we can run a few simple commands. For instance, let’s start by copying the mtcars dataset into Apache Spark by using copy_to()&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cars &amp;lt;- copy_to(sc, mtcars)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The data was copied into Spark, but we can access it from R using the cars reference. To print its contents, we can simply type &lt;em&gt;cars&lt;/em&gt;:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cars&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # Source: spark&amp;lt;mtcars&amp;gt; [?? x 11]
-##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-##    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
-##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
-##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
-##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
-##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
-##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
-##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
-##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
-##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
-##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
-## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
-## # ... with more rows&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Web Interface:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;spark_web(sc)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/img/spark-interface.PNG&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;You can also select the Storage tab to see the mtcars dataset cached in memory in Spark:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/spark-storage.PNG&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;thực-hiện-phân-tích-dữ-liệu&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;3.3 Thực hiện phân tích dữ liệu&lt;/h4&gt;
-&lt;p&gt;Spark DataFrames cho phép bạn sử dụng các hàm SQL để xử lý dữ liệu dạng cột, dữ liệu dạng bảng trong Apache Spark.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(DBI)
-dbGetQuery(sc, &amp;quot;SELECT count(*) FROM mtcars&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   count(1)
-## 1       32&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
-count(cars)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # Source: spark&amp;lt;?&amp;gt; [?? x 1]
-##       n
-##   &amp;lt;dbl&amp;gt;
-## 1    32&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summarize_all(cars, mean)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # Source: spark&amp;lt;?&amp;gt; [?? x 11]
-##     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
-## 1  20.1  6.19  231.  147.  3.60  3.22  17.8 0.438 0.406  3.69  2.81&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Sử dụng ggplot2 để trực quan hóa dữ liệu:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
-ggplot(aes(as.factor(cyl), mpg), data = mtcars) + geom_col()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/r-spark/index_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(aes(mpg, wt), data = mtcars) + 
-  geom_point()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/r-spark/index_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;modeling&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;Modeling&lt;/h4&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model &amp;lt;- ml_linear_regression(cars, mpg ~ hp)
-model&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Formula: mpg ~ hp
-## 
-## Coefficients:
-## (Intercept)          hp 
-## 30.09886054 -0.06822828&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;model %&amp;gt;%
-  ml_predict(copy_to(sc, data.frame(hp = 250 + 10 * 1:10))) %&amp;gt;%
-  transmute(hp = hp, mpg = prediction) %&amp;gt;%
-  full_join(select(cars, hp, mpg)) %&amp;gt;%
-  collect() %&amp;gt;%
-  plot()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Joining, by = c(&amp;quot;hp&amp;quot;, &amp;quot;mpg&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/r-spark/index_files/figure-html/unnamed-chunk-18-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Tài Liệu Tham Khảo:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://therinspark.com/&#34;&gt;Mastering Spark with R&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
     
     <item>
       <title>Cách dùng keras và tensorflow trong R. So sánh R interface và Python interface cho keras.</title>
@@ -2449,13 +2290,13 @@ hist(data, breaks= 60, main=&amp;quot;Histogram With breaks=60&amp;quot;)
 summary(data)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   12.84   18.66   19.99   20.00   21.37   26.96
+##   12.32   18.66   19.99   19.99   21.30   26.54
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ví dụ sử dụng hàm &lt;code&gt;sample()&lt;/code&gt; để tạo mẫu ngẫu nhiên có lặp lại 10 số nguyên từ 0 đến 9:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
 sample(0:9, replace = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] 8 7 4 3 1 6 9 5 3 3
+&lt;pre&gt;&lt;code&gt;##  [1] 6 6 0 9 7 1 6 6 8 4
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ví dụ sử dụng hàm tính mật độ phân phối chuẩn &lt;code&gt;dnorm()&lt;/code&gt; để ước tính xác xuất của học sinh có điểm là &lt;code&gt;16.5&lt;/code&gt;  biết rằng điểm của học sinh tuân theo phân phối chuẩn với giá trị trung bình là &lt;code&gt;15&lt;/code&gt;, độ lệnh chuẩn là &lt;code&gt;2.5&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# R
@@ -2512,26 +2353,26 @@ lower_std, upper_std = mean_data - limit_std, mean_data + limit_std
 ouliers_index_std &amp;lt;- which(data &amp;gt; upper_std | data &amp;lt; lower_std)
 print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_std)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 16&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 11&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 ouliers_index_std = [x for x in data if x &amp;lt; lower_std or x &amp;gt; upper_std]
 print(&#39;Number of outliers: %d&#39; % len(ouliers_index_std))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 14
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 13
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
 # R
 data_new_std &amp;lt;- data[-ouliers_index_std]
 print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_std)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4984&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4989&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 data_new_std = [x for x in data if x &amp;gt;= lower_std and x &amp;lt;= upper_std]
 print(&#39;Number of Non-outliers:: %d&#39; % len(data_new_std))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4986
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers:: 4987
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;2. Phương pháp &lt;code&gt;IQR&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Tứ phân vị là đại lượng mô tả sự phân bố và sự phân tán của tập dữ liệu. Tứ phân vị có &lt;code&gt;3&lt;/code&gt; giá trị, đó là tứ phân vị thứ nhất &lt;code&gt;Q1&lt;/code&gt; (25th), thứ hai &lt;code&gt;Q2&lt;/code&gt; (50th) hay &lt;code&gt;median&lt;/code&gt;, và thứ ba &lt;code&gt;Q3&lt;/code&gt; (75th). Ba giá trị này chia một tập hợp dữ liệu (đã sắp xếp dữ liệu theo trật từ từ bé đến lớn) thành &lt;code&gt;4&lt;/code&gt; phần có số lượng quan sát đều nhau. Tứ phân vị được xác định như sau:&lt;/p&gt;
@@ -2576,26 +2417,26 @@ lower_iqr, upper_iqr = q25 - limit_iqr, q75 + limit_iqr
 ouliers_index_iqr &amp;lt;- which(data &amp;gt; upper_iqr | data &amp;lt; lower_iqr)
 print(paste(&amp;quot;Number of outliers:&amp;quot;, length(ouliers_index_iqr)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 30&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of outliers: 37&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 ouliers_index_iqr = [x for x in data if x &amp;lt; lower_iqr or x &amp;gt; upper_iqr]
 print(&#39;Number of outliers: %d&#39; % len(ouliers_index_iqr))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 35
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 39
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Loại bỏ outliers
 # R
 data_new_iqr &amp;lt;- data[-ouliers_index_iqr]
 print(paste(&amp;quot;Number of Non-outliers:&amp;quot;, length(data_new_iqr)))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4970&amp;quot;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Number of Non-outliers: 4963&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Python
 data_new_iqr = [x for x in data if x &amp;gt;= lower_iqr and x &amp;lt;= upper_iqr]
 print(&#39;Non-outlier observations: %d&#39; % len(data_new_iqr))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4965
+&lt;pre&gt;&lt;code&gt;## Non-outlier observations: 4961
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;3. Xây dựng hàm tự động xác định và loại bỏ &lt;code&gt;outliers&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Chúng ta có thể tạo một hàm trên R dựa vào các bước ở trên để tự động xác định và xóa outliers như sau:&lt;/p&gt;
@@ -2649,15 +2490,15 @@ find_outliers_iqr &amp;lt;- function(data) {
 &lt;p&gt;Kiểm tra kết quả thực hiện của hai hàm này:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_std &amp;lt;- find_outliers_std(data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 16
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 11
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4970
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4963
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;new_data_iqr &amp;lt;- find_outliers_iqr(data)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of outliers: 30
+&lt;pre&gt;&lt;code&gt;## Number of outliers: 37
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4970
+&lt;pre&gt;&lt;code&gt;## Number of Non-outliers: 4963
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Đối với Python thì các bạn có thể tạo hàm tương tự sử dụng các bước trên&lt;/p&gt;
 &lt;hr&gt;
