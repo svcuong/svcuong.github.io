@@ -1,0 +1,1440 @@
+<!DOCTYPE html><html lang="vi-en" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Cuong Sai">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Nội dung của bài bao gồm:
+1. Mở đầu
+2. Giới thiệu qua về lý thuyết
+3. Sử dụng Spark trong môi trường R
+1 Mở đầuTồn lại rất nhiều những ý kiến và sự nhầm lẫn cho rằng ngôn ngữ R không thích hợp với vài trò là một công cụ hiệu quả để phân tích dữ liệu và phát triển các ứng dụng phân tích dữ liệu.">
+
+  
+  <link rel="alternate" hreflang="vi-en" href="/post/r-spark/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#06805E">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128408660-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-128408660-5', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_32x32_fill_lanczos_center_2.PNG">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG">
+
+  <link rel="canonical" href="/post/r-spark/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Khoa Học Dữ Liệu">
+  <meta property="og:url" content="/post/r-spark/">
+  <meta property="og:title" content="Spark và sparklyr để làm việc với dữ liệu lớn trong R | Khoa Học Dữ Liệu">
+  <meta property="og:description" content="Nội dung của bài bao gồm:
+1. Mở đầu
+2. Giới thiệu qua về lý thuyết
+3. Sử dụng Spark trong môi trường R
+1 Mở đầuTồn lại rất nhiều những ý kiến và sự nhầm lẫn cho rằng ngôn ngữ R không thích hợp với vài trò là một công cụ hiệu quả để phân tích dữ liệu và phát triển các ứng dụng phân tích dữ liệu."><meta property="og:image" content="/post/r-spark/featured.png">
+  <meta property="twitter:image" content="/post/r-spark/featured.png"><meta property="og:locale" content="vi-en">
+  
+    
+      <meta property="article:published_time" content="2020-11-05T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-11-05T10:44:38&#43;04:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/r-spark/"
+  },
+  "headline": "Spark và sparklyr để làm việc với dữ liệu lớn trong R",
+  
+  "image": [
+    "/post/r-spark/featured.png"
+  ],
+  
+  "datePublished": "2020-11-05T00:00:00Z",
+  "dateModified": "2020-11-05T10:44:38+04:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Cuong Sai"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Khoa Học Dữ Liệu",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu47efca792e1e7000f9078d7b8f1dac48_31011_192x192_fill_lanczos_center_2.PNG"
+    }
+  },
+  "description": "Nội dung của bài bao gồm:\n1. Mở đầu\n2. Giới thiệu qua về lý thuyết\n3. Sử dụng Spark trong môi trường R\n1 Mở đầu\rTồn lại rất nhiều những ý kiến và sự nhầm lẫn cho rằng ngôn ngữ R không thích hợp với vài trò là một công cụ hiệu quả để phân tích dữ liệu và phát triển các ứng dụng phân tích dữ liệu."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script async type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+  <title>Spark và sparklyr để làm việc với dữ liệu lớn trong R | Khoa Học Dữ Liệu</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Khoa Học Dữ Liệu</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Khoa Học Dữ Liệu</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-end" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/"><span>HOME</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/about-me/"><span>ABOUT</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/post/"><span>BLOG</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>TOPICS</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>TUTORIALS</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/tutorials/r-tutorials/"><span>R</span></a>
+            
+              <a class="dropdown-item" href="/tutorials/python-tutorials/"><span>Python</span></a>
+            
+              <a class="dropdown-item" href="/tutorials/statistics/"><span>Statistics</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>CONTACT</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+
+
+<div class="article-container pt-3">
+  <h1>Spark và sparklyr để làm việc với dữ liệu lớn trong R</h1>
+
+  
+  
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Nov 5, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    9 min read
+  </span>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/r-spark/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a></span>
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 511px;">
+  <div style="position: relative">
+    <img src="/post/r-spark/featured_hu8e2f43289d06162624f50fde0f544ef1_35840_720x0_resize_lanczos_2.png" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<hr />
+<p>Nội dung của bài bao gồm:</p>
+<p><a href="#sec1">1. Mở đầu</a></p>
+<p><a href="#sec2">2. Giới thiệu qua về lý thuyết</a></p>
+<p><a href="#sec3">3. Sử dụng Spark trong môi trường R</a></p>
+<hr />
+<div id="sec1" class="section level3">
+<h3>1 Mở đầu</h3>
+<p>Tồn lại rất nhiều những ý kiến và sự nhầm lẫn cho rằng ngôn ngữ R không thích hợp với vài trò là một công cụ hiệu quả để phân tích dữ liệu và phát triển các ứng dụng phân tích dữ liệu. Một trong những sự nhầm lẫn phổ biến nhất đó là <code>"R phức tạp và không thể làm việc với dữ liệu lớn (</code>Big Data<code>)"</code>. Điều này hoàn toàn không phải vậy. Trong hệ sinh thái R có rất nhiều các gói (<code>packages</code>) cho phép người dùng có thể làm việc với cơ sở dữ liệu đầu xa (<code>Remote Database</code>, RDB) và thực hiện các tính toán song song bằng sự kết hợp với các plarfoms chuyên dụng trong lĩnh vực này. Ở bài này tôi sẽ giới thiếu với các bạn cách kết hợp R với <code>Apacher Spark</code></p>
+</div>
+<div id="sec2" class="section level3">
+<h3>2 Giới thiệu qua về lý thuyết</h3>
+<p><strong>Dữ liệu lớn</strong> (<code>Big data</code>) là một thuật ngữ để chỉ các tập dữ liệu kích thước lượng lớn và phức tạp vượt xa khả năng của các công cụ phần mềm thông thường để thu thập, hiển thị, quản lý và xử lý dữ liệu trong một thời gian có thể chấp nhận được. Kích thước dữ liệu lớn là một mục tiêu liên tục thay đổi. Như năm 2012 thì phạm vi một vài tá terabytes tới nhiều petabytes dữ liệu/
+Những tập dữ liệu lớn này có thể bao gồm các dữ liệu có cấu trúc, không có cấu trúc và bán cấu trúc, mỗi tập có thể được khai thác để tìm hiểu <code>insights</code>. Big Data được mô tả bởi những đặc trưng sau:</p>
+<ul>
+<li><p><strong>Volume</strong> (Dung lượng): Số lượng dữ liệu được tạo ra và lưu trữ. Kích thước của dữ liệu xác định giá trị và tiềm năng insight- và liệu nó có thể thực sự được coi là dữ liệu lớn hay không.</p></li>
+<li><p><strong>Variety</strong> (Tính đa dạng): Các dạng và kiểu của dữ liệu. Dữ liệu được thu thập từ nhiều nguồn khác nhau và các kiểu dữ liệu cũng có rất nhiều cấu trúc khác nhau.</p></li>
+<li><p><strong>Velocity</strong> (Vận tốc): Trong trường hợp này nghĩa là tốc độ các dữ liệu được tạo ra và xử lý để đáp ứng các nhu cầu và thách thức trên con đường tăng trưởng và phát triển.</p></li>
+<li><p><strong>Veracity</strong> (Tính xác thực): Chất lượng của dữ liệu thu được có thể khác nhau rất nhiều, ảnh hưởng đến sự phân tích chính xác.</p></li>
+</ul>
+<p>Lần đầu tiên, nhu cầu về xử lý một lượng dữ liệu lớn phát sinh khi có sự xuất hiện của <code>Internet</code>, cụ thể là nhu cầu về индексирования hàng triệu trang web và phát triển các hệ thống tìm kiếm hiệu quả. Vào năm 2003 các nhà nghiên cứu của công ty <code>Google</code> đã công bố nguyên lý xây dựng hệ thống <a href="https://ru.wikipedia.org/wiki/Google_File_System"><code>Google File System</code> (GFS)</a>, trong đó dữ liệu được chia nhỏ ra thành các блоки lưu trữ dưới dạng …ở các máy tính khác nhau.</p>
+<p>Sau đó 1 năm (năm 2004), nhóm các nhà nghiên cứu này lại giới thiệu phương pháp <a href="https://ru.wikipedia.org/wiki/MapReduce">MapReduce</a> để thực hiện các tính toán song song với dữ liệu trong <code>GFS</code>. Phương pháp này gồm 2 bước. Ở bước thứ nhất (<code>Map</code>) dữ liệu đầu vào của bài toán được chia nhỏ ra thành cách blocks riên biệt, và chia ra cho các máy tính khác nhau tực hiện xử lý cần thiết. Ở bước thứ 2 (<code>Reduce</code>) thực hiện liên kết các kết quả xử lý của các blocks và формирование kết quả cuối cùng. Ưu điểm lớn nhất của phương pháp này đó là khả năng xử lý dữ liệu song song với số lượng lớn các máy tính khác nhau, từ đó tăng cao tốc độ tính toán.</p>
+<p>Không lâu sau đó, sau khi những công bố về ý tưởng <code>GFS</code> và <code>MapReduce</code> nhóm các kỹ sư và nhà nghiên cứu của công ty <code>Yahoo</code> bắt đầu với việc triển khai ứng dụng trong dự án mã nguồn mở của mình mà nổi tiếng cả thế giới với tên gọi Hadoop. Phương án GFS được xây dựng trong platform này được gọi là <code>Hadoop</code> <a href="https://ru.wikipedia.org/wiki/Hadoop#HDFS"><code>Distributed Files System</code> (HDFS)</a></p>
+<p>Mặc dù platform <code>Hadoop</code> cho phép rất nhiều các cong ty thực hiện thành công парадигму MapReduce để tính toán song song với dự liệu lớn, nhưng mỗi lần xuất hiện những nhiệm vụ mới thì đòi hỏi phải viết code mới để thực thi map và reduce, điều này неудобно и трудоемко. Để giải quyết vấn đề này vào năm 2008 các kỹ sư của <code>Facebook</code> đã xây dựng <a href="https://ru.wikipedia.org/wiki/Apache_Hive">Apache Hive</a> - Hệ thống quản lý và điều khiển các базами данных trên cơ sở của Hadoop. Đặc trưng nổi bật của Apache Hive là hỗ trợ SQL - подобных запросов к данным, хранящимся в HDFS (этот новый диалект SQL получил название Hive Query Language, HQL).</p>
+<p>Vào năm 2009 tại đại học Калифорнийском университете в Беркли был bắt đầu phát triển dự án nghiên cứu Spark với mục đích tăng hiệu quả tính toán song song bằng phương pháp MApREduce và xây dựng platform phổ quát cho những tính toán này/ VÀo năm 2010 Spark được công bố với vai trò là dự án mã nguồn mở, vào năm 2013 chuyển giao cho quỹ (công ty ) Apache Software Foundation</p>
+<p>Ngày này Apache spark là một trong những plfatform được sử dụng phổ biến nhất để làm việc với dữ liệu lớn và được đặc trưng bởi những tính chất sau:</p>
+<p>непревзойденное быстродействие, достигаемое за счет выполнения вычислений в оперативной памяти большого количества компьютеров, объединенных в один кластер, а также благодаря эффективным протоколам передачи данных по сети;
+универсальность: Spark поддерживает многие технологии кластерных вычислений и имеет несколько библиотек-надстроек для решения распространенных аналитических задач, включая Spark SQL (SQL-подобные запросы к данным), MLlib (алгоритмы машинного обучения), GraphX (анализ графов) и Spark Streaming (обработка потоковых данных).</p>
+</div>
+<div id="sec3" class="section level3">
+<h3>3 Sử dụng Spark trong môi trường R</h3>
+<p>Gói sparklyr - cung cấp giao diện thuận tiện để làm việc hiệu quả với Spark-кластерами từ môi trường R. Với sự trợ giúp của gói này chúng ta có thể:
+Kết nối với các clusters
+Thực hiện các thao tác cơ bản về biến đổi, lọc …với синтаксиса dplyr
+Xây dựng các mô hình dự đoán sử dụng các thuật toán machien learning, triển khai trong gói MLib cho spark
+Sử dụng spark để tính toán song song với các gói R (ví dụ như rsparkling để làm việc với H2o )</p>
+<div id="thiết-lập-môi-trường-thực-hành" class="section level4">
+<h4>3.1 Thiết lập môi trường thực hành</h4>
+<p>because Spark is built in the Scala programming language, which is run by the Java Virtual Machine (JVM), you also need to install Java 8 on your system. It is likely that your system already has Java installed, but you should still check the version and update or downgrade as described in Installing Java. You can use the following R command to check which version is installed on your system:</p>
+<pre class="r"><code>system(&quot;java -version&quot;)</code></pre>
+<pre><code>java version &quot;1.8.0_241&quot;
+Java(TM) SE Runtime Environment (build 1.8.0_241-b07)
+Java HotSpot(TM) Client VM (build 25.241-b07, mixed mode)</code></pre>
+<p>Cài đặt sparklyr:</p>
+<pre class="r"><code>install.packages(&quot;sparklyr&quot;)</code></pre>
+<p>Kiểm tra version của <code>sparklyr</code>:</p>
+<pre class="r"><code>packageVersion(&quot;sparklyr&quot;)</code></pre>
+<pre><code>## [1] &#39;1.4.0&#39;</code></pre>
+<p>Cài đặt <code>Spark</code>:</p>
+<pre class="r"><code>library(sparklyr)
+spark_install() # Cài đặt mặc định 
+spark_install(&quot;2.4&quot;) # Cài đặt phiên bản cụ thể</code></pre>
+<p>Trước khi cài các bạn có thể kiểm tra:</p>
+<pre class="r"><code>library(sparklyr)</code></pre>
+<pre><code>## Warning: package &#39;sparklyr&#39; was built under R version 4.0.3</code></pre>
+<pre class="r"><code>spark_available_versions()</code></pre>
+<pre><code>##   spark
+## 1   1.6
+## 2   2.0
+## 3   2.1
+## 4   2.2
+## 5   2.3
+## 6   2.4
+## 7   3.0</code></pre>
+<p>Kiểm tra phiên bản đã cài đặt:</p>
+<pre class="r"><code>spark_installed_versions()</code></pre>
+<pre><code>##   spark hadoop                                                              dir
+## 1 2.3.3    2.7 C:\\Users\\svcuo\\AppData\\Local/spark/spark-2.3.3-bin-hadoop2.7
+## 2 2.4.3    2.7 C:\\Users\\svcuo\\AppData\\Local/spark/spark-2.4.3-bin-hadoop2.7</code></pre>
+<p>Finally, to uninstall a specific version of Spark you can run spark_uninstall() by specifying the Spark and Hadoop versions, like so:</p>
+<pre class="r"><code>spark_uninstall(version = &quot;1.6.3&quot;, hadoop = &quot;2.6&quot;)</code></pre>
+</div>
+<div id="kết-nối-với-spark-trong-r" class="section level4">
+<h4>3.2 Kết nối với Spark trong R</h4>
+<p>To connect to this local cluster, simply run the following:</p>
+<pre class="r"><code>library(sparklyr)
+sc &lt;- spark_connect(master = &quot;local&quot;, version = &quot;2.4.3&quot;)</code></pre>
+<p>Now that you are connected, we can run a few simple commands. For instance, let’s start by copying the mtcars dataset into Apache Spark by using copy_to()</p>
+<pre class="r"><code>cars &lt;- copy_to(sc, mtcars)</code></pre>
+<p>The data was copied into Spark, but we can access it from R using the cars reference. To print its contents, we can simply type <em>cars</em>:</p>
+<pre class="r"><code>cars</code></pre>
+<pre><code>## # Source: spark&lt;mtcars&gt; [?? x 11]
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+## # ... with more rows</code></pre>
+<p>Web Interface:</p>
+<pre class="r"><code>spark_web(sc)</code></pre>
+<p><img src="/img/spark-interface.PNG" /></p>
+<p>You can also select the Storage tab to see the mtcars dataset cached in memory in Spark:</p>
+<p><img src="/img/spark-storage.PNG" /></p>
+</div>
+<div id="thực-hiện-phân-tích-dữ-liệu" class="section level4">
+<h4>3.3 Thực hiện phân tích dữ liệu</h4>
+<p>Spark DataFrames cho phép bạn sử dụng các hàm SQL để xử lý dữ liệu dạng cột, dữ liệu dạng bảng trong Apache Spark.</p>
+<pre class="r"><code>library(DBI)
+dbGetQuery(sc, &quot;SELECT count(*) FROM mtcars&quot;)</code></pre>
+<pre><code>##   count(1)
+## 1       32</code></pre>
+<pre class="r"><code>library(dplyr)
+count(cars)</code></pre>
+<pre><code>## # Source: spark&lt;?&gt; [?? x 1]
+##       n
+##   &lt;dbl&gt;
+## 1    32</code></pre>
+<pre class="r"><code>summarize_all(cars, mean)</code></pre>
+<pre><code>## # Source: spark&lt;?&gt; [?? x 11]
+##     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  20.1  6.19  231.  147.  3.60  3.22  17.8 0.438 0.406  3.69  2.81</code></pre>
+<p>Sử dụng ggplot2 để trực quan hóa dữ liệu:</p>
+<pre class="r"><code>library(ggplot2)
+ggplot(aes(as.factor(cyl), mpg), data = mtcars) + geom_col()</code></pre>
+<p><img src="/post/r-spark/index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(aes(mpg, wt), data = mtcars) + 
+  geom_point()</code></pre>
+<p><img src="/post/r-spark/index_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="modeling" class="section level4">
+<h4>Modeling</h4>
+<pre class="r"><code>model &lt;- ml_linear_regression(cars, mpg ~ hp)
+model</code></pre>
+<pre><code>## Formula: mpg ~ hp
+## 
+## Coefficients:
+## (Intercept)          hp 
+## 30.09886054 -0.06822828</code></pre>
+<pre class="r"><code>model %&gt;%
+  ml_predict(copy_to(sc, data.frame(hp = 250 + 10 * 1:10))) %&gt;%
+  transmute(hp = hp, mpg = prediction) %&gt;%
+  full_join(select(cars, hp, mpg)) %&gt;%
+  collect() %&gt;%
+  plot()</code></pre>
+<pre><code>## Joining, by = c(&quot;hp&quot;, &quot;mpg&quot;)</code></pre>
+<p><img src="/post/r-spark/index_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><strong>Tài Liệu Tham Khảo:</strong></p>
+<p><a href="https://therinspark.com/">Mastering Spark with R</a></p>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/spark/">Spark</a>
+  
+  <a class="badge badge-light" href="/tag/big-data/">Big Data</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/r-spark/&amp;text=Spark%20v%c3%a0%20sparklyr%20%c4%91%e1%bb%83%20l%c3%a0m%20vi%e1%bb%87c%20v%e1%bb%9bi%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%9bn%20trong%20R" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/r-spark/&amp;t=Spark%20v%c3%a0%20sparklyr%20%c4%91%e1%bb%83%20l%c3%a0m%20vi%e1%bb%87c%20v%e1%bb%9bi%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%9bn%20trong%20R" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Spark%20v%c3%a0%20sparklyr%20%c4%91%e1%bb%83%20l%c3%a0m%20vi%e1%bb%87c%20v%e1%bb%9bi%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%9bn%20trong%20R&amp;body=/post/r-spark/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/r-spark/&amp;title=Spark%20v%c3%a0%20sparklyr%20%c4%91%e1%bb%83%20l%c3%a0m%20vi%e1%bb%87c%20v%e1%bb%9bi%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%9bn%20trong%20R" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Spark%20v%c3%a0%20sparklyr%20%c4%91%e1%bb%83%20l%c3%a0m%20vi%e1%bb%87c%20v%e1%bb%9bi%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%9bn%20trong%20R%20/post/r-spark/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/r-spark/&amp;title=Spark%20v%c3%a0%20sparklyr%20%c4%91%e1%bb%83%20l%c3%a0m%20vi%e1%bb%87c%20v%e1%bb%9bi%20d%e1%bb%af%20li%e1%bb%87u%20l%e1%bb%9bn%20trong%20R" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/cuong-sai/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="Cuong Sai">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Cuong Sai</a></h5>
+        <h6 class="card-subtitle">PhD student</h6>
+        <p class="card-text">My research interests include Industrial AI (Intelligent predictive maintenance), Machine and Deep learning, Time series forecasting, Intelligent machinery fault diagnosis, Prognostics and health management, Error metrics / forecast evaluation.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://web.facebook.com/csdatascience" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/forvis" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://orcid.org/0000-0003-0478-8838" target="_blank" rel="noopener">
+        <i class="ai ai-orcid"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/svcuong" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "cuongsai" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/r-jupyter/r-jupyter/">Cách thêm và sử dụng R trong Jupyter Notebook</a></li>
+      
+      <li><a href="/post/pipes/">Cách sử dụng các toán tử pipes trong R</a></li>
+      
+      <li><a href="/post/ensemble-learning/">Phương pháp Ensemble Learning trong Machine Learning: Boosting, Bagging, Stacking (Sử dụng R code)</a></li>
+      
+      <li><a href="/post/crypto/">Cách scrape một trang web bằng R. Scrape và so sánh dữ liệu lịch sử thị trường  tiền điện tử từ CoinMarketCap</a></li>
+      
+      <li><a href="/post/ggplot-plotly/">Data visualization với ggplot2. Chuyển đổi từ ggplot2 objects sang biểu đồ tương tác plotly</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+ 
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://cuongsai.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/license/">LICENSE: CC BY-SA</a>
+    
+    
+  </p>
+  
+
+  <p class="powered-by">
+    © 2020 Cuong Sai. All Rights Reserved
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a>
+    for
+    <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
