@@ -2940,97 +2940,6 @@ data_py.groupby([&amp;#39;cyl&amp;#39;, &amp;#39;am&amp;#39;])[&amp;#39;cyl&amp;
     </item>
     
     <item>
-      <title>А classification approach based on a combination of deep neural networks for predicting failures of complex multi-object systems</title>
-      <link>/publication/moit2020/</link>
-      <pubDate>Mon, 08 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/moit2020/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Фреймворка для предсказательного моделирования отказов сложных многообъектных систем</title>
-      <link>/publication/paten4/</link>
-      <pubDate>Fri, 27 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/paten4/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Failure prediction of complex multiple-component systems based on a combination of neural networks&#39;:&#39; Ways to improve the accuracy of forecasting</title>
-      <link>/publication/hi-tech2020/</link>
-      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/hi-tech2020/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Architecture of predictive maintenance system of complex multi-object systems in Industry 4.0 concept</title>
-      <link>/publication/swsys2020/</link>
-      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/swsys2020/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>PdM&#39;:&#39; A predictive maintenance modeling tool implemented as R-package and web-application</title>
-      <link>/publication/soict2019/</link>
-      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/soict2019/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>DEEP NEURAL NETWORKS FOR PREDICTIVE MAINTENANCE</title>
-      <link>/publication/moit2019/</link>
-      <pubDate>Fri, 08 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/moit2019/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Data-Driven Framework for Predictive Maintenance in Industry 4.0 Concept</title>
-      <link>/publication/citds2019/</link>
-      <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/citds2019/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
       <title>The PdM Project</title>
       <link>/project/pdm-project/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
@@ -3041,19 +2950,6 @@ data_py.groupby([&amp;#39;cyl&amp;#39;, &amp;#39;am&amp;#39;])[&amp;#39;cyl&amp;
   &lt;iframe src=&#34;https://www.youtube.com/embed/3Ir7xnPMX8o?autoplay=1&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
-</description>
-    </item>
-    
-    <item>
-      <title>A Data-driven method for remaining useful life prediction of complex multiple-component systems</title>
-      <link>/publication/hi-tech2019/</link>
-      <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/hi-tech2019/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     
@@ -3188,58 +3084,6 @@ Three
 &lt;a href=&#34;https://spectrum.chat/academic&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;
 &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Data Schemas for Forecasting (with Examples in R)</title>
-      <link>/publication/smart2018/</link>
-      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/smart2018/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Generating Proactive Decisions Using a Method Based on LSTM and Classification</title>
-      <link>/publication/%D0%BC%D0%BCe%D1%822018/</link>
-      <pubDate>Mon, 10 Sep 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/%D0%BC%D0%BCe%D1%822018/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>On-the-Fly Multiple Sources Data Analysis in AR-Based Decision Support Systems</title>
-      <link>/publication/dcnn2018/</link>
-      <pubDate>Fri, 24 Aug 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/dcnn2018/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Grammar for queries for heterogeneous data storage in proactive systems</title>
-      <link>/publication/swsys2018/</link>
-      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/swsys2018/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     
@@ -3390,19 +3234,6 @@ ggplot(data = py$data,aes(x = preg)) +
     </item>
     
     <item>
-      <title>Распределенная система слияния и преобработки разнородных данных с разных источников</title>
-      <link>/publication/paten3/</link>
-      <pubDate>Wed, 20 Sep 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/paten3/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Mở đầu về khoa học dữ liệu. So sánh các khái niệm khái niệm Artificial Intelligence, Machine Learning và Deep Learning</title>
       <link>/post/2020-08-17-khai-niem-co-ban/</link>
       <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
@@ -3445,32 +3276,6 @@ ggplot(data = py$data,aes(x = preg)) +
 &lt;p&gt;&lt;strong&gt;Tham khảo:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;sub&gt;
 &lt;a href=&#34;https://medium.com/ai-in-plain-english/data-science-vs-artificial-intelligence-vs-machine-learning-vs-deep-learning-50d3718d51e5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;The differences between Data Science, Artificial Intelligence, Machine Learning, and Deep Learning&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Программа расчета асимптотических оценок показателей эффективностей системы эксплуатационного котроля объекта авиационной техники</title>
-      <link>/publication/paten2/</link>
-      <pubDate>Tue, 19 Jul 2016 00:00:00 +0000</pubDate>
-      <guid>/publication/paten2/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Программа расчета статистических оценок показателей эффективностей системы эксплуатационного котроля объекта авиационной техники</title>
-      <link>/publication/paten1/</link>
-      <pubDate>Tue, 21 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>/publication/paten1/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to cite this work.
-  &lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     
